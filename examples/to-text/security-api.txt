@@ -1,0 +1,2313 @@
+Amazon CodeGuru Security
+API Reference
+API Version 2018-05-10
+Amazon CodeGuru Security API Reference
+Amazon CodeGuru Security: API Reference
+Copyright © 2023 Amazon Web Services, Inc. and/or its aﬃliates. All rights reserved.
+Amazon's trademarks and trade dress may not be used in connection with any product or service that is not 
+Amazon's, in any manner that is likely to cause confusion among customers, or in any manner that disparages or 
+discredits Amazon. All other trademarks not owned by Amazon are the property of their respective owners, who may 
+or may not be aﬃliated with, connected to, or sponsored by Amazon.Amazon CodeGuru Security API Reference
+Table of Contents
+Welcome...........................................................................................................................................1
+Actions.............................................................................................................................................2
+BatchGetFindings .......................................................................................................................3
+Request Syntax..................................................................................................................3
+URI Request Parameters......................................................................................................3
+Request Body....................................................................................................................3
+Response Syntax................................................................................................................3
+Response Elements.............................................................................................................4
+Errors...............................................................................................................................5
+See Also ............................................................................................................................5
+CreateScan................................................................................................................................6
+Request Syntax..................................................................................................................6
+URI Request Parameters......................................................................................................6
+Request Body....................................................................................................................6
+Response Syntax................................................................................................................7
+Response Elements.............................................................................................................8
+Errors...............................................................................................................................8
+See Also ............................................................................................................................9
+CreateUploadUrl.......................................................................................................................10
+Request Syntax................................................................................................................10
+URI Request Parameters....................................................................................................10
+Request Body...................................................................................................................10
+Response Syntax..............................................................................................................10
+Response Elements...........................................................................................................10
+Errors..............................................................................................................................11
+See Also ..........................................................................................................................11
+GetAccountConﬁguration...........................................................................................................13
+Request Syntax................................................................................................................13
+URI Request Parameters....................................................................................................13
+Request Body...................................................................................................................13
+Response Syntax..............................................................................................................13
+Response Elements...........................................................................................................13
+Errors..............................................................................................................................13
+See Also ..........................................................................................................................14
+GetFindings .............................................................................................................................15
+Request Syntax................................................................................................................15
+URI Request Parameters....................................................................................................15
+Request Body...................................................................................................................15
+Response Syntax..............................................................................................................15
+Response Elements...........................................................................................................16
+Errors..............................................................................................................................17
+See Also ..........................................................................................................................17
+GetMetricsSummary..................................................................................................................19
+Request Syntax................................................................................................................19
+URI Request Parameters....................................................................................................19
+Request Body...................................................................................................................19
+Response Syntax..............................................................................................................19
+Response Elements...........................................................................................................20
+Errors..............................................................................................................................20
+See Also ..........................................................................................................................20
+GetScan ..................................................................................................................................22
+Request Syntax................................................................................................................22
+URI Request Parameters....................................................................................................22
+Request Body...................................................................................................................22
+API Version 2018-05-10
+iiiAmazon CodeGuru Security API Reference
+Response Syntax..............................................................................................................22
+Response Elements...........................................................................................................22
+Errors..............................................................................................................................23
+See Also ..........................................................................................................................24
+ListFindingsMetrics ...................................................................................................................25
+Request Syntax................................................................................................................25
+URI Request Parameters....................................................................................................25
+Request Body...................................................................................................................25
+Response Syntax..............................................................................................................25
+Response Elements...........................................................................................................26
+Errors..............................................................................................................................26
+See Also ..........................................................................................................................27
+ListScans .................................................................................................................................28
+Request Syntax................................................................................................................28
+URI Request Parameters....................................................................................................28
+Request Body...................................................................................................................28
+Response Syntax..............................................................................................................28
+Response Elements...........................................................................................................28
+Errors..............................................................................................................................29
+See Also ..........................................................................................................................29
+ListTagsForResource..................................................................................................................31
+Request Syntax................................................................................................................31
+URI Request Parameters....................................................................................................31
+Request Body...................................................................................................................31
+Response Syntax..............................................................................................................31
+Response Elements...........................................................................................................31
+Errors..............................................................................................................................32
+See Also ..........................................................................................................................32
+TagResource............................................................................................................................34
+Request Syntax................................................................................................................34
+URI Request Parameters....................................................................................................34
+Request Body...................................................................................................................34
+Response Syntax..............................................................................................................34
+Response Elements...........................................................................................................35
+Errors..............................................................................................................................35
+See Also ..........................................................................................................................35
+UntagResource.........................................................................................................................37
+Request Syntax................................................................................................................37
+URI Request Parameters....................................................................................................37
+Request Body...................................................................................................................37
+Response Syntax..............................................................................................................37
+Response Elements...........................................................................................................37
+Errors..............................................................................................................................37
+See Also ..........................................................................................................................38
+UpdateAccountConﬁguration.....................................................................................................39
+Request Syntax................................................................................................................39
+URI Request Parameters....................................................................................................39
+Request Body...................................................................................................................39
+Response Syntax..............................................................................................................39
+Response Elements...........................................................................................................39
+Errors..............................................................................................................................40
+See Also ..........................................................................................................................40
+Data Types......................................................................................................................................41
+AccountFindingsMetric..............................................................................................................42
+Contents .........................................................................................................................42
+See Also ..........................................................................................................................42
+BatchGetFindingsError...............................................................................................................43
+API Version 2018-05-10
+ivAmazon CodeGuru Security API Reference
+Contents .........................................................................................................................43
+See Also ..........................................................................................................................43
+CategoryWithFindingNum..........................................................................................................44
+Contents .........................................................................................................................44
+See Also ..........................................................................................................................44
+CodeLine .................................................................................................................................45
+Contents .........................................................................................................................45
+See Also ..........................................................................................................................45
+EncryptionConﬁg......................................................................................................................46
+Contents .........................................................................................................................46
+See Also ..........................................................................................................................46
+FilePath...................................................................................................................................47
+Contents .........................................................................................................................47
+See Also ..........................................................................................................................47
+Finding ....................................................................................................................................48
+Contents .........................................................................................................................48
+See Also ..........................................................................................................................50
+FindingIdentiﬁer .......................................................................................................................51
+Contents .........................................................................................................................51
+See Also ..........................................................................................................................51
+FindingMetricsValuePerSeverity..................................................................................................52
+Contents .........................................................................................................................52
+See Also ..........................................................................................................................52
+MetricsSummary......................................................................................................................53
+Contents .........................................................................................................................53
+See Also ..........................................................................................................................53
+Recommendation.....................................................................................................................55
+Contents .........................................................................................................................55
+See Also ..........................................................................................................................55
+Remediation............................................................................................................................56
+Contents .........................................................................................................................56
+See Also ..........................................................................................................................56
+Resource.................................................................................................................................57
+Contents .........................................................................................................................57
+See Also ..........................................................................................................................57
+ResourceId...............................................................................................................................58
+Contents .........................................................................................................................58
+See Also ..........................................................................................................................58
+ScanNameWithFindingNum .......................................................................................................59
+Contents .........................................................................................................................59
+See Also ..........................................................................................................................59
+ScanSummary..........................................................................................................................60
+Contents .........................................................................................................................60
+See Also ..........................................................................................................................61
+SuggestedFix ...........................................................................................................................62
+Contents .........................................................................................................................62
+See Also ..........................................................................................................................62
+ValidationExceptionField............................................................................................................63
+Contents .........................................................................................................................63
+See Also ..........................................................................................................................63
+Vulnerability............................................................................................................................64
+Contents .........................................................................................................................64
+See Also ..........................................................................................................................64
+Service-speciﬁc Errors.......................................................................................................................65
+AccessDeniedException..............................................................................................................66
+Contents .........................................................................................................................66
+See Also ..........................................................................................................................66
+API Version 2018-05-10
+vAmazon CodeGuru Security API Reference
+ConﬂictException......................................................................................................................67
+Contents .........................................................................................................................67
+See Also ..........................................................................................................................67
+InternalServerException.............................................................................................................68
+Contents .........................................................................................................................68
+See Also ..........................................................................................................................68
+ResourceNotFoundException......................................................................................................69
+Contents .........................................................................................................................69
+See Also ..........................................................................................................................69
+ThrottlingException..................................................................................................................70
+Contents .........................................................................................................................70
+See Also ..........................................................................................................................70
+ValidationException..................................................................................................................71
+Contents .........................................................................................................................71
+See Also ..........................................................................................................................71
+Common Parameters........................................................................................................................72
+Common Errors................................................................................................................................74
+API Version 2018-05-10
+viAmazon CodeGuru Security API Reference
+Welcome
+Note
+Amazon CodeGuru Security is in preview release and is subject to change.
+This section provides documentation for the Amazon CodeGuru Security API operations. CodeGuru 
+Security is a service that uses program analysis and machine learning to detect security policy violations 
+and vulnerabilities, and recommends ways to address these security risks.
+By proactively detecting and providing recommendations for addressing security risks, CodeGuru 
+Security improves the overall security of your application code. For more information about CodeGuru 
+Security, see the Amazon CodeGuru Security User Guide.
+This document was last published on August 10, 2023.
+API Version 2018-05-10
+1Amazon CodeGuru Security API Reference
+Actions
+The following actions are supported:
+•BatchGetFindings  (p. 3)
+•CreateScan (p. 6)
+•CreateUploadUrl (p. 10)
+•GetAccountConﬁguration (p. 13)
+•GetFindings  (p. 15)
+•GetMetricsSummary (p. 19)
+•GetScan  (p. 22)
+•ListFindingsMetrics  (p. 25)
+•ListScans  (p. 28)
+•ListTagsForResource (p. 31)
+•TagResource (p. 34)
+•UntagResource (p. 37)
+•UpdateAccountConﬁguration (p. 39)
+API Version 2018-05-10
+2Amazon CodeGuru Security API Reference
+BatchGetFindings
+BatchGetFindings
+Returns a list of all requested ﬁndings from standard scans.
+Request Syntax
+POST /batchGetFindings HTTP/1.1
+Content-type: application/json
+{ 
+   "findingIdentifiers ": [  
+      {  
+         " findingId ": "string", 
+         " scanName ": "string" 
+      } 
+   ]
+}
+URI Request Parameters
+The request does not use any URI parameters.
+Request Body
+The request accepts the following data in JSON format.
+ﬁndingIdentiﬁers  (p. 3)
+A list of ﬁnding identiﬁers. Each identiﬁer consists of a scanName  and a findingId . You retrieve 
+the findingId  when you call GetFindings .
+Type: Array of FindingIdentiﬁer  (p. 51) objects
+Array Members: Minimum number of 1 item. Maximum number of 25 items.
+Required: Yes
+Response Syntax
+HTTP/1.1 200
+Content-type: application/json
+{ 
+   "failedFindings ": [  
+      {  
+         " errorCode ": "string", 
+         " findingId ": "string", 
+         " message": "string", 
+         " scanName ": "string" 
+      } 
+   ], 
+   "findings ": [  
+      {  
+         " createdAt ": number, 
+         " description ": "string", 
+         " detectorId ": "string", 
+API Version 2018-05-10
+3Amazon CodeGuru Security API Reference
+Response Elements
+         " detectorName ": "string", 
+         " detectorTags ": [ "string" ], 
+         " generatorId ": "string", 
+         " id": "string", 
+         " remediation ": {  
+            " recommendation ": {  
+               " text": "string", 
+               " url": "string" 
+            }, 
+            " suggestedFixes ": [  
+               {  
+                  " code": "string", 
+                  " description ": "string" 
+               } 
+            ] 
+         }, 
+         " resource ": {  
+            " id": "string", 
+            " subResourceId ": "string" 
+         }, 
+         " ruleId": "string", 
+         " severity ": "string", 
+         " status": "string", 
+         " title": "string", 
+         " type": "string", 
+         " updatedAt ": number, 
+         " vulnerability ": {  
+            " filePath ": {  
+               " codeSnippet ": [  
+                  {  
+                     " content": "string", 
+                     " number": number
+                  } 
+               ], 
+               " endLine": number, 
+               " name": "string", 
+               " path": "string", 
+               " startLine ": number
+            }, 
+            " id": "string", 
+            " itemCount ": number, 
+            " referenceUrls ": [ "string" ], 
+            " relatedVulnerabilities ": [ "string" ] 
+         } 
+      } 
+   ]
+}
+Response Elements
+If the action is successful, the service sends back an HTTP 200 response.
+The following data is returned in JSON format by the service.
+failedFindings (p. 3)
+A list of errors for individual ﬁndings which were not fetched. Each BatchGetFindingsError contains 
+the scanName , findingId , errorCode  and error message .
+Type: Array of BatchGetFindingsError (p. 43) objects
+ﬁndings  (p. 3)
+A list of all requested ﬁndings.
+API Version 2018-05-10
+4Amazon CodeGuru Security API Reference
+Errors
+Type: Array of Finding  (p. 48) objects
+Errors
+For information about the errors that are common to all actions, see Common Errors (p. 74).
+AccessDeniedException (p. 66)
+You do not have suﬃcient access to perform this action.
+HTTP Status Code: 403
+InternalServerException (p. 68)
+The server encountered an internal error and is unable to complete the request.
+HTTP Status Code: 500
+ThrottlingException (p. 70)
+The request was denied due to request throttling.
+HTTP Status Code: 429
+ValidationException (p. 71)
+The input fails to satisfy the speciﬁed constraints.
+HTTP Status Code: 400
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+API Version 2018-05-10
+5Amazon CodeGuru Security API Reference
+CreateScan
+CreateScan
+Use to create a scan using code uploaded to an S3 bucket.
+Request Syntax
+POST /scans HTTP/1.1
+Content-type: application/json
+{ 
+   "analysisType ": "string", 
+   "clientToken ": "string", 
+   "resourceId ": { ... }, 
+   "scanName ": "string", 
+   "scanType ": "string", 
+   "tags": {  
+      "string" : "string"  
+   }
+}
+URI Request Parameters
+The request does not use any URI parameters.
+Request Body
+The request accepts the following data in JSON format.
+analysisType (p. 6)
+The type of analysis you want CodeGuru Security to perform in the scan, either Security  or All. 
+The Security  type only generates ﬁndings related to security. The All type generates both 
+security ﬁndings and quality ﬁndings. Defaults to Security  type if missing.
+Type: String
+Valid Values: Security | All
+Required: No
+clientToken (p. 6)
+The idempotency token for the request. Amazon CodeGuru Security uses this value to prevent the 
+accidental creation of duplicate scans if there are failures and retries.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 64.
+Pattern: ^[\S]+$
+Required: No
+resourceId (p. 6)
+The identiﬁer for an input resource used to create a scan.
+Type: ResourceId (p. 58) object
+API Version 2018-05-10
+6Amazon CodeGuru Security API Reference
+Response Syntax
+Note: This object is a Union. Only one member of this object can be speciﬁed or returned.
+Required: Yes
+scanName  (p. 6)
+The unique name that CodeGuru Security uses to track revisions across multiple scans of the same 
+resource. Only allowed for a STANDARD  scan type. If not speciﬁed, it will be auto generated.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 140.
+Pattern: ^[a-zA-Z0-9-_$:.]*$
+Required: Yes
+scanType (p. 6)
+The type of scan, either Standard  or Express . Defaults to Standard  type if missing.
+Express scans run on limited resources and use a limited set of detectors to analyze your code in 
+near-real time. Standard  scans have standard resource limits and use the full set of detectors to 
+analyze your code.
+Type: String
+Valid Values: Standard | Express
+Required: No
+tags  (p. 6)
+An array of key-value pairs used to tag a scan. A tag is a custom attribute label with two parts:
+•A tag key. For example, CostCenter , Environment , or Secret. Tag keys are case sensitive.
+•An optional tag value ﬁeld. For example, 111122223333 , Production , or a team name. Omitting 
+the tag value is the same as using an empty string. Tag values are case sensitive.
+Type: String to string map
+Map Entries: Minimum number of 0 items. Maximum number of 200 items.
+Key Length Constraints: Minimum length of 1. Maximum length of 128.
+Value Length Constraints: Minimum length of 0. Maximum length of 256.
+Required: No
+Response Syntax
+HTTP/1.1 200
+Content-type: application/json
+{ 
+   "resourceId ": { ... }, 
+   "runId": "string", 
+   "scanName ": "string", 
+   "scanNameArn ": "string", 
+   "scanState ": "string"
+}
+API Version 2018-05-10
+7Amazon CodeGuru Security API Reference
+Response Elements
+Response Elements
+If the action is successful, the service sends back an HTTP 200 response.
+The following data is returned in JSON format by the service.
+resourceId (p. 7)
+The identiﬁer for the resource object that contains resources that were scanned.
+Type: ResourceId (p. 58) object
+Note: This object is a Union. Only one member of this object can be speciﬁed or returned.
+runId  (p. 7)
+UUID that identiﬁes the individual scan run.
+Type: String
+Pattern: ^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$
+scanName  (p. 7)
+The name of the scan.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 140.
+Pattern: ^[a-zA-Z0-9-_$:.]*$
+scanNameArn  (p. 7)
+The ARN for the scan name.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 300.
+Pattern: ^arn:aws:codeguru-security:[\S]+:[\d]{12}:scans\/[a-zA-Z0-9-_$:.]*$
+scanState  (p. 7)
+The current state of the scan. Returns either InProgress , Successful , or Failed .
+Type: String
+Valid Values: InProgress | Successful | Failed
+Errors
+For information about the errors that are common to all actions, see Common Errors (p. 74).
+AccessDeniedException (p. 66)
+You do not have suﬃcient access to perform this action.
+HTTP Status Code: 403
+ConﬂictException (p. 67)
+The requested operation would cause a conﬂict with the current state of a service resource 
+associated with the request. Resolve the conﬂict before retrying this request.
+API Version 2018-05-10
+8Amazon CodeGuru Security API Reference
+See Also
+HTTP Status Code: 409
+InternalServerException (p. 68)
+The server encountered an internal error and is unable to complete the request.
+HTTP Status Code: 500
+ResourceNotFoundException (p. 69)
+The resource speciﬁed in the request was not found.
+HTTP Status Code: 404
+ThrottlingException (p. 70)
+The request was denied due to request throttling.
+HTTP Status Code: 429
+ValidationException (p. 71)
+The input fails to satisfy the speciﬁed constraints.
+HTTP Status Code: 400
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+API Version 2018-05-10
+9Amazon CodeGuru Security API Reference
+CreateUploadUrl
+CreateUploadUrl
+Generates a pre-signed URL and request headers used to upload a code resource.
+You can upload your code resource to the URL and add the request headers using any HTTP client.
+Request Syntax
+POST /uploadUrl HTTP/1.1
+Content-type: application/json
+{ 
+   "scanName ": "string"
+}
+URI Request Parameters
+The request does not use any URI parameters.
+Request Body
+The request accepts the following data in JSON format.
+scanName  (p. 10)
+The name of the scan that will use the uploaded resource. CodeGuru Security uses the unique scan 
+name to track revisions across multiple scans of the same resource. Use this scanName  when you call
+CreateScan  on the code resource you upload to this URL.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 140.
+Pattern: ^[a-zA-Z0-9-_$:.]*$
+Required: Yes
+Response Syntax
+HTTP/1.1 200
+Content-type: application/json
+{ 
+   "codeArtifactId ": "string", 
+   "requestHeaders ": {  
+      "string" : "string"  
+   }, 
+   "s3Url": "string"
+}
+Response Elements
+If the action is successful, the service sends back an HTTP 200 response.
+API Version 2018-05-10
+10Amazon CodeGuru Security API Reference
+Errors
+The following data is returned in JSON format by the service.
+codeArtifactId (p. 10)
+The identiﬁer for the uploaded code resource.
+Type: String
+Pattern: ^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$
+requestHeaders  (p. 10)
+A set of key-value pairs that contain the required headers when uploading your resource.
+Type: String to string map
+Key Length Constraints: Minimum length of 1.
+Value Length Constraints: Minimum length of 1.
+s3Url  (p. 10)
+A pre-signed S3 URL. You can upload the code ﬁle you want to scan and add the required
+requestHeaders  using any HTTP client.
+Type: String
+Length Constraints: Minimum length of 1.
+Errors
+For information about the errors that are common to all actions, see Common Errors (p. 74).
+AccessDeniedException (p. 66)
+You do not have suﬃcient access to perform this action.
+HTTP Status Code: 403
+InternalServerException (p. 68)
+The server encountered an internal error and is unable to complete the request.
+HTTP Status Code: 500
+ThrottlingException (p. 70)
+The request was denied due to request throttling.
+HTTP Status Code: 429
+ValidationException (p. 71)
+The input fails to satisfy the speciﬁed constraints.
+HTTP Status Code: 400
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS Command Line Interface
+API Version 2018-05-10
+11Amazon CodeGuru Security API Reference
+See Also
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+API Version 2018-05-10
+12Amazon CodeGuru Security API Reference
+GetAccountConﬁguration
+GetAccountConﬁguration
+Use to get account level conﬁguration.
+Request Syntax
+GET /accountConfiguration/get HTTP/1.1
+URI Request Parameters
+The request does not use any URI parameters.
+Request Body
+The request does not have a request body.
+Response Syntax
+HTTP/1.1 200
+Content-type: application/json
+{ 
+   "encryptionConfig ": {  
+      "kmsKeyArn ": "string" 
+   }
+}
+Response Elements
+If the action is successful, the service sends back an HTTP 200 response.
+The following data is returned in JSON format by the service.
+encryptionConﬁg (p. 13)
+An EncryptionConfig  object that contains the KMS key ARN to use for encryption. By default, 
+CodeGuru Security uses an AWS-managed key for encryption. To specify your own key, call
+UpdateAccountConfiguration .
+Type: EncryptionConﬁg (p. 46) object
+Errors
+For information about the errors that are common to all actions, see Common Errors (p. 74).
+AccessDeniedException (p. 66)
+You do not have suﬃcient access to perform this action.
+HTTP Status Code: 403
+InternalServerException (p. 68)
+The server encountered an internal error and is unable to complete the request.
+API Version 2018-05-10
+13Amazon CodeGuru Security API Reference
+See Also
+HTTP Status Code: 500
+ThrottlingException (p. 70)
+The request was denied due to request throttling.
+HTTP Status Code: 429
+ValidationException (p. 71)
+The input fails to satisfy the speciﬁed constraints.
+HTTP Status Code: 400
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+API Version 2018-05-10
+14Amazon CodeGuru Security API Reference
+GetFindings
+GetFindings
+Returns a list of all ﬁndings generated by a particular scan.
+Request Syntax
+GET /findings/ scanName ?maxResults= maxResults &nextToken= nextToken &status= status HTTP/1.1
+URI Request Parameters
+The request uses the following URI parameters.
+maxResults (p. 15)
+The maximum number of results to return in the response. Use this parameter when paginating 
+results. If additional results exist beyond the number you specify, the nextToken  element is 
+returned in the response. Use nextToken  in a subsequent request to retrieve additional results.
+Valid Range: Minimum value of 1. Maximum value of 100.
+nextToken (p. 15)
+A token to use for paginating results that are returned in the response. Set the value of this 
+parameter to null for the ﬁrst request. For subsequent calls, use the nextToken  value returned from 
+the previous request to continue listing results after the ﬁrst page.
+Length Constraints: Minimum length of 1. Maximum length of 2048.
+Pattern: ^[\S]+$
+scanName  (p. 15)
+The name of the scan you want to retrieve ﬁndings from.
+Length Constraints: Minimum length of 1. Maximum length of 140.
+Pattern: ^[a-zA-Z0-9-_$:.]*$
+Required: Yes
+status  (p. 15)
+The status of the ﬁndings you want to get. Pass either Open , Closed , or All.
+Valid Values: Closed | Open | All
+Request Body
+The request does not have a request body.
+Response Syntax
+HTTP/1.1 200
+Content-type: application/json
+API Version 2018-05-10
+15Amazon CodeGuru Security API Reference
+Response Elements
+{ 
+   "findings ": [  
+      {  
+         " createdAt ": number, 
+         " description ": "string", 
+         " detectorId ": "string", 
+         " detectorName ": "string", 
+         " detectorTags ": [ "string" ], 
+         " generatorId ": "string", 
+         " id": "string", 
+         " remediation ": {  
+            " recommendation ": {  
+               " text": "string", 
+               " url": "string" 
+            }, 
+            " suggestedFixes ": [  
+               {  
+                  " code": "string", 
+                  " description ": "string" 
+               } 
+            ] 
+         }, 
+         " resource ": {  
+            " id": "string", 
+            " subResourceId ": "string" 
+         }, 
+         " ruleId": "string", 
+         " severity ": "string", 
+         " status": "string", 
+         " title": "string", 
+         " type": "string", 
+         " updatedAt ": number, 
+         " vulnerability ": {  
+            " filePath ": {  
+               " codeSnippet ": [  
+                  {  
+                     " content": "string", 
+                     " number": number
+                  } 
+               ], 
+               " endLine": number, 
+               " name": "string", 
+               " path": "string", 
+               " startLine ": number
+            }, 
+            " id": "string", 
+            " itemCount ": number, 
+            " referenceUrls ": [ "string" ], 
+            " relatedVulnerabilities ": [ "string" ] 
+         } 
+      } 
+   ], 
+   "nextToken ": "string"
+}
+Response Elements
+If the action is successful, the service sends back an HTTP 200 response.
+The following data is returned in JSON format by the service.
+ﬁndings  (p. 15)
+A list of ﬁndings generated by the speciﬁed scan.
+API Version 2018-05-10
+16Amazon CodeGuru Security API Reference
+Errors
+Type: Array of Finding  (p. 48) objects
+nextToken (p. 15)
+A pagination token. You can use this in future calls to GetFindings  to continue listing results after 
+the current page.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 2048.
+Pattern: ^[\S]+$
+Errors
+For information about the errors that are common to all actions, see Common Errors (p. 74).
+AccessDeniedException (p. 66)
+You do not have suﬃcient access to perform this action.
+HTTP Status Code: 403
+ConﬂictException (p. 67)
+The requested operation would cause a conﬂict with the current state of a service resource 
+associated with the request. Resolve the conﬂict before retrying this request.
+HTTP Status Code: 409
+InternalServerException (p. 68)
+The server encountered an internal error and is unable to complete the request.
+HTTP Status Code: 500
+ResourceNotFoundException (p. 69)
+The resource speciﬁed in the request was not found.
+HTTP Status Code: 404
+ThrottlingException (p. 70)
+The request was denied due to request throttling.
+HTTP Status Code: 429
+ValidationException (p. 71)
+The input fails to satisfy the speciﬁed constraints.
+HTTP Status Code: 400
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+API Version 2018-05-10
+17Amazon CodeGuru Security API Reference
+See Also
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+API Version 2018-05-10
+18Amazon CodeGuru Security API Reference
+GetMetricsSummary
+GetMetricsSummary
+Returns top level metrics about an account from a speciﬁed date, including number of open ﬁndings, 
+the categories with most ﬁndings, the scans with most open ﬁndings, and scans with most open critical 
+ﬁndings.
+Request Syntax
+GET /metrics/summary?date= date HTTP/1.1
+URI Request Parameters
+The request uses the following URI parameters.
+date  (p. 19)
+The date you want to retrieve summary metrics from, rounded to the nearest day. The date must 
+be within the past two years since metrics data is only stored for two years. If a date outside of this 
+range is passed, the response will be empty.
+Required: Yes
+Request Body
+The request does not have a request body.
+Response Syntax
+HTTP/1.1 200
+Content-type: application/json
+{ 
+   "metricsSummary ": {  
+      "categoriesWithMostFindings ": [  
+         {  
+            " categoryName ": "string", 
+            " findingNumber ": number
+         } 
+      ], 
+      "date": number, 
+      "openFindings ": {  
+         " critical ": number, 
+         " high": number, 
+         " info": number, 
+         " low": number, 
+         " medium": number
+      }, 
+      "scansWithMostOpenCriticalFindings ": [  
+         {  
+            " findingNumber ": number, 
+            " scanName ": "string" 
+         } 
+      ], 
+      "scansWithMostOpenFindings ": [  
+         {  
+            " findingNumber ": number, 
+API Version 2018-05-10
+19Amazon CodeGuru Security API Reference
+Response Elements
+            " scanName ": "string" 
+         } 
+      ] 
+   }
+}
+Response Elements
+If the action is successful, the service sends back an HTTP 200 response.
+The following data is returned in JSON format by the service.
+metricsSummary (p. 19)
+The summary metrics from the speciﬁed date.
+Type: MetricsSummary (p. 53) object
+Errors
+For information about the errors that are common to all actions, see Common Errors (p. 74).
+AccessDeniedException (p. 66)
+You do not have suﬃcient access to perform this action.
+HTTP Status Code: 403
+InternalServerException (p. 68)
+The server encountered an internal error and is unable to complete the request.
+HTTP Status Code: 500
+ThrottlingException (p. 70)
+The request was denied due to request throttling.
+HTTP Status Code: 429
+ValidationException (p. 71)
+The input fails to satisfy the speciﬁed constraints.
+HTTP Status Code: 400
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+API Version 2018-05-10
+20Amazon CodeGuru Security API Reference
+See Also
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+API Version 2018-05-10
+21Amazon CodeGuru Security API Reference
+GetScan
+GetScan
+Returns details about a scan, including whether or not a scan has completed.
+Request Syntax
+GET /scans/ scanName ?runId=runId HTTP/1.1
+URI Request Parameters
+The request uses the following URI parameters.
+runId  (p. 22)
+UUID that identiﬁes the individual scan run you want to view details about. You retrieve this when 
+you call the CreateScan  operation. Defaults to the latest scan run if missing.
+Pattern: ^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$
+scanName  (p. 22)
+The name of the scan you want to view details about.
+Length Constraints: Minimum length of 1. Maximum length of 140.
+Pattern: ^[a-zA-Z0-9-_$:.]*$
+Required: Yes
+Request Body
+The request does not have a request body.
+Response Syntax
+HTTP/1.1 200
+Content-type: application/json
+{ 
+   "analysisType ": "string", 
+   "createdAt ": number, 
+   "numberOfRevisions ": number, 
+   "runId": "string", 
+   "scanName ": "string", 
+   "scanNameArn ": "string", 
+   "scanState ": "string", 
+   "updatedAt ": number
+}
+Response Elements
+If the action is successful, the service sends back an HTTP 200 response.
+The following data is returned in JSON format by the service.
+API Version 2018-05-10
+22Amazon CodeGuru Security API Reference
+Errors
+analysisType (p. 22)
+The type of analysis CodeGuru Security performed in the scan, either Security  or All. The
+Security  type only generates ﬁndings related to security. The All type generates both security 
+ﬁndings and quality ﬁndings.
+Type: String
+Valid Values: Security | All
+createdAt  (p. 22)
+The time the scan was created.
+Type: Timestamp
+numberOfRevisions (p. 22)
+The number of times a scan has been re-run on a revised resource.
+Type: Long
+runId  (p. 22)
+UUID that identiﬁes the individual scan run.
+Type: String
+Pattern: ^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$
+scanName  (p. 22)
+The name of the scan.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 140.
+Pattern: ^[a-zA-Z0-9-_$:.]*$
+scanNameArn  (p. 22)
+The ARN for the scan name.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 300.
+Pattern: ^arn:aws:codeguru-security:[\S]+:[\d]{12}:scans\/[a-zA-Z0-9-_$:.]*$
+scanState  (p. 22)
+The current state of the scan. Pass either InProgress , Successful , or Failed .
+Type: String
+Valid Values: InProgress | Successful | Failed
+updatedAt  (p. 22)
+The time when the scan was last updated. Only available for STANDARD  scan types.
+Type: Timestamp
+Errors
+For information about the errors that are common to all actions, see Common Errors (p. 74).
+API Version 2018-05-10
+23Amazon CodeGuru Security API Reference
+See Also
+AccessDeniedException (p. 66)
+You do not have suﬃcient access to perform this action.
+HTTP Status Code: 403
+InternalServerException (p. 68)
+The server encountered an internal error and is unable to complete the request.
+HTTP Status Code: 500
+ResourceNotFoundException (p. 69)
+The resource speciﬁed in the request was not found.
+HTTP Status Code: 404
+ThrottlingException (p. 70)
+The request was denied due to request throttling.
+HTTP Status Code: 429
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+API Version 2018-05-10
+24Amazon CodeGuru Security API Reference
+ListFindingsMetrics
+ListFindingsMetrics
+Returns metrics about all ﬁndings in an account within a speciﬁed time range.
+Request Syntax
+GET /metrics/findings?
+endDate= endDate&maxResults= maxResults &nextToken= nextToken &startDate= startDate  HTTP/1.1
+URI Request Parameters
+The request uses the following URI parameters.
+endDate  (p. 25)
+The end date of the interval which you want to retrieve metrics from.
+Required: Yes
+maxResults (p. 25)
+The maximum number of results to return in the response. Use this parameter when paginating 
+results. If additional results exist beyond the number you specify, the nextToken  element is 
+returned in the response. Use nextToken  in a subsequent request to retrieve additional results.
+Valid Range: Minimum value of 1. Maximum value of 1000.
+nextToken (p. 25)
+A token to use for paginating results that are returned in the response. Set the value of this 
+parameter to null for the ﬁrst request. For subsequent calls, use the nextToken  value returned from 
+the previous request to continue listing results after the ﬁrst page.
+Length Constraints: Minimum length of 1. Maximum length of 2048.
+Pattern: ^[\S]+$
+startDate (p. 25)
+The start date of the interval which you want to retrieve metrics from.
+Required: Yes
+Request Body
+The request does not have a request body.
+Response Syntax
+HTTP/1.1 200
+Content-type: application/json
+{ 
+   "findingsMetrics ": [  
+      {  
+         " closedFindings ": {  
+            " critical ": number, 
+            " high": number, 
+API Version 2018-05-10
+25Amazon CodeGuru Security API Reference
+Response Elements
+            " info": number, 
+            " low": number, 
+            " medium": number
+         }, 
+         " date": number, 
+         " meanTimeToClose ": {  
+            " critical ": number, 
+            " high": number, 
+            " info": number, 
+            " low": number, 
+            " medium": number
+         }, 
+         " newFindings ": {  
+            " critical ": number, 
+            " high": number, 
+            " info": number, 
+            " low": number, 
+            " medium": number
+         }, 
+         " openFindings ": {  
+            " critical ": number, 
+            " high": number, 
+            " info": number, 
+            " low": number, 
+            " medium": number
+         } 
+      } 
+   ], 
+   "nextToken ": "string"
+}
+Response Elements
+If the action is successful, the service sends back an HTTP 200 response.
+The following data is returned in JSON format by the service.
+ﬁndingsMetrics  (p. 25)
+A list of AccountFindingsMetric  objects retrieved from the speciﬁed time interval.
+Type: Array of AccountFindingsMetric (p. 42) objects
+nextToken (p. 25)
+A pagination token. You can use this in future calls to ListFindingMetrics  to continue listing 
+results after the current page.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 2048.
+Pattern: ^[\S]+$
+Errors
+For information about the errors that are common to all actions, see Common Errors (p. 74).
+AccessDeniedException (p. 66)
+You do not have suﬃcient access to perform this action.
+API Version 2018-05-10
+26Amazon CodeGuru Security API Reference
+See Also
+HTTP Status Code: 403
+InternalServerException (p. 68)
+The server encountered an internal error and is unable to complete the request.
+HTTP Status Code: 500
+ThrottlingException (p. 70)
+The request was denied due to request throttling.
+HTTP Status Code: 429
+ValidationException (p. 71)
+The input fails to satisfy the speciﬁed constraints.
+HTTP Status Code: 400
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+API Version 2018-05-10
+27Amazon CodeGuru Security API Reference
+ListScans
+ListScans
+Returns a list of all the standard scans in an account. Does not return express scans.
+Request Syntax
+GET /scans?maxResults= maxResults &nextToken= nextToken  HTTP/1.1
+URI Request Parameters
+The request uses the following URI parameters.
+maxResults (p. 28)
+The maximum number of results to return in the response. Use this parameter when paginating 
+results. If additional results exist beyond the number you specify, the nextToken  element is 
+returned in the response. Use nextToken  in a subsequent request to retrieve additional results.
+Valid Range: Minimum value of 1. Maximum value of 100.
+nextToken (p. 28)
+A token to use for paginating results that are returned in the response. Set the value of this 
+parameter to null for the ﬁrst request. For subsequent calls, use the nextToken  value returned from 
+the previous request to continue listing results after the ﬁrst page.
+Length Constraints: Minimum length of 1. Maximum length of 2048.
+Pattern: ^[\S]+$
+Request Body
+The request does not have a request body.
+Response Syntax
+HTTP/1.1 200
+Content-type: application/json
+{ 
+   "nextToken ": "string", 
+   "summaries ": [  
+      {  
+         " createdAt ": number, 
+         " runId": "string", 
+         " scanName ": "string", 
+         " scanNameArn ": "string", 
+         " scanState ": "string", 
+         " updatedAt ": number
+      } 
+   ]
+}
+Response Elements
+If the action is successful, the service sends back an HTTP 200 response.
+API Version 2018-05-10
+28Amazon CodeGuru Security API Reference
+Errors
+The following data is returned in JSON format by the service.
+nextToken (p. 28)
+A pagination token. You can use this in future calls to ListScans  to continue listing results after the 
+current page.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 2048.
+Pattern: ^[\S]+$
+summaries  (p. 28)
+A list of ScanSummary  objects with information about all scans in an account.
+Type: Array of ScanSummary (p. 60) objects
+Errors
+For information about the errors that are common to all actions, see Common Errors (p. 74).
+AccessDeniedException (p. 66)
+You do not have suﬃcient access to perform this action.
+HTTP Status Code: 403
+InternalServerException (p. 68)
+The server encountered an internal error and is unable to complete the request.
+HTTP Status Code: 500
+ThrottlingException (p. 70)
+The request was denied due to request throttling.
+HTTP Status Code: 429
+ValidationException (p. 71)
+The input fails to satisfy the speciﬁed constraints.
+HTTP Status Code: 400
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+API Version 2018-05-10
+29Amazon CodeGuru Security API Reference
+See Also
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+API Version 2018-05-10
+30Amazon CodeGuru Security API Reference
+ListTagsForResource
+ListTagsForResource
+Returns a list of all tags associated with a scan.
+Request Syntax
+GET /tags/ resourceArn  HTTP/1.1
+URI Request Parameters
+The request uses the following URI parameters.
+resourceArn (p. 31)
+The ARN of the ScanName  object. You can retrieve this ARN by calling ListScans  or GetScan .
+Length Constraints: Minimum length of 1. Maximum length of 300.
+Pattern: ^arn:aws:codeguru-security:[\S]+:[\d]{12}:scans\/[a-zA-Z0-9-_$:.]*$
+Required: Yes
+Request Body
+The request does not have a request body.
+Response Syntax
+HTTP/1.1 200
+Content-type: application/json
+{ 
+   "tags": {  
+      "string" : "string"  
+   }
+}
+Response Elements
+If the action is successful, the service sends back an HTTP 200 response.
+The following data is returned in JSON format by the service.
+tags  (p. 31)
+An array of key-value pairs used to tag an existing scan. A tag is a custom attribute label with two 
+parts:
+•A tag key. For example, CostCenter , Environment , or Secret. Tag keys are case sensitive.
+•An optional tag value ﬁeld. For example, 111122223333 , Production , or a team name. Omitting 
+the tag value is the same as using an empty string. Tag values are case sensitive.
+Type: String to string map
+API Version 2018-05-10
+31Amazon CodeGuru Security API Reference
+Errors
+Map Entries: Minimum number of 0 items. Maximum number of 200 items.
+Key Length Constraints: Minimum length of 1. Maximum length of 128.
+Value Length Constraints: Minimum length of 0. Maximum length of 256.
+Errors
+For information about the errors that are common to all actions, see Common Errors (p. 74).
+AccessDeniedException (p. 66)
+You do not have suﬃcient access to perform this action.
+HTTP Status Code: 403
+ConﬂictException (p. 67)
+The requested operation would cause a conﬂict with the current state of a service resource 
+associated with the request. Resolve the conﬂict before retrying this request.
+HTTP Status Code: 409
+InternalServerException (p. 68)
+The server encountered an internal error and is unable to complete the request.
+HTTP Status Code: 500
+ResourceNotFoundException (p. 69)
+The resource speciﬁed in the request was not found.
+HTTP Status Code: 404
+ThrottlingException (p. 70)
+The request was denied due to request throttling.
+HTTP Status Code: 429
+ValidationException (p. 71)
+The input fails to satisfy the speciﬁed constraints.
+HTTP Status Code: 400
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+API Version 2018-05-10
+32Amazon CodeGuru Security API Reference
+See Also
+•AWS SDK for Ruby V3
+API Version 2018-05-10
+33Amazon CodeGuru Security API Reference
+TagResource
+TagResource
+Use to add one or more tags to an existing scan.
+Request Syntax
+POST /tags/ resourceArn  HTTP/1.1
+Content-type: application/json
+{ 
+   "tags": {  
+      "string" : "string"  
+   }
+}
+URI Request Parameters
+The request uses the following URI parameters.
+resourceArn (p. 34)
+The ARN of the ScanName  object. You can retrieve this ARN by calling ListScans  or GetScan .
+Length Constraints: Minimum length of 1. Maximum length of 300.
+Pattern: ^arn:aws:codeguru-security:[\S]+:[\d]{12}:scans\/[a-zA-Z0-9-_$:.]*$
+Required: Yes
+Request Body
+The request accepts the following data in JSON format.
+tags  (p. 34)
+An array of key-value pairs used to tag an existing scan. A tag is a custom attribute label with two 
+parts:
+•A tag key. For example, CostCenter , Environment , or Secret. Tag keys are case sensitive.
+•An optional tag value ﬁeld. For example, 111122223333 , Production , or a team name. Omitting 
+the tag value is the same as using an empty string. Tag values are case sensitive.
+Type: String to string map
+Map Entries: Minimum number of 0 items. Maximum number of 200 items.
+Key Length Constraints: Minimum length of 1. Maximum length of 128.
+Value Length Constraints: Minimum length of 0. Maximum length of 256.
+Required: Yes
+Response Syntax
+HTTP/1.1 204
+API Version 2018-05-10
+34Amazon CodeGuru Security API Reference
+Response Elements
+Response Elements
+If the action is successful, the service sends back an HTTP 204 response with an empty HTTP body.
+Errors
+For information about the errors that are common to all actions, see Common Errors (p. 74).
+AccessDeniedException (p. 66)
+You do not have suﬃcient access to perform this action.
+HTTP Status Code: 403
+ConﬂictException (p. 67)
+The requested operation would cause a conﬂict with the current state of a service resource 
+associated with the request. Resolve the conﬂict before retrying this request.
+HTTP Status Code: 409
+InternalServerException (p. 68)
+The server encountered an internal error and is unable to complete the request.
+HTTP Status Code: 500
+ResourceNotFoundException (p. 69)
+The resource speciﬁed in the request was not found.
+HTTP Status Code: 404
+ThrottlingException (p. 70)
+The request was denied due to request throttling.
+HTTP Status Code: 429
+ValidationException (p. 71)
+The input fails to satisfy the speciﬁed constraints.
+HTTP Status Code: 400
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+API Version 2018-05-10
+35Amazon CodeGuru Security API Reference
+See Also
+API Version 2018-05-10
+36Amazon CodeGuru Security API Reference
+UntagResource
+UntagResource
+Use to remove one or more tags from an existing scan.
+Request Syntax
+DELETE /tags/ resourceArn ?tagKeys= tagKeys HTTP/1.1
+URI Request Parameters
+The request uses the following URI parameters.
+resourceArn (p. 37)
+The ARN of the ScanName  object. You can retrieve this ARN by calling ListScans  or GetScan .
+Length Constraints: Minimum length of 1. Maximum length of 300.
+Pattern: ^arn:aws:codeguru-security:[\S]+:[\d]{12}:scans\/[a-zA-Z0-9-_$:.]*$
+Required: Yes
+tagKeys (p. 37)
+A list of keys for each tag you want to remove from a scan.
+Array Members: Minimum number of 0 items. Maximum number of 200 items.
+Length Constraints: Minimum length of 1. Maximum length of 128.
+Required: Yes
+Request Body
+The request does not have a request body.
+Response Syntax
+HTTP/1.1 204
+Response Elements
+If the action is successful, the service sends back an HTTP 204 response with an empty HTTP body.
+Errors
+For information about the errors that are common to all actions, see Common Errors (p. 74).
+AccessDeniedException (p. 66)
+You do not have suﬃcient access to perform this action.
+HTTP Status Code: 403
+API Version 2018-05-10
+37Amazon CodeGuru Security API Reference
+See Also
+ConﬂictException (p. 67)
+The requested operation would cause a conﬂict with the current state of a service resource 
+associated with the request. Resolve the conﬂict before retrying this request.
+HTTP Status Code: 409
+InternalServerException (p. 68)
+The server encountered an internal error and is unable to complete the request.
+HTTP Status Code: 500
+ResourceNotFoundException (p. 69)
+The resource speciﬁed in the request was not found.
+HTTP Status Code: 404
+ThrottlingException (p. 70)
+The request was denied due to request throttling.
+HTTP Status Code: 429
+ValidationException (p. 71)
+The input fails to satisfy the speciﬁed constraints.
+HTTP Status Code: 400
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+API Version 2018-05-10
+38Amazon CodeGuru Security API Reference
+UpdateAccountConﬁguration
+UpdateAccountConﬁguration
+Use to update account-level conﬁguration with an encryption key.
+Request Syntax
+PUT /updateAccountConfiguration HTTP/1.1
+Content-type: application/json
+{ 
+   "encryptionConfig ": {  
+      "kmsKeyArn ": "string" 
+   }
+}
+URI Request Parameters
+The request does not use any URI parameters.
+Request Body
+The request accepts the following data in JSON format.
+encryptionConﬁg (p. 39)
+The KMS key ARN you want to use for encryption. Defaults to service-side encryption if missing.
+Type: EncryptionConﬁg (p. 46) object
+Required: Yes
+Response Syntax
+HTTP/1.1 200
+Content-type: application/json
+{ 
+   "encryptionConfig ": {  
+      "kmsKeyArn ": "string" 
+   }
+}
+Response Elements
+If the action is successful, the service sends back an HTTP 200 response.
+The following data is returned in JSON format by the service.
+encryptionConﬁg (p. 39)
+An EncryptionConfig  object that contains the KMS key ARN to use for encryption.
+Type: EncryptionConﬁg (p. 46) object
+API Version 2018-05-10
+39Amazon CodeGuru Security API Reference
+Errors
+Errors
+For information about the errors that are common to all actions, see Common Errors (p. 74).
+AccessDeniedException (p. 66)
+You do not have suﬃcient access to perform this action.
+HTTP Status Code: 403
+InternalServerException (p. 68)
+The server encountered an internal error and is unable to complete the request.
+HTTP Status Code: 500
+ResourceNotFoundException (p. 69)
+The resource speciﬁed in the request was not found.
+HTTP Status Code: 404
+ThrottlingException (p. 70)
+The request was denied due to request throttling.
+HTTP Status Code: 429
+ValidationException (p. 71)
+The input fails to satisfy the speciﬁed constraints.
+HTTP Status Code: 400
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+API Version 2018-05-10
+40Amazon CodeGuru Security API Reference
+Data Types
+The Amazon CodeGuru Security API contains several data types that various actions use. This section 
+describes each data type in detail.
+Note
+The order of each element in a data type structure is not guaranteed. Applications should not 
+assume a particular order.
+The following data types are supported:
+•AccountFindingsMetric (p. 42)
+•BatchGetFindingsError (p. 43)
+•CategoryWithFindingNum (p. 44)
+•CodeLine  (p. 45)
+•EncryptionConﬁg (p. 46)
+•FilePath (p. 47)
+•Finding  (p. 48)
+•FindingIdentiﬁer  (p. 51)
+•FindingMetricsValuePerSeverity (p. 52)
+•MetricsSummary (p. 53)
+•Recommendation (p. 55)
+•Remediation (p. 56)
+•Resource (p. 57)
+•ResourceId (p. 58)
+•ScanNameWithFindingNum  (p. 59)
+•ScanSummary (p. 60)
+•SuggestedFix  (p. 62)
+•ValidationExceptionField (p. 63)
+•Vulnerability (p. 64)
+API Version 2018-05-10
+41Amazon CodeGuru Security API Reference
+AccountFindingsMetric
+AccountFindingsMetric
+A summary of ﬁndings metrics in an account.
+Contents
+closedFindings
+The number of closed ﬁndings of each severity in an account on the speciﬁed date.
+Type: FindingMetricsValuePerSeverity (p. 52) object
+Required: No
+date
+The date from which the ﬁnding metrics were retrieved.
+Type: Timestamp
+Required: No
+meanTimeToClose
+The average time it takes to close ﬁndings of each severity in days.
+Type: FindingMetricsValuePerSeverity (p. 52) object
+Required: No
+newFindings
+The number of new ﬁndings of each severity in account on the speciﬁed date.
+Type: FindingMetricsValuePerSeverity (p. 52) object
+Required: No
+openFindings
+The number of open ﬁndings of each severity in an account as of the speciﬁed date.
+Type: FindingMetricsValuePerSeverity (p. 52) object
+Required: No
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for Ruby V3
+API Version 2018-05-10
+42Amazon CodeGuru Security API Reference
+BatchGetFindingsError
+BatchGetFindingsError
+Contains information about the error that caused a ﬁnding to fail to be retrieved.
+Contents
+errorCode
+A code associated with the type of error.
+Type: String
+Valid Values: DUPLICATE_IDENTIFIER | ITEM_DOES_NOT_EXIST | INTERNAL_ERROR | 
+INVALID_FINDING_ID | INVALID_SCAN_NAME
+Required: Yes
+ﬁndingId
+The ﬁnding ID of the ﬁnding that was not fetched.
+Type: String
+Required: Yes
+message
+Describes the error.
+Type: String
+Required: Yes
+scanName
+The name of the scan that generated the ﬁnding.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 140.
+Pattern: ^[a-zA-Z0-9-_$:.]*$
+Required: Yes
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for Ruby V3
+API Version 2018-05-10
+43Amazon CodeGuru Security API Reference
+CategoryWithFindingNum
+CategoryWithFindingNum
+Information about a ﬁnding category with open ﬁndings.
+Contents
+categoryName
+The name of the ﬁnding category. A ﬁnding category is determined by the detector that detected 
+the ﬁnding.
+Type: String
+Required: No
+ﬁndingNumber
+The number of open ﬁndings in the category.
+Type: Integer
+Required: No
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for Ruby V3
+API Version 2018-05-10
+44Amazon CodeGuru Security API Reference
+CodeLine
+CodeLine
+The line of code where a ﬁnding was detected.
+Contents
+content
+The code that contains a vulnerability.
+Type: String
+Required: No
+number
+The code line number.
+Type: Integer
+Required: No
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for Ruby V3
+API Version 2018-05-10
+45Amazon CodeGuru Security API Reference
+EncryptionConﬁg
+EncryptionConﬁg
+Information about account-level conﬁguration.
+Contents
+kmsKeyArn
+The KMS key ARN to use for encryption. This must be provided as a header when uploading your 
+code resource.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 2048.
+Pattern: ^arn:aws:kms:[\S]+:[\d]{12}:key\/(([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]
+{4}-[a-f0-9]{4}-[a-f0-9]{12})|(mrk-[0-9a-zA-Z]{32}))$
+Required: No
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for Ruby V3
+API Version 2018-05-10
+46Amazon CodeGuru Security API Reference
+FilePath
+FilePath
+Information about the location of security vulnerabilities that Amazon CodeGuru Security detected in 
+your code.
+Contents
+codeSnippet
+A list of CodeLine  objects that describe where the security vulnerability appears in your code.
+Type: Array of CodeLine  (p. 45) objects
+Required: No
+endLine
+The last line number of the code snippet where the security vulnerability appears in your code.
+Type: Integer
+Required: No
+name
+The name of the ﬁle.
+Type: String
+Required: No
+path
+The path to the resource with the security vulnerability.
+Type: String
+Required: No
+startLine
+The ﬁrst line number of the code snippet where the security vulnerability appears in your code.
+Type: Integer
+Required: No
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for Ruby V3
+API Version 2018-05-10
+47Amazon CodeGuru Security API Reference
+Finding
+Finding
+Information about a ﬁnding that was detected in your code.
+Contents
+createdAt
+The time when the ﬁnding was created.
+Type: Timestamp
+Required: No
+description
+A description of the ﬁnding.
+Type: String
+Required: No
+detectorId
+The identiﬁer for the detector that detected the ﬁnding in your code. A detector is a deﬁned rule 
+based on industry standards and AWS best practices.
+Type: String
+Required: No
+detectorName
+The name of the detector that identiﬁed the security vulnerability in your code.
+Type: String
+Required: No
+detectorTags
+One or more tags or categorizations that are associated with a detector. These tags are deﬁned by 
+type, programming language, or other classiﬁcation such as maintainability or consistency.
+Type: Array of strings
+Required: No
+generatorId
+The identiﬁer for the component that generated a ﬁnding such as AWSCodeGuruSecurity or 
+AWSInspector.
+Type: String
+Required: No
+id
+The identiﬁer for a ﬁnding.
+Type: String
+Required: No
+API Version 2018-05-10
+48Amazon CodeGuru Security API Reference
+Contents
+remediation
+An object that contains the details about how to remediate a ﬁnding.
+Type: Remediation (p. 56) object
+Required: No
+resource
+The resource where Amazon CodeGuru Security detected a ﬁnding.
+Type: Resource (p. 57) object
+Required: No
+ruleId
+The identiﬁer for the rule that generated the ﬁnding.
+Type: String
+Required: No
+severity
+The severity of the ﬁnding.
+Type: String
+Valid Values: Critical | High | Medium | Low | Info
+Required: No
+status
+The status of the ﬁnding. A ﬁnding status can be open or closed.
+Type: String
+Valid Values: Closed | Open | All
+Required: No
+title
+The title of the ﬁnding.
+Type: String
+Required: No
+type
+The type of ﬁnding.
+Type: String
+Required: No
+updatedAt
+The time when the ﬁnding was last updated. Findings are updated when you remediate them or 
+when the ﬁnding code location changes.
+Type: Timestamp
+API Version 2018-05-10
+49Amazon CodeGuru Security API Reference
+See Also
+Required: No
+vulnerability
+An object that describes the detected security vulnerability.
+Type: Vulnerability (p. 64) object
+Required: No
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for Ruby V3
+API Version 2018-05-10
+50Amazon CodeGuru Security API Reference
+FindingIdentiﬁer
+FindingIdentiﬁer
+An object that contains information about a ﬁnding and the scan that generated it.
+Contents
+ﬁndingId
+The identiﬁer for a ﬁnding.
+Type: String
+Required: Yes
+scanName
+The name of the scan that generated the ﬁnding.
+Type: String
+Required: Yes
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for Ruby V3
+API Version 2018-05-10
+51Amazon CodeGuru Security API Reference
+FindingMetricsValuePerSeverity
+FindingMetricsValuePerSeverity
+The severity of the issue in the code that generated a ﬁnding.
+Contents
+critical
+The severity of the ﬁnding is critical and should be addressed immediately.
+Type: Double
+Required: No
+high
+The severity of the ﬁnding is high and should be addressed as a near-term priority.
+Type: Double
+Required: No
+info
+The ﬁnding is related to quality or readability improvements and not considered actionable.
+Type: Double
+Required: No
+low
+The severity of the ﬁnding is low and does require action on its own.
+Type: Double
+Required: No
+medium
+The severity of the ﬁnding is medium and should be addressed as a mid-term priority.
+Type: Double
+Required: No
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for Ruby V3
+API Version 2018-05-10
+52Amazon CodeGuru Security API Reference
+MetricsSummary
+MetricsSummary
+Information about summary metrics in an account.
+Contents
+categoriesWithMostFindings
+A list of CategoryWithFindingNum  objects for the top 5 ﬁnding categories with the most open 
+ﬁndings in an account.
+Type: Array of CategoryWithFindingNum (p. 44) objects
+Array Members: Minimum number of 0 items. Maximum number of 5 items.
+Required: No
+date
+The date from which the metrics summary information was retrieved.
+Type: Timestamp
+Required: No
+openFindings
+The number of open ﬁndings of each severity in an account.
+Type: FindingMetricsValuePerSeverity (p. 52) object
+Required: No
+scansWithMostOpenCriticalFindings
+A list of ScanNameWithFindingNum  objects for the top 3 scans with the most number of open 
+ﬁndings in an account.
+Type: Array of ScanNameWithFindingNum  (p. 59) objects
+Array Members: Minimum number of 0 items. Maximum number of 3 items.
+Required: No
+scansWithMostOpenFindings
+A list of ScanNameWithFindingNum  objects for the top 3 scans with the most number of open 
+critical ﬁndings in an account.
+Type: Array of ScanNameWithFindingNum  (p. 59) objects
+Array Members: Minimum number of 0 items. Maximum number of 3 items.
+Required: No
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS SDK for C++
+API Version 2018-05-10
+53Amazon CodeGuru Security API Reference
+See Also
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for Ruby V3
+API Version 2018-05-10
+54Amazon CodeGuru Security API Reference
+Recommendation
+Recommendation
+Information about the recommended course of action to remediate a ﬁnding.
+Contents
+text
+The recommended course of action to remediate the ﬁnding.
+Type: String
+Required: No
+url
+The URL address to the recommendation for remediating the ﬁnding.
+Type: String
+Required: No
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for Ruby V3
+API Version 2018-05-10
+55Amazon CodeGuru Security API Reference
+Remediation
+Remediation
+Information about how to remediate a ﬁnding.
+Contents
+recommendation
+An object that contains information about the recommended course of action to remediate a 
+ﬁnding.
+Type: Recommendation (p. 55) object
+Required: No
+suggestedFixes
+A list of SuggestedFix  objects. Each object contains information about a suggested code ﬁx to 
+remediate the ﬁnding.
+Type: Array of SuggestedFix  (p. 62) objects
+Required: No
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for Ruby V3
+API Version 2018-05-10
+56Amazon CodeGuru Security API Reference
+Resource
+Resource
+Information about a resource, such as an Amazon S3 bucket or AWS Lambda function, that contains a 
+ﬁnding.
+Contents
+id
+The identiﬁer for the resource.
+Type: String
+Required: No
+subResourceId
+The identiﬁer for a section of the resource, such as an AWS Lambda layer.
+Type: String
+Required: No
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for Ruby V3
+API Version 2018-05-10
+57Amazon CodeGuru Security API Reference
+ResourceId
+ResourceId
+The identiﬁer for a resource object that contains resources where a ﬁnding was detected.
+Contents
+Important
+This data type is a UNION, so only one of the following members can be speciﬁed when used or 
+returned.
+codeArtifactId
+The identiﬁer for the code ﬁle uploaded to the resource where a ﬁnding was detected.
+Type: String
+Pattern: ^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$
+Required: No
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for Ruby V3
+API Version 2018-05-10
+58Amazon CodeGuru Security API Reference
+ScanNameWithFindingNum
+ScanNameWithFindingNum
+Information about a scan with open ﬁndings.
+Contents
+ﬁndingNumber
+The number of open ﬁndings generated by a scan.
+Type: Integer
+Required: No
+scanName
+The name of the scan.
+Type: String
+Required: No
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for Ruby V3
+API Version 2018-05-10
+59Amazon CodeGuru Security API Reference
+ScanSummary
+ScanSummary
+Information about a scan.
+Contents
+createdAt
+The time when the scan was created.
+Type: Timestamp
+Required: Yes
+runId
+The identiﬁer for the scan run.
+Type: String
+Pattern: ^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$
+Required: Yes
+scanName
+The name of the scan.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 140.
+Pattern: ^[a-zA-Z0-9-_$:.]*$
+Required: Yes
+scanState
+The state of the scan. A scan can be In Progress , Complete , or Failed .
+Type: String
+Valid Values: InProgress | Successful | Failed
+Required: Yes
+scanNameArn
+The ARN for the scan name.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 300.
+Pattern: ^arn:aws:codeguru-security:[\S]+:[\d]{12}:scans\/[a-zA-Z0-9-_$:.]*$
+Required: No
+updatedAt
+The time the scan was last updated. A scan is updated when it is re-run.
+Type: Timestamp
+API Version 2018-05-10
+60Amazon CodeGuru Security API Reference
+See Also
+Required: No
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for Ruby V3
+API Version 2018-05-10
+61Amazon CodeGuru Security API Reference
+SuggestedFix
+SuggestedFix
+Information about the suggested code ﬁx to remediate a ﬁnding.
+Contents
+code
+The suggested code to add to your ﬁle.
+Type: String
+Required: No
+description
+A description of the suggested code ﬁx and why it is being suggested.
+Type: String
+Required: No
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for Ruby V3
+API Version 2018-05-10
+62Amazon CodeGuru Security API Reference
+ValidationExceptionField
+ValidationExceptionField
+Information about a validation exception.
+Contents
+message
+Describes the exception.
+Type: String
+Required: Yes
+name
+The name of the exception.
+Type: String
+Required: Yes
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for Ruby V3
+API Version 2018-05-10
+63Amazon CodeGuru Security API Reference
+Vulnerability
+Vulnerability
+Information about a security vulnerability that Amazon CodeGuru Security detected.
+Contents
+ﬁlePath
+An object that describes the location of the detected security vulnerability in your code.
+Type: FilePath (p. 47) object
+Required: No
+id
+The identiﬁer for the vulnerability.
+Type: String
+Required: No
+itemCount
+The number of times the vulnerability appears in your code.
+Type: Integer
+Required: No
+referenceUrls
+One or more URL addresses that contain details about a vulnerability.
+Type: Array of strings
+Required: No
+relatedVulnerabilities
+One or more vulnerabilities that are related to the vulnerability being described.
+Type: Array of strings
+Required: No
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for Ruby V3
+API Version 2018-05-10
+64Amazon CodeGuru Security API Reference
+Service-speciﬁc Errors
+The Amazon CodeGuru Security API contains service-speciﬁc exceptions that various actions return. This 
+section describes each exception in detail.
+The following service-speciﬁc exceptions are returned:
+•AccessDeniedException (p. 66)
+•ConﬂictException (p. 67)
+•InternalServerException (p. 68)
+•ResourceNotFoundException (p. 69)
+•ThrottlingException (p. 70)
+•ValidationException (p. 71)
+API Version 2018-05-10
+65Amazon CodeGuru Security API Reference
+AccessDeniedException
+AccessDeniedException
+You do not have suﬃcient access to perform this action.
+HTTP Status Code returned: 403
+Contents
+errorCode
+The identiﬁer for the error.
+Type: String
+Required: Yes
+message
+Description of the error.
+Type: String
+Required: Yes
+resourceId
+The identiﬁer for the resource you don't have access to.
+Type: String
+Required: No
+resourceType
+The type of resource you don't have access to.
+Type: String
+Required: No
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS SDK for Ruby V3
+API Version 2018-05-10
+66Amazon CodeGuru Security API Reference
+ConﬂictException
+ConﬂictException
+The requested operation would cause a conﬂict with the current state of a service resource associated 
+with the request. Resolve the conﬂict before retrying this request.
+HTTP Status Code returned: 409
+Contents
+errorCode
+The identiﬁer for the error.
+Type: String
+Required: Yes
+message
+Description of the error.
+Type: String
+Required: Yes
+resourceId
+The identiﬁer for the service resource associated with the request.
+Type: String
+Required: Yes
+resourceType
+The type of resource associated with the request.
+Type: String
+Required: Yes
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS SDK for Ruby V3
+API Version 2018-05-10
+67Amazon CodeGuru Security API Reference
+InternalServerException
+InternalServerException
+The server encountered an internal error and is unable to complete the request.
+HTTP Status Code returned: 500
+Contents
+error
+The internal error encountered by the server.
+Type: String
+Required: No
+message
+Description of the error.
+Type: String
+Required: No
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS SDK for Ruby V3
+API Version 2018-05-10
+68Amazon CodeGuru Security API Reference
+ResourceNotFoundException
+ResourceNotFoundException
+The resource speciﬁed in the request was not found.
+HTTP Status Code returned: 404
+Contents
+errorCode
+The identiﬁer for the error.
+Type: String
+Required: Yes
+message
+Description of the error.
+Type: String
+Required: Yes
+resourceId
+The identiﬁer for the resource that was not found.
+Type: String
+Required: Yes
+resourceType
+The type of resource that was not found.
+Type: String
+Required: Yes
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS SDK for Ruby V3
+API Version 2018-05-10
+69Amazon CodeGuru Security API Reference
+ThrottlingException
+ThrottlingException
+The request was denied due to request throttling.
+HTTP Status Code returned: 429
+Contents
+errorCode
+The identiﬁer for the error.
+Type: String
+Required: Yes
+message
+Description of the error.
+Type: String
+Required: Yes
+quotaCode
+The identiﬁer for the originating quota.
+Type: String
+Required: No
+serviceCode
+The identiﬁer for the originating service.
+Type: String
+Required: No
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS SDK for Ruby V3
+API Version 2018-05-10
+70Amazon CodeGuru Security API Reference
+ValidationException
+ValidationException
+The input fails to satisfy the speciﬁed constraints.
+HTTP Status Code returned: 400
+Contents
+errorCode
+The identiﬁer for the error.
+Type: String
+Required: Yes
+message
+Description of the error.
+Type: String
+Required: Yes
+reason
+The reason the request failed validation.
+Type: String
+Valid Values: unknownOperation | cannotParse | fieldValidationFailed | other | 
+lambdaCodeShaMisMatch
+Required: Yes
+ﬁeldList
+The ﬁeld that caused the error, if applicable.
+Type: Array of ValidationExceptionField (p. 63) objects
+Required: No
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS SDK for Ruby V3
+API Version 2018-05-10
+71Amazon CodeGuru Security API Reference
+Common Parameters
+The following list contains the parameters that all actions use for signing Signature Version 4 requests 
+with a query string. Any action-speciﬁc parameters are listed in the topic for that action. For more 
+information about Signature Version 4, see Signing AWS API requests in the IAM User Guide .
+Action
+The action to be performed.
+Type: string
+Required: Yes
+Version
+The API version that the request is written for, expressed in the format YYYY-MM-DD.
+Type: string
+Required: Yes
+X-Amz-Algorithm
+The hash algorithm that you used to create the request signature.
+Condition: Specify this parameter when you include authentication information in a query string 
+instead of in the HTTP authorization header.
+Type: string
+Valid Values: AWS4-HMAC-SHA256
+Required: Conditional
+X-Amz-Credential
+The credential scope value, which is a string that includes your access key, the date, the region you 
+are targeting, the service you are requesting, and a termination string ("aws4_request"). The value is 
+expressed in the following format: access_key /YYYYMMDD/region /service/aws4_request.
+For more information, see Create a signed AWS API request in the IAM User Guide .
+Condition: Specify this parameter when you include authentication information in a query string 
+instead of in the HTTP authorization header.
+Type: string
+Required: Conditional
+X-Amz-Date
+The date that is used to create the signature. The format must be ISO 8601 basic format 
+(YYYYMMDD'T'HHMMSS'Z'). For example, the following date time is a valid X-Amz-Date value:
+20120325T120000Z .
+Condition: X-Amz-Date is optional for all requests; it can be used to override the date used for 
+signing requests. If the Date header is speciﬁed in the ISO 8601 basic format, X-Amz-Date is not 
+required. When X-Amz-Date is used, it always overrides the value of the Date header. For more 
+information, see Elements of an AWS API request signature in the IAM User Guide .
+API Version 2018-05-10
+72Amazon CodeGuru Security API Reference
+Type: string
+Required: Conditional
+X-Amz-Security-Token
+The temporary security token that was obtained through a call to AWS Security Token Service (AWS 
+STS). For a list of services that support temporary security credentials from AWS STS, see AWS 
+services that work with IAM in the IAM User Guide .
+Condition: If you're using temporary security credentials from AWS STS, you must include the 
+security token.
+Type: string
+Required: Conditional
+X-Amz-Signature
+Speciﬁes the hex-encoded signature that was calculated from the string to sign and the derived 
+signing key.
+Condition: Specify this parameter when you include authentication information in a query string 
+instead of in the HTTP authorization header.
+Type: string
+Required: Conditional
+X-Amz-SignedHeaders
+Speciﬁes all the HTTP headers that were included as part of the canonical request. For more 
+information about specifying signed headers, see Create a signed AWS API request in the IAM User 
+Guide .
+Condition: Specify this parameter when you include authentication information in a query string 
+instead of in the HTTP authorization header.
+Type: string
+Required: Conditional
+API Version 2018-05-10
+73Amazon CodeGuru Security API Reference
+Common Errors
+This section lists the errors common to the API actions of all AWS services. For errors speciﬁc to an API 
+action for this service, see the topic for that API action.
+AccessDeniedException
+You do not have suﬃcient access to perform this action.
+HTTP Status Code: 403
+ExpiredTokenException
+The security token included in the request is expired
+HTTP Status Code: 403
+IncompleteSignature
+The request signature does not conform to AWS standards.
+HTTP Status Code: 403
+InternalFailure
+The request processing has failed because of an unknown error, exception or failure.
+HTTP Status Code: 500
+MalformedHttpRequestException
+Problems with the request at the HTTP level, e.g. we can't decompress the body according to the 
+decompression algorithm speciﬁed by the content-encoding.
+HTTP Status Code: 400
+NotAuthorized
+You do not have permission to perform this action.
+HTTP Status Code: 401
+OptInRequired
+The AWS access key ID needs a subscription for the service.
+HTTP Status Code: 403
+RequestAbortedException
+Convenient exception that can be used when a request is aborted before a reply is sent back (e.g. 
+client closed connection).
+HTTP Status Code: 400
+RequestEntityTooLargeException
+Problems with the request at the HTTP level. The request entity is too large.
+HTTP Status Code: 413
+API Version 2018-05-10
+74Amazon CodeGuru Security API Reference
+RequestExpired
+The request reached the service more than 15 minutes after the date stamp on the request or more 
+than 15 minutes after the request expiration date (such as for pre-signed URLs), or the date stamp 
+on the request is more than 15 minutes in the future.
+HTTP Status Code: 400
+RequestTimeoutException
+Problems with the request at the HTTP level. Reading the Request timed out.
+HTTP Status Code: 408
+ServiceUnavailable
+The request has failed due to a temporary failure of the server.
+HTTP Status Code: 503
+ThrottlingException
+The request was denied due to request throttling.
+HTTP Status Code: 400
+UnrecognizedClientException
+The X.509 certiﬁcate or AWS access key ID provided does not exist in our records.
+HTTP Status Code: 403
+UnknownOperationException
+The action or operation requested is invalid. Verify that the action is typed correctly.
+HTTP Status Code: 404
+ValidationError
+The input fails to satisfy the constraints speciﬁed by an AWS service.
+HTTP Status Code: 400
+API Version 2018-05-10
+75

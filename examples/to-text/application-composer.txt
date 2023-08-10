@@ -1,0 +1,2259 @@
+AWS Application Composer
+Developer Guide
+AWS Application Composer Developer Guide
+AWS Application Composer: Developer Guide
+Copyright © 2023 Amazon Web Services, Inc. and/or its aﬃliates. All rights reserved.
+Amazon's trademarks and trade dress may not be used in connection with any product or service that is not 
+Amazon's, in any manner that is likely to cause confusion among customers, or in any manner that disparages or 
+discredits Amazon. All other trademarks not owned by Amazon are the property of their respective owners, who may 
+or may not be aﬃliated with, connected to, or sponsored by Amazon.AWS Application Composer Developer Guide
+Table of Contents
+What is Application Composer? ............................................................................................................1
+Design your architecture.............................................................................................................2
+Conﬁgure your resources.............................................................................................................2
+Deﬁne your templates................................................................................................................3
+Integrate with your workﬂows.....................................................................................................3
+Beneﬁts of Application Composer ................................................................................................4
+Accessing Application Composer..................................................................................................4
+Learn more...............................................................................................................................4
+Next steps.................................................................................................................................4
+Serverless concepts....................................................................................................................4
+Serverless concepts............................................................................................................4
+Next steps.........................................................................................................................5
+Setting up.........................................................................................................................................6
+Sign up for an AWS account........................................................................................................6
+Create an administrative user......................................................................................................6
+Accessing Application Composer..................................................................................................7
+Next steps.................................................................................................................................7
+Getting started..................................................................................................................................8
+Take a tour...............................................................................................................................8
+Tutorial 1: Load and modify the demo..........................................................................................8
+Step 1: Open the demo ......................................................................................................9
+Step 2: Explore the visual canvas.........................................................................................9
+Step 3: Expand your architecture........................................................................................11
+Step 4: Save your application............................................................................................12
+Next steps.......................................................................................................................12
+Tutorial 2: Build your ﬁrst application.........................................................................................12
+Resource properties..........................................................................................................13
+Step 1: Create your project................................................................................................13
+Add resources..................................................................................................................15
+Step 3: Conﬁgure your REST API........................................................................................15
+Step 4: Conﬁgure your functions........................................................................................16
+Step 5: Connect your resources..........................................................................................16
+Step 6: Organize the canvas..............................................................................................17
+Add a DynamoDB table.....................................................................................................18
+Step 8: Review your template............................................................................................18
+Step 9: Integrate into your workﬂows.................................................................................19
+Next steps.......................................................................................................................19
+Using Application Composer ..............................................................................................................20
+Manage your project.................................................................................................................20
+Create a new project........................................................................................................20
+Load an existing project....................................................................................................20
+Automatically sync and save your project............................................................................21
+Connect resources together.......................................................................................................22
+Supported connections.....................................................................................................23
+What Application Composer provisions...............................................................................23
+Examples .........................................................................................................................24
+Referencing external ﬁles..........................................................................................................25
+Create an external ﬁle reference........................................................................................26
+Load a project that contains an external ﬁle reference..........................................................26
+Best practices..................................................................................................................26
+Examples .........................................................................................................................27
+View code updates with the Change Inspector.............................................................................31
+What is the Change Inspector?...........................................................................................31
+Using the Change Inspector...............................................................................................33
+iiiAWS Application Composer Developer Guide
+Beneﬁts of the Change Inspector.......................................................................................34
+Learn more......................................................................................................................34
+Working with other services..............................................................................................................35
+Using Application Composer with your local IDE..........................................................................35
+Beneﬁts of using Application Composer with your local IDE...................................................35
+Integrate Application Composer with your local IDE..............................................................36
+AWS CloudFormation and AWS SAM...........................................................................................36
+What is AWS SAM?...........................................................................................................37
+AWS SAM prerequisites.....................................................................................................38
+Using Application Composer with the AWS SAM CLI.............................................................38
+Examples .........................................................................................................................39
+Reference........................................................................................................................................45
+Visual reference.......................................................................................................................45
+Home page ......................................................................................................................45
+Visual designer .................................................................................................................46
+Features reference....................................................................................................................47
+Export canvas..................................................................................................................47
+Local sync mode ..............................................................................................................49
+Undo and redo................................................................................................................50
+Gestures and shortcuts.............................................................................................................51
+Gestures..........................................................................................................................52
+Keyboard shortcuts...........................................................................................................54
+File System Access API..............................................................................................................55
+What is the File System Access API?...................................................................................56
+What is the local sync mode? ............................................................................................56
+What web browsers are supported?....................................................................................56
+What does Application Composer gain access to?.................................................................56
+Resource categories..................................................................................................................56
+Featured resources...........................................................................................................57
+Hidden resources..............................................................................................................57
+Read-only resources..........................................................................................................58
+Example ..........................................................................................................................58
+Future resource support....................................................................................................58
+Troubleshooting.......................................................................................................................59
+Error messages.................................................................................................................59
+Submit feedback ..............................................................................................................60
+Security...........................................................................................................................................61
+Data protection........................................................................................................................61
+Data encryption...............................................................................................................62
+Encryption in transit.........................................................................................................62
+Key management.............................................................................................................62
+Inter-network traﬃc privacy..............................................................................................62
+Identity and access management...............................................................................................62
+Audience.........................................................................................................................63
+Authenticating with identities ............................................................................................63
+Managing access using policies..........................................................................................65
+How AWS Application Composer works with IAM..................................................................66
+Compliance validation...............................................................................................................71
+Resilience................................................................................................................................72
+Document history.............................................................................................................................73
+ivAWS Application Composer Developer Guide
+What is AWS Application Composer?
+AWS Application Composer is a visual designer that you can use to build your serverless applications 
+from multiple AWS services.
+Are you new to serverless?
+We recommend a basic understanding of the following topics:
+•Event-driven architecture (p. 4)
+•Infrastructure as Code (IaC) (p. 4)
+•Serverless technologies (p. 4)
+To learn more, see Serverless concepts (p. 4).
+Use the Application Composer interactive builder to design your application architecture by selecting, 
+integrating, and deﬁning AWS resources on a canvas. As you design, Application Composer automatically 
+develops your infrastructure as code (IaC) templates, following AWS best practices. With Application 
+Composer, you can start with an initial sketch, create deployable code, and integrate into your current 
+workﬂows to improve your development experience.
+Topics
+•Design your serverless application architecture (p. 2)
+•Conﬁgure your AWS resources (p. 2)
+•Deﬁne your infrastructure as code (IaC) templates (p. 3)
+•Integrate with your existing workﬂows (p. 3)
+•Beneﬁts of Application Composer  (p. 4)
+•Accessing Application Composer (p. 4)
+1AWS Application Composer Developer Guide
+Design your architecture
+•Learn more (p. 4)
+•Next steps (p. 4)
+•Serverless concepts (p. 4)
+Design your serverless application architecture
+Place supported AWS resources on the Application Composer canvas to visualize and design your 
+application architecture.
+Conﬁgure your AWS resources
+Conﬁgure how your resources interact with each other by visually connecting them together. Specify 
+their properties further through a curated properties panel.
+2AWS Application Composer Developer Guide
+Deﬁne your templates
+Deﬁne your infrastructure as code (IaC) templates
+As you design, Application Composer automatically creates your AWS CloudFormation and AWS 
+Serverless Application Model (AWS SAM) templates, following AWS best practices. You can view and 
+modify your templates directly from within Application Composer. Application Composer automatically 
+syncs changes between the visual canvas and your template code.
+Integrate with your existing workﬂows
+Import existing AWS CloudFormation and AWS SAM templates to visualize them for better 
+understanding and modify their design. Export the templates that you create within Application 
+Composer and integrate them into your existing workﬂows towards deployment. Use local sync mode to 
+automatically sync and save Application Composer with your local machine.
+3AWS Application Composer Developer Guide
+Beneﬁts of Application Composer
+Beneﬁts of Application Composer
+With Application Composer, you can focus on designing what  you want to accomplish and let Application 
+Composer build how it is accomplished. Use Application Composer to create deployable code without 
+needing to be an expert in AWS CloudFormation.
+Accessing Application Composer
+Use Application Composer in the AWS Management Console with a supported web browser. For more 
+information, see Setting up Application Composer (p. 6).
+Learn more
+To continue learning about Application Composer, see the following:
+•Getting started with Application Composer (p. 8).
+•Visually design and build serverless applications | Serverless Oﬃce Hours – Overview and demo of 
+Application Composer.
+Next steps
+To set up Application Composer, see Setting up Application Composer (p. 6).
+Serverless concepts
+Learn about basic serverless concepts before using AWS Application Composer.
+Serverless concepts
+Event-driven architecture
+A serverless application consists of individual AWS services, such as AWS Lambda for compute and 
+Amazon DynamoDB for database management, that each perform a specialized role. These services 
+are then loosely integrated with each other through an event-driven architecture. To learn more 
+about event-driven architecture, see What is an Event-Driven Architecture?.
+Infrastructure as Code (IaC)
+Infrastructure as Code (IaC) is a way of treating infrastructure in the same way that developers 
+treat code, applying the same rigor of application code development to infrastructure provisioning. 
+You deﬁne your infrastructure in a template ﬁle, deploy it to AWS, and AWS creates the resources 
+for you. With IAC, you deﬁne in code what you want AWS to provision. For more information, see
+Infrastructure as Code in the Introduction to DevOps on AWS AWS Whitepaper.
+Serverless technologies
+With AWS serverless technologies, you can build and run applications without having to manage 
+your own servers. All server management is done by AWS, providing many beneﬁts such as 
+automatic scaling and built-in high availability, letting you take your idea to production quickly. 
+4AWS Application Composer Developer Guide
+Next steps
+Using serverless technologies, you can focus on the core of your product without having to worry 
+about managing and operating servers. To learn more about serverless, see Serverless on AWS.
+For a basic introduction to the core AWS serverless services, see Serverless 101: Understanding the 
+serverless services at Serverless Land.
+Next steps
+For an introduction to Application Composer, see What is AWS Application Composer? (p. 1).
+5AWS Application Composer Developer Guide
+Sign up for an AWS account
+Setting up Application Composer
+Before using AWS Application Composer for the ﬁrst time, complete the tasks in this section to get set 
+up.
+Note
+Access to Application Composer requires, at minimum, read-only access to the AWS 
+Management Console. If you're an existing AWS user and meet those requirements, see
+Accessing Application Composer (p. 7). If you don't have an AWS account, then we 
+recommend that you complete the following steps to access Application Composer.
+Topics
+•Sign up for an AWS account (p. 6)
+•Create an administrative user (p. 6)
+•Accessing Application Composer (p. 7)
+•Next steps (p. 7)
+Sign up for an AWS account
+If you do not have an AWS account, complete the following steps to create one.
+To sign up for an AWS account
+1. Open https://portal.aws.amazon.com/billing/signup.
+2. Follow the online instructions.
+Part of the sign-up procedure involves receiving a phone call and entering a veriﬁcation code on the 
+phone keypad.
+When you sign up for an AWS account, an AWS account root user is created. The root user has access 
+to all AWS services and resources in the account. As a security best practice, assign administrative 
+access to an administrative user, and use only the root user to perform tasks that require root user 
+access.
+AWS sends you a conﬁrmation email after the sign-up process is complete. At any time, you can view 
+your current account activity and manage your account by going to https://aws.amazon.com/ and 
+choosing My Account.
+Create an administrative user
+After you sign up for an AWS account, create an administrative user so that you don't use the root user 
+for everyday tasks.
+Secure your AWS account root user
+1. Sign in to the AWS Management Console as the account owner by choosing Root user and entering 
+your AWS account email address. On the next page, enter your password.
+For help signing in by using root user, see Signing in as the root user in the AWS Sign-In User Guide.
+6AWS Application Composer Developer Guide
+Accessing Application Composer
+2. Turn on multi-factor authentication (MFA) for your root user.
+For instructions, see Enable a virtual MFA device for your AWS account root user (console) in the IAM 
+User Guide .
+Create an administrative user
+• For your daily administrative tasks, grant administrative access to an administrative user in AWS IAM 
+Identity Center (successor to AWS Single Sign-On).
+For instructions, see Getting started in the AWS IAM Identity Center (successor to AWS Single Sign-On) 
+User Guide .
+Sign in as the administrative user
+• To sign in with your IAM Identity Center user, use the sign-in URL that was sent to your email 
+address when you created the IAM Identity Center user.
+For help signing in using an IAM Identity Center user, see Signing in to the AWS access portal in the
+AWS Sign-In User Guide.
+Accessing Application Composer
+You can access Application Composer through any modern web browser. For the best experience, we 
+recommend using Google Chrome or Microsoft Edge, which both support the Application Composer
+local sync mode. This mode requires a browser that supports the File System Access API, which allows 
+web applications to read, write, and save ﬁles in your local ﬁle system. For more information about the 
+File System Access API, see File System Access API (p. 55).
+To access Application Composer, do the following:
+1.Sign in to the AWS Management Console with an AWS account.
+2.In the navigation bar, choose an AWS Region.
+3.In the navigation bar, search for and choose Application Composer .
+Next steps
+For how to get started with using Application Composer, see Getting started with Application 
+Composer  (p. 8).
+7AWS Application Composer Developer Guide
+Take a tour
+Getting started with Application 
+Composer
+Get started with AWS Application Composer by learning how to use its visual canvas to design an 
+application.
+Topics
+•Take a tour of Application Composer (p. 8)
+•Tutorial 1: Load and modify the Application Composer demo project (p. 8)
+•Tutorial 2: Build your ﬁrst application with Application Composer (p. 12)
+Take a tour of Application Composer
+Go through an embedded tour of AWS Application Composer to learn what you can do with the service.
+To take a tour of Application Composer
+1. Sign in to the Application Composer console.
+2. On the Home  page, choose Open demo .
+3. In the upper-right corner, in the Take a quick tour of Composer window, choose Start.
+4. In the Composer tour  window, do the following:
+• To move to the next step, choose Next.
+• To return to the previous step, choose Previous .
+• On the ﬁnal step, to ﬁnish the tour, choose End.
+Tutorial 1: Load and modify the Application 
+Composer demo project
+This tutorial guides you through creating a demo application to learn the user interface of AWS 
+Application Composer.
+Topics
+•Step 1: Open the demo  (p. 9)
+•Step 2: Explore the visual canvas of Application Composer (p. 9)
+•Step 3: Expand your application architecture (p. 11)
+•Step 4: Save your application (p. 12)
+•Next steps (p. 12)
+8AWS Application Composer Developer Guide
+Step 1: Open the demo
+Step 1: Open the demo
+Start using Application Composer by creating a demo project.
+To create a demo project
+1. Sign in to the Application Composer console.
+2. On the Home  page, choose Open demo .
+The demo application is a basic CRUD serverless application that includes:
+•An Amazon API Gateway resource with ﬁve routes.
+•Five AWS Lambda functions.
+•An Amazon DynamoDB table.
+Step 2: Explore the visual canvas of Application 
+Composer
+Learn the features of the visual canvas to build out your Application Composer demo project. For an 
+overview of the visual canvas layout, see Visual reference (p. 45).
+To explore the features of the visual canvas
+1. When you open a new or existing application project, Application Composer loads the canvas view, 
+as indicated above the main view area.
+To show your application's infrastructure code in the main view area, choose Template. For 
+example, here is the AWS Serverless Application Model (AWS SAM) template view of the Application 
+Composer demo project.
+9AWS Application Composer Developer Guide
+Step 2: Explore the visual canvas
+2. To show the canvas view of your application again, choose Canvas.
+3. To show your application's resources organized in a tree view, choose List.
+4. To show the resource palette, choose Resources. This palette features resources that you can use to 
+expand your application architecture. You can search for a resource type or scroll through the list.
+10AWS Application Composer Developer Guide
+Step 3: Expand your architecture
+5. To move around the visual canvas, use basic gestures. For more information, see Gestures and 
+shortcuts (p. 51).
+Step 3: Expand your application architecture
+In this step, you will expand your application architecture by adding a Lambda function to your 
+DynamoDB table.
+To add a Lambda function to your DynamoDB table
+1. From the resource palette (Resources), drag the Lambda Function resource onto the canvas, to the 
+right of the DynamoDB Table resource card.
+2. Connect the DynamoDB table to the Lambda function. To connect them, click the right port of the
+DynamoDB Table resource card and drag it to the left port of the Lambda Function resource card.
+3. Choose Arrange  to organize the resource cards in the canvas view.
+11AWS Application Composer Developer Guide
+Step 4: Save your application
+4. Conﬁgure your Lambda function. To conﬁgure it, do either of the following:
+• In the canvas view, modify the function's properties on the Resource properties panel. To open 
+the panel, double-click the Lambda Function resource card. Or, select the resource card, and 
+then choose Details . For more information about the conﬁgurable Lambda function properties 
+listed in the Resource properties panel, see the AWS Lambda Developer Guide.
+• In the template view, modify the code for your function (AWS::Serverless::Function ). 
+Application Composer automatically syncs your changes to the canvas. For more information 
+about the function resource in an AWS SAM template, see AWS::Serverless::Function in the AWS 
+SAM resource and property reference.
+Step 4: Save your application
+Save your application by manually saving your application template to your local machine or by 
+activating local sync.
+To manually save your application template
+1. From the menu , select Save > Save template ﬁle.
+2. Provide a name for your template and choose a location on your local machine to save your 
+template. Press Save.
+For instructions on activating local sync, see Automatically sync and save your project (p. 21).
+Next steps
+To get started with building your ﬁrst application, see Tutorial 2: Build your ﬁrst application (p. 12).
+Tutorial 2: Build your ﬁrst application with 
+Application Composer
+In this tutorial, you use AWS Application Composer to create a CRUD serverless application that manages 
+users in a database. We recommend that you use Google Chrome or Microsoft Edge, and a full-screen 
+browser window.
+Topics
+12AWS Application Composer Developer Guide
+Resource properties
+•Resource properties reference (p. 13)
+•Step 1: Create your project (p. 13)
+•Step 2: Add resources to the canvas (p. 15)
+•Step 3: Conﬁgure your API Gateway REST API (p. 15)
+•Step 4: Conﬁgure your Lambda functions (p. 16)
+•Step 5: Connect your resources (p. 16)
+•Step 6: Organize the canvas (p. 17)
+•Step 7: Add and connect a DynamoDB table (p. 18)
+•Step 8: Review your AWS CloudFormation template (p. 18)
+•Step 9: Integrate into your development workﬂows (p. 19)
+•Next steps (p. 19)
+Resource properties reference
+While building your application, use this table for reference to conﬁgure the properties of your Amazon 
+API Gateway and AWS Lambda resources.
+Method Path Function name
+GET /items getItems
+GET /items/{id} getItem
+PUT /items/{id} updateItem
+POST /item addItem
+DELETE /items/{id} deleteItem
+Step 1: Create your project
+To get started with your CRUD serverless application, create a new project in Application Composer and 
+activate local sync.
+To create a new blank project
+1. Sign in to the Application Composer console.
+2. On the Home  page, choose Create project.
+Application Composer loads a starting application template and opens the visual canvas.
+13AWS Application Composer Developer Guide
+Step 1: Create your project
+To activate local sync
+1. From the Application Composer menu , select Save > Activate local sync.
+2. For Project location, press Select folder and choose a directory. This is where Application Composer 
+will save and sync your template ﬁles and folders as you design.
+The project location must not contain an existing application template.
+Note
+Local sync  requires a browser that supports the File System Access API. For more 
+information, see What is the File System Access API? (p. 56).
+3. When prompted to allow access, select View ﬁles.
+4. Press Activate to turn on local sync. When prompted to save changes, select Save changes.
+When activated, the Autosave indicator will be displayed in the upper-left area of your canvas.
+14AWS Application Composer Developer Guide
+Add resources
+Step 2: Add resources to the canvas
+Start to design your application architecture, beginning with an API Gateway REST API and ﬁve Lambda 
+functions.
+To add API Gateway and Lambda resources to the visual canvas
+From the resource palette (Resources), do the following:
+1. Drag an API Gateway resource onto the canvas.
+2. Drag a Lambda Function resource onto the canvas. Repeat until you've added ﬁve Lambda Function
+resource cards to the canvas.
+Step 3: Conﬁgure your API Gateway REST API
+Next, add ﬁve routes within your API Gateway REST API resource.
+To add routes to the API Gateway resource
+1. Open the Resource properties panel for the API Gateway resource card. To open the panel, double-
+click the resource card. Or, select the resource card, and then choose Details .
+2. In the Resource properties panel, under Routes, do the following:
+Note
+For each of the following routes, use the HTTP method and path values speciﬁed in the
+resource properties reference table (p. 13).
+a. For Method , choose the speciﬁed HTTP method. For example, GET.
+b. For Path, enter the speciﬁed path. For example, /items .
+c. Choose Add route .
+d. Repeat the previous steps until you've added all ﬁve speciﬁed routes.
+3. Choose Save.
+15AWS Application Composer Developer Guide
+Step 4: Conﬁgure your functions
+Step 4: Conﬁgure your Lambda functions
+Name each of the ﬁve Lambda functions as speciﬁed in the resource properties reference table (p. 13).
+To name the Lambda functions
+1. Open the Resource properties panel of a Lambda Function resource card. To open the panel, 
+double-click the resource card. Or, select the resource card, and then choose Details .
+2. In the Resource properties panel, for Logical ID , enter a speciﬁed function name. For example,
+getItems .
+3. Choose Save.
+4. Repeat the previous steps until you've named all ﬁve functions.
+Step 5: Connect your resources
+Connect each route on your API Gateway resource card to its related Lambda Function resource card, as 
+speciﬁed in the resource properties reference table (p. 13).
+16AWS Application Composer Developer Guide
+Step 6: Organize the canvas
+To connect your resources
+1. Click a right port on the API Gateway resource card and drag it to the left port of the speciﬁed
+Lambda Function resource card. For example, click the GET /items  port and drag it to the left port 
+of getItems .
+2. Repeat the previous step until you've connected all ﬁve routes on the API Gateway resource card to 
+corresponding Lambda Function resource cards.
+Step 6: Organize the canvas
+Organize the visual canvas by grouping together your Lambda functions and arranging all the resource 
+cards.
+To group together your functions
+1. Press and hold Shift, then select each Lambda Function resource card on the canvas.
+2. Choose Group .
+To name your group
+1. Double-click the top of the group, near the group name (Group ).
+The Group properties panel opens.
+2. On the Group properties panel, for Group name , enter API.
+3. Choose Save.
+To arrange your resource cards
+On the canvas, above the main view area, choose Arrange .
+Application Composer arranges and aligns all resource cards on the visual canvas, including your new 
+group (API), as shown here:
+17AWS Application Composer Developer Guide
+Add a DynamoDB table
+Step 7: Add and connect a DynamoDB table
+Now, add a DynamoDB table to your application architecture and connect it to your Lambda functions.
+To add and connect a DynamoDB table
+1. From the resource palette (Resources), drag a DynamoDB Table resource onto the canvas.
+2. Click the right port on a Lambda Function resource card and drag it to the left port of the
+DynamoDB Table resource card.
+3. Repeat the previous step until you've connected all ﬁve Lambda Function resource cards to the
+DynamoDB Table resource card.
+4. (Optional) To reorganize and realign the cards on the canvas, choose Arrange .
+Step 8: Review your AWS CloudFormation template
+Congratulations! You've successfully designed a serverless application that's ready for deployment. 
+Finally, choose Template to review the AWS CloudFormation template that Application Composer has 
+automatically generated for you.
+In the template, Application Composer has deﬁned the following:
+18AWS Application Composer Developer Guide
+Step 9: Integrate into your workﬂows
+•The Transform  declaration, which speciﬁes the template as an AWS Serverless Application Model 
+(AWS SAM) template. For more information, see AWS SAM template anatomy in the AWS Serverless 
+Application Model Developer Guide .
+•An AWS::Serverless::Api  resource, which speciﬁes your API Gateway REST API with its ﬁve routes.
+•Five AWS::Serverless::Function  resources, which specify your Lambda functions' conﬁgurations, 
+including their environment variables and permissions policies.
+•An AWS::DynamoDB::Table  resource, which speciﬁes your DynamoDB table and its properties.
+•The Metadata  section, which contains information about your resource group (API). For more 
+information about this section, see Metadata  in the AWS CloudFormation User Guide.
+Step 9: Integrate into your development workﬂows
+Use the template ﬁle and project directories that Application Composer created for further testing and 
+deployment.
+•With local sync, you can connect Application Composer to the IDE on your local machine to speed up 
+development. To learn more, see Using Application Composer with your local IDE (p. 35).
+•With local sync, you can use the AWS Serverless Application Model Command Line Interface (AWS 
+SAM CLI) on your local machine to test and deploy your application. To learn more, see Using 
+Application Composer with AWS CloudFormation and AWS SAM (p. 36).
+Next steps
+You're now ready to build your own applications with Application Composer.
+19AWS Application Composer Developer Guide
+Manage your project
+Using Application Composer to 
+design and build your serverless 
+applications
+Use Application Composer to design and build your serverless applications through its visual canvas.
+Topics
+•Manage your project in Application Composer (p. 20)
+•Connect resources together using the Application Composer visual canvas (p. 22)
+•Working with templates that reference external ﬁles (p. 25)
+•View code updates with the Change Inspector (p. 31)
+Manage your project in Application Composer
+This topic describes how you can manage your project in AWS Application Composer.
+Topics
+•Create a new project (p. 20)
+•Load an existing project (p. 20)
+•Automatically sync and save your project (p. 21)
+Create a new project
+When you create a new project, Application Composer generates a starting template ﬁle for your 
+application.
+To create a new project
+1. Sign in to the Application Composer console to load the home  page.
+2. Select Create project or Create a new blank project.
+Load an existing project
+The process for loading an existing project will vary depending on whether your browser supports the 
+File System Access API.
+•For supported browsers, you can load an existing project with local sync activated.
+•For unsupported browsers, you can load an existing application template.
+20AWS Application Composer Developer Guide
+Automatically sync and save your project
+Supported browsers
+To load an existing project
+1. Sign in to the Application Composer console to load the home  page.
+2. Select Load a CloudFormation template.
+3. For Project location, press Select folder.
+4. Choose your project folder. This should be the root directory of your project.
+5. When prompted, select View ﬁles.
+6. For Template ﬁle, choose your application template. If your project contains multiple templates, 
+choose the template to load.
+7. Press Create .
+8. When prompted, select Save changes.
+Unsupported browsers
+To load an existing project
+1. Sign in to the Application Composer console to load the home  page.
+2. Select Load a CloudFormation template. This will take you to a blank Application Composer canvas.
+3. From the Application Composer menu , select Open  > Template ﬁle. Choose your template and 
+press Open .
+Automatically sync and save your project
+Use Application Composer local sync to automatically sync and save your project to your local machine. 
+For more information about local sync, see Local sync mode  (p. 49).
+We recommend that you use local sync for the following reasons:
+•By default, you need to manually save your application template as you design. Use local sync to 
+automatically save your application template to your local machine as you make changes.
+•Local sync  manages and automatically syncs your project folders, backup folder, and supported 
+external ﬁles (p. 25) to your local machine.
+•When using local sync, you can connect Application Composer with your local IDE to speed up 
+development. To learn more, see Using Application Composer with your local IDE (p. 35).
+You can activate local sync for a new project, or load an existing project with local sync activated.
+To activate local sync for a new project
+1. From the Application Composer home  (p. 45) page, select Create project.
+2. From the Application Composer menu , select Activate local sync.
+3. For Project location, press Select folder and choose a directory. This is where Application Composer 
+will save and sync your template ﬁles and folders as you design.
+Note
+The project location must not contain an existing application template.
+4. When prompted to allow access, select View ﬁles.
+21AWS Application Composer Developer Guide
+Connect resources together
+5. Press Activate. When prompted to save changes, select Save changes.
+When activated, the Autosave indicator will be displayed in the upper-left area of your canvas.
+To load an existing project with local sync activated
+1. From the Application Composer home  (p. 45) page, select Load a AWS CloudFormation 
+template .
+2. From the Application Composer menu , select Open  > Project folder.
+3. For Project location, press Select folder and choose the root folder of your project.
+4. When prompted to allow access, select View ﬁles.
+5. For Template ﬁle, select your application template and press Create .
+6. When prompted to save changes, select Save changes.
+When activated, the Autosave indicator will be displayed in the upper-left area of your canvas.
+Connect resources together using the Application 
+Composer visual canvas
+Connect resources together to deﬁne event-driven relationships between resources in your application.
+•On resource cards, ports visually identify where connections can be made.
+•A port on the right side of a resource card indicates an opportunity for the resource to invoke 
+another resource.
+•A port on the left side of a resource card indicates an opportunity for the resource to be invoked by 
+another resource.
+•Connect resources together by clicking on a the right port of one resource card and dragging it onto a 
+left port on another resource card.
+•Connections are visually identiﬁed by a line between two resources.
+•AWS Application Composer automatically creates the infrastructure code required for the resources to 
+interact with each other.
+22AWS Application Composer Developer Guide
+Supported connections
+Supported connections
+When you create a connection, a message will display, letting you know if the connection was 
+successfully made.
+•When successful, click on the message to view the Change inspector. Here, you can see what 
+Application Composer modiﬁed to provision your connection.
+•When unsuccessful, a message will display. You can select the Template view and manually update 
+your infrastructure code to provision the connection.
+Note
+Application Composer is regularly updating support for more connection types. To provide 
+feedback on connections you’d like to have supported, please contact us through the 
+feedback link located at the bottom-left corner of Application Composer.
+What Application Composer provisions
+Connections between two resources, visually indicated by a line, provision the following when necessary:
+1.AWS Identity and Access Management (IAM) policies
+2.Environment variables
+3.Events
+IAM policies
+When a resource needs permission to invoke another resource, Application Composer provisions 
+resource-based policies using AWS Serverless Application Model (AWS SAM) policy templates.
+•To learn more about IAM permissions and policies, see Overview of access management: Permissions 
+and policies  in the IAM User Guide .
+•To learn more about AWS SAM policy templates, see AWS SAM policy templates in the AWS Serverless 
+Application Model Developer Guide .
+23AWS Application Composer Developer Guide
+Examples
+Environment variables
+Environment variables are temporary values that can be changed to aﬀect the behavior of your 
+resources. When necessary, Application Composer deﬁnes the infrastructure code to utilize environment 
+variables between resources.
+Events
+Resources can invoke another resource through diﬀerent types of events. When necessary, Application 
+Composer deﬁnes the infrastructure code necessary for resources to interact through event types.
+Examples
+Invoke an AWS Lambda function when an item is placed in an 
+Amazon Simple Storage Service (Amazon S3) bucket
+In this example, an Amazon S3 bucket resource is connected to a Lambda function resource. When 
+an item is placed in the Amazon S3 bucket, the function is invoked. The function can then be used to 
+process the item or trigger other events in your application.
+This interaction requires that an event be deﬁned for the function. Here is what Application Composer 
+provisions:
+Transform: AWS::Serverless-2016-10-31
+...
+Resources: 
+  MyBucket: 
+    Type: AWS::S3::Bucket 
+    ... 
+  MyBucketBucketPolicy: 
+    Type: AWS::S3::BucketPolicy 
+    ... 
+  MyFunction: 
+    Type: AWS::Serverless::Function 
+    Properties: 
+      ... 
+      Events: 
+        MyBucket: 
+          Type: S3 
+          Properties: 
+            Bucket: !Ref MyBucket 
+            Events: 
+              - s3:ObjectCreated:* # Event that triggers invocation of function 
+              - s3:ObjectRemoved:* # Event that triggers invocation of function
+Invoke an Amazon S3 bucket from a Lambda function
+In this example, a Lambda function resource invokes an Amazon S3 bucket resource. The Lambda 
+function can be used to perform CRUD operations on items in the Amazon S3 bucket.
+This interaction requires the following, which is provisioned by Application Composer:
+24AWS Application Composer Developer Guide
+Referencing external ﬁles
+•IAM policies that allow the Lambda function to interact with the Amazon S3 bucket.
+•Environment variables that inﬂuence the behavior of the Lambda function.
+Transform: AWS::Serverless-2016-10-31
+...
+Resources: 
+  MyBucket: 
+    Type: AWS::S3::Bucket 
+    ... 
+  MyBucketBucketPolicy: 
+    Type: AWS::S3::BucketPolicy 
+    ... 
+  MyFunction: 
+    Type: AWS::Serverless::Function 
+    Properties: 
+      ... 
+      Environment: 
+        Variables: 
+          BUCKET_NAME: !Ref MyBucket 
+          BUCKET_ARN: !GetAtt MyBucket.Arn 
+      Policies: 
+        - S3CrudPolicy: 
+          BucketName: !Ref MyBucket
+Working with templates that reference external 
+ﬁles
+You can use external ﬁles with your AWS Serverless Application Model (AWS SAM) templates to reuse 
+repeated code and organize your projects. For example, you may have multiple Amazon API Gateway 
+REST API resources that are described by an OpenAPI speciﬁcation. Instead of replicating the OpenAPI 
+speciﬁcation code in your template, you can create one external ﬁle and reference it for each of your 
+resources.
+AWS Application Composer supports the following external ﬁle use cases:
+•API Gateway REST API resources deﬁned by external OpenAPI speciﬁcation ﬁles.
+•AWS Step Functions state machine resources deﬁned by external state machine deﬁnition ﬁles.
+To learn more about conﬁguring external ﬁles for supported resources, see the following:
+•DefinitionBody  for AWS::Serverless::Api .
+•DefinitionUri  for AWS::Serverless::StateMachine .
+Note
+To reference external ﬁles, you must use Application Composer in local sync mode. For more 
+information, see Local sync mode  (p. 49).
+Topics
+•Create an external ﬁle reference (p. 26)
+•Load a project that contains an external ﬁle reference (p. 26)
+•Best practices (p. 26)
+•Examples  (p. 27)
+25AWS Application Composer Developer Guide
+Create an external ﬁle reference
+Create an external ﬁle reference
+You can create an external ﬁle reference from the resource properties panel of supported resources.
+To create an external ﬁle reference
+1. From an API Gateway or Step Functions resource card, select Details  to bring up the resource 
+properties  panel.
+2. Locate and select the Use external ﬁle option.
+3. Specify the relative path to the external ﬁle. This is the path from your template.yaml  ﬁle to the 
+external ﬁle.
+For example, to reference the api-spec.yaml  external ﬁle from the following project’s structure, 
+specify ./api-spec.yaml  as your relative path.
+demo
+### api-spec.yaml
+### src
+# ### Function
+# ### index.js
+# ### package.json
+### template.yaml
+Note
+If the external ﬁle and its speciﬁed path does not exist, Application Composer will create it.
+4. Save your changes.
+Load a project that contains an external ﬁle reference
+When you load a project, the following occurs:
+•If your browser supports the File System Access API, Application Composer will prompt you to connect 
+to the root folder of your project. Application Composer will open your project in local sync mode to 
+support your external ﬁle.
+•If the referenced external ﬁle is not supported, you will receive an error message. For more information 
+about error messages, see Troubleshooting (p. 59).
+Best practices
+Use Application Composer with a local IDE
+When you use Application Composer with a local IDE in local sync mode, you can use your local IDE 
+to view and modify external ﬁles. Content from supported external ﬁles that are referenced on your 
+template will automatically update in the Application Composer canvas. To learn more, see Using 
+Application Composer with your local IDE (p. 35).
+Keep external ﬁles within your project’s parent directory
+You can create subdirectories within your project’s parent directory to organize your external ﬁles. 
+Application Composer can’t access external ﬁles that are stored in a directory outside of your project’s 
+parent directory.
+26AWS Application Composer Developer Guide
+Examples
+Deploy your application using the AWS SAM CLI
+When deploying your application to the AWS Cloud, local external ﬁles need to ﬁrst be uploaded to an 
+accessible location, such as Amazon Simple Storage Service (Amazon S3). You can use the AWS SAM CLI 
+to automatically facilitate this process. To learn more, see  Upload local ﬁles at deployment in the AWS 
+Serverless Application Model Developer Guide.
+Examples
+Reference an OpenAPI speciﬁcation external ﬁle
+In this example, we reference an external OpenAPI speciﬁcation ﬁle to deﬁne our API Gateway REST 
+API.
+First, we create a new project from the Application Composer home  page.
+Next, we activate local sync by selecting Activate local sync from the Menu . We create a new folder 
+named demo, allow the prompt to view ﬁles, and select Activate. When prompted, we select Save 
+changes .
+Next, we drag an Amazon API Gateway resource onto the canvas. We select Details  to bring up the
+Resource properties panel.
+From the Resource properties panel, we conﬁgure the following and save.
+•Select the Use external ﬁle for api deﬁnition option.
+•Input ./api-spec.yaml  as the relative path to external ﬁle
+27AWS Application Composer Developer Guide
+Examples
+This creates the following directory on our local machine:
+demo
+### api-spec.yaml
+Now, we can conﬁgure the external ﬁle on our local machine. Using our IDE, we open the api-
+spec.yaml  located in our project folder. We replace its contents with the following:
+openapi: '3.0'
+info: {}
+paths: 
+  /: 
+    get: 
+      responses: {} 
+    post: 
+      x-amazon-apigateway-integration: 
+        credentials: 
+          Fn::GetAtt: 
+            - ApiQueuesendmessageRole 
+            - Arn 
+        httpMethod: POST 
+        type: aws 
+        uri: 
+          Fn::Sub: arn:${AWS::Partition}:apigateway:${AWS::Region}:sqs:path/
+${AWS::AccountId}/${Queue.QueueName} 
+        requestParameters: 
+          integration.request.header.Content-Type: '''application/x-www-form-urlencoded''' 
+        requestTemplates: 
+          application/json: Action=SendMessage&MessageBody={"data":$input.body} 
+        responses: 
+          default: 
+            statusCode: 200 
+      responses: 
+        '200': 
+          description: 200 response
+In the Application Composer Template view, we can see that Application Composer has automatically 
+updated our template to reference the external ﬁle.
+28AWS Application Composer Developer Guide
+Examples
+Create an application using the AWS SAM CLI and load it in Application 
+Composer
+In this example, we use the AWS SAM CLI to create an application that references an external ﬁle for 
+its state machine deﬁnition. We then load our project in Application Composer with our external ﬁle 
+properly referenced.
+First, we use the AWS SAM CLI sam init  command to initialize a new application named demo . During the 
+interactive ﬂow, we select the Multi-step workﬂow quick start template.
+$ sam init
+...
+Which template source would you like to use? 
+        1 - AWS Quick Start Templates 
+        2 - Custom Template Location
+Choice: 1
+Choose an AWS Quick Start application template 
+        1 - Hello World Example 
+        2 - Multi-step workflow 
+        3 - Serverless API 
+        4 - Scheduled task 
+        ...
+Template: 2
+Which runtime would you like to use? 
+        1 - dotnet6 
+        2 - dotnetcore3.1 
+        ... 
+        15 - python3.7 
+        16 - python3.10 
+        17 - ruby2.7
+Runtime: 16
+Based on your selections, the only Package type available is Zip.
+We will proceed to selecting the Package type as Zip.
+Based on your selections, the only dependency manager available is pip.
+We will proceed copying the template using pip.
+Would you like to enable X-Ray tracing on the function(s) in your application?  [y/
+N]: ENTER
+29AWS Application Composer Developer Guide
+Examples
+Would you like to enable monitoring using CloudWatch Application Insights?
+For more info, please view https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/
+cloudwatch-application-insights.html [y/N]: ENTER
+Project name [sam-app]: demo
+    ----------------------- 
+    Generating application: 
+    ----------------------- 
+    Name: demo 
+    Runtime: python3.10 
+    Architectures: x86_64 
+    Dependency Manager: pip 
+    Application Template: step-functions-sample-app 
+    Output Directory: . 
+    Configuration file: demo/samconfig.toml 
+     
+    Next steps can be found in the README file at demo/README.md
+...
+This application references an external ﬁle for the state machine deﬁnition.
+...
+Resources: 
+  StockTradingStateMachine: 
+    Type: AWS::Serverless::StateMachine 
+    Properties: 
+      DefinitionUri: statemachine/stock_trader.asl.json
+...
+The external ﬁle is located in the statemachine  subdirectory of our application.
+demo
+### README.md
+### __init__.py
+### functions
+#   ### __init__.py
+#   ### stock_buyer
+#   ### stock_checker
+#   ### stock_seller
+### samconfig.toml
+### statemachine
+#   ### stock_trader.asl.json
+### template.yaml
+### tests
+Next, we load our application in Application Composer. From the Application Composer home  page, we 
+select Load a CloudFormation template.
+We select our demo project folder and allow the prompt to view ﬁles. We select our template.yaml  ﬁle 
+and select Create . When prompted, we select Save changes.
+30AWS Application Composer Developer Guide
+View code updates with the Change Inspector
+Application Composer automatically detects the external state machine deﬁnition ﬁle and loads it. We 
+select our StockTradingStateMachine resource and choose Details  to show the Resource properties
+panel. Here, we can see that Application Composer has automatically connected to our external state 
+machine deﬁnition ﬁle.
+Any changes made to the state machine deﬁnition ﬁle will be automatically reﬂected in Application 
+Composer.
+View code updates with the Change Inspector
+As you design in AWS Application Composer, your infrastructure code is automatically created. Use the
+Change Inspector to view your template code updates and learn what Application Composer is creating 
+for you.
+Topics
+•What is the Change Inspector? (p. 31)
+•Using the Change Inspector (p. 33)
+•Beneﬁts of the Change Inspector (p. 34)
+•Learn more (p. 34)
+What is the Change Inspector?
+The Change Inspector is a visual tool within Application Composer that shows you recent code updates.
+•As you design your application, messages display at the bottom of the visual canvas. These messages 
+provide commentary on the actions you are performing.
+•When supported, you can expand a message to view the Change Inspector.
+•The Change Inspector displays code changes from your most recent interaction.
+31AWS Application Composer Developer Guide
+What is the Change Inspector?
+32AWS Application Composer Developer Guide
+Using the Change Inspector
+Using the Change Inspector
+To use the Change Inspector
+1. Expand a message to bring up the Change Inspector.
+2. View the code that has been automatically composed for you.
+a. Code highlighted green  indicate newly added code.
+b. Code highlighted red indicate newly removed code.
+c. Line numbers  indicate the location within your template.
+3. When multiple sections of your template have been updated, the Change Inspector organizes them. 
+Select the Previous  and Next buttons to view all changes.
+33AWS Application Composer Developer Guide
+Beneﬁts of the Change Inspector
+Note
+To view code changes in the context of your entire template, use the Template View. You can 
+also sync Application Composer with a local IDE and view your entire template on your local 
+machine. To learn more, see Using Application Composer with your local IDE (p. 35).
+Beneﬁts of the Change Inspector
+The Change Inspector is a great way to view the template code that Application Composer creates 
+for you. It is also a great way to learn how to write infrastructure code. As you design applications in 
+Application Composer, view code updates in the Change Inspector to learn about the code needed to 
+provision your design.
+Learn more
+For more information about the code that Application Composer creates, see the following:
+•Connect resources together using the Application Composer visual canvas (p. 22).
+34AWS Application Composer Developer Guide
+Using Application Composer with your local IDE
+Using Application Composer with 
+other services
+Integrate AWS Application Composer into your development workﬂows by using it with other services.
+Topics
+•Using Application Composer with your local IDE (p. 35)
+•Using Application Composer with AWS CloudFormation and AWS SAM (p. 36)
+Using Application Composer with your local IDE
+Use AWS Application Composer in local sync mode with your local IDE to speed up development.
+•For more information about local sync mode, see Local sync mode  (p. 49).
+•For instructions on using local sync mode, see Automatically sync and save your project (p. 21).
+Beneﬁts of using Application Composer with your 
+local IDE
+As you design in Application Composer, your local template and project directory are automatically 
+synced and saved.
+You can use your local IDE to view changes and modify your templates. Changes that you make locally 
+are automatically synced to Application Composer.
+You can use local tools such as the AWS Serverless Application Model Command Line Interface (AWS 
+SAM CLI) to build, test, deploy your application, and more.
+35AWS Application Composer Developer Guide
+Integrate Application Composer with your local IDE
+Integrate Application Composer with your local IDE
+To integrate Application Composer with your local IDE
+1. In Application Composer, create or load a project with local sync activated.
+2. In your local IDE, open the same project folder as Application Composer.
+3. Use Application Composer with your local IDE. Updates made in Application Composer will 
+automatically sync with your local machine. Here are some examples of what you can do:
+a. Use your version control system of choice to track updates being performed by Application 
+Composer.
+b. Use the AWS SAM CLI locally to build, test, deploy your application, and more. To learn more, 
+see Using Application Composer with AWS CloudFormation and AWS SAM (p. 36).
+Using Application Composer with AWS 
+CloudFormation and AWS SAM
+Use AWS Application Composer to design deployment-ready serverless applications. To deploy, use any 
+AWS CloudFormation compatible service. We recommend using the AWS Serverless Application Model 
+(AWS SAM).
+Topics
+36AWS Application Composer Developer Guide
+What is AWS SAM?
+•What is AWS SAM? (p. 37)
+•AWS SAM prerequisites (p. 38)
+•Using Application Composer with the AWS SAM CLI (p. 38)
+•Examples  (p. 39)
+What is AWS SAM?
+AWS SAM is an open-source framework that provides developer tools for building and running serverless 
+applications on AWS. The AWS SAM toolkit consists of two primary parts:
+1.AWS SAM template speciﬁcation
+2.AWS SAM Command Line Interface (AWS SAM CLI)
+AWS SAM template speciﬁcation
+The AWS SAM template speciﬁcation contains a short-hand syntax and structure that you can use to 
+deﬁne the infrastructure of your AWS serverless applications.
+•AWS SAM templates can be deﬁned in JSON and YAML.
+•Its syntax is short-hand, making it quicker to learn and code. Less code means fewer errors and faster 
+development.
+AWS SAM templates are an extension of AWS CloudFormation, which is a service that provisions 
+resources at AWS.
+•AWS SAM templates are automatically transformed into the AWS CloudFormation template syntax at 
+deployment.
+•You can deploy AWS SAM templates directly to AWS CloudFormation to create your application 
+resources.
+When you design your application in Application Composer, AWS SAM templates are automatically 
+created for you. You can select the Template view to view and modify your AWS SAM template.
+AWS SAM CLI
+The AWS SAM CLI is a command line tool that helps you manage your serverless applications through 
+their entire development lifecycle. You can use the AWS SAM CLI to:
+•Prepare your application for deployment.
+•Perform local debugging and testing.
+•Deploy your application.
+•Develop and sync local changes to the cloud.
+•And more!
+The AWS SAM CLI is a great companion to Application Composer. Use Application Composer to design 
+deployment-ready applications. Then use the AWS SAM CLI to deploy and manage your applications.
+To learn more about AWS SAM, see What is AWS SAM? in the AWS Serverless Application Model Developer 
+Guide .
+37AWS Application Composer Developer Guide
+AWS SAM prerequisites
+AWS SAM prerequisites
+Install the AWS CLI
+We recommend installing and setting up the AWS CLI before installing the AWS SAM CLI. For 
+instructions, see AWS SAM prerequisites in the AWS Serverless Application Model Developer Guide.
+Note
+After installing the AWS CLI, you must conﬁgure AWS credentials. To learn more, see Quick 
+setup  in the AWS Command Line Interface User Guide.
+Install the AWS SAM CLI
+To install the AWS SAM CLI, see Installing the AWS SAM CLI in the AWS Serverless Application Model 
+Developer Guide .
+Using Application Composer with the AWS SAM CLI
+Note
+We recommend using Application Composer in local sync mode. When using local sync:
+•AWS SAM templates are automatically saved to your local machine, making deployment a 
+faster and more seamless experience.
+•Application Composer automatically creates and organizes your project directory structure for 
+you in a way that AWS SAM recognizes.
+For more information about local sync mode, see Local sync mode  (p. 49).
+Build your application
+Building your application involves taking your AWS SAM template, AWS Lambda function code, and any 
+language-speciﬁc ﬁles and dependencies, and placing these build artifacts in the proper structure and 
+location for deployment. You can use the sam build command to build your application.
+To learn more about building applications with AWS SAM, see the following from the AWS Serverless 
+Application Model Developer Guide :
+•Building serverless applications.
+•Using sam build .
+Deploy your application
+Deploy your application to AWS CloudFormation to provision the resources and infrastructure deﬁned in 
+your AWS SAM templates. You can use the sam deploy command to deploy your application.
+•You can deploy to create new resources or update existing resources.
+•The AWS SAM CLI saves your deployment preferences in a conﬁguration ﬁle.
+•A deployed application in AWS CloudFormation is called a stack. To learn more, see Working with 
+stacks  in the AWS CloudFormation User Guide.
+To learn more about deploying applications with AWS SAM, see the following from the AWS Serverless 
+Application Model Developer Guide :
+•Deploying serverless applications.
+38AWS Application Composer Developer Guide
+Examples
+•Using sam deploy.
+Test your application locally
+Use the AWS SAM CLI to test your application locally. You can simulate events, start up APIs, invoke 
+functions, and more.
+Local testing requires Docker on your local machine. For more information, see  Installing Docker to use 
+with the AWS SAM CLI in the AWS Serverless Application Model Developer Guide.
+To learn more about testing locally, see the following from the AWS Serverless Application Model 
+Developer Guide :
+•Testing and debugging serverless applications.
+•Using sam local
+Sync local changes to the cloud
+As you design your application in Application Composer, you can use the sam sync  command to have the 
+AWS SAM CLI automatically detect local changes and deploy those changes to AWS CloudFormation.
+To learn more, see the following from the AWS Serverless Application Model Developer Guide:
+•Using sam sync .
+Examples
+Build and deploy a serverless application
+In this example, we build and deploy the Application Composer demo application.
+•To learn more about the demo application, see Tutorial 1: Load and modify the Application Composer 
+demo project (p. 8).
+•For this example, we will be using Application Composer with local sync activated.
+Use the sam build command to build the application.
+$ sam build
+39AWS Application Composer Developer Guide
+Examples
+...
+Build Succeeded
+Built Artifacts  : .aws-sam/build
+Built Template   : .aws-sam/build/template.yaml
+Commands you can use next
+=========================
+[*] Validate SAM template: sam validate
+[*] Invoke Function: sam local invoke
+[*] Test Function in the Cloud: sam sync --stack-name {{stack-name}} --watch
+[*] Deploy: sam deploy --guided
+The AWS SAM CLI creates the ./aws-sam  directory in the project folder. This directory contains build 
+artifacts for the application’s Lambda functions. Here is an output of the project directory:
+.
+### README.md
+### samconfig.toml
+### src
+#   ### CreateItem
+#   #   ### index.js
+#   #   ### package.json
+#   ### DeleteItem
+#   #   ### index.js
+#   #   ### package.json
+#   ### GetItem
+#   #   ### index.js
+#   #   ### package.json
+#   ### ListItems
+#   #   ### index.js
+#   #   ### package.json
+#   ### UpdateItem
+#       ### index.js
+#       ### package.json
+### template.yaml
+Now, the application is ready to be deployed. We will use sam deploy --guided. This prepares your 
+application for deployment through a series of prompts.
+$ sam deploy --guided
+...
+Configuring SAM deploy
+====================== 
+    Looking for config file [samconfig.toml] :  Found 
+    Reading default arguments  :  Success 
+    Setting default arguments for 'sam deploy' 
+    ========================================= 
+    Stack Name [aws-app-composer-basic-api]: 
+    AWS Region [us-west-2]: 
+    #Shows you resources changes to be deployed and require a 'Y' to initiate deploy 
+    Confirm changes before deploy [y/N]: 
+    #SAM needs permission to be able to create roles to connect to the resources in your 
+ template 
+    Allow SAM CLI IAM role creation [Y/n]: 
+    #Preserves the state of previously provisioned resources when an operation fails 
+    Disable rollback [y/N]: 
+    ListItems may not have authorization defined, Is this okay? [y/N]: y
+    CreateItem may not have authorization defined, Is this okay? [y/N]: y
+    GetItem may not have authorization defined, Is this okay? [y/N]: y
+    UpdateItem may not have authorization defined, Is this okay? [y/N]: y
+40AWS Application Composer Developer Guide
+Examples
+    DeleteItem may not have authorization defined, Is this okay? [y/N]: y
+    Save arguments to configuration file [Y/n]: 
+    SAM configuration file [samconfig.toml]: 
+    SAM configuration environment [default]:
+The AWS SAM CLI displays a summary of what will be deployed:
+Deploying with following values 
+    =============================== 
+    Stack name                   : aws-app-composer-basic-api 
+    Region                       : us-west-2 
+    Confirm changeset            : False 
+    Disable rollback             : False 
+    Deployment s3 bucket         : aws-sam-cli-managed-default-
+samclisourcebucket-1b3x26zbcdkqr 
+    Capabilities                 : ["CAPABILITY_IAM"] 
+    Parameter overrides          : {} 
+    Signing Profiles             : {}
+The AWS SAM CLI deploys the application, ﬁrst by creating an AWS CloudFormation changeset:
+Initiating deployment
+=====================
+Uploading to aws-app-composer-basic-api/4181c909ee2440a728a7a129dafb83d4.template  7087 / 
+ 7087  (100.00%)
+Waiting for changeset to be created..
+CloudFormation stack changeset
+---------------------------------------------------------------------------------------------------------------------------------------------
+Operation                           LogicalResourceId                   ResourceType        
+                 Replacement
+---------------------------------------------------------------------------------------------------------------------------------------------
++ Add                               ApiDeploymentcc153d135b             
+ AWS::ApiGateway::Deployment         N/A
++ Add                               ApiProdStage                        
+ AWS::ApiGateway::Stage              N/A
++ Add                               Api                                 
+ AWS::ApiGateway::RestApi            N/A
++ Add                               CreateItemApiPOSTitemsPermissionP   
+ AWS::Lambda::Permission             N/A 
+                                    rod
++ Add                               CreateItemRole                      AWS::IAM::Role      
+                 N/A
++ Add                               CreateItem                          
+ AWS::Lambda::Function               N/A
++ Add                               DeleteItemApiDELETEitemsidPermiss   
+ AWS::Lambda::Permission             N/A 
+                                    ionProd
++ Add                               DeleteItemRole                      AWS::IAM::Role      
+                 N/A
++ Add                               DeleteItem                          
+ AWS::Lambda::Function               N/A
++ Add                               GetItemApiGETitemsidPermissionPro   
+ AWS::Lambda::Permission             N/A 
+                                    d
++ Add                               GetItemRole                         AWS::IAM::Role      
+                 N/A
++ Add                               GetItem                             
+ AWS::Lambda::Function               N/A
++ Add                               Items                               
+ AWS::DynamoDB::Table                N/A
++ Add                               ListItemsApiGETitemsPermissionPro   
+ AWS::Lambda::Permission             N/A 
+                                    d
+41AWS Application Composer Developer Guide
+Examples
++ Add                               ListItemsRole                       AWS::IAM::Role      
+                 N/A
++ Add                               ListItems                           
+ AWS::Lambda::Function               N/A
++ Add                               UpdateItemApiPUTitemsidPermission   
+ AWS::Lambda::Permission             N/A 
+                                    Prod
++ Add                               UpdateItemRole                      AWS::IAM::Role      
+                 N/A
++ Add                               UpdateItem                          
+ AWS::Lambda::Function               N/A
+---------------------------------------------------------------------------------------------------------------------------------------------
+Changeset created successfully. arn:aws:cloudformation:us-west-2:513423067560:changeSet/
+samcli-deploy1677472539/967ab543-f916-4170-b97d-c11a6f9308ea
+Then, the AWS SAM CLI deploys the application:
+CloudFormation events from stack operations (refresh every 0.5 seconds)
+---------------------------------------------------------------------------------------------------------------------------------------------
+ResourceStatus                      ResourceType                        LogicalResourceId   
+                 ResourceStatusReason
+---------------------------------------------------------------------------------------------------------------------------------------------
+CREATE_IN_PROGRESS                  AWS::DynamoDB::Table                Items               
+                 -
+CREATE_IN_PROGRESS                  AWS::DynamoDB::Table                Items               
+                 Resource creation Initiated
+CREATE_COMPLETE                     AWS::DynamoDB::Table                Items               
+                 -
+CREATE_IN_PROGRESS                  AWS::IAM::Role                      DeleteItemRole      
+                 -
+CREATE_IN_PROGRESS                  AWS::IAM::Role                      ListItemsRole       
+                 -
+CREATE_IN_PROGRESS                  AWS::IAM::Role                      UpdateItemRole      
+                 -
+CREATE_IN_PROGRESS                  AWS::IAM::Role                      GetItemRole         
+                 -
+CREATE_IN_PROGRESS                  AWS::IAM::Role                      CreateItemRole      
+                 -
+CREATE_IN_PROGRESS                  AWS::IAM::Role                      DeleteItemRole      
+                 Resource creation Initiated
+CREATE_IN_PROGRESS                  AWS::IAM::Role                      ListItemsRole       
+                 Resource creation Initiated
+CREATE_IN_PROGRESS                  AWS::IAM::Role                      GetItemRole         
+                 Resource creation Initiated
+CREATE_IN_PROGRESS                  AWS::IAM::Role                      UpdateItemRole      
+                 Resource creation Initiated
+CREATE_IN_PROGRESS                  AWS::IAM::Role                      CreateItemRole      
+                 Resource creation Initiated
+CREATE_COMPLETE                     AWS::IAM::Role                      DeleteItemRole      
+                 -
+CREATE_COMPLETE                     AWS::IAM::Role                      ListItemsRole       
+                 -
+CREATE_COMPLETE                     AWS::IAM::Role                      GetItemRole         
+                 -
+CREATE_COMPLETE                     AWS::IAM::Role                      UpdateItemRole      
+                 -
+CREATE_COMPLETE                     AWS::IAM::Role                      CreateItemRole      
+                 -
+CREATE_IN_PROGRESS                  AWS::Lambda::Function               DeleteItem          
+                 -
+CREATE_IN_PROGRESS                  AWS::Lambda::Function               CreateItem          
+                 -
+CREATE_IN_PROGRESS                  AWS::Lambda::Function               ListItems           
+                 -
+42AWS Application Composer Developer Guide
+Examples
+CREATE_IN_PROGRESS                  AWS::Lambda::Function               UpdateItem          
+                 -
+CREATE_IN_PROGRESS                  AWS::Lambda::Function               DeleteItem          
+                 Resource creation Initiated
+CREATE_IN_PROGRESS                  AWS::Lambda::Function               GetItem             
+                 -
+CREATE_IN_PROGRESS                  AWS::Lambda::Function               ListItems           
+                 Resource creation Initiated
+CREATE_IN_PROGRESS                  AWS::Lambda::Function               CreateItem          
+                 Resource creation Initiated
+CREATE_IN_PROGRESS                  AWS::Lambda::Function               UpdateItem          
+                 Resource creation Initiated
+CREATE_IN_PROGRESS                  AWS::Lambda::Function               GetItem             
+                 Resource creation Initiated
+CREATE_COMPLETE                     AWS::Lambda::Function               DeleteItem          
+                 -
+CREATE_COMPLETE                     AWS::Lambda::Function               ListItems           
+                 -
+CREATE_COMPLETE                     AWS::Lambda::Function               CreateItem          
+                 -
+CREATE_COMPLETE                     AWS::Lambda::Function               UpdateItem          
+                 -
+CREATE_COMPLETE                     AWS::Lambda::Function               GetItem             
+                 -
+CREATE_IN_PROGRESS                  AWS::ApiGateway::RestApi            Api                 
+                 -
+CREATE_IN_PROGRESS                  AWS::ApiGateway::RestApi            Api                 
+                 Resource creation Initiated
+CREATE_COMPLETE                     AWS::ApiGateway::RestApi            Api                 
+                 -
+CREATE_IN_PROGRESS                  AWS::Lambda::Permission             
+ GetItemApiGETitemsidPermissionPro   - 
+                                                                        d
+CREATE_IN_PROGRESS                  AWS::Lambda::Permission             
+ ListItemsApiGETitemsPermissionPro   - 
+                                                                        d
+CREATE_IN_PROGRESS                  AWS::Lambda::Permission             
+ DeleteItemApiDELETEitemsidPermiss   - 
+                                                                        ionProd
+CREATE_IN_PROGRESS                  AWS::ApiGateway::Deployment         
+ ApiDeploymentcc153d135b             -
+CREATE_IN_PROGRESS                  AWS::Lambda::Permission             
+ UpdateItemApiPUTitemsidPermission   - 
+                                                                        Prod
+CREATE_IN_PROGRESS                  AWS::Lambda::Permission             
+ CreateItemApiPOSTitemsPermissionP   - 
+                                                                        rod
+CREATE_IN_PROGRESS                  AWS::Lambda::Permission             
+ GetItemApiGETitemsidPermissionPro   Resource creation Initiated 
+                                                                        d
+CREATE_IN_PROGRESS                  AWS::Lambda::Permission             
+ UpdateItemApiPUTitemsidPermission   Resource creation Initiated 
+                                                                        Prod
+CREATE_IN_PROGRESS                  AWS::Lambda::Permission             
+ CreateItemApiPOSTitemsPermissionP   Resource creation Initiated 
+                                                                        rod
+CREATE_IN_PROGRESS                  AWS::Lambda::Permission             
+ ListItemsApiGETitemsPermissionPro   Resource creation Initiated 
+                                                                        d
+CREATE_IN_PROGRESS                  AWS::Lambda::Permission             
+ DeleteItemApiDELETEitemsidPermiss   Resource creation Initiated 
+                                                                        ionProd
+CREATE_IN_PROGRESS                  AWS::ApiGateway::Deployment         
+ ApiDeploymentcc153d135b             Resource creation Initiated
+CREATE_COMPLETE                     AWS::ApiGateway::Deployment         
+ ApiDeploymentcc153d135b             -
+43AWS Application Composer Developer Guide
+Examples
+CREATE_IN_PROGRESS                  AWS::ApiGateway::Stage              ApiProdStage        
+                 -
+CREATE_IN_PROGRESS                  AWS::ApiGateway::Stage              ApiProdStage        
+                 Resource creation Initiated
+CREATE_COMPLETE                     AWS::ApiGateway::Stage              ApiProdStage        
+                 -
+CREATE_COMPLETE                     AWS::Lambda::Permission             
+ CreateItemApiPOSTitemsPermissionP   - 
+                                                                        rod
+CREATE_COMPLETE                     AWS::Lambda::Permission             
+ UpdateItemApiPUTitemsidPermission   - 
+                                                                        Prod
+CREATE_COMPLETE                     AWS::Lambda::Permission             
+ ListItemsApiGETitemsPermissionPro   - 
+                                                                        d
+CREATE_COMPLETE                     AWS::Lambda::Permission             
+ DeleteItemApiDELETEitemsidPermiss   - 
+                                                                        ionProd
+CREATE_COMPLETE                     AWS::Lambda::Permission             
+ GetItemApiGETitemsidPermissionPro   - 
+                                                                        d
+CREATE_COMPLETE                     AWS::CloudFormation::Stack          aws-app-composer-
+basic-api          -
+---------------------------------------------------------------------------------------------------------------------------------------------
+Finally, a message is displayed, informing you that deployment was successful:
+Successfully created/updated stack - aws-app-composer-basic-api in us-west-2
+Delete an AWS CloudFormation stack
+To delete an AWS CloudFormation stack, use the sam delete command:
+$ sam delete
+ Are you sure you want to delete the stack aws-app-composer-basic-api in the region us-
+west-2 ? [y/N]: y
+ Do you want to delete the template file 30439348c0be6e1b85043b7a935b34ab.template in S3? 
+ [y/N]: y
+ - Deleting S3 object with key eb226ca86d1bc4e9914ad85eb485fed8 
+ - Deleting S3 object with key 875e4bcf4b10a6a1144ad83158d84b6d 
+ - Deleting S3 object with key 20b869d98d61746dedd9aa33aa08a6fb 
+ - Deleting S3 object with key c513cedc4db6bc184ce30e94602741d6 
+ - Deleting S3 object with key c7a15d7d8d1c24b77a1eddf8caebc665 
+ - Deleting S3 object with key e8b8984f881c3732bfb34257cdd58f1e 
+ - Deleting S3 object with key 3185c59b550594ee7fca7f8c36686119.template 
+ - Deleting S3 object with key 30439348c0be6e1b85043b7a935b34ab.template 
+ - Deleting Cloudformation stack aws-app-composer-basic-api
+Deleted successfully
+44AWS Application Composer Developer Guide
+Visual reference
+Application Composer reference
+This section contains reference information for AWS Application Composer.
+Topics
+•Application Composer visual reference (p. 45)
+•Application Composer features reference (p. 47)
+•Application Composer gestures and keyboard shortcuts (p. 51)
+•AWS Application Composer and the File System Access API (p. 55)
+•Application Composer resource categories (p. 56)
+•AWS Application Composer troubleshooting (p. 59)
+Application Composer visual reference
+This section provides a visual overview of AWS Application Composer.
+Topics
+•Home page  (p. 45)
+•Visual designer  (p. 46)
+Home page
+1.Documentation  – Go to Application Composer documentation.
+45AWS Application Composer Developer Guide
+Visual designer
+2.Canvas – Go to the canvas and create or load a project.
+3.Demo  – Open the Application Composer demo application.
+4.Create project – Create or load a project.
+5.Start building – Quick links to start building an application.
+6.Feedback – Go here to submit feedback.
+Visual designer
+1.Resource palette – Displays featured resources that you can design with.
+2.Resource search bar – Search for resources that you can add to the canvas.
+3.List – Displays a tree view of your application resources.
+4.Home  – Select here to go to the Application Composer homepage.
+5.Save status – Indicates whether Application Composer changes are saved to your local machine. 
+States include:
+•Autosave – Local sync  is activated and your project is being automatically synced and saved.
+•Changes saved – Your application template is saved to your local machine.
+•Unsaved changes – Your application template has changes that are not saved to your local machine.
+6.Resources – Displays the resource palette.
+7.Canvas – Displays the canvas view of your application in the main view area.
+8.Template – Displays the template view of your application in the main view area.
+9.Arrange  – Arranges your application architecture in the canvas.
+10.Undo and redo  (p. 50) – Perform undo  and redo  actions when supported.
+11.Template name – Indicates the name of the template you are designing.
+12.Main view area  – Displays either the canvas or template based on your selection.
+13.Resource properties panel – Displays relevant properties for the resource that’s been selected in the 
+canvas. This panel is dynamic. Properties displayed will change as you conﬁgure your resource.
+14.Menu  – Provides general options such as the following:
+46AWS Application Composer Developer Guide
+Features reference
+•Create a project
+•Open a template ﬁle or project
+•Save a template ﬁle
+•Activate local sync (p. 49)
+•Export canvas (p. 47)
+•Get support
+•Keyboard shortcuts
+15.Resource card – Displays a view of your resource on the canvas.
+16.Line  – Represents a connection between resources.
+17.Group  – Groups selected resources together for visual organization.
+18.Resource actions – Provides actions you can take on your resource card.
+a.Details  – Brings up the resource property panel.
+b.Group  – Group selected resources together.
+c.Delete – Deletes the resource from your canvas.
+19.Port – Connection points to other resources.
+20.Resource property ﬁelds – A curated set of property ﬁelds to conﬁgure for your resource.
+21.Re-center – Re-center your application diagram on the visual canvas.
+22.Zoom  – Zoom in and out on your canvas.
+23.Feedback – Go here to submit feedback.
+Application Composer features reference
+This section provides reference information for Application Composer features.
+Topics
+•Export canvas (p. 47)
+•Local sync mode  (p. 49)
+•Undo and redo (p. 50)
+Export canvas
+This topic describes the AWS Application Composer export canvas feature.
+For a visual overview of all Application Composer features, see Application Composer visual 
+reference (p. 45).
+About export canvas
+The export canvas feature exports your application’s canvas as an image to your local machine.
+•Application Composer removes the visual designer UI elements and exports only your application’s 
+diagram.
+•The default image ﬁle format is png.
+•The ﬁle is exported to your local machine’s default download location.
+You can access the export canvas feature from the Menu .
+47AWS Application Composer Developer Guide
+Export canvas
+Exporting canvas
+When you export your canvas, Application Composer displays a status message.
+If the export is successful, you will see the following message:
+If the export was unsuccessful, you will see an error message. If you receive an error, try exporting again.
+48AWS Application Composer Developer Guide
+Local sync mode
+Local sync mode
+This topic describes the AWS Application Composer local sync mode.
+For a visual overview of all Application Composer features, see Application Composer visual 
+reference (p. 45).
+About local sync mode
+Local sync  mode automatically syncs and saves the following to your local machine:
+•Application template ﬁle – The AWS CloudFormation or AWS Serverless Application Model (AWS 
+SAM) template that contains your infrastructure as code (IaC).
+•Project folders – A general directory structure that organizes your AWS Lambda functions.
+•Backup directory – A backup directory named .aws-composer , created at the root of your project 
+location. This directory contains a backup copy of your application template ﬁle and project folders.
+•External ﬁles  – Supported external ﬁles that you can use within Application Composer. To learn more, 
+see Working with templates that reference external ﬁles (p. 25).
+Browser requirements
+Local sync  mode requires a browser that supports the File System Access API. For more information, see
+AWS Application Composer and the File System Access API (p. 55).
+Activating local sync mode
+Local sync  mode is deactivated by default. You can activate Local sync  mode through the Application 
+Composer menu .
+49AWS Application Composer Developer Guide
+Undo and redo
+For instructions on activating and using local sync, see Automatically sync and save your project (p. 21).
+Undo and redo
+This topic describes the AWS Application Composer undo  and redo  features.
+For a visual overview of all Application Composer features, see Application Composer visual 
+reference (p. 45).
+About undo and redo
+The undo  and redo  features are available as buttons on the Application Composer canvas.
+•Undo  – Revert the most recent action.
+•Redo – Re-apply the most recently undone action.
+You can also use the following keyboard shortcuts:
+50AWS Application Composer Developer Guide
+Gestures and shortcuts
+•Undo  – Control-Z | Command-Z .
+•Redo – Control-Shift-Z | Command-Shift-Z .
+The redo  feature becomes available when you perform an undo . Once you begin performing new 
+actions, redo  becomes unavailable until you perform an undo again.
+Undo and redo support
+You can undo and redo the following types of actions.
+Application design changes in the visual canvas
+This includes any modiﬁcations that you make to your application through the visual canvas. For 
+example, dragging new resources onto the canvas or connecting resources together.
+Application arrangement actions
+This includes using the Arrange  button or manually arranging a resource or group.
+Application template changes
+This includes any modiﬁcations to your application template from the Template view.
+External ﬁle changes
+When you modify a supported external ﬁle (p. 25) from within Application Composer, you can undo 
+and redo these actions. These include changes that you make to external ﬁles within the Application 
+Composer visual canvas, Template view, and Resource properties panel.
+Application Composer remembers the last 100 actions. You can undo and redo changes up to this 
+amount.
+Local IDE support
+When using Application Composer with your local IDE (p. 35), Application Composer won’t undo and 
+redo any actions that you perform in your IDE. We recommend using the undo and redo features within 
+your IDE to manage those actions.
+When you use the undo and redo features of your local IDE, Application Composer will reset its memory 
+of recent actions. This makes the Application Composer undo  and redo  features temporarily unavailable. 
+Application Composer does this to prevent unintended changes that could occur when using multiple 
+undo and redo services at the same time. As you start modifying your application in Application 
+Composer again, the undo  and redo  features will become available until you use your IDE’s undo and 
+redo features again.
+Application Composer gestures and keyboard 
+shortcuts
+This section provides a reference of gestures and keyboard shortcuts for AWS Application Composer.
+Topics
+•Gestures (p. 52)
+•Keyboard shortcuts (p. 54)
+51AWS Application Composer Developer Guide
+Gestures
+Gestures
+Select a resource to design with
+To add a resource to your application, select it from the resource palette and drag it onto the canvas.
+Group resources together
+While pressing Shift, select resources to group. Then, choose Group  from the resource actions menu.
+Connect resources together
+Click on a port from one resource card and drag it onto a port on another resource card.
+52AWS Application Composer Developer Guide
+Gestures
+Arrange resources on your canvas
+Select Arrange  to visually arrange and organize the canvas.
+Conﬁgure resource properties
+Do any of the following to conﬁgure resource properties:
+•Double-click on a resource card to bring up the resource properties panel.
+•Click on a resource card and select Details  to bring up the resource properties panel.
+•Click on Template to show your application code. Conﬁgure directly from here.
+53AWS Application Composer Developer Guide
+Keyboard shortcuts
+Zoom in and out
+Use the zoom controls to zoom in and out of your canvas. You can also use a multi-touch trackpad, with 
+the general pinch-to-zoom gestures.
+Keyboard shortcuts
+For keyboard shortcuts, select Menu  from the Application Composer main view area and choose
+Keyboard shortcuts.
+54AWS Application Composer Developer Guide
+File System Access API
+AWS Application Composer and the File System 
+Access API
+To use the AWS Application Composer local sync mode, a web browser that supports the File System 
+Access API is required.
+Topics
+•What is the File System Access API? (p. 56)
+•What is the local sync mode?  (p. 56)
+•What web browsers are supported? (p. 56)
+•What does Application Composer gain access to? (p. 56)
+55AWS Application Composer Developer Guide
+What is the File System Access API?
+What is the File System Access API?
+The File System Access API lets web pages gain access to your local ﬁle system in order to read, write, or 
+save ﬁles. This feature is oﬀ by default and requires your permission through a visual prompt to allow it. 
+Once granted, this access remains for the duration of your web page’s browser session.
+To learn more about the File System Access API, see:
+•File System Access API in the mdn web docs .
+•The File System Access API: simplifying access to local ﬁles in the web.dev website.
+What is the local sync mode?
+Local sync  mode lets you automatically sync and save your template ﬁles and project folders locally as 
+you design in Application Composer. To use this feature, a web browser that supports the File System 
+Access API is required.
+What web browsers are supported?
+Any recent version of Google Chrome and Microsoft Edge support all capabilities of the File System 
+Access API and can be used with local sync mode in Application Composer.
+What does Application Composer gain access to?
+Application Composer gains read and write access to the project folder you allow, along with any child 
+folders of that project folder. This access is used to create, update, and save any template ﬁles, project 
+folders, and backup directories that are generated as you design. Data accessed by Application Composer 
+is not used for any other purpose and is not stored anywhere beyond your local ﬁle system.
+Access to sensitive data
+The File System Access API excludes or limits access to speciﬁc directories that may contain sensitive 
+data. An error will occur if you select one of these directories to use with Application Composer local 
+sync  mode. You can choose another local directory to connect with or use Application Composer in its 
+default mode with local sync deactivated.
+For more information, including examples of sensitive directories, see Users giving access to more, or 
+more sensitive ﬁles than they intended in the File System Access W3C Draft Community Group Report.
+If you use Windows Subsystem for Linux (WSL), the File System Access API excludes access to the entire 
+Linux directory because of its location within your Windows system. You can use Application Composer 
+with local sync deactivated or conﬁgure a solution to sync project ﬁles from your WSL directory to a 
+working directory in Windows. Then, use Application Composer local sync mode with your Windows 
+directory.
+Application Composer resource categories
+AWS Application Composer has three categories regarding AWS resources:
+1.Featured resources
+2.Hidden resources
+56AWS Application Composer Developer Guide
+Featured resources
+3.Read-only resources
+Topics
+•Featured resources (p. 57)
+•Hidden resources (p. 57)
+•Read-only resources (p. 58)
+•Example  (p. 58)
+•Future resource support (p. 58)
+Featured resources
+Featured resources are those available from the resource palette. They can be fully conﬁgured and used 
+within Application Composer to design and build your serverless applications. We recommend using 
+featured resources when designing your applications from scratch.
+This table displays our featured resources with links to their AWS CloudFormation or AWS Serverless 
+Application Model (AWS SAM) template speciﬁcation:
+Resource Reference
+Amazon API Gateway AWS::Serverless::API
+Amazon Cognito UserPool AWS::Cognito::UserPool
+Amazon Cognito UserPoolClient AWS::Cognito::UserPoolClient
+Amazon DynamoDB Table AWS::DynamoDB::Table
+Amazon EventBridge Event rule AWS::Events::Rule
+EventBridge Schedule AWS::Scheduler::Schedule
+Amazon Kinesis Stream AWS::Kinesis::Stream
+AWS Lambda Function AWS::Serverless::Function
+Lambda Layer AWS::Serverless::LayerVersion
+Amazon Simple Storage Service (Amazon S3) 
+BucketAWS::S3::Bucket
+Amazon Simple Notiﬁcation Service (Amazon 
+SNS) TopicAWS::SNS::Topic
+Amazon Simple Queue Service (Amazon SQS) 
+QueueAWS::SQS::Queue
+AWS Step Functions State machine AWS::Serverless::StateMachine
+Hidden resources
+Hidden resources are those that can be used to design and build with, but their complete feature set of 
+properties and integrations with other resources may not be supported within Application Composer. 
+Hidden resources are not available from the resource palette but will populate on the canvas when you 
+load an existing template that includes them.
+57AWS Application Composer Developer Guide
+Read-only resources
+A few examples of hidden resources include:
+•AWS::ECS::TaskDefinition
+•AWS::CloudFront::Function
+•AWS::CloudFront::Distribution
+When you load a template with hidden resources, you can use Application Composer to design with 
+them. When conﬁguring hidden resources or connecting them with other resources, you may come 
+across limitations. Integrate Application Composer with a local IDE to conﬁgure your hidden resources 
+further.
+Read-only resources
+Read-only resources can be visualized when designing your application architecture, but can’t be 
+conﬁgured within Application Composer. These resources are not in the resource palette but will appear 
+on the canvas, greyed out, when you load an existing template with them. Use Application Composer to 
+design with read-only resources while integrating with a local IDE to conﬁgure your read-only resources.
+Example
+Here is an AWS SAM template that has been loaded into Application Composer.
+•The Lambda Function and Amazon SQS Queue resources are featured resources. They are available 
+from the resource palette and appear on the canvas in color.
+•The HttpApi resource is a hidden resource. It is not available from the resource palette but does 
+appear on the canvas in color.
+•The resource named MyHttpApiRole (in this case, an AWS::IAM::Role  resource), is read-only. It 
+appears on the canvas greyed out.
+Future resource support
+When prioritizing resources to feature, we consider those that are popular in usage, powerful in 
+combination with others, and challenging to conﬁgure. This is where Application Composer’s visual 
+features are most beneﬁcial.
+To provide feedback on resource you’d like to see featured, please contact us through the feedback link 
+located at the bottom-left corner of Application Composer.
+58AWS Application Composer Developer Guide
+Troubleshooting
+AWS Application Composer troubleshooting
+Troubleshoot error messages when using AWS Application Composer.
+Topics
+•Error messages (p. 59)
+•Submit feedback  (p. 60)
+Error messages
+"Can't open this folder"
+Example error:
+Possible cause: Application Composer is unable to access a sensitive directory using local sync mode.
+To learn more about this error, see What does Application Composer gain access to? (p. 56).
+Try connecting to a diﬀerent local directory or using Application Composer with local sync
+deactivated.
+"Incompatible template"
+Example error: When loading a new project in Application Composer, you see the following:
+Possible cause: Your project contains an externally referenced ﬁle that isn’t supported in Application 
+Composer.
+To learn about supported external ﬁles in Application Composer, see Referencing external 
+ﬁles (p. 25).
+If you’d like Application Composer to support your use case,  submit feedback  (p. 60).
+Possible cause: Your project links to an external ﬁle in a diﬀerent local directory.
+Move your externally referenced ﬁle to a subdirectory of the directory that you select to use with 
+Application Composer local sync mode.
+"The provided folder contains an existing template.yaml"
+When attempting to activate local sync, you see the following error:
+59AWS Application Composer Developer Guide
+Submit feedback
+Possible cause: Your selected folder already contains a template.yaml ﬁle.
+Select another directory that doesn’t contain an application template, or create a new directory.
+"Your browser doesn't have permissions to save your project in 
+that folder..."
+Possible cause: Application Composer is unable to access a sensitive directory using local sync mode.
+To learn more about this error, see What does Application Composer gain access to? (p. 56).
+Try connecting to a diﬀerent local directory or use Application Composer with local sync
+deactivated.
+Submit feedback
+To submit feedback in Application Composer
+1. Select the Feedback link within Application Composer.
+2. Fill out the feedback form and Submit .
+60AWS Application Composer Developer Guide
+Data protection
+Security in AWS Application 
+Composer
+Cloud security at AWS is the highest priority. As an AWS customer, you beneﬁt from data centers 
+and network architectures that are built to meet the requirements of the most security-sensitive 
+organizations.
+Security is a shared responsibility between AWS and you. The shared responsibility model describes this 
+as security of the cloud and security in the cloud:
+•Security of the cloud – AWS is responsible for protecting the infrastructure that runs AWS services in 
+the AWS Cloud. AWS also provides you with services that you can use securely. Third-party auditors 
+regularly test and verify the eﬀectiveness of our security as part of the AWS Compliance Programs. To 
+learn about the compliance programs that apply to AWS Application Composer, see AWS Services in 
+Scope by Compliance Program.
+•Security in the cloud – Your responsibility is determined by the AWS service that you use. You are also 
+responsible for other factors including the sensitivity of your data, your company’s requirements, and 
+applicable laws and regulations.
+This documentation helps you understand how to apply the shared responsibility model when using 
+Application Composer. The following topics show you how to conﬁgure Application Composer to meet 
+your security and compliance objectives. You also learn how to use other AWS services that help you to 
+monitor and secure your Application Composer resources.
+Topics
+•Data protection in AWS Application Composer (p. 61)
+•Identity and access management for AWS Application Composer (p. 62)
+•Compliance validation for AWS Application Composer (p. 71)
+•Resilience in AWS Application Composer (p. 72)
+Data protection in AWS Application Composer
+The AWS shared responsibility model applies to data protection in AWS Application Composer. As 
+described in this model, AWS is responsible for protecting the global infrastructure that runs all 
+of the AWS Cloud. You are responsible for maintaining control over your content that is hosted on 
+this infrastructure. This content includes the security conﬁguration and management tasks for the 
+AWS services that you use. For more information about data privacy, see the Data Privacy FAQ. For 
+information about data protection in Europe, see the AWS Shared Responsibility Model and GDPR blog 
+post on the AWS Security Blog.
+For data protection purposes, we recommend that you protect AWS account credentials and set up 
+individual users with AWS IAM Identity Center (successor to AWS Single Sign-On) or AWS Identity and 
+Access Management (IAM). That way, each user is given only the permissions necessary to fulﬁll their job 
+duties. We also recommend that you secure your data in the following ways:
+•Use multi-factor authentication (MFA) with each account.
+•Use SSL/TLS to communicate with AWS resources. We require TLS 1.2 and recommend TLS 1.3.
+•Set up API and user activity logging with AWS CloudTrail.
+•Use AWS encryption solutions, along with all default security controls within AWS services.
+61AWS Application Composer Developer Guide
+Data encryption
+•Use advanced managed security services such as Amazon Macie, which assists in discovering and 
+securing sensitive data that is stored in Amazon S3.
+•If you require FIPS 140-2 validated cryptographic modules when accessing AWS through a command 
+line interface or an API, use a FIPS endpoint. For more information about the available FIPS endpoints, 
+see Federal Information Processing Standard (FIPS) 140-2.
+We strongly recommend that you never put conﬁdential or sensitive information, such as your 
+customers' email addresses, into tags or free-form text ﬁelds such as a Name  ﬁeld. This includes when 
+you work with Application Composer or other AWS services using the console, API, AWS CLI, or AWS 
+SDKs. Any data that you enter into tags or free-form text ﬁelds used for names may be used for billing 
+or diagnostic logs. If you provide a URL to an external server, we strongly recommend that you do not 
+include credentials information in the URL to validate your request to that server.
+Note
+All data that you input into Application Composer is used for the sole purpose of providing 
+functionality within Application Composer and generating project ﬁles and directories that are 
+saved locally to your machine. Application Composer does not save, store or transmit any of this 
+data.
+Data encryption
+Application Composer does not encrypt customer content since data is not saved, stored or transmitted.
+Encryption at rest
+Application Composer does not encrypt customer content since data is not saved, stored or transmitted.
+Encryption in transit
+Application Composer does not encrypt customer content since data is not saved, stored or transmitted.
+Key management
+Application Composer does not support key management since customer content is not saved, stored or 
+transmitted.
+Inter-network traﬃc privacy
+Application Composer does not generate traﬃc with on-premise clients and applications.
+Identity and access management for AWS 
+Application Composer
+AWS Identity and Access Management (IAM) is an AWS service that helps an administrator securely 
+control access to AWS resources. IAM administrators control who can be authenticated  (signed in) and
+authorized  (have permissions) to use Application Composer resources. IAM is an AWS service that you can 
+use with no additional charge.
+Topics
+•Audience (p. 63)
+•Authenticating with identities  (p. 63)
+•Managing access using policies (p. 65)
+62AWS Application Composer Developer Guide
+Audience
+•How AWS Application Composer works with IAM (p. 66)
+Audience
+Application Composer requires, at minimum, read-only access to the AWS Management Console. Any 
+user with this authorization can use all features of Application Composer. Granular access to speciﬁc 
+features of Application Composer is not supported.
+Authenticating with identities
+Authentication is how you sign in to AWS using your identity credentials. You must be authenticated
+(signed in to AWS) as the AWS account root user, as an IAM user, or by assuming an IAM role.
+You can sign in to AWS as a federated identity by using credentials provided through an identity source. 
+AWS IAM Identity Center (successor to AWS Single Sign-On) (IAM Identity Center) users, your company's 
+single sign-on authentication, and your Google or Facebook credentials are examples of federated 
+identities. When you sign in as a federated identity, your administrator previously set up identity 
+federation using IAM roles. When you access AWS by using federation, you are indirectly assuming a role.
+Depending on the type of user you are, you can sign in to the AWS Management Console or the AWS 
+access portal. For more information about signing in to AWS, see How to sign in to your AWS account in 
+the AWS Sign-In User Guide.
+If you access AWS programmatically, AWS provides a software development kit (SDK) and a command 
+line interface (CLI) to cryptographically sign your requests by using your credentials. If you don't use AWS 
+tools, you must sign requests yourself. For more information about using the recommended method to 
+sign requests yourself, see Signing AWS API requests in the IAM User Guide .
+Regardless of the authentication method that you use, you might be required to provide additional 
+security information. For example, AWS recommends that you use multi-factor authentication (MFA) 
+to increase the security of your account. To learn more, see Multi-factor authentication in the AWS IAM 
+Identity Center (successor to AWS Single Sign-On) User Guide and Using multi-factor authentication (MFA) 
+in AWS in the IAM User Guide .
+AWS account root user
+When you create an AWS account, you begin with one sign-in identity that has complete access to 
+all AWS services and resources in the account. This identity is called the AWS account root user  and is 
+accessed by signing in with the email address and password that you used to create the account. We 
+strongly recommend that you don't use the root user for your everyday tasks. Safeguard your root user 
+credentials and use them to perform the tasks that only the root user can perform. For the complete list 
+of tasks that require you to sign in as the root user, see Tasks that require root user credentials in the
+AWS Account Management Reference Guide.
+Federated identity
+As a best practice, require human users, including users that require administrator access, to use 
+federation with an identity provider to access AWS services by using temporary credentials.
+A federated identity  is a user from your enterprise user directory, a web identity provider, the AWS 
+Directory Service, the Identity Center directory, or any user that accesses AWS services by using 
+credentials provided through an identity source. When federated identities access AWS accounts, they 
+assume roles, and the roles provide temporary credentials.
+For centralized access management, we recommend that you use AWS IAM Identity Center (successor to 
+AWS Single Sign-On). You can create users and groups in IAM Identity Center, or you can connect and 
+synchronize to a set of users and groups in your own identity source for use across all your AWS accounts 
+63AWS Application Composer Developer Guide
+Authenticating with identities
+and applications. For information about IAM Identity Center, see What is IAM Identity Center? in the AWS 
+IAM Identity Center (successor to AWS Single Sign-On) User Guide.
+IAM users and groups
+An IAM user  is an identity within your AWS account that has speciﬁc permissions for a single person or 
+application. Where possible, we recommend relying on temporary credentials instead of creating IAM 
+users who have long-term credentials such as passwords and access keys. However, if you have speciﬁc 
+use cases that require long-term credentials with IAM users, we recommend that you rotate access keys. 
+For more information, see Rotate access keys regularly for use cases that require long-term credentials in 
+the IAM User Guide .
+An IAM group  is an identity that speciﬁes a collection of IAM users. You can't sign in as a group. You 
+can use groups to specify permissions for multiple users at a time. Groups make permissions easier to 
+manage for large sets of users. For example, you could have a group named IAMAdmins  and give that 
+group permissions to administer IAM resources.
+Users are diﬀerent from roles. A user is uniquely associated with one person or application, but a role 
+is intended to be assumable by anyone who needs it. Users have permanent long-term credentials, but 
+roles provide temporary credentials. To learn more, see When to create an IAM user (instead of a role) in 
+the IAM User Guide .
+IAM roles
+An IAM role  is an identity within your AWS account that has speciﬁc permissions. It is similar to an IAM 
+user, but is not associated with a speciﬁc person. You can temporarily assume an IAM role in the AWS 
+Management Console by switching roles. You can assume a role by calling an AWS CLI or AWS API 
+operation or by using a custom URL. For more information about methods for using roles, see Using IAM 
+roles in the IAM User Guide .
+IAM roles with temporary credentials are useful in the following situations:
+•Federated user access – To assign permissions to a federated identity, you create a role and deﬁne 
+permissions for the role. When a federated identity authenticates, the identity is associated with 
+the role and is granted the permissions that are deﬁned by the role. For information about roles for 
+federation, see  Creating a role for a third-party Identity Provider in the IAM User Guide . If you use IAM 
+Identity Center, you conﬁgure a permission set. To control what your identities can access after they 
+authenticate, IAM Identity Center correlates the permission set to a role in IAM. For information about 
+permissions sets, see  Permission sets in the AWS IAM Identity Center (successor to AWS Single Sign-On) 
+User Guide .
+•Temporary IAM user permissions – An IAM user or role can assume an IAM role to temporarily take on 
+diﬀerent permissions for a speciﬁc task.
+•Cross-account access – You can use an IAM role to allow someone (a trusted principal) in a diﬀerent 
+account to access resources in your account. Roles are the primary way to grant cross-account access. 
+However, with some AWS services, you can attach a policy directly to a resource (instead of using a role 
+as a proxy). To learn the diﬀerence between roles and resource-based policies for cross-account access, 
+see How IAM roles diﬀer from resource-based policies in the IAM User Guide .
+•Cross-service access – Some AWS services use features in other AWS services. For example, when you 
+make a call in a service, it's common for that service to run applications in Amazon EC2 or store objects 
+in Amazon S3. A service might do this using the calling principal's permissions, using a service role, or 
+using a service-linked role.
+•Principal permissions  – When you use an IAM user or role to perform actions in AWS, you are 
+considered a principal. Policies grant permissions to a principal. When you use some services, you 
+might perform an action that then triggers another action in a diﬀerent service. In this case, you 
+must have permissions to perform both actions. To see whether an action requires additional 
+dependent actions in a policy, see Actions, Resources, and Condition Keys for AWS Application 
+Composer  in the Service Authorization Reference.
+64AWS Application Composer Developer Guide
+Managing access using policies
+•Service role – A service role is an IAM role that a service assumes to perform actions on your behalf. 
+An IAM administrator can create, modify, and delete a service role from within IAM. For more 
+information, see Creating a role to delegate permissions to an AWS service in the IAM User Guide .
+•Service-linked role – A service-linked role is a type of service role that is linked to an AWS service. 
+The service can assume the role to perform an action on your behalf. Service-linked roles appear in 
+your AWS account and are owned by the service. An IAM administrator can view, but not edit the 
+permissions for service-linked roles.
+•Applications running on Amazon EC2 – You can use an IAM role to manage temporary credentials 
+for applications that are running on an EC2 instance and making AWS CLI or AWS API requests. 
+This is preferable to storing access keys within the EC2 instance. To assign an AWS role to an EC2 
+instance and make it available to all of its applications, you create an instance proﬁle that is attached 
+to the instance. An instance proﬁle contains the role and enables programs that are running on the 
+EC2 instance to get temporary credentials. For more information, see Using an IAM role to grant 
+permissions to applications running on Amazon EC2 instances in the IAM User Guide .
+To learn whether to use IAM roles or IAM users, see When to create an IAM role (instead of a user) in the
+IAM User Guide .
+Managing access using policies
+You control access in AWS by creating policies and attaching them to AWS identities or resources. A 
+policy is an object in AWS that, when associated with an identity or resource, deﬁnes their permissions. 
+AWS evaluates these policies when a principal (user, root user, or role session) makes a request. 
+Permissions in the policies determine whether the request is allowed or denied. Most policies are stored 
+in AWS as JSON documents. For more information about the structure and contents of JSON policy 
+documents, see Overview of JSON policies in the IAM User Guide .
+Administrators can use AWS JSON policies to specify who has access to what. That is, which principal  can 
+perform actions on what resources, and under what conditions.
+By default, users and roles have no permissions. To grant users permission to perform actions on the 
+resources that they need, an IAM administrator can create IAM policies. The administrator can then add 
+the IAM policies to roles, and users can assume the roles.
+IAM policies deﬁne permissions for an action regardless of the method that you use to perform the 
+operation. For example, suppose that you have a policy that allows the iam:GetRole  action. A user with 
+that policy can get role information from the AWS Management Console, the AWS CLI, or the AWS API.
+Identity-based policies
+Identity-based policies are JSON permissions policy documents that you can attach to an identity, such 
+as an IAM user, group of users, or role. These policies control what actions users and roles can perform, 
+on which resources, and under what conditions. To learn how to create an identity-based policy, see
+Creating IAM policies in the IAM User Guide .
+Identity-based policies can be further categorized as inline policies  or managed policies . Inline policies 
+are embedded directly into a single user, group, or role. Managed policies are standalone policies that 
+you can attach to multiple users, groups, and roles in your AWS account. Managed policies include AWS 
+managed policies and customer managed policies. To learn how to choose between a managed policy or 
+an inline policy, see Choosing between managed policies and inline policies in the IAM User Guide .
+Resource-based policies
+Resource-based policies are JSON policy documents that you attach to a resource. Examples of resource-
+based policies are IAM role trust policies  and Amazon S3 bucket policies . In services that support resource-
+based policies, service administrators can use them to control access to a speciﬁc resource. For the 
+65AWS Application Composer Developer Guide
+How AWS Application Composer works with IAM
+resource where the policy is attached, the policy deﬁnes what actions a speciﬁed principal can perform 
+on that resource and under what conditions. You must specify a principal in a resource-based policy. 
+Principals can include accounts, users, roles, federated users, or AWS services.
+Resource-based policies are inline policies that are located in that service. You can't use AWS managed 
+policies from IAM in a resource-based policy.
+Access control lists (ACLs)
+Access control lists (ACLs) control which principals (account members, users, or roles) have permissions to 
+access a resource. ACLs are similar to resource-based policies, although they do not use the JSON policy 
+document format.
+Amazon S3, AWS WAF, and Amazon VPC are examples of services that support ACLs. To learn more about 
+ACLs, see Access control list (ACL) overview in the Amazon Simple Storage Service Developer Guide.
+Other policy types
+AWS supports additional, less-common policy types. These policy types can set the maximum 
+permissions granted to you by the more common policy types.
+•Permissions boundaries – A permissions boundary is an advanced feature in which you set the 
+maximum permissions that an identity-based policy can grant to an IAM entity (IAM user or role). 
+You can set a permissions boundary for an entity. The resulting permissions are the intersection of an 
+entity's identity-based policies and its permissions boundaries. Resource-based policies that specify 
+the user or role in the Principal  ﬁeld are not limited by the permissions boundary. An explicit deny 
+in any of these policies overrides the allow. For more information about permissions boundaries, see
+Permissions boundaries for IAM entities in the IAM User Guide .
+•Service control policies (SCPs) – SCPs are JSON policies that specify the maximum permissions for 
+an organization or organizational unit (OU) in AWS Organizations. AWS Organizations is a service for 
+grouping and centrally managing multiple AWS accounts that your business owns. If you enable all 
+features in an organization, then you can apply service control policies (SCPs) to any or all of your 
+accounts. The SCP limits permissions for entities in member accounts, including each AWS account 
+root user. For more information about Organizations and SCPs, see How SCPs work in the AWS 
+Organizations User Guide .
+•Session policies  – Session policies are advanced policies that you pass as a parameter when you 
+programmatically create a temporary session for a role or federated user. The resulting session's 
+permissions are the intersection of the user or role's identity-based policies and the session policies. 
+Permissions can also come from a resource-based policy. An explicit deny in any of these policies 
+overrides the allow. For more information, see Session policies  in the IAM User Guide .
+Multiple policy types
+When multiple types of policies apply to a request, the resulting permissions are more complicated to 
+understand. To learn how AWS determines whether to allow a request when multiple policy types are 
+involved, see Policy evaluation logic in the IAM User Guide .
+How AWS Application Composer works with IAM
+AWS Application Composer requires, at minimum, read-only access to the AWS Management Console. 
+Any user with this authorization can use all features of Application Composer. Granular access to speciﬁc 
+features of Application Composer is not supported.
+When you deploy your project template and ﬁles to AWS CloudFormation, you will need the necessary 
+permissions to be in place. To learn more, see Controlling access with AWS Identity and Access 
+Management  in the AWS CloudFormation User Guide.
+66AWS Application Composer Developer Guide
+How AWS Application Composer works with IAM
+IAM features you can use with AWS Application Composer
+IAM feature Application Composer support
+Identity-based policies (p. 67) No
+Resource-based policies (p. 67) No
+Policy actions (p. 68) No
+Policy resources (p. 68) No
+Policy condition keys (p. 69) No
+ACLs (p. 69) No
+ABAC (tags in policies) (p. 69) No
+Temporary credentials (p. 70) Yes
+Principal permissions  (p. 70) No
+Service roles (p. 70) No
+Service-linked roles (p. 71) No
+To get a high-level view of how Application Composer and other AWS services work with most IAM 
+features, see AWS services that work with IAM in the IAM User Guide .
+Identity-based policies for Application Composer
+Supports identity-based policies No
+Identity-based policies are JSON permissions policy documents that you can attach to an identity, such 
+as an IAM user, group of users, or role. These policies control what actions users and roles can perform, 
+on which resources, and under what conditions. To learn how to create an identity-based policy, see
+Creating IAM policies in the IAM User Guide .
+With IAM identity-based policies, you can specify allowed or denied actions and resources as well as the 
+conditions under which actions are allowed or denied. You can't specify the principal in an identity-based 
+policy because it applies to the user or role to which it is attached. To learn about all of the elements 
+that you can use in a JSON policy, see IAM JSON policy elements reference in the IAM User Guide .
+Resource-based policies within Application Composer
+Supports resource-based policies No
+Resource-based policies are JSON policy documents that you attach to a resource. Examples of resource-
+based policies are IAM role trust policies  and Amazon S3 bucket policies . In services that support resource-
+based policies, service administrators can use them to control access to a speciﬁc resource. For the 
+resource where the policy is attached, the policy deﬁnes what actions a speciﬁed principal can perform 
+on that resource and under what conditions. You must specify a principal in a resource-based policy. 
+Principals can include accounts, users, roles, federated users, or AWS services.
+67AWS Application Composer Developer Guide
+How AWS Application Composer works with IAM
+To enable cross-account access, you can specify an entire account or IAM entities in another account as 
+the principal in a resource-based policy. Adding a cross-account principal to a resource-based policy is 
+only half of establishing the trust relationship. When the principal and the resource are in diﬀerent AWS 
+accounts, an IAM administrator in the trusted account must also grant the principal entity (user or role) 
+permission to access the resource. They grant permission by attaching an identity-based policy to the 
+entity. However, if a resource-based policy grants access to a principal in the same account, no additional 
+identity-based policy is required. For more information, see How IAM roles diﬀer from resource-based 
+policies in the IAM User Guide .
+Policy actions for Application Composer
+Supports policy actions No
+Administrators can use AWS JSON policies to specify who has access to what. That is, which principal  can 
+perform actions on what resources, and under what conditions.
+The Action element of a JSON policy describes the actions that you can use to allow or deny access in a 
+policy. Policy actions usually have the same name as the associated AWS API operation. There are some 
+exceptions, such as permission-only actions that don't have a matching API operation. There are also 
+some operations that require multiple actions in a policy. These additional actions are called dependent 
+actions .
+Include actions in a policy to grant permissions to perform the associated operation.
+To see a list of Application Composer actions, see Actions Deﬁned by AWS Application Composer  in the
+Service Authorization Reference.
+Policy actions in Application Composer use the following preﬁx before the action:
+To specify multiple actions in a single statement, separate them with commas.
+"Action": [ 
+      ": action1", 
+      ": action2" 
+         ]
+Policy resources for Application Composer
+Supports policy resources No
+Administrators can use AWS JSON policies to specify who has access to what. That is, which principal  can 
+perform actions on what resources, and under what conditions.
+The Resource  JSON policy element speciﬁes the object or objects to which the action applies. 
+Statements must include either a Resource  or a NotResource  element. As a best practice, specify 
+a resource using its Amazon Resource Name (ARN). You can do this for actions that support a speciﬁc 
+resource type, known as resource-level permissions .
+For actions that don't support resource-level permissions, such as listing operations, use a wildcard (*) to 
+indicate that the statement applies to all resources.
+68AWS Application Composer Developer Guide
+How AWS Application Composer works with IAM
+"Resource": "*"
+To see a list of Application Composer resource types and their ARNs, see Resources Deﬁned by AWS 
+Application Composer  in the Service Authorization Reference. To learn with which actions you can specify 
+the ARN of each resource, see Actions Deﬁned by AWS Application Composer .
+Policy condition keys for Application Composer
+Supports service-speciﬁc policy condition keys No
+Administrators can use AWS JSON policies to specify who has access to what. That is, which principal  can 
+perform actions on what resources, and under what conditions.
+The Condition  element (or Condition  block ) lets you specify conditions in which a statement is in 
+eﬀect. The Condition  element is optional. You can create conditional expressions that use condition 
+operators , such as equals or less than, to match the condition in the policy with values in the request.
+If you specify multiple Condition  elements in a statement, or multiple keys in a single Condition
+element, AWS evaluates them using a logical AND operation. If you specify multiple values for a single 
+condition key, AWS evaluates the condition using a logical OR operation. All of the conditions must be 
+met before the statement's permissions are granted.
+You can also use placeholder variables when you specify conditions. For example, you can grant an IAM 
+user permission to access a resource only if it is tagged with their IAM user name. For more information, 
+see IAM policy elements: variables and tags in the IAM User Guide .
+AWS supports global condition keys and service-speciﬁc condition keys. To see all AWS global condition 
+keys, see AWS global condition context keys in the IAM User Guide .
+To see a list of Application Composer condition keys, see Condition Keys for AWS Application Composer 
+in the Service Authorization Reference. To learn with which actions and resources you can use a condition 
+key, see Actions Deﬁned by AWS Application Composer .
+ACLs in Application Composer
+Supports ACLs No
+Access control lists (ACLs) control which principals (account members, users, or roles) have permissions to 
+access a resource. ACLs are similar to resource-based policies, although they do not use the JSON policy 
+document format.
+ABAC with Application Composer
+Supports ABAC (tags in policies) No
+Attribute-based access control (ABAC) is an authorization strategy that deﬁnes permissions based on 
+attributes. In AWS, these attributes are called tags. You can attach tags to IAM entities (users or roles) 
+and to many AWS resources. Tagging entities and resources is the ﬁrst step of ABAC. Then you design 
+69AWS Application Composer Developer Guide
+How AWS Application Composer works with IAM
+ABAC policies to allow operations when the principal's tag matches the tag on the resource that they are 
+trying to access.
+ABAC is helpful in environments that are growing rapidly and helps with situations where policy 
+management becomes cumbersome.
+To control access based on tags, you provide tag information in the condition element of a policy using 
+the aws:ResourceTag/ key-name , aws:RequestTag/ key-name , or aws:TagKeys  condition keys.
+If a service supports all three condition keys for every resource type, then the value is Yes for the service. 
+If a service supports all three condition keys for only some resource types, then the value is Partial.
+For more information about ABAC, see What is ABAC? in the IAM User Guide . To view a tutorial with steps 
+for setting up ABAC, see Use attribute-based access control (ABAC) in the IAM User Guide .
+Using temporary credentials with Application Composer
+Supports temporary credentials Yes
+Some AWS services don't work when you sign in using temporary credentials. For additional information, 
+including which AWS services work with temporary credentials, see AWS services that work with IAM in 
+the IAM User Guide .
+You are using temporary credentials if you sign in to the AWS Management Console using any method 
+except a user name and password. For example, when you access AWS using your company's single 
+sign-on (SSO) link, that process automatically creates temporary credentials. You also automatically 
+create temporary credentials when you sign in to the console as a user and then switch roles. For more 
+information about switching roles, see Switching to a role (console) in the IAM User Guide .
+You can manually create temporary credentials using the AWS CLI or AWS API. You can then use those 
+temporary credentials to access AWS. AWS recommends that you dynamically generate temporary 
+credentials instead of using long-term access keys. For more information, see Temporary security 
+credentials in IAM.
+You can use temporary credentials to access Application Composer through the AWS Management 
+Console. For an example, see Enabling custom identity broker access to the AWS console in the IAM User 
+Guide .
+Cross-service principal permissions for Application Composer
+Supports principal permissions No
+When you use an IAM user or role to perform actions in AWS, you are considered a principal. Policies 
+grant permissions to a principal. When you use some services, you might perform an action that 
+then triggers another action in a diﬀerent service. In this case, you must have permissions to perform 
+both actions. To see whether an action requires additional dependent actions in a policy, see Actions, 
+Resources, and Condition Keys for AWS Application Composer in the Service Authorization Reference.
+Service roles for Application Composer
+Supports service roles No
+70AWS Application Composer Developer Guide
+Compliance validation
+A service role is an IAM role that a service assumes to perform actions on your behalf. An IAM 
+administrator can create, modify, and delete a service role from within IAM. For more information, see
+Creating a role to delegate permissions to an AWS service in the IAM User Guide .
+Warning
+Changing the permissions for a service role might break Application Composer functionality. 
+Edit service roles only when Application Composer provides guidance to do so.
+Service-linked roles for Application Composer
+Supports service-linked roles No
+A service-linked role is a type of service role that is linked to an AWS service. The service can assume the 
+role to perform an action on your behalf. Service-linked roles appear in your AWS account and are owned 
+by the service. An IAM administrator can view, but not edit the permissions for service-linked roles.
+For details about creating or managing service-linked roles, see AWS services that work with IAM. Find 
+a service in the table that includes a Yes in the Service-linked role column. Choose the Yes link to view 
+the service-linked role documentation for that service.
+Compliance validation for AWS Application 
+Composer
+To learn whether an AWS service is within the scope of speciﬁc compliance programs, see AWS services 
+in Scope by Compliance Program and choose the compliance program that you are interested in. For 
+general information, see AWS Compliance Programs.
+You can download third-party audit reports using AWS Artifact. For more information, see Downloading 
+Reports in AWS Artifact.
+Your compliance responsibility when using AWS services is determined by the sensitivity of your data, 
+your company's compliance objectives, and applicable laws and regulations. AWS provides the following 
+resources to help with compliance:
+•Security and Compliance Quick Start Guides – These deployment guides discuss architectural 
+considerations and provide steps for deploying baseline environments on AWS that are security and 
+compliance focused.
+•Architecting for HIPAA Security and Compliance on Amazon Web Services – This whitepaper describes 
+how companies can use AWS to create HIPAA-eligible applications.
+Note
+Not all AWS services are HIPAA eligible. For more information, see the HIPAA Eligible Services 
+Reference.
+•AWS Compliance Resources – This collection of workbooks and guides might apply to your industry 
+and location.
+•Evaluating Resources with Rules in the AWS Conﬁg Developer Guide – The AWS Conﬁg service assesses 
+how well your resource conﬁgurations comply with internal practices, industry guidelines, and 
+regulations.
+•AWS Security Hub – This AWS service provides a comprehensive view of your security state within 
+AWS. Security Hub uses security controls to evaluate your AWS resources and to check your compliance 
+71AWS Application Composer Developer Guide
+Resilience
+against security industry standards and best practices. For a list of supported services and controls, see
+Security Hub controls reference.
+•AWS Audit Manager – This AWS service helps you continuously audit your AWS usage to simplify how 
+you manage risk and compliance with regulations and industry standards.
+Resilience in AWS Application Composer
+The AWS global infrastructure is built around AWS Regions and Availability Zones. AWS Regions provide 
+multiple physically separated and isolated Availability Zones, which are connected with low-latency, 
+high-throughput, and highly redundant networking. With Availability Zones, you can design and operate 
+applications and databases that automatically fail over between zones without interruption. Availability 
+Zones are more highly available, fault tolerant, and scalable than traditional single or multiple data 
+center infrastructures.
+For more information about AWS Regions and Availability Zones, see AWS Global Infrastructure.
+All data that you input into Application Composer is used for the sole purpose of providing functionality 
+within Application Composer and generating project ﬁles and directories that are saved locally to your 
+machine. Application Composer does not save or store any of this data.
+72AWS Application Composer Developer Guide
+Document history for Application 
+Composer
+The following table describes important documentation releases for Application Composer. For 
+notiﬁcations about updates to this documentation, you can subscribe to an RSS feed.
+•Latest documentation update:  August 1, 2023
+Change Description Date
+Add documentation for undo 
+and redo feature (p. 73)Use the undo  and redo  buttons 
+on the Application Composer 
+canvas. To learn more, see Undo 
+and redo.August 1, 2023
+Add documentation for local 
+sync mode  (p. 73)Use local sync mode to 
+automatically sync and save your 
+project to your local machine. To 
+learn more, see Local sync mode .August 1, 2023
+Add documentation for export 
+canvas feature (p. 73)Use the export canvas feature 
+to export your application's 
+canvas as an image to your local 
+machine. To learn more, see
+Export canvas.August 1, 2023
+Application Composer 
+support for external ﬁle 
+references (p. 73)Reference external ﬁles 
+for supported resources in 
+Application Composer. To 
+learn more, see Working with 
+templates that reference 
+external ﬁles.May 17, 2023
+New documentation on 
+connecting resources (p. 73)Connect resources together to 
+deﬁne event-driven relationships 
+between resources in your 
+application. To learn more, see 
+Connecting resources together 
+using the Application Composer 
+visual canvas.March 7, 2023
+New Change Inspector 
+feature (p. 73)Use the Change Inspector
+to view your template code 
+updates and learn what 
+Application Composer is creating 
+for you. To learn more, see View 
+code updates with the Change 
+Inspector.March 7, 2023
+Expand on beneﬁts of using 
+connected mode (p. 73)Use Application Composer in 
+connected mode with your local 
+IDE to speed up development. March 7, 2023
+73AWS Application Composer Developer Guide
+To learn more, see Using 
+Application Composer with your 
+local IDE .
+Application Composer now 
+generally available (p. 73)AWS Application Composer 
+is now generally available. To 
+learn more, see AWS Application 
+Composer now generally 
+available - Visually build 
+serverless applications quickly.March 7, 2023
+Update topic on using other 
+AWS services to deploy your 
+application  (p. 73)Use Application Composer 
+to design deployment-ready 
+serverless applications. Use AWS 
+SAM to deploy your serverless 
+application. To learn more, see
+Using Application Composer 
+with AWS CloudFormation and 
+AWS SAM.March 3, 2023
+Add serverless concepts 
+section (p. 73)Learn about basic serverless 
+concepts before using 
+Application Composer. To learn 
+more, see Serverless concepts.March 2, 2023
+Public release (p. 73)Initial public release of 
+Application Composer.December 1, 2022
+74

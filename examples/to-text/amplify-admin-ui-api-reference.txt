@@ -1,0 +1,6211 @@
+AWS Amplify Admin UI
+API Reference
+AWS Amplify Admin UI API Reference
+AWS Amplify Admin UI: API Reference
+Copyright © 2023 Amazon Web Services, Inc. and/or its aﬃliates. All rights reserved.
+Amazon's trademarks and trade dress may not be used in connection with any product or service that is not 
+Amazon's, in any manner that is likely to cause confusion among customers, or in any manner that disparages or 
+discredits Amazon. All other trademarks not owned by Amazon are the property of their respective owners, who may 
+or may not be aﬃliated with, connected to, or sponsored by Amazon.AWS Amplify Admin UI API Reference
+Table of Contents
+What Is AWS Amplify Admin UI?..........................................................................................................1
+Getting started with Amplify Studio.............................................................................................1
+Operations ........................................................................................................................................2
+Resources..........................................................................................................................................4
+Backend...................................................................................................................................4
+URI...................................................................................................................................4
+HTTP methods...................................................................................................................5
+Schemas ...........................................................................................................................5
+Properties.........................................................................................................................6
+See also ............................................................................................................................9
+Backend appId Api....................................................................................................................9
+URI...................................................................................................................................9
+HTTP methods...................................................................................................................9
+Schemas ..........................................................................................................................10
+Properties........................................................................................................................12
+See also ..........................................................................................................................17
+Backend appId Api backendEnvironmentName............................................................................17
+URI.................................................................................................................................17
+HTTP methods.................................................................................................................17
+Schemas ..........................................................................................................................18
+Properties........................................................................................................................20
+See also ..........................................................................................................................24
+Backend appId Api backendEnvironmentName Details..................................................................25
+URI.................................................................................................................................25
+HTTP methods.................................................................................................................25
+Schemas ..........................................................................................................................26
+Properties........................................................................................................................28
+See also ..........................................................................................................................33
+Backend appId Api backendEnvironmentName GenerateModels.....................................................33
+URI.................................................................................................................................33
+HTTP methods.................................................................................................................33
+Schemas ..........................................................................................................................34
+Properties........................................................................................................................35
+See also ..........................................................................................................................37
+Backend appId Api backendEnvironmentName GetModels............................................................38
+URI.................................................................................................................................38
+HTTP methods.................................................................................................................38
+Schemas ..........................................................................................................................39
+Properties........................................................................................................................40
+See also ..........................................................................................................................42
+Backend appId Api backendEnvironmentName Remove................................................................42
+URI.................................................................................................................................42
+HTTP methods.................................................................................................................42
+Schemas ..........................................................................................................................43
+Properties........................................................................................................................45
+See also ..........................................................................................................................49
+Backend appId Auth................................................................................................................50
+URI.................................................................................................................................50
+HTTP methods.................................................................................................................50
+Schemas ..........................................................................................................................51
+Properties........................................................................................................................53
+See also ..........................................................................................................................61
+Backend appId Auth backendEnvironmentName..........................................................................61
+URI.................................................................................................................................61
+iiiAWS Amplify Admin UI API Reference
+HTTP methods.................................................................................................................61
+Schemas ..........................................................................................................................62
+Properties........................................................................................................................64
+See also ..........................................................................................................................71
+Backend appId Auth backendEnvironmentName Details................................................................72
+URI.................................................................................................................................72
+HTTP methods.................................................................................................................72
+Schemas ..........................................................................................................................73
+Properties........................................................................................................................75
+See also ..........................................................................................................................82
+Backend appId Auth backendEnvironmentName Import...............................................................83
+URI.................................................................................................................................83
+HTTP methods.................................................................................................................83
+Schemas ..........................................................................................................................84
+Properties........................................................................................................................85
+See also ..........................................................................................................................87
+Backend appId Auth backendEnvironmentName Remove..............................................................88
+URI.................................................................................................................................88
+HTTP methods.................................................................................................................88
+Schemas ..........................................................................................................................89
+Properties........................................................................................................................90
+See also ..........................................................................................................................92
+Backend appId Challenge.........................................................................................................92
+URI.................................................................................................................................92
+HTTP methods.................................................................................................................92
+Schemas ..........................................................................................................................93
+Properties........................................................................................................................94
+See also ..........................................................................................................................96
+Backend appId Challenge sessionId............................................................................................96
+URI.................................................................................................................................96
+HTTP methods.................................................................................................................96
+Schemas ..........................................................................................................................97
+Properties........................................................................................................................98
+See also ..........................................................................................................................99
+Backend appId Challenge sessionId Remove..............................................................................100
+URI...............................................................................................................................100
+HTTP methods...............................................................................................................100
+Schemas ........................................................................................................................101
+Properties......................................................................................................................102
+See also ........................................................................................................................103
+Backend appId Conﬁg............................................................................................................103
+URI...............................................................................................................................103
+HTTP methods...............................................................................................................103
+Schemas ........................................................................................................................104
+Properties......................................................................................................................105
+See also ........................................................................................................................107
+Backend appId Conﬁg Remove................................................................................................107
+URI...............................................................................................................................107
+HTTP methods...............................................................................................................108
+Schemas ........................................................................................................................108
+Properties......................................................................................................................109
+See also ........................................................................................................................110
+Backend appId Conﬁg Update.................................................................................................111
+URI...............................................................................................................................111
+HTTP methods...............................................................................................................111
+Schemas ........................................................................................................................112
+Properties......................................................................................................................113
+ivAWS Amplify Admin UI API Reference
+See also ........................................................................................................................115
+Backend appId Details............................................................................................................116
+URI...............................................................................................................................116
+HTTP methods...............................................................................................................116
+Schemas ........................................................................................................................117
+Properties......................................................................................................................118
+See also ........................................................................................................................120
+Backend appId Environments backendEnvironmentName Clone...................................................120
+URI...............................................................................................................................120
+HTTP methods...............................................................................................................120
+Schemas ........................................................................................................................121
+Properties......................................................................................................................122
+See also ........................................................................................................................124
+Backend appId Environments backendEnvironmentName Remove................................................125
+URI...............................................................................................................................125
+HTTP methods...............................................................................................................125
+Schemas ........................................................................................................................126
+Properties......................................................................................................................127
+See also ........................................................................................................................129
+Backend appId Job backendEnvironmentName..........................................................................129
+URI...............................................................................................................................129
+HTTP methods...............................................................................................................129
+Schemas ........................................................................................................................130
+Properties......................................................................................................................131
+See also ........................................................................................................................135
+Backend appId Job backendEnvironmentName jobId..................................................................135
+URI...............................................................................................................................135
+HTTP methods...............................................................................................................135
+Schemas ........................................................................................................................137
+Properties......................................................................................................................138
+See also ........................................................................................................................140
+Backend appId Remove..........................................................................................................141
+URI...............................................................................................................................141
+HTTP methods...............................................................................................................141
+Schemas ........................................................................................................................142
+Properties......................................................................................................................143
+See also ........................................................................................................................145
+Backend appId Storage..........................................................................................................145
+URI...............................................................................................................................145
+HTTP methods...............................................................................................................145
+Schemas ........................................................................................................................146
+Properties......................................................................................................................147
+See also ........................................................................................................................150
+Backend appId Storage backendEnvironmentName....................................................................151
+URI...............................................................................................................................151
+HTTP methods...............................................................................................................151
+Schemas ........................................................................................................................152
+Properties......................................................................................................................153
+See also ........................................................................................................................156
+Backend appId Storage backendEnvironmentName Details..........................................................156
+URI...............................................................................................................................156
+HTTP methods...............................................................................................................156
+Schemas ........................................................................................................................157
+Properties......................................................................................................................158
+See also ........................................................................................................................161
+Backend appId Storage backendEnvironmentName Import..........................................................162
+URI...............................................................................................................................162
+vAWS Amplify Admin UI API Reference
+HTTP methods...............................................................................................................162
+Schemas ........................................................................................................................163
+Properties......................................................................................................................164
+See also ........................................................................................................................166
+Backend appId Storage backendEnvironmentName Remove........................................................166
+URI...............................................................................................................................166
+HTTP methods...............................................................................................................166
+Schemas ........................................................................................................................167
+Properties......................................................................................................................168
+See also ........................................................................................................................170
+S3Buckets.............................................................................................................................171
+URI...............................................................................................................................171
+HTTP methods...............................................................................................................171
+Schemas ........................................................................................................................171
+Properties......................................................................................................................172
+See also ........................................................................................................................174
+AWS glossary.................................................................................................................................176
+viAWS Amplify Admin UI API Reference
+Getting started with Amplify Studio
+What Is AWS Amplify Admin UI?
+Welcome to AWS Amplify Admin UI API Reference. Admin UI is now a part of Amplify Studio. This guide 
+is provided for reference purposes, and we strongly recommend that you use Amplify Studio to manage 
+the backend for your Amplify app. For more information, see Introduction in the Amplify Docs.
+The Amplify Admin UI service provides a programmatic interface for conﬁguring and managing app 
+backends. Amplify Studio oﬀers an accessible way to develop app backends and manage app content. 
+Every Amplify app has Amplify Studio access that provides a visual interface for modeling data, adding 
+authentication, authorization, and more.
+All backend resources created in Amplify Studio generate infrastructure as code and integrate with the 
+Amplify CLI. Once your app is launched, use Amplify Studio to update app content with rich text editing 
+features and manage users and groups, without relying on your developers to push updates. Amplify 
+Studio is available for all your app environments and provides access to team members without an AWS 
+account. Now developers and non-developers can access the data they need to develop and manage 
+apps more eﬃciently.
+Getting started with Amplify Studio
+For more information on getting started with Amplify Studio, see Getting started in the Amplify Docs.
+1AWS Amplify Admin UI API Reference
+Operations
+The AWS Amplify Admin UI REST API includes the following operations.
+•CloneBackend (p. 120)
+This operation clones an existing backend.
+•CreateBackend (p. 5)
+This operation creates a backend for an Amplify app. Backends are automatically created at the time 
+of app creation.
+•CreateBackendAPI (p. 9)
+Creates a new backend API resource.
+•CreateBackendAuth (p. 50)
+Creates a new backend authentication resource.
+•CreateBackendConﬁg (p. 103)
+Creates a conﬁg object for a backend.
+•CreateBackendStorage (p. 145)
+Creates a backend storage resource.
+•CreateToken (p. 92)
+Generates a one-time challenge code to authenticate a user into your Amplify Admin UI.
+•DeleteBackend (p. 125)
+Removes an existing environment from your Amplify project.
+•DeleteBackendAPI (p. 42)
+Deletes an existing backend API resource.
+•DeleteBackendAuth (p. 88)
+Deletes an existing backend authentication resource.
+•DeleteBackendStorage (p. 166)
+Removes the speciﬁed backend storage resource.
+•DeleteToken (p. 100)
+Deletes the challenge token based on the given appId and sessionId.
+•GenerateBackendAPIModels (p. 33)
+Generates a model schema for an existing backend API resource.
+•GetBackend (p. 116)
+Provides project-level details for your Amplify UI project.
+•GetBackendAPI (p. 25)
+Gets the details for a backend API.
+•GetBackendAPIModels (p. 38)
+Gets a model introspection schema for an existing backend API resource.
+2AWS Amplify Admin UI API Reference
+•GetBackendAuth (p. 72)
+Gets a backend auth details.
+•GetBackendJob (p. 135)
+Returns information about a speciﬁc job.
+•GetBackendStorage (p. 156)
+Gets details for a backend storage resource.
+•GetToken (p. 96)
+Gets the challenge token based on the given appId and sessionId.
+•ImportBackendAuth (p. 83)
+Imports an existing backend authentication resource.
+•ImportBackendStorage (p. 162)
+Imports an existing backend storage resource.
+•ListBackendJobs (p. 129)
+Lists the jobs for the backend of an Amplify app.
+•ListS3Buckets (p. 171)
+The list of S3 buckets in your account.
+•RemoveAllBackends (p. 141)
+Removes all backend environments from your Amplify project.
+•RemoveBackendConﬁg (p. 108)
+Removes the AWS resources required to access the Amplify Admin UI.
+•UpdateBackendAPI (p. 17)
+Updates an existing backend API resource.
+•UpdateBackendAuth (p. 61)
+Updates an existing backend authentication resource.
+•UpdateBackendConﬁg (p. 111)
+Updates the AWS resources required to access the Amplify Admin UI.
+•UpdateBackendJob (p. 136)
+Updates a speciﬁc job.
+•UpdateBackendStorage (p. 151)
+Updates an existing backend storage resource.
+3AWS Amplify Admin UI API Reference
+Backend
+Resources
+The AWS Amplify Admin UI REST API includes the following resources.
+Topics
+•Backend (p. 4)
+•Backend appId Api (p. 9)
+•Backend appId Api backendEnvironmentName (p. 17)
+•Backend appId Api backendEnvironmentName Details (p. 25)
+•Backend appId Api backendEnvironmentName GenerateModels (p. 33)
+•Backend appId Api backendEnvironmentName GetModels (p. 38)
+•Backend appId Api backendEnvironmentName Remove (p. 42)
+•Backend appId Auth (p. 50)
+•Backend appId Auth backendEnvironmentName (p. 61)
+•Backend appId Auth backendEnvironmentName Details (p. 72)
+•Backend appId Auth backendEnvironmentName Import (p. 83)
+•Backend appId Auth backendEnvironmentName Remove (p. 88)
+•Backend appId Challenge (p. 92)
+•Backend appId Challenge sessionId (p. 96)
+•Backend appId Challenge sessionId Remove (p. 100)
+•Backend appId Conﬁg (p. 103)
+•Backend appId Conﬁg Remove (p. 107)
+•Backend appId Conﬁg Update (p. 111)
+•Backend appId Details (p. 116)
+•Backend appId Environments backendEnvironmentName Clone (p. 120)
+•Backend appId Environments backendEnvironmentName Remove (p. 125)
+•Backend appId Job backendEnvironmentName (p. 129)
+•Backend appId Job backendEnvironmentName jobId (p. 135)
+•Backend appId Remove (p. 141)
+•Backend appId Storage (p. 145)
+•Backend appId Storage backendEnvironmentName (p. 151)
+•Backend appId Storage backendEnvironmentName Details (p. 156)
+•Backend appId Storage backendEnvironmentName Import (p. 162)
+•Backend appId Storage backendEnvironmentName Remove (p. 166)
+•S3Buckets (p. 171)
+Backend
+All Amplify apps have a backend. The backend has settings and conﬁgurations for data storage, security, 
+and other important logic that your app's users don't see. The easiest way to manage your Amplify app 
+backend is using the Amplify Admin UI for your app.
+URI
+/prod/backend
+4AWS Amplify Admin UI API Reference
+HTTP methods
+HTTP methods
+POST
+Operation ID:  CreateBackend
+This operation creates a backend for an Amplify app. Backends are automatically created at the time of 
+app creation.
+Responses
+Status code Response model Description
+200 CreateBackendRespObj  (p. 5)200 response
+400 BadRequestException  (p. 6)400 response
+404 NotFoundException  (p. 6)404 response
+429 LimitExceededException  (p. 6)429 response
+504 InternalServiceException  (p. 6)504 response
+OPTIONS
+Enables CORS by returning the correct headers.
+Responses
+Status code Response model Description
+200 None 200 response
+Schemas
+Request bodies
+POST schema
+{ 
+  "resourceConfig ": { 
+  }, 
+  "appName": "string", 
+  "appId": "string", 
+  "resourceName ": "string", 
+  "backendEnvironmentName ": "string"
+}
+Response bodies
+CreateBackendRespObj schema
+{ 
+  "jobId": "string", 
+  "appId": "string", 
+5AWS Amplify Admin UI API Reference
+Properties
+  "error": "string", 
+  "operation ": "string", 
+  "backendEnvironmentName ": "string", 
+  "status": "string"
+}
+BadRequestException schema
+{ 
+  "message": "string"
+}
+NotFoundException schema
+{ 
+  "message": "string", 
+  "resourceType ": "string"
+}
+LimitExceededException schema
+{ 
+  "message": "string", 
+  "limitType ": "string"
+}
+InternalServiceException schema
+{ 
+  "message": "string"
+}
+Properties
+BadRequestException
+An error returned if a request is not formed properly.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+CreateBackendReqObj
+The request object for this operation.
+resourceConﬁg
+The resource conﬁguration for creating a backend.
+6AWS Amplify Admin UI API Reference
+Properties
+Type: object
+Required: False
+appName
+The name of the app.
+Type: string
+Required: True
+appId
+The app ID.
+Type: string
+Required: True
+resourceName
+The name of the resource.
+Type: string
+Required: False
+backendEnvironmentName
+The name of the backend environment.
+Type: string
+Required: True
+CreateBackendRespObj
+The response object sent when a backend is created.
+jobId
+The ID for the job.
+Type: string
+Required: False
+appId
+The app ID.
+Type: string
+Required: True
+error
+If the request fails, this error is returned.
+Type: string
+Required: False
+7AWS Amplify Admin UI API Reference
+Properties
+operation
+The name of the operation.
+Type: string
+Required: False
+backendEnvironmentName
+The name of the backend environment.
+Type: string
+Required: True
+status
+The current status of the request.
+Type: string
+Required: False
+InternalServiceException
+An error returned if there's a temporary issue with the service.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+LimitExceededException
+An error that is returned when a limit of a speciﬁc type has been exceeded.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+limitType
+The type of limit that was exceeded.
+Type: string
+Required: False
+NotFoundException
+An error returned when a speciﬁc resource type is not found.
+8AWS Amplify Admin UI API Reference
+See also
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+resourceType
+The type of resource that is not found.
+Type: string
+Required: False
+See also
+For more information about using this API in one of the language-speciﬁc AWS SDKs and references, see 
+the following:
+CreateBackend
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+Backend appId Api
+This resource is an API that's used to provision AWS resources. Once provisioned, the resources are used 
+to access your deﬁned data models. The operation associated with this resource is createBackendAPI .
+URI
+/prod/backend/ appId/api
+HTTP methods
+POST
+Operation ID:  CreateBackendAPI
+Creates a new backend API resource.
+9AWS Amplify Admin UI API Reference
+Schemas
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+Responses
+Status code Response model Description
+200 BackendAPIRespObj  (p. 11)200 response
+400 BadRequestException  (p. 11)400 response
+404 NotFoundException  (p. 11)404 response
+429 LimitExceededException  (p. 11)429 response
+504 InternalServiceException  (p. 12) 504 response
+OPTIONS
+Enables CORS by returning the correct headers.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+Responses
+Status code Response model Description
+200 None 200 response
+Schemas
+Request bodies
+POST schema
+{ 
+  "resourceConfig ": { 
+    "apiName": "string", 
+    "defaultAuthType ": { 
+      "mode": enum, 
+      "settings ": { 
+        " openIDProviderName ": "string", 
+        " expirationTime ": number, 
+        " openIDIatTTL ": "string", 
+        " description ": "string", 
+        " openIDAuthTTL ": "string", 
+        " openIDClientId ": "string", 
+        " openIDIssueURL ": "string", 
+10AWS Amplify Admin UI API Reference
+Schemas
+        " cognitoUserPoolId ": "string" 
+      } 
+    }, 
+    "transformSchema ": "string", 
+    "service": "string", 
+    "additionalAuthTypes ": [ 
+      { 
+        " mode": enum, 
+        " settings ": { 
+          " openIDProviderName ": "string", 
+          " expirationTime ": number, 
+          " openIDIatTTL ": "string", 
+          " description ": "string", 
+          " openIDAuthTTL ": "string", 
+          " openIDClientId ": "string", 
+          " openIDIssueURL ": "string", 
+          " cognitoUserPoolId ": "string" 
+        } 
+      } 
+    ], 
+    "conflictResolution ": { 
+      "resolutionStrategy ": enum 
+    } 
+  }, 
+  "resourceName ": "string", 
+  "backendEnvironmentName ": "string"
+}
+Response bodies
+BackendAPIRespObj schema
+{ 
+  "jobId": "string", 
+  "appId": "string", 
+  "error": "string", 
+  "operation ": "string", 
+  "backendEnvironmentName ": "string", 
+  "status": "string"
+}
+BadRequestException schema
+{ 
+  "message": "string"
+}
+NotFoundException schema
+{ 
+  "message": "string", 
+  "resourceType ": "string"
+}
+LimitExceededException schema
+{ 
+11AWS Amplify Admin UI API Reference
+Properties
+  "message": "string", 
+  "limitType ": "string"
+}
+InternalServiceException schema
+{ 
+  "message": "string"
+}
+Properties
+BackendAPIAppSyncAuthSettings
+The authentication settings for accessing provisioned data models in your Amplify project.
+openIDProviderName
+The OpenID provider name, if OpenID was used as an authentication mechanism to access your data 
+models.
+Type: string
+Required: False
+expirationTime
+The API key expiration time for API_KEY, if it was used as an authentication mechanism to access your 
+data models.
+Type: number
+Required: False
+openIDIatTTL
+The expiry time for the OpenID  authentication mechanism.
+Type: string
+Required: False
+description
+The API key description for API_KEY, if it was used as an authentication mechanism to access your data 
+models.
+Type: string
+Required: False
+openIDAuthTTL
+The expiry time for the OpenID  authentication mechanism.
+Type: string
+12AWS Amplify Admin UI API Reference
+Properties
+Required: False
+openIDClientId
+The clientID  for openID , if openID was used as an authentication setting to access your data models.
+Type: string
+Required: False
+openIDIssueURL
+The openID issuer URL, if openID was used as an authentication setting to access your data models.
+Type: string
+Required: False
+cognitoUserPoolId
+The Amazon Cognito user pool ID, if Amazon Cognito was used as an authentication setting to access 
+your data models.
+Type: string
+Required: False
+BackendAPIAuthType
+Describes the auth types for your conﬁgured data models.
+mode
+Describes the authentication mode.
+Type: string
+Required: False
+Values: API_KEY | AWS_IAM | AMAZON_COGNITO_USER_POOLS | OPENID_CONNECT
+settings
+Describes settings for the authentication mode.
+Type: BackendAPIAppSyncAuthSettings (p. 12)
+Required: False
+BackendAPIConﬂictResolution
+Describes the conﬂict resolution conﬁguration for your data model conﬁgured in your Amplify project.
+resolutionStrategy
+The strategy for conﬂict resolution.
+Type: string
+Required: False
+Values: OPTIMISTIC_CONCURRENCY | LAMBDA | AUTOMERGE | NONE
+13AWS Amplify Admin UI API Reference
+Properties
+BackendAPIResourceConﬁg
+The resource conﬁg for the data model, conﬁgured as a part of the Amplify project.
+apiName
+The API name used to interact with the data model, conﬁgured as a part of your Amplify project.
+Type: string
+Required: False
+defaultAuthType
+The default authentication type for interacting with the conﬁgured data models in your Amplify project.
+Type: BackendAPIAuthType (p. 13)
+Required: False
+transformSchema
+The deﬁnition of the data model in the annotated transform of the GraphQL schema.
+Type: string
+Required: False
+service
+The service used to provision and interact with the data model.
+Type: string
+Required: False
+additionalAuthTypes
+Additional authentication methods used to interact with your data models.
+Type: Array of type BackendAPIAuthType (p. 13)
+Required: False
+conﬂictResolution
+The conﬂict resolution strategy for your data stored in the data models.
+Type: BackendAPIConﬂictResolution (p. 13)
+Required: False
+BackendAPIRespObj
+The response object sent when a backend is created.
+jobId
+The ID for the job.
+Type: string
+14AWS Amplify Admin UI API Reference
+Properties
+Required: False
+appId
+The app ID.
+Type: string
+Required: True
+error
+If the request fails, this error is returned.
+Type: string
+Required: False
+operation
+The name of the operation.
+Type: string
+Required: False
+backendEnvironmentName
+The name of the backend environment.
+Type: string
+Required: True
+status
+The current status of the request.
+Type: string
+Required: False
+BadRequestException
+An error returned if a request is not formed properly.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+CreateBackendAPIReqObj
+The request object for this operation.
+resourceConﬁg
+The resource conﬁguration for this request.
+15AWS Amplify Admin UI API Reference
+Properties
+Type: BackendAPIResourceConﬁg (p. 14)
+Required: True
+resourceName
+The name of this resource.
+Type: string
+Required: True
+backendEnvironmentName
+The name of the backend environment.
+Type: string
+Required: True
+InternalServiceException
+An error returned if there's a temporary issue with the service.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+LimitExceededException
+An error that is returned when a limit of a speciﬁc type has been exceeded.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+limitType
+The type of limit that was exceeded.
+Type: string
+Required: False
+NotFoundException
+An error returned when a speciﬁc resource type is not found.
+message
+An error message to inform that the request has failed.
+16AWS Amplify Admin UI API Reference
+See also
+Type: string
+Required: False
+resourceType
+The type of resource that is not found.
+Type: string
+Required: False
+See also
+For more information about using this API in one of the language-speciﬁc AWS SDKs and references, see 
+the following:
+CreateBackendAPI
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+Backend appId Api backendEnvironmentName
+The data model for your Amplify project. This resource is used to access data from your project.
+URI
+/prod/backend/ appId/api/backendEnvironmentName
+HTTP methods
+POST
+Operation ID:  UpdateBackendAPI
+Updates an existing backend API resource.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+backendEnvironmentName String True The name of the 
+backend environment.
+17AWS Amplify Admin UI API Reference
+Schemas
+Responses
+Status code Response model Description
+200 BackendAPIRespObj  (p. 19)200 response
+400 BadRequestException  (p. 19)400 response
+404 NotFoundException  (p. 19)404 response
+429 LimitExceededException  (p. 19)429 response
+504 InternalServiceException  (p. 20) 504 response
+OPTIONS
+Enables CORS by returning the correct headers.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+backendEnvironmentName String True The name of the 
+backend environment.
+Responses
+Status code Response model Description
+200 None 200 response
+Schemas
+Request bodies
+POST schema
+{ 
+  "resourceConfig ": { 
+    "apiName": "string", 
+    "defaultAuthType ": { 
+      "mode": enum, 
+      "settings ": { 
+        " openIDProviderName ": "string", 
+        " expirationTime ": number, 
+        " openIDIatTTL ": "string", 
+        " description ": "string", 
+        " openIDAuthTTL ": "string", 
+        " openIDClientId ": "string", 
+        " openIDIssueURL ": "string", 
+        " cognitoUserPoolId ": "string" 
+      } 
+    }, 
+    "transformSchema ": "string", 
+18AWS Amplify Admin UI API Reference
+Schemas
+    "service": "string", 
+    "additionalAuthTypes ": [ 
+      { 
+        " mode": enum, 
+        " settings ": { 
+          " openIDProviderName ": "string", 
+          " expirationTime ": number, 
+          " openIDIatTTL ": "string", 
+          " description ": "string", 
+          " openIDAuthTTL ": "string", 
+          " openIDClientId ": "string", 
+          " openIDIssueURL ": "string", 
+          " cognitoUserPoolId ": "string" 
+        } 
+      } 
+    ], 
+    "conflictResolution ": { 
+      "resolutionStrategy ": enum 
+    } 
+  }, 
+  "resourceName ": "string"
+}
+Response bodies
+BackendAPIRespObj schema
+{ 
+  "jobId": "string", 
+  "appId": "string", 
+  "error": "string", 
+  "operation ": "string", 
+  "backendEnvironmentName ": "string", 
+  "status": "string"
+}
+BadRequestException schema
+{ 
+  "message": "string"
+}
+NotFoundException schema
+{ 
+  "message": "string", 
+  "resourceType ": "string"
+}
+LimitExceededException schema
+{ 
+  "message": "string", 
+  "limitType ": "string"
+}
+19AWS Amplify Admin UI API Reference
+Properties
+InternalServiceException schema
+{ 
+  "message": "string"
+}
+Properties
+BackendAPIAppSyncAuthSettings
+The authentication settings for accessing provisioned data models in your Amplify project.
+openIDProviderName
+The OpenID provider name, if OpenID was used as an authentication mechanism to access your data 
+models.
+Type: string
+Required: False
+expirationTime
+The API key expiration time for API_KEY, if it was used as an authentication mechanism to access your 
+data models.
+Type: number
+Required: False
+openIDIatTTL
+The expiry time for the OpenID  authentication mechanism.
+Type: string
+Required: False
+description
+The API key description for API_KEY, if it was used as an authentication mechanism to access your data 
+models.
+Type: string
+Required: False
+openIDAuthTTL
+The expiry time for the OpenID  authentication mechanism.
+Type: string
+Required: False
+openIDClientId
+The clientID  for openID , if openID was used as an authentication setting to access your data models.
+Type: string
+20AWS Amplify Admin UI API Reference
+Properties
+Required: False
+openIDIssueURL
+The openID issuer URL, if openID was used as an authentication setting to access your data models.
+Type: string
+Required: False
+cognitoUserPoolId
+The Amazon Cognito user pool ID, if Amazon Cognito was used as an authentication setting to access 
+your data models.
+Type: string
+Required: False
+BackendAPIAuthType
+Describes the auth types for your conﬁgured data models.
+mode
+Describes the authentication mode.
+Type: string
+Required: False
+Values: API_KEY | AWS_IAM | AMAZON_COGNITO_USER_POOLS | OPENID_CONNECT
+settings
+Describes settings for the authentication mode.
+Type: BackendAPIAppSyncAuthSettings (p. 20)
+Required: False
+BackendAPIConﬂictResolution
+Describes the conﬂict resolution conﬁguration for your data model conﬁgured in your Amplify project.
+resolutionStrategy
+The strategy for conﬂict resolution.
+Type: string
+Required: False
+Values: OPTIMISTIC_CONCURRENCY | LAMBDA | AUTOMERGE | NONE
+BackendAPIReqObj
+The request object for this operation.
+resourceConﬁg
+Deﬁnes the resource conﬁguration for the data model in your Amplify project.
+21AWS Amplify Admin UI API Reference
+Properties
+Type: BackendAPIResourceConﬁg (p. 22)
+Required: False
+resourceName
+The name of this resource.
+Type: string
+Required: True
+BackendAPIResourceConﬁg
+The resource conﬁg for the data model, conﬁgured as a part of the Amplify project.
+apiName
+The API name used to interact with the data model, conﬁgured as a part of your Amplify project.
+Type: string
+Required: False
+defaultAuthType
+The default authentication type for interacting with the conﬁgured data models in your Amplify project.
+Type: BackendAPIAuthType (p. 21)
+Required: False
+transformSchema
+The deﬁnition of the data model in the annotated transform of the GraphQL schema.
+Type: string
+Required: False
+service
+The service used to provision and interact with the data model.
+Type: string
+Required: False
+additionalAuthTypes
+Additional authentication methods used to interact with your data models.
+Type: Array of type BackendAPIAuthType (p. 21)
+Required: False
+conﬂictResolution
+The conﬂict resolution strategy for your data stored in the data models.
+Type: BackendAPIConﬂictResolution (p. 21)
+Required: False
+22AWS Amplify Admin UI API Reference
+Properties
+BackendAPIRespObj
+The response object sent when a backend is created.
+jobId
+The ID for the job.
+Type: string
+Required: False
+appId
+The app ID.
+Type: string
+Required: True
+error
+If the request fails, this error is returned.
+Type: string
+Required: False
+operation
+The name of the operation.
+Type: string
+Required: False
+backendEnvironmentName
+The name of the backend environment.
+Type: string
+Required: True
+status
+The current status of the request.
+Type: string
+Required: False
+BadRequestException
+An error returned if a request is not formed properly.
+message
+An error message to inform that the request failed.
+Type: string
+23AWS Amplify Admin UI API Reference
+See also
+Required: False
+InternalServiceException
+An error returned if there's a temporary issue with the service.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+LimitExceededException
+An error that is returned when a limit of a speciﬁc type has been exceeded.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+limitType
+The type of limit that was exceeded.
+Type: string
+Required: False
+NotFoundException
+An error returned when a speciﬁc resource type is not found.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+resourceType
+The type of resource that is not found.
+Type: string
+Required: False
+See also
+For more information about using this API in one of the language-speciﬁc AWS SDKs and references, see 
+the following:
+24AWS Amplify Admin UI API Reference
+Backend appId Api backendEnvironmentName Details
+UpdateBackendAPI
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+Backend appId Api backendEnvironmentName 
+Details
+This contains resource-level conﬁguration details for your conﬁgured data model.
+URI
+/prod/backend/ appId/api/backendEnvironmentName /details
+HTTP methods
+POST
+Operation ID:  GetBackendAPI
+Gets the details for a backend API.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+backendEnvironmentName String True The name of the 
+backend environment.
+Responses
+Status code Response model Description
+200 GetBackendAPIRespObj  (p. 27)200 response
+400 BadRequestException  (p. 27)400 response
+404 NotFoundException  (p. 28)404 response
+429 LimitExceededException  (p. 28)429 response
+25AWS Amplify Admin UI API Reference
+Schemas
+Status code Response model Description
+504 InternalServiceException  (p. 28)504 response
+OPTIONS
+Enables CORS by returning the correct headers.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+backendEnvironmentName String True The name of the 
+backend environment.
+Responses
+Status code Response model Description
+200 None 200 response
+Schemas
+Request bodies
+POST schema
+{ 
+  "resourceConfig ": { 
+    "apiName": "string", 
+    "defaultAuthType ": { 
+      "mode": enum, 
+      "settings ": { 
+        " openIDProviderName ": "string", 
+        " expirationTime ": number, 
+        " openIDIatTTL ": "string", 
+        " description ": "string", 
+        " openIDAuthTTL ": "string", 
+        " openIDClientId ": "string", 
+        " openIDIssueURL ": "string", 
+        " cognitoUserPoolId ": "string" 
+      } 
+    }, 
+    "transformSchema ": "string", 
+    "service": "string", 
+    "additionalAuthTypes ": [ 
+      { 
+        " mode": enum, 
+        " settings ": { 
+          " openIDProviderName ": "string", 
+          " expirationTime ": number, 
+          " openIDIatTTL ": "string", 
+          " description ": "string", 
+          " openIDAuthTTL ": "string", 
+          " openIDClientId ": "string", 
+26AWS Amplify Admin UI API Reference
+Schemas
+          " openIDIssueURL ": "string", 
+          " cognitoUserPoolId ": "string" 
+        } 
+      } 
+    ], 
+    "conflictResolution ": { 
+      "resolutionStrategy ": enum 
+    } 
+  }, 
+  "resourceName ": "string"
+}
+Response bodies
+GetBackendAPIRespObj schema
+{ 
+  "resourceConfig ": { 
+    "apiName": "string", 
+    "defaultAuthType ": { 
+      "mode": enum, 
+      "settings ": { 
+        " openIDProviderName ": "string", 
+        " expirationTime ": number, 
+        " openIDIatTTL ": "string", 
+        " description ": "string", 
+        " openIDAuthTTL ": "string", 
+        " openIDClientId ": "string", 
+        " openIDIssueURL ": "string", 
+        " cognitoUserPoolId ": "string" 
+      } 
+    }, 
+    "transformSchema ": "string", 
+    "service": "string", 
+    "additionalAuthTypes ": [ 
+      { 
+        " mode": enum, 
+        " settings ": { 
+          " openIDProviderName ": "string", 
+          " expirationTime ": number, 
+          " openIDIatTTL ": "string", 
+          " description ": "string", 
+          " openIDAuthTTL ": "string", 
+          " openIDClientId ": "string", 
+          " openIDIssueURL ": "string", 
+          " cognitoUserPoolId ": "string" 
+        } 
+      } 
+    ], 
+    "conflictResolution ": { 
+      "resolutionStrategy ": enum 
+    } 
+  }, 
+  "appId": "string", 
+  "resourceName ": "string", 
+  "error": "string", 
+  "backendEnvironmentName ": "string"
+}
+BadRequestException schema
+{ 
+27AWS Amplify Admin UI API Reference
+Properties
+  "message": "string"
+}
+NotFoundException schema
+{ 
+  "message": "string", 
+  "resourceType ": "string"
+}
+LimitExceededException schema
+{ 
+  "message": "string", 
+  "limitType ": "string"
+}
+InternalServiceException schema
+{ 
+  "message": "string"
+}
+Properties
+BackendAPIAppSyncAuthSettings
+The authentication settings for accessing provisioned data models in your Amplify project.
+openIDProviderName
+The OpenID provider name, if OpenID was used as an authentication mechanism to access your data 
+models.
+Type: string
+Required: False
+expirationTime
+The API key expiration time for API_KEY, if it was used as an authentication mechanism to access your 
+data models.
+Type: number
+Required: False
+openIDIatTTL
+The expiry time for the OpenID  authentication mechanism.
+Type: string
+Required: False
+28AWS Amplify Admin UI API Reference
+Properties
+description
+The API key description for API_KEY, if it was used as an authentication mechanism to access your data 
+models.
+Type: string
+Required: False
+openIDAuthTTL
+The expiry time for the OpenID  authentication mechanism.
+Type: string
+Required: False
+openIDClientId
+The clientID  for openID , if openID was used as an authentication setting to access your data models.
+Type: string
+Required: False
+openIDIssueURL
+The openID issuer URL, if openID was used as an authentication setting to access your data models.
+Type: string
+Required: False
+cognitoUserPoolId
+The Amazon Cognito user pool ID, if Amazon Cognito was used as an authentication setting to access 
+your data models.
+Type: string
+Required: False
+BackendAPIAuthType
+Describes the auth types for your conﬁgured data models.
+mode
+Describes the authentication mode.
+Type: string
+Required: False
+Values: API_KEY | AWS_IAM | AMAZON_COGNITO_USER_POOLS | OPENID_CONNECT
+settings
+Describes settings for the authentication mode.
+Type: BackendAPIAppSyncAuthSettings (p. 28)
+Required: False
+29AWS Amplify Admin UI API Reference
+Properties
+BackendAPIConﬂictResolution
+Describes the conﬂict resolution conﬁguration for your data model conﬁgured in your Amplify project.
+resolutionStrategy
+The strategy for conﬂict resolution.
+Type: string
+Required: False
+Values: OPTIMISTIC_CONCURRENCY | LAMBDA | AUTOMERGE | NONE
+BackendAPIReqObj
+The request object for this operation.
+resourceConﬁg
+Deﬁnes the resource conﬁguration for the data model in your Amplify project.
+Type: BackendAPIResourceConﬁg (p. 30)
+Required: False
+resourceName
+The name of this resource.
+Type: string
+Required: True
+BackendAPIResourceConﬁg
+The resource conﬁg for the data model, conﬁgured as a part of the Amplify project.
+apiName
+The API name used to interact with the data model, conﬁgured as a part of your Amplify project.
+Type: string
+Required: False
+defaultAuthType
+The default authentication type for interacting with the conﬁgured data models in your Amplify project.
+Type: BackendAPIAuthType (p. 29)
+Required: False
+transformSchema
+The deﬁnition of the data model in the annotated transform of the GraphQL schema.
+Type: string
+Required: False
+30AWS Amplify Admin UI API Reference
+Properties
+service
+The service used to provision and interact with the data model.
+Type: string
+Required: False
+additionalAuthTypes
+Additional authentication methods used to interact with your data models.
+Type: Array of type BackendAPIAuthType (p. 29)
+Required: False
+conﬂictResolution
+The conﬂict resolution strategy for your data stored in the data models.
+Type: BackendAPIConﬂictResolution (p. 30)
+Required: False
+BadRequestException
+An error returned if a request is not formed properly.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+GetBackendAPIRespObj
+The response object for this operation.
+resourceConﬁg
+The resource conﬁguration for this response object.
+Type: BackendAPIResourceConﬁg (p. 30)
+Required: False
+appId
+The app ID.
+Type: string
+Required: True
+resourceName
+The name of this resource.
+Type: string
+31AWS Amplify Admin UI API Reference
+Properties
+Required: False
+error
+If the request fails, this error is returned.
+Type: string
+Required: False
+backendEnvironmentName
+The name of the backend environment.
+Type: string
+Required: True
+InternalServiceException
+An error returned if there's a temporary issue with the service.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+LimitExceededException
+An error that is returned when a limit of a speciﬁc type has been exceeded.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+limitType
+The type of limit that was exceeded.
+Type: string
+Required: False
+NotFoundException
+An error returned when a speciﬁc resource type is not found.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+32AWS Amplify Admin UI API Reference
+See also
+resourceType
+The type of resource that is not found.
+Type: string
+Required: False
+See also
+For more information about using this API in one of the language-speciﬁc AWS SDKs and references, see 
+the following:
+GetBackendAPI
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+Backend appId Api backendEnvironmentName 
+GenerateModels
+The generated datastore models for your Amplify app. Web clients can consume these to use the 
+datastore.
+URI
+/prod/backend/ appId/api/backendEnvironmentName /generateModels
+HTTP methods
+POST
+Operation ID:  GenerateBackendAPIModels
+Generates a model schema for an existing backend API resource.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+backendEnvironmentName String True The name of the 
+backend environment.
+33AWS Amplify Admin UI API Reference
+Schemas
+Responses
+Status code Response model Description
+200 BackendAPICodegenRespObj  (p. 34) 200 response
+400 BadRequestException  (p. 35)400 response
+404 NotFoundException  (p. 35)404 response
+429 LimitExceededException  (p. 35)429 response
+504 InternalServiceException  (p. 35) 504 response
+OPTIONS
+Enables CORS by returning the correct headers.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+backendEnvironmentName String True The name of the 
+backend environment.
+Responses
+Status code Response model Description
+200 None 200 response
+Schemas
+Request bodies
+POST schema
+{ 
+  "resourceName ": "string"
+}
+Response bodies
+BackendAPICodegenRespObj schema
+{ 
+  "jobId": "string", 
+  "appId": "string", 
+  "error": "string", 
+  "operation ": "string", 
+  "backendEnvironmentName ": "string", 
+34AWS Amplify Admin UI API Reference
+Properties
+  "status": "string"
+}
+BadRequestException schema
+{ 
+  "message": "string"
+}
+NotFoundException schema
+{ 
+  "message": "string", 
+  "resourceType ": "string"
+}
+LimitExceededException schema
+{ 
+  "message": "string", 
+  "limitType ": "string"
+}
+InternalServiceException schema
+{ 
+  "message": "string"
+}
+Properties
+BackendAPICodegenReqObj
+The request object for this operation.
+resourceName
+The name of this resource.
+Type: string
+Required: True
+BackendAPICodegenRespObj
+The response object sent when a backend is created.
+jobId
+The ID for the job.
+35AWS Amplify Admin UI API Reference
+Properties
+Type: string
+Required: False
+appId
+The app ID.
+Type: string
+Required: True
+error
+If the request fails, this error is returned.
+Type: string
+Required: False
+operation
+The name of the operation.
+Type: string
+Required: False
+backendEnvironmentName
+The name of the backend environment.
+Type: string
+Required: True
+status
+The current status of the request.
+Type: string
+Required: False
+BadRequestException
+An error returned if a request is not formed properly.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+InternalServiceException
+An error returned if there's a temporary issue with the service.
+36AWS Amplify Admin UI API Reference
+See also
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+LimitExceededException
+An error that is returned when a limit of a speciﬁc type has been exceeded.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+limitType
+The type of limit that was exceeded.
+Type: string
+Required: False
+NotFoundException
+An error returned when a speciﬁc resource type is not found.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+resourceType
+The type of resource that is not found.
+Type: string
+Required: False
+See also
+For more information about using this API in one of the language-speciﬁc AWS SDKs and references, see 
+the following:
+GenerateBackendAPIModels
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+37AWS Amplify Admin UI API Reference
+Backend appId Api backendEnvironmentName GetModels
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+Backend appId Api backendEnvironmentName 
+GetModels
+The generated datastore models for your Amplify app. Web clients can consume these to use the 
+datastore.
+URI
+/prod/backend/ appId/api/backendEnvironmentName /getModels
+HTTP methods
+POST
+Operation ID:  GetBackendAPIModels
+Gets a model introspection schema for an existing backend API resource.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+backendEnvironmentName String True The name of the 
+backend environment.
+Responses
+Status code Response model Description
+200 GetBackendAPIModelsResponse  (p. 39) 200 response
+400 BadRequestException  (p. 39)400 response
+404 NotFoundException  (p. 39)404 response
+429 LimitExceededException  (p. 39)429 response
+504 InternalServiceException  (p. 40) 504 response
+OPTIONS
+Enables CORS by returning the correct headers.
+38AWS Amplify Admin UI API Reference
+Schemas
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+backendEnvironmentName String True The name of the 
+backend environment.
+Responses
+Status code Response model Description
+200 None 200 response
+Schemas
+Request bodies
+POST schema
+{ 
+  "resourceName ": "string"
+}
+Response bodies
+GetBackendAPIModelsResponse schema
+{ 
+  "models": "string", 
+  "modelIntrospectionSchema ": "string", 
+  "status": enum
+}
+BadRequestException schema
+{ 
+  "message": "string"
+}
+NotFoundException schema
+{ 
+  "message": "string", 
+  "resourceType ": "string"
+}
+LimitExceededException schema
+{ 
+39AWS Amplify Admin UI API Reference
+Properties
+  "message": "string", 
+  "limitType ": "string"
+}
+InternalServiceException schema
+{ 
+  "message": "string"
+}
+Properties
+BackendAPICodegenReqObj
+The request object for this operation.
+resourceName
+The name of this resource.
+Type: string
+Required: True
+BadRequestException
+An error returned if a request is not formed properly.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+GetBackendAPIModelsResponse
+The response object for this operation.
+models
+Stringiﬁed JSON of the datastore model.
+Type: string
+Required: False
+modelIntrospectionSchema
+Stringiﬁed JSON of the model introspection schema for an existing backend API resource.
+Type: string
+Required: False
+40AWS Amplify Admin UI API Reference
+Properties
+status
+The current status of the request.
+Type: string
+Required: False
+Values: LATEST | STALE
+InternalServiceException
+An error returned if there's a temporary issue with the service.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+LimitExceededException
+An error that is returned when a limit of a speciﬁc type has been exceeded.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+limitType
+The type of limit that was exceeded.
+Type: string
+Required: False
+NotFoundException
+An error returned when a speciﬁc resource type is not found.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+resourceType
+The type of resource that is not found.
+Type: string
+Required: False
+41AWS Amplify Admin UI API Reference
+See also
+See also
+For more information about using this API in one of the language-speciﬁc AWS SDKs and references, see 
+the following:
+GetBackendAPIModels
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+Backend appId Api backendEnvironmentName 
+Remove
+The data model from your Amplify project.
+URI
+/prod/backend/ appId/api/backendEnvironmentName /remove
+HTTP methods
+POST
+Operation ID:  DeleteBackendAPI
+Deletes an existing backend API resource.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+backendEnvironmentName String True The name of the 
+backend environment.
+Responses
+Status code Response model Description
+200 BackendAPIRespObj  (p. 44)200 response
+42AWS Amplify Admin UI API Reference
+Schemas
+Status code Response model Description
+400 BadRequestException  (p. 44)400 response
+404 NotFoundException  (p. 44)404 response
+429 LimitExceededException  (p. 44)429 response
+504 InternalServiceException  (p. 44)504 response
+OPTIONS
+Enables CORS by returning the correct headers.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+backendEnvironmentName String True The name of the 
+backend environment.
+Responses
+Status code Response model Description
+200 None 200 response
+Schemas
+Request bodies
+POST schema
+{ 
+  "resourceConfig ": { 
+    "apiName": "string", 
+    "defaultAuthType ": { 
+      "mode": enum, 
+      "settings ": { 
+        " openIDProviderName ": "string", 
+        " expirationTime ": number, 
+        " openIDIatTTL ": "string", 
+        " description ": "string", 
+        " openIDAuthTTL ": "string", 
+        " openIDClientId ": "string", 
+        " openIDIssueURL ": "string", 
+        " cognitoUserPoolId ": "string" 
+      } 
+    }, 
+    "transformSchema ": "string", 
+    "service": "string", 
+    "additionalAuthTypes ": [ 
+      { 
+        " mode": enum, 
+43AWS Amplify Admin UI API Reference
+Schemas
+        " settings ": { 
+          " openIDProviderName ": "string", 
+          " expirationTime ": number, 
+          " openIDIatTTL ": "string", 
+          " description ": "string", 
+          " openIDAuthTTL ": "string", 
+          " openIDClientId ": "string", 
+          " openIDIssueURL ": "string", 
+          " cognitoUserPoolId ": "string" 
+        } 
+      } 
+    ], 
+    "conflictResolution ": { 
+      "resolutionStrategy ": enum 
+    } 
+  }, 
+  "resourceName ": "string"
+}
+Response bodies
+BackendAPIRespObj schema
+{ 
+  "jobId": "string", 
+  "appId": "string", 
+  "error": "string", 
+  "operation ": "string", 
+  "backendEnvironmentName ": "string", 
+  "status": "string"
+}
+BadRequestException schema
+{ 
+  "message": "string"
+}
+NotFoundException schema
+{ 
+  "message": "string", 
+  "resourceType ": "string"
+}
+LimitExceededException schema
+{ 
+  "message": "string", 
+  "limitType ": "string"
+}
+InternalServiceException schema
+{ 
+44AWS Amplify Admin UI API Reference
+Properties
+  "message": "string"
+}
+Properties
+BackendAPIAppSyncAuthSettings
+The authentication settings for accessing provisioned data models in your Amplify project.
+openIDProviderName
+The OpenID provider name, if OpenID was used as an authentication mechanism to access your data 
+models.
+Type: string
+Required: False
+expirationTime
+The API key expiration time for API_KEY, if it was used as an authentication mechanism to access your 
+data models.
+Type: number
+Required: False
+openIDIatTTL
+The expiry time for the OpenID  authentication mechanism.
+Type: string
+Required: False
+description
+The API key description for API_KEY, if it was used as an authentication mechanism to access your data 
+models.
+Type: string
+Required: False
+openIDAuthTTL
+The expiry time for the OpenID  authentication mechanism.
+Type: string
+Required: False
+openIDClientId
+The clientID  for openID , if openID was used as an authentication setting to access your data models.
+Type: string
+Required: False
+45AWS Amplify Admin UI API Reference
+Properties
+openIDIssueURL
+The openID issuer URL, if openID was used as an authentication setting to access your data models.
+Type: string
+Required: False
+cognitoUserPoolId
+The Amazon Cognito user pool ID, if Amazon Cognito was used as an authentication setting to access 
+your data models.
+Type: string
+Required: False
+BackendAPIAuthType
+Describes the auth types for your conﬁgured data models.
+mode
+Describes the authentication mode.
+Type: string
+Required: False
+Values: API_KEY | AWS_IAM | AMAZON_COGNITO_USER_POOLS | OPENID_CONNECT
+settings
+Describes settings for the authentication mode.
+Type: BackendAPIAppSyncAuthSettings (p. 45)
+Required: False
+BackendAPIConﬂictResolution
+Describes the conﬂict resolution conﬁguration for your data model conﬁgured in your Amplify project.
+resolutionStrategy
+The strategy for conﬂict resolution.
+Type: string
+Required: False
+Values: OPTIMISTIC_CONCURRENCY | LAMBDA | AUTOMERGE | NONE
+BackendAPIReqObj
+The request object for this operation.
+resourceConﬁg
+Deﬁnes the resource conﬁguration for the data model in your Amplify project.
+Type: BackendAPIResourceConﬁg (p. 47)
+46AWS Amplify Admin UI API Reference
+Properties
+Required: False
+resourceName
+The name of this resource.
+Type: string
+Required: True
+BackendAPIResourceConﬁg
+The resource conﬁg for the data model, conﬁgured as a part of the Amplify project.
+apiName
+The API name used to interact with the data model, conﬁgured as a part of your Amplify project.
+Type: string
+Required: False
+defaultAuthType
+The default authentication type for interacting with the conﬁgured data models in your Amplify project.
+Type: BackendAPIAuthType (p. 46)
+Required: False
+transformSchema
+The deﬁnition of the data model in the annotated transform of the GraphQL schema.
+Type: string
+Required: False
+service
+The service used to provision and interact with the data model.
+Type: string
+Required: False
+additionalAuthTypes
+Additional authentication methods used to interact with your data models.
+Type: Array of type BackendAPIAuthType (p. 46)
+Required: False
+conﬂictResolution
+The conﬂict resolution strategy for your data stored in the data models.
+Type: BackendAPIConﬂictResolution (p. 46)
+Required: False
+47AWS Amplify Admin UI API Reference
+Properties
+BackendAPIRespObj
+The response object sent when a backend is created.
+jobId
+The ID for the job.
+Type: string
+Required: False
+appId
+The app ID.
+Type: string
+Required: True
+error
+If the request fails, this error is returned.
+Type: string
+Required: False
+operation
+The name of the operation.
+Type: string
+Required: False
+backendEnvironmentName
+The name of the backend environment.
+Type: string
+Required: True
+status
+The current status of the request.
+Type: string
+Required: False
+BadRequestException
+An error returned if a request is not formed properly.
+message
+An error message to inform that the request failed.
+Type: string
+48AWS Amplify Admin UI API Reference
+See also
+Required: False
+InternalServiceException
+An error returned if there's a temporary issue with the service.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+LimitExceededException
+An error that is returned when a limit of a speciﬁc type has been exceeded.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+limitType
+The type of limit that was exceeded.
+Type: string
+Required: False
+NotFoundException
+An error returned when a speciﬁc resource type is not found.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+resourceType
+The type of resource that is not found.
+Type: string
+Required: False
+See also
+For more information about using this API in one of the language-speciﬁc AWS SDKs and references, see 
+the following:
+49AWS Amplify Admin UI API Reference
+Backend appId Auth
+DeleteBackendAPI
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+Backend appId Auth
+The authentication and authorization settings from your Amplify project.
+URI
+/prod/backend/ appId/auth
+HTTP methods
+POST
+Operation ID:  CreateBackendAuth
+Creates a new backend authentication resource.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+Responses
+Status code Response model Description
+200 BackendAuthRespObj  (p. 52)200 response
+400 BadRequestException  (p. 52)400 response
+404 NotFoundException  (p. 52)404 response
+429 LimitExceededException  (p. 52)429 response
+504 InternalServiceException  (p. 53) 504 response
+OPTIONS
+Enables CORS by returning the correct headers.
+50AWS Amplify Admin UI API Reference
+Schemas
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+Responses
+Status code Response model Description
+200 None 200 response
+Schemas
+Request bodies
+POST schema
+{ 
+  "resourceConfig ": { 
+    "userPoolConfigs ": { 
+      "userPoolName ": "string", 
+      "forgotPassword ": { 
+        " smsSettings ": { 
+          " smsMessage ": "string" 
+        }, 
+        " deliveryMethod ": enum, 
+        " emailSettings ": { 
+          " emailMessage ": "string", 
+          " emailSubject ": "string" 
+        } 
+      }, 
+      "passwordPolicy ": { 
+        " minimumLength ": number, 
+        " additionalConstraints ": [ 
+          enum 
+        ] 
+      }, 
+      "requiredSignUpAttributes ": [ 
+        enum 
+      ], 
+      "mfa": { 
+        " MFAMode": enum, 
+        " settings ": { 
+        } 
+      }, 
+      "verificationMessage ": { 
+        " smsSettings ": { 
+          " smsMessage ": "string" 
+        }, 
+        " deliveryMethod ": enum, 
+        " emailSettings ": { 
+          " emailMessage ": "string", 
+          " emailSubject ": "string" 
+        } 
+      }, 
+      "oAuth": { 
+        " redirectSignOutURIs ": [ 
+          "string" 
+        ], 
+51AWS Amplify Admin UI API Reference
+Schemas
+        " domainPrefix ": "string", 
+        " redirectSignInURIs ": [ 
+          "string" 
+        ], 
+        " oAuthScopes ": [ 
+          enum 
+        ], 
+        " socialProviderSettings ": { 
+        }, 
+        " oAuthGrantType ": enum 
+      }, 
+      "signInMethod ": enum 
+    }, 
+    "authResources ": enum, 
+    "service": enum, 
+    "identityPoolConfigs ": { 
+      "identityPoolName ": "string", 
+      "unauthenticatedLogin ": boolean 
+    } 
+  }, 
+  "resourceName ": "string", 
+  "backendEnvironmentName ": "string"
+}
+Response bodies
+BackendAuthRespObj schema
+{ 
+  "jobId": "string", 
+  "appId": "string", 
+  "error": "string", 
+  "operation ": "string", 
+  "backendEnvironmentName ": "string", 
+  "status": "string"
+}
+BadRequestException schema
+{ 
+  "message": "string"
+}
+NotFoundException schema
+{ 
+  "message": "string", 
+  "resourceType ": "string"
+}
+LimitExceededException schema
+{ 
+  "message": "string", 
+  "limitType ": "string"
+}
+52AWS Amplify Admin UI API Reference
+Properties
+InternalServiceException schema
+{ 
+  "message": "string"
+}
+Properties
+BackendAuthRespObj
+The response object for this operation.
+jobId
+The ID for the job.
+Type: string
+Required: False
+appId
+The app ID.
+Type: string
+Required: True
+error
+If the request fails, this error is returned.
+Type: string
+Required: False
+operation
+The name of the operation.
+Type: string
+Required: False
+backendEnvironmentName
+The name of the backend environment.
+Type: string
+Required: True
+status
+The current status of the request.
+Type: string
+Required: False
+53AWS Amplify Admin UI API Reference
+Properties
+BadRequestException
+An error returned if a request is not formed properly.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+CreateBackendAuthForgotPasswordConﬁg
+(DEPRECATED) Describes the forgot password policy for authenticating into the Amplify app.
+smsSettings
+(DEPRECATED) The conﬁguration for the SMS message sent when an app user forgets their password.
+Type: SmsSettings (p. 60)
+Required: False
+deliveryMethod
+(DEPRECATED) Describes which mode to use (either SMS or email) to deliver messages to app users who 
+want to recover their password.
+Type: DeliveryMethod (p. 59)
+Required: True
+emailSettings
+(DEPRECATED) The conﬁguration for the email sent when an app user forgets their password.
+Type: EmailSettings (p. 59)
+Required: False
+CreateBackendAuthIdentityPoolConﬁg
+Describes authorization conﬁgurations for the auth resources, conﬁgured as a part of your Amplify 
+project.
+identityPoolName
+Name of the Amazon Cognito identity pool used for authorization.
+Type: string
+Required: True
+unauthenticatedLogin
+Set to true or false based on whether you want to enable guest authorization to your Amplify app.
+Type: boolean
+54AWS Amplify Admin UI API Reference
+Properties
+Required: True
+CreateBackendAuthMFAConﬁg
+Describes whether to apply multi-factor authentication policies for your Amazon Cognito user pool 
+conﬁgured as a part of your Amplify project.
+MFAMode
+Describes whether MFA should be [ON, OFF, or OPTIONAL ] for authentication in your Amplify project.
+Type: string
+Required: True
+Values: ON | OFF | OPTIONAL
+settings
+Describes the conﬁguration settings and methods for your Amplify app users to use MFA.
+Type: object
+Required: False
+CreateBackendAuthOAuthConﬁg
+Creates the OAuth conﬁguration for your Amplify project.
+redirectSignOutURIs
+Redirect URLs that OAuth uses when a user signs out of an Amplify app.
+Type: Array of type string
+Required: True
+domainPreﬁx
+The domain preﬁx for your Amplify app.
+Type: string
+Required: False
+redirectSignInURIs
+The redirected URI for signing in to your Amplify app.
+Type: Array of type string
+Required: True
+oAuthScopes
+List of OAuth-related ﬂows used to allow your app users to authenticate from your Amplify app.
+Type: Array of type string
+Required: True
+55AWS Amplify Admin UI API Reference
+Properties
+Values: PHONE | EMAIL | OPENID | PROFILE | AWS_COGNITO_SIGNIN_USER_ADMIN
+socialProviderSettings
+The settings for using social providers to access your Amplify app.
+Type: object
+Required: False
+oAuthGrantType
+The OAuth grant type that you use to allow app users to authenticate from your Amplify app.
+Type: string
+Required: True
+Values: CODE | IMPLICIT
+CreateBackendAuthPasswordPolicyConﬁg
+The password policy conﬁguration for the backend to your Amplify project.
+minimumLength
+The minimum length of the password used to access the backend of your Amplify project.
+Type: number
+Required: True
+additionalConstraints
+Additional constraints for the password used to access the backend of your Amplify project.
+Type: Array of type string
+Required: False
+Values: REQUIRE_DIGIT | REQUIRE_LOWERCASE | REQUIRE_SYMBOL | REQUIRE_UPPERCASE
+CreateBackendAuthReqObj
+The request object for this operation.
+resourceConﬁg
+The resource conﬁguration for this request object.
+Type: CreateBackendAuthResourceConﬁg (p. 57)
+Required: True
+resourceName
+The name of this resource.
+Type: string
+Required: True
+56AWS Amplify Admin UI API Reference
+Properties
+backendEnvironmentName
+The name of the backend environment.
+Type: string
+Required: True
+CreateBackendAuthResourceConﬁg
+Deﬁnes the resource conﬁguration when creating an auth resource in your Amplify project.
+userPoolConﬁgs
+Describes authentication conﬁguration for the Amazon Cognito user pool, provisioned as a part of your 
+auth resource in the Amplify project.
+Type: CreateBackendAuthUserPoolConﬁg (p. 57)
+Required: True
+authResources
+Deﬁnes whether you want to conﬁgure only authentication or both authentication and authorization 
+settings.
+Type: string
+Required: True
+Values: USER_POOL_ONLY | IDENTITY_POOL_AND_USER_POOL
+service
+Deﬁnes the service name to use when conﬁguring an authentication resource in your Amplify project.
+Type: string
+Required: True
+Values: COGNITO
+identityPoolConﬁgs
+Describes the authorization conﬁguration for the Amazon Cognito identity pool, provisioned as a part of 
+your auth resource in the Amplify project.
+Type: CreateBackendAuthIdentityPoolConﬁg (p. 54)
+Required: False
+CreateBackendAuthUserPoolConﬁg
+Describes the Amazon Cognito user pool conﬁguration for the auth resource to be conﬁgured for your 
+Amplify project.
+userPoolName
+The Amazon Cognito user pool name.
+Type: string
+Required: True
+57AWS Amplify Admin UI API Reference
+Properties
+forgotPassword
+(DEPRECATED) Describes the forgotten password policy for your Amazon Cognito user pool, conﬁgured 
+as a part of your Amplify project.
+Type: CreateBackendAuthForgotPasswordConﬁg (p. 54)
+Required: False
+passwordPolicy
+Describes the password policy for your Amazon Cognito user pool, conﬁgured as a part of your Amplify 
+project.
+Type: CreateBackendAuthPasswordPolicyConﬁg (p. 56)
+Required: False
+requiredSignUpAttributes
+The required attributes to sign up new users in the user pool.
+Type: Array of type string
+Required: True
+Values: ADDRESS | BIRTHDATE | EMAIL | FAMILY_NAME | GENDER | GIVEN_NAME 
+| LOCALE | MIDDLE_NAME | NAME | NICKNAME | PHONE_NUMBER | PICTURE | 
+PREFERRED_USERNAME | PROFILE | UPDATED_AT | WEBSITE | ZONE_INFO
+mfa
+Describes whether to apply multi-factor authentication policies for your Amazon Cognito user pool 
+conﬁgured as a part of your Amplify project.
+Type: CreateBackendAuthMFAConﬁg (p. 55)
+Required: False
+veriﬁcationMessage
+Describes the email or SMS veriﬁcation message for your Amazon Cognito user pool, conﬁgured as a part 
+of your Amplify project.
+Type: CreateBackendAuthVeriﬁcationMessageConﬁg (p. 59)
+Required: False
+oAuth
+Describes the OAuth policy and rules for your Amazon Cognito user pool, conﬁgured as a part of your 
+Amplify project.
+Type: CreateBackendAuthOAuthConﬁg (p. 55)
+Required: False
+signInMethod
+Describes the sign-in methods that your Amplify app users use to log in using the Amazon Cognito user 
+pool, conﬁgured as a part of your Amplify project.
+58AWS Amplify Admin UI API Reference
+Properties
+Type: string
+Required: True
+Values: EMAIL | EMAIL_AND_PHONE_NUMBER | PHONE_NUMBER | USERNAME
+CreateBackendAuthVeriﬁcationMessageConﬁg
+Creates an email or SMS veriﬁcation message for the auth resource conﬁgured for your Amplify project.
+smsSettings
+The settings for the SMS message.
+Type: SmsSettings (p. 60)
+Required: False
+deliveryMethod
+The type of veriﬁcation message to send.
+Type: DeliveryMethod (p. 59)
+Required: True
+emailSettings
+The settings for the email message.
+Type: EmailSettings (p. 59)
+Required: False
+DeliveryMethod
+The type of veriﬁcation message to send.
+EMAIL
+SMS
+EmailSettings
+The settings for the email message.
+emailMessage
+The contents of the email message.
+Type: string
+Required: False
+emailSubject
+The contents of the subject line of the email message.
+Type: string
+Required: False
+59AWS Amplify Admin UI API Reference
+Properties
+InternalServiceException
+An error returned if there's a temporary issue with the service.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+LimitExceededException
+An error that is returned when a limit of a speciﬁc type has been exceeded.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+limitType
+The type of limit that was exceeded.
+Type: string
+Required: False
+NotFoundException
+An error returned when a speciﬁc resource type is not found.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+resourceType
+The type of resource that is not found.
+Type: string
+Required: False
+SmsSettings
+The settings for the SMS message.
+smsMessage
+The contents of the SMS message.
+60AWS Amplify Admin UI API Reference
+See also
+Type: string
+Required: False
+See also
+For more information about using this API in one of the language-speciﬁc AWS SDKs and references, see 
+the following:
+CreateBackendAuth
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+Backend appId Auth backendEnvironmentName
+The authentication and authorization settings from your Amplify project.
+URI
+/prod/backend/ appId/auth/backendEnvironmentName
+HTTP methods
+POST
+Operation ID:  UpdateBackendAuth
+Updates an existing backend authentication resource.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+backendEnvironmentName String True The name of the 
+backend environment.
+Responses
+Status code Response model Description
+200 BackendAuthRespObj  (p. 63)200 response
+61AWS Amplify Admin UI API Reference
+Schemas
+Status code Response model Description
+400 BadRequestException  (p. 63)400 response
+404 NotFoundException  (p. 63)404 response
+429 LimitExceededException  (p. 64)429 response
+504 InternalServiceException  (p. 64)504 response
+OPTIONS
+Enables CORS by returning the correct headers.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+backendEnvironmentName String True The name of the 
+backend environment.
+Responses
+Status code Response model Description
+200 None 200 response
+Schemas
+Request bodies
+POST schema
+{ 
+  "resourceConfig ": { 
+    "userPoolConfigs ": { 
+      "forgotPassword ": { 
+        " smsSettings ": { 
+          " smsMessage ": "string" 
+        }, 
+        " deliveryMethod ": enum, 
+        " emailSettings ": { 
+          " emailMessage ": "string", 
+          " emailSubject ": "string" 
+        } 
+      }, 
+      "passwordPolicy ": { 
+        " minimumLength ": number, 
+        " additionalConstraints ": [ 
+          enum 
+        ] 
+      }, 
+      "mfa": { 
+        " MFAMode": enum, 
+        " settings ": { 
+62AWS Amplify Admin UI API Reference
+Schemas
+        } 
+      }, 
+      "oAuth": { 
+        " redirectSignOutURIs ": [ 
+          "string" 
+        ], 
+        " domainPrefix ": "string", 
+        " redirectSignInURIs ": [ 
+          "string" 
+        ], 
+        " oAuthScopes ": [ 
+          enum 
+        ], 
+        " socialProviderSettings ": { 
+        }, 
+        " oAuthGrantType ": enum 
+      }, 
+      "verificationMessage ": { 
+        " smsSettings ": { 
+          " smsMessage ": "string" 
+        }, 
+        " deliveryMethod ": enum, 
+        " emailSettings ": { 
+          " emailMessage ": "string", 
+          " emailSubject ": "string" 
+        } 
+      } 
+    }, 
+    "authResources ": enum, 
+    "service": enum, 
+    "identityPoolConfigs ": { 
+      "unauthenticatedLogin ": boolean 
+    } 
+  }, 
+  "resourceName ": "string"
+}
+Response bodies
+BackendAuthRespObj schema
+{ 
+  "jobId": "string", 
+  "appId": "string", 
+  "error": "string", 
+  "operation ": "string", 
+  "backendEnvironmentName ": "string", 
+  "status": "string"
+}
+BadRequestException schema
+{ 
+  "message": "string"
+}
+NotFoundException schema
+{ 
+  "message": "string", 
+63AWS Amplify Admin UI API Reference
+Properties
+  "resourceType ": "string"
+}
+LimitExceededException schema
+{ 
+  "message": "string", 
+  "limitType ": "string"
+}
+InternalServiceException schema
+{ 
+  "message": "string"
+}
+Properties
+BackendAuthRespObj
+The response object for this operation.
+jobId
+The ID for the job.
+Type: string
+Required: False
+appId
+The app ID.
+Type: string
+Required: True
+error
+If the request fails, this error is returned.
+Type: string
+Required: False
+operation
+The name of the operation.
+Type: string
+Required: False
+backendEnvironmentName
+The name of the backend environment.
+64AWS Amplify Admin UI API Reference
+Properties
+Type: string
+Required: True
+status
+The current status of the request.
+Type: string
+Required: False
+BadRequestException
+An error returned if a request is not formed properly.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+DeliveryMethod
+The type of veriﬁcation message to send.
+EMAIL
+SMS
+EmailSettings
+The settings for the email message.
+emailMessage
+The contents of the email message.
+Type: string
+Required: False
+emailSubject
+The contents of the subject line of the email message.
+Type: string
+Required: False
+InternalServiceException
+An error returned if there's a temporary issue with the service.
+message
+An error message to inform that the request failed.
+65AWS Amplify Admin UI API Reference
+Properties
+Type: string
+Required: False
+LimitExceededException
+An error that is returned when a limit of a speciﬁc type has been exceeded.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+limitType
+The type of limit that was exceeded.
+Type: string
+Required: False
+NotFoundException
+An error returned when a speciﬁc resource type is not found.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+resourceType
+The type of resource that is not found.
+Type: string
+Required: False
+SmsSettings
+The settings for the SMS message.
+smsMessage
+The contents of the SMS message.
+Type: string
+Required: False
+UpdateBackendAuthForgotPasswordConﬁg
+(DEPRECATED) Describes the forgot password policy for authenticating into the Amplify app.
+66AWS Amplify Admin UI API Reference
+Properties
+smsSettings
+(DEPRECATED) The conﬁguration for the SMS message sent when an Amplify app user forgets their 
+password.
+Type: SmsSettings (p. 66)
+Required: False
+deliveryMethod
+(DEPRECATED) Describes which mode to use (either SMS or email) to deliver messages to app users that 
+want to recover their password.
+Type: DeliveryMethod (p. 65)
+Required: False
+emailSettings
+(DEPRECATED) The conﬁguration for the email sent when an app user forgets their password.
+Type: EmailSettings (p. 65)
+Required: False
+UpdateBackendAuthIdentityPoolConﬁg
+Describes the authorization conﬁguration for the Amazon Cognito identity pool, provisioned as a part of 
+your auth resource in the Amplify project.
+unauthenticatedLogin
+A boolean value that can be set to allow or disallow guest-level authorization into your Amplify app.
+Type: boolean
+Required: False
+UpdateBackendAuthMFAConﬁg
+Updates the multi-factor authentication (MFA) conﬁguration for the backend of your Amplify project.
+MFAMode
+The MFA mode for the backend of your Amplify project.
+Type: string
+Required: False
+Values: ON | OFF | OPTIONAL
+settings
+The settings of your MFA conﬁguration for the backend of your Amplify project.
+Type: object
+Required: False
+67AWS Amplify Admin UI API Reference
+Properties
+UpdateBackendAuthOAuthConﬁg
+The OAuth conﬁgurations for authenticating users into your Amplify app.
+redirectSignOutURIs
+Redirect URLs that OAuth uses when a user signs out of an Amplify app.
+Type: Array of type string
+Required: False
+domainPreﬁx
+The Amazon Cognito domain preﬁx used to create a hosted UI for authentication.
+Type: string
+Required: False
+redirectSignInURIs
+Redirect URLs that OAuth uses when a user signs in to an Amplify app.
+Type: Array of type string
+Required: False
+oAuthScopes
+The list of OAuth-related ﬂows that can allow users to authenticate from your Amplify app.
+Type: Array of type string
+Required: False
+Values: PHONE | EMAIL | OPENID | PROFILE | AWS_COGNITO_SIGNIN_USER_ADMIN
+socialProviderSettings
+Describes third-party social federation conﬁgurations for allowing your users to sign in with OAuth.
+Type: object
+Required: False
+oAuthGrantType
+The OAuth grant type to allow app users to authenticate from your Amplify app.
+Type: string
+Required: False
+Values: CODE | IMPLICIT
+UpdateBackendAuthPasswordPolicyConﬁg
+Describes the password policy for your Amazon Cognito user pool conﬁgured as a part of your Amplify 
+project.
+68AWS Amplify Admin UI API Reference
+Properties
+minimumLength
+Describes the minimum length of the password required to sign in to the auth resource, conﬁgured as a 
+part of your Amplify project.
+Type: number
+Required: False
+additionalConstraints
+Describes additional constraints on password requirements to sign in to the auth resource, conﬁgured as 
+a part of your Amplify project.
+Type: Array of type string
+Required: False
+Values: REQUIRE_DIGIT | REQUIRE_LOWERCASE | REQUIRE_SYMBOL | REQUIRE_UPPERCASE
+UpdateBackendAuthReqObj
+The request object for this operation.
+resourceConﬁg
+The resource conﬁguration for this request object.
+Type: UpdateBackendAuthResourceConﬁg (p. 69)
+Required: True
+resourceName
+The name of this resource.
+Type: string
+Required: True
+UpdateBackendAuthResourceConﬁg
+Deﬁnes the resource conﬁguration when updating an authentication resource in your Amplify project.
+userPoolConﬁgs
+Describes the authentication conﬁguration for the Amazon Cognito user pool, provisioned as a part of 
+your auth resource in the Amplify project.
+Type: UpdateBackendAuthUserPoolConﬁg (p. 70)
+Required: True
+authResources
+Deﬁnes the service name to use when conﬁguring an authentication resource in your Amplify project.
+Type: string
+Required: True
+69AWS Amplify Admin UI API Reference
+Properties
+Values: USER_POOL_ONLY | IDENTITY_POOL_AND_USER_POOL
+service
+Deﬁnes the service name to use when conﬁguring an authentication resource in your Amplify project.
+Type: string
+Required: True
+Values: COGNITO
+identityPoolConﬁgs
+Describes the authorization conﬁguration for the Amazon Cognito identity pool, provisioned as a part of 
+your auth resource in the Amplify project.
+Type: UpdateBackendAuthIdentityPoolConﬁg (p. 67)
+Required: False
+UpdateBackendAuthUserPoolConﬁg
+Describes the Amazon Cognito user pool conﬁguration for the authorization resource to be conﬁgured 
+for your Amplify project on an update.
+forgotPassword
+(DEPRECATED) Describes the forgot password policy for your Amazon Cognito user pool, conﬁgured as a 
+part of your Amplify project.
+Type: UpdateBackendAuthForgotPasswordConﬁg (p. 66)
+Required: False
+passwordPolicy
+Describes the password policy for your Amazon Cognito user pool, conﬁgured as a part of your Amplify 
+project.
+Type: UpdateBackendAuthPasswordPolicyConﬁg (p. 68)
+Required: False
+mfa
+Describes whether to apply multi-factor authentication policies for your Amazon Cognito user pool 
+conﬁgured as a part of your Amplify project.
+Type: UpdateBackendAuthMFAConﬁg (p. 67)
+Required: False
+oAuth
+Describes the OAuth policy and rules for your Amazon Cognito user pool, conﬁgured as a part of your 
+Amplify project.
+Type: UpdateBackendAuthOAuthConﬁg (p. 68)
+70AWS Amplify Admin UI API Reference
+See also
+Required: False
+veriﬁcationMessage
+Describes the email or SMS veriﬁcation message for your Amazon Cognito user pool, conﬁgured as a part 
+of your Amplify project.
+Type: UpdateBackendAuthVeriﬁcationMessageConﬁg (p. 71)
+Required: False
+UpdateBackendAuthVeriﬁcationMessageConﬁg
+Updates the conﬁguration of the email or SMS message for the auth resource conﬁgured for your 
+Amplify project.
+smsSettings
+The settings for the SMS message.
+Type: SmsSettings (p. 66)
+Required: False
+deliveryMethod
+The type of veriﬁcation message to send.
+Type: DeliveryMethod (p. 65)
+Required: True
+emailSettings
+The settings for the email message.
+Type: EmailSettings (p. 65)
+Required: False
+See also
+For more information about using this API in one of the language-speciﬁc AWS SDKs and references, see 
+the following:
+UpdateBackendAuth
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+71AWS Amplify Admin UI API Reference
+Backend appId Auth backendEnvironmentName Details
+•AWS SDK for Ruby V3
+Backend appId Auth backendEnvironmentName 
+Details
+The authentication and authorization settings from your Amplify project.
+URI
+/prod/backend/ appId/auth/backendEnvironmentName /details
+HTTP methods
+POST
+Operation ID:  GetBackendAuth
+Gets a backend auth details.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+backendEnvironmentName String True The name of the 
+backend environment.
+Responses
+Status code Response model Description
+200 GetBackendAuthRespObj  (p. 73)200 response
+400 BadRequestException  (p. 74)400 response
+404 NotFoundException  (p. 74)404 response
+429 LimitExceededException  (p. 74)429 response
+504 InternalServiceException  (p. 74) 504 response
+OPTIONS
+Enables CORS by returning the correct headers.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+72AWS Amplify Admin UI API Reference
+Schemas
+Name Type Required Description
+backendEnvironmentName String True The name of the 
+backend environment.
+Responses
+Status code Response model Description
+200 None 200 response
+Schemas
+Request bodies
+POST schema
+{ 
+  "resourceName ": "string"
+}
+Response bodies
+GetBackendAuthRespObj schema
+{ 
+  "resourceConfig ": { 
+    "userPoolConfigs ": { 
+      "userPoolName ": "string", 
+      "forgotPassword ": { 
+        " smsSettings ": { 
+          " smsMessage ": "string" 
+        }, 
+        " deliveryMethod ": enum, 
+        " emailSettings ": { 
+          " emailMessage ": "string", 
+          " emailSubject ": "string" 
+        } 
+      }, 
+      "passwordPolicy ": { 
+        " minimumLength ": number, 
+        " additionalConstraints ": [ 
+          enum 
+        ] 
+      }, 
+      "requiredSignUpAttributes ": [ 
+        enum 
+      ], 
+      "mfa": { 
+        " MFAMode": enum, 
+        " settings ": { 
+        } 
+      }, 
+      "verificationMessage ": { 
+        " smsSettings ": { 
+          " smsMessage ": "string" 
+        }, 
+        " deliveryMethod ": enum, 
+73AWS Amplify Admin UI API Reference
+Schemas
+        " emailSettings ": { 
+          " emailMessage ": "string", 
+          " emailSubject ": "string" 
+        } 
+      }, 
+      "oAuth": { 
+        " redirectSignOutURIs ": [ 
+          "string" 
+        ], 
+        " domainPrefix ": "string", 
+        " redirectSignInURIs ": [ 
+          "string" 
+        ], 
+        " oAuthScopes ": [ 
+          enum 
+        ], 
+        " socialProviderSettings ": { 
+        }, 
+        " oAuthGrantType ": enum 
+      }, 
+      "signInMethod ": enum 
+    }, 
+    "authResources ": enum, 
+    "service": enum, 
+    "identityPoolConfigs ": { 
+      "identityPoolName ": "string", 
+      "unauthenticatedLogin ": boolean 
+    } 
+  }, 
+  "appId": "string", 
+  "resourceName ": "string", 
+  "error": "string", 
+  "backendEnvironmentName ": "string"
+}
+BadRequestException schema
+{ 
+  "message": "string"
+}
+NotFoundException schema
+{ 
+  "message": "string", 
+  "resourceType ": "string"
+}
+LimitExceededException schema
+{ 
+  "message": "string", 
+  "limitType ": "string"
+}
+InternalServiceException schema
+{ 
+74AWS Amplify Admin UI API Reference
+Properties
+  "message": "string"
+}
+Properties
+BadRequestException
+An error returned if a request is not formed properly.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+CreateBackendAuthForgotPasswordConﬁg
+(DEPRECATED) Describes the forgot password policy for authenticating into the Amplify app.
+smsSettings
+(DEPRECATED) The conﬁguration for the SMS message sent when an app user forgets their password.
+Type: SmsSettings (p. 82)
+Required: False
+deliveryMethod
+(DEPRECATED) Describes which mode to use (either SMS or email) to deliver messages to app users who 
+want to recover their password.
+Type: DeliveryMethod (p. 80)
+Required: True
+emailSettings
+(DEPRECATED) The conﬁguration for the email sent when an app user forgets their password.
+Type: EmailSettings (p. 80)
+Required: False
+CreateBackendAuthIdentityPoolConﬁg
+Describes authorization conﬁgurations for the auth resources, conﬁgured as a part of your Amplify 
+project.
+identityPoolName
+Name of the Amazon Cognito identity pool used for authorization.
+Type: string
+Required: True
+75AWS Amplify Admin UI API Reference
+Properties
+unauthenticatedLogin
+Set to true or false based on whether you want to enable guest authorization to your Amplify app.
+Type: boolean
+Required: True
+CreateBackendAuthMFAConﬁg
+Describes whether to apply multi-factor authentication policies for your Amazon Cognito user pool 
+conﬁgured as a part of your Amplify project.
+MFAMode
+Describes whether MFA should be [ON, OFF, or OPTIONAL ] for authentication in your Amplify project.
+Type: string
+Required: True
+Values: ON | OFF | OPTIONAL
+settings
+Describes the conﬁguration settings and methods for your Amplify app users to use MFA.
+Type: object
+Required: False
+CreateBackendAuthOAuthConﬁg
+Creates the OAuth conﬁguration for your Amplify project.
+redirectSignOutURIs
+Redirect URLs that OAuth uses when a user signs out of an Amplify app.
+Type: Array of type string
+Required: True
+domainPreﬁx
+The domain preﬁx for your Amplify app.
+Type: string
+Required: False
+redirectSignInURIs
+The redirected URI for signing in to your Amplify app.
+Type: Array of type string
+Required: True
+oAuthScopes
+List of OAuth-related ﬂows used to allow your app users to authenticate from your Amplify app.
+76AWS Amplify Admin UI API Reference
+Properties
+Type: Array of type string
+Required: True
+Values: PHONE | EMAIL | OPENID | PROFILE | AWS_COGNITO_SIGNIN_USER_ADMIN
+socialProviderSettings
+The settings for using social providers to access your Amplify app.
+Type: object
+Required: False
+oAuthGrantType
+The OAuth grant type that you use to allow app users to authenticate from your Amplify app.
+Type: string
+Required: True
+Values: CODE | IMPLICIT
+CreateBackendAuthPasswordPolicyConﬁg
+The password policy conﬁguration for the backend to your Amplify project.
+minimumLength
+The minimum length of the password used to access the backend of your Amplify project.
+Type: number
+Required: True
+additionalConstraints
+Additional constraints for the password used to access the backend of your Amplify project.
+Type: Array of type string
+Required: False
+Values: REQUIRE_DIGIT | REQUIRE_LOWERCASE | REQUIRE_SYMBOL | REQUIRE_UPPERCASE
+CreateBackendAuthResourceConﬁg
+Deﬁnes the resource conﬁguration when creating an auth resource in your Amplify project.
+userPoolConﬁgs
+Describes authentication conﬁguration for the Amazon Cognito user pool, provisioned as a part of your 
+auth resource in the Amplify project.
+Type: CreateBackendAuthUserPoolConﬁg (p. 78)
+Required: True
+authResources
+Deﬁnes whether you want to conﬁgure only authentication or both authentication and authorization 
+settings.
+77AWS Amplify Admin UI API Reference
+Properties
+Type: string
+Required: True
+Values: USER_POOL_ONLY | IDENTITY_POOL_AND_USER_POOL
+service
+Deﬁnes the service name to use when conﬁguring an authentication resource in your Amplify project.
+Type: string
+Required: True
+Values: COGNITO
+identityPoolConﬁgs
+Describes the authorization conﬁguration for the Amazon Cognito identity pool, provisioned as a part of 
+your auth resource in the Amplify project.
+Type: CreateBackendAuthIdentityPoolConﬁg (p. 75)
+Required: False
+CreateBackendAuthUserPoolConﬁg
+Describes the Amazon Cognito user pool conﬁguration for the auth resource to be conﬁgured for your 
+Amplify project.
+userPoolName
+The Amazon Cognito user pool name.
+Type: string
+Required: True
+forgotPassword
+(DEPRECATED) Describes the forgotten password policy for your Amazon Cognito user pool, conﬁgured 
+as a part of your Amplify project.
+Type: CreateBackendAuthForgotPasswordConﬁg (p. 75)
+Required: False
+passwordPolicy
+Describes the password policy for your Amazon Cognito user pool, conﬁgured as a part of your Amplify 
+project.
+Type: CreateBackendAuthPasswordPolicyConﬁg (p. 77)
+Required: False
+requiredSignUpAttributes
+The required attributes to sign up new users in the user pool.
+Type: Array of type string
+78AWS Amplify Admin UI API Reference
+Properties
+Required: True
+Values: ADDRESS | BIRTHDATE | EMAIL | FAMILY_NAME | GENDER | GIVEN_NAME 
+| LOCALE | MIDDLE_NAME | NAME | NICKNAME | PHONE_NUMBER | PICTURE | 
+PREFERRED_USERNAME | PROFILE | UPDATED_AT | WEBSITE | ZONE_INFO
+mfa
+Describes whether to apply multi-factor authentication policies for your Amazon Cognito user pool 
+conﬁgured as a part of your Amplify project.
+Type: CreateBackendAuthMFAConﬁg (p. 76)
+Required: False
+veriﬁcationMessage
+Describes the email or SMS veriﬁcation message for your Amazon Cognito user pool, conﬁgured as a part 
+of your Amplify project.
+Type: CreateBackendAuthVeriﬁcationMessageConﬁg (p. 79)
+Required: False
+oAuth
+Describes the OAuth policy and rules for your Amazon Cognito user pool, conﬁgured as a part of your 
+Amplify project.
+Type: CreateBackendAuthOAuthConﬁg (p. 76)
+Required: False
+signInMethod
+Describes the sign-in methods that your Amplify app users use to log in using the Amazon Cognito user 
+pool, conﬁgured as a part of your Amplify project.
+Type: string
+Required: True
+Values: EMAIL | EMAIL_AND_PHONE_NUMBER | PHONE_NUMBER | USERNAME
+CreateBackendAuthVeriﬁcationMessageConﬁg
+Creates an email or SMS veriﬁcation message for the auth resource conﬁgured for your Amplify project.
+smsSettings
+The settings for the SMS message.
+Type: SmsSettings (p. 82)
+Required: False
+deliveryMethod
+The type of veriﬁcation message to send.
+Type: DeliveryMethod (p. 80)
+79AWS Amplify Admin UI API Reference
+Properties
+Required: True
+emailSettings
+The settings for the email message.
+Type: EmailSettings (p. 80)
+Required: False
+DeliveryMethod
+The type of veriﬁcation message to send.
+EMAIL
+SMS
+EmailSettings
+The settings for the email message.
+emailMessage
+The contents of the email message.
+Type: string
+Required: False
+emailSubject
+The contents of the subject line of the email message.
+Type: string
+Required: False
+GetBackendAuthReqObj
+The request object for this operation.
+resourceName
+The name of this resource.
+Type: string
+Required: True
+GetBackendAuthRespObj
+The response object for this operation.
+resourceConﬁg
+The resource conﬁguration for authorization requests to the backend of your Amplify project.
+80AWS Amplify Admin UI API Reference
+Properties
+Type: CreateBackendAuthResourceConﬁg (p. 77)
+Required: False
+appId
+The app ID.
+Type: string
+Required: True
+resourceName
+The name of this resource.
+Type: string
+Required: False
+error
+If the request fails, this error is returned.
+Type: string
+Required: False
+backendEnvironmentName
+The name of the backend environment.
+Type: string
+Required: True
+InternalServiceException
+An error returned if there's a temporary issue with the service.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+LimitExceededException
+An error that is returned when a limit of a speciﬁc type has been exceeded.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+81AWS Amplify Admin UI API Reference
+See also
+limitType
+The type of limit that was exceeded.
+Type: string
+Required: False
+NotFoundException
+An error returned when a speciﬁc resource type is not found.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+resourceType
+The type of resource that is not found.
+Type: string
+Required: False
+SmsSettings
+The settings for the SMS message.
+smsMessage
+The contents of the SMS message.
+Type: string
+Required: False
+See also
+For more information about using this API in one of the language-speciﬁc AWS SDKs and references, see 
+the following:
+GetBackendAuth
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+82AWS Amplify Admin UI API Reference
+Backend appId Auth backendEnvironmentName Import
+Backend appId Auth backendEnvironmentName 
+Import
+Imports an existing backend authentication resource.
+URI
+/prod/backend/ appId/auth/backendEnvironmentName /import
+HTTP methods
+POST
+Operation ID:  ImportBackendAuth
+Imports an existing backend authentication resource.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+backendEnvironmentName String True The name of the 
+backend environment.
+Responses
+Status code Response model Description
+200 BackendAuthRespObj  (p. 84)200 response
+400 BadRequestException  (p. 84)400 response
+404 NotFoundException  (p. 84)404 response
+429 LimitExceededException  (p. 84)429 response
+504 InternalServiceException  (p. 85) 504 response
+OPTIONS
+Enables CORS by returning the correct headers.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+backendEnvironmentName String True The name of the 
+backend environment.
+83AWS Amplify Admin UI API Reference
+Schemas
+Responses
+Status code Response model Description
+200 None 200 response
+Schemas
+Request bodies
+POST schema
+{ 
+  "webClientId ": "string", 
+  "nativeClientId ": "string", 
+  "identityPoolId ": "string", 
+  "userPoolId ": "string"
+}
+Response bodies
+BackendAuthRespObj schema
+{ 
+  "jobId": "string", 
+  "appId": "string", 
+  "error": "string", 
+  "operation ": "string", 
+  "backendEnvironmentName ": "string", 
+  "status": "string"
+}
+BadRequestException schema
+{ 
+  "message": "string"
+}
+NotFoundException schema
+{ 
+  "message": "string", 
+  "resourceType ": "string"
+}
+LimitExceededException schema
+{ 
+  "message": "string", 
+  "limitType ": "string"
+}
+84AWS Amplify Admin UI API Reference
+Properties
+InternalServiceException schema
+{ 
+  "message": "string"
+}
+Properties
+BackendAuthRespObj
+The response object for this operation.
+jobId
+The ID for the job.
+Type: string
+Required: False
+appId
+The app ID.
+Type: string
+Required: True
+error
+If the request fails, this error is returned.
+Type: string
+Required: False
+operation
+The name of the operation.
+Type: string
+Required: False
+backendEnvironmentName
+The name of the backend environment.
+Type: string
+Required: True
+status
+The current status of the request.
+Type: string
+Required: False
+85AWS Amplify Admin UI API Reference
+Properties
+BadRequestException
+An error returned if a request is not formed properly.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+ImportBackendAuthReqObj
+The request object for this operation.
+webClientId
+The ID of the Amazon Cognito web client.
+Type: string
+Required: True
+nativeClientId
+The ID of the Amazon Cognito native client.
+Type: string
+Required: True
+identityPoolId
+The ID of the Amazon Cognito identity pool.
+Type: string
+Required: False
+userPoolId
+The ID of the Amazon Cognito user pool.
+Type: string
+Required: True
+InternalServiceException
+An error returned if there's a temporary issue with the service.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+86AWS Amplify Admin UI API Reference
+See also
+LimitExceededException
+An error that is returned when a limit of a speciﬁc type has been exceeded.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+limitType
+The type of limit that was exceeded.
+Type: string
+Required: False
+NotFoundException
+An error returned when a speciﬁc resource type is not found.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+resourceType
+The type of resource that is not found.
+Type: string
+Required: False
+See also
+For more information about using this API in one of the language-speciﬁc AWS SDKs and references, see 
+the following:
+ImportBackendAuth
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+87AWS Amplify Admin UI API Reference
+Backend appId Auth backendEnvironmentName Remove
+Backend appId Auth backendEnvironmentName 
+Remove
+The authentication and authorization settings from your Amplify project.
+URI
+/prod/backend/ appId/auth/backendEnvironmentName /remove
+HTTP methods
+POST
+Operation ID:  DeleteBackendAuth
+Deletes an existing backend authentication resource.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+backendEnvironmentName String True The name of the 
+backend environment.
+Responses
+Status code Response model Description
+200 BackendAuthRespObj  (p. 89)200 response
+400 BadRequestException  (p. 89)400 response
+404 NotFoundException  (p. 89)404 response
+429 LimitExceededException  (p. 89)429 response
+504 InternalServiceException  (p. 89) 504 response
+OPTIONS
+Enables CORS by returning the correct headers.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+backendEnvironmentName String True The name of the 
+backend environment.
+88AWS Amplify Admin UI API Reference
+Schemas
+Responses
+Status code Response model Description
+200 None 200 response
+Schemas
+Request bodies
+POST schema
+{ 
+  "resourceName ": "string"
+}
+Response bodies
+BackendAuthRespObj schema
+{ 
+  "jobId": "string", 
+  "appId": "string", 
+  "error": "string", 
+  "operation ": "string", 
+  "backendEnvironmentName ": "string", 
+  "status": "string"
+}
+BadRequestException schema
+{ 
+  "message": "string"
+}
+NotFoundException schema
+{ 
+  "message": "string", 
+  "resourceType ": "string"
+}
+LimitExceededException schema
+{ 
+  "message": "string", 
+  "limitType ": "string"
+}
+InternalServiceException schema
+{ 
+89AWS Amplify Admin UI API Reference
+Properties
+  "message": "string"
+}
+Properties
+BackendAuthRespObj
+The response object for this operation.
+jobId
+The ID for the job.
+Type: string
+Required: False
+appId
+The app ID.
+Type: string
+Required: True
+error
+If the request fails, this error is returned.
+Type: string
+Required: False
+operation
+The name of the operation.
+Type: string
+Required: False
+backendEnvironmentName
+The name of the backend environment.
+Type: string
+Required: True
+status
+The current status of the request.
+Type: string
+Required: False
+BadRequestException
+An error returned if a request is not formed properly.
+90AWS Amplify Admin UI API Reference
+Properties
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+InternalServiceException
+An error returned if there's a temporary issue with the service.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+LimitExceededException
+An error that is returned when a limit of a speciﬁc type has been exceeded.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+limitType
+The type of limit that was exceeded.
+Type: string
+Required: False
+NotFoundException
+An error returned when a speciﬁc resource type is not found.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+resourceType
+The type of resource that is not found.
+Type: string
+Required: False
+91AWS Amplify Admin UI API Reference
+See also
+RemoveBackendAuthReqObj
+The request object for this operation.
+resourceName
+The name of this resource.
+Type: string
+Required: True
+See also
+For more information about using this API in one of the language-speciﬁc AWS SDKs and references, see 
+the following:
+DeleteBackendAuth
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+Backend appId Challenge
+The one-time challenge code used to authenticate a user into your Amplify Admin UI.
+URI
+/prod/backend/ appId/challenge
+HTTP methods
+POST
+Operation ID:  CreateToken
+Generates a one-time challenge code to authenticate a user into your Amplify Admin UI.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+92AWS Amplify Admin UI API Reference
+Schemas
+Responses
+Status code Response model Description
+200 CreateTokenRespObj  (p. 93)200 response
+400 BadRequestException  (p. 93)400 response
+404 NotFoundException  (p. 93)404 response
+429 LimitExceededException  (p. 94)429 response
+504 InternalServiceException  (p. 94) 504 response
+OPTIONS
+Enables CORS by returning the correct headers.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+Responses
+Status code Response model Description
+200 None 200 response
+Schemas
+Response bodies
+CreateTokenRespObj schema
+{ 
+  "appId": "string", 
+  "sessionId ": "string", 
+  "ttl": "string", 
+  "challengeCode ": "string"
+}
+BadRequestException schema
+{ 
+  "message": "string"
+}
+NotFoundException schema
+{ 
+  "message": "string", 
+93AWS Amplify Admin UI API Reference
+Properties
+  "resourceType ": "string"
+}
+LimitExceededException schema
+{ 
+  "message": "string", 
+  "limitType ": "string"
+}
+InternalServiceException schema
+{ 
+  "message": "string"
+}
+Properties
+BadRequestException
+An error returned if a request is not formed properly.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+CreateTokenRespObj
+The response object for this operation.
+appId
+The app ID.
+Type: string
+Required: True
+sessionId
+A unique ID provided when creating a new challenge token.
+Type: string
+Required: True
+ttl
+The expiry time for the one-time generated token code.
+Type: string
+Required: True
+94AWS Amplify Admin UI API Reference
+Properties
+challengeCode
+One-time challenge code for authenticating into the Amplify Admin UI.
+Type: string
+Required: True
+InternalServiceException
+An error returned if there's a temporary issue with the service.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+LimitExceededException
+An error that is returned when a limit of a speciﬁc type has been exceeded.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+limitType
+The type of limit that was exceeded.
+Type: string
+Required: False
+NotFoundException
+An error returned when a speciﬁc resource type is not found.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+resourceType
+The type of resource that is not found.
+Type: string
+Required: False
+95AWS Amplify Admin UI API Reference
+See also
+See also
+For more information about using this API in one of the language-speciﬁc AWS SDKs and references, see 
+the following:
+CreateToken
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+Backend appId Challenge sessionId
+The one-time challenge code used to authenticate a user into your Amplify Admin UI.
+URI
+/prod/backend/ appId/challenge/ sessionId
+HTTP methods
+GET
+Operation ID:  GetToken
+Gets the challenge token based on the given appId and sessionId.
+Path parameters
+Name Type Required Description
+sessionId String True The session ID.
+appId String True The app ID.
+Responses
+Status code Response model Description
+200 GetTokenRespObj  (p. 97) 200 response
+400 BadRequestException  (p. 97)400 response
+404 NotFoundException  (p. 97)404 response
+429 LimitExceededException  (p. 97)429 response
+96AWS Amplify Admin UI API Reference
+Schemas
+Status code Response model Description
+504 InternalServiceException  (p. 98)504 response
+OPTIONS
+Enables CORS by returning the correct headers.
+Path parameters
+Name Type Required Description
+sessionId String True The session ID.
+appId String True The app ID.
+Responses
+Status code Response model Description
+200 None 200 response
+Schemas
+Response bodies
+GetTokenRespObj schema
+{ 
+  "appId": "string", 
+  "sessionId ": "string", 
+  "ttl": "string", 
+  "challengeCode ": "string"
+}
+BadRequestException schema
+{ 
+  "message": "string"
+}
+NotFoundException schema
+{ 
+  "message": "string", 
+  "resourceType ": "string"
+}
+LimitExceededException schema
+{ 
+97AWS Amplify Admin UI API Reference
+Properties
+  "message": "string", 
+  "limitType ": "string"
+}
+InternalServiceException schema
+{ 
+  "message": "string"
+}
+Properties
+BadRequestException
+An error returned if a request is not formed properly.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+GetTokenRespObj
+The response object for this operation.
+appId
+The app ID.
+Type: string
+Required: True
+sessionId
+A unique ID provided when creating a new challenge token.
+Type: string
+Required: True
+ttl
+The expiry time for the one-time generated token code.
+Type: string
+Required: True
+challengeCode
+The one-time challenge code for authenticating into the Amplify Admin UI.
+Type: string
+98AWS Amplify Admin UI API Reference
+See also
+Required: True
+InternalServiceException
+An error returned if there's a temporary issue with the service.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+LimitExceededException
+An error that is returned when a limit of a speciﬁc type has been exceeded.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+limitType
+The type of limit that was exceeded.
+Type: string
+Required: False
+NotFoundException
+An error returned when a speciﬁc resource type is not found.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+resourceType
+The type of resource that is not found.
+Type: string
+Required: False
+See also
+For more information about using this API in one of the language-speciﬁc AWS SDKs and references, see 
+the following:
+99AWS Amplify Admin UI API Reference
+Backend appId Challenge sessionId Remove
+GetToken
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+Backend appId Challenge sessionId Remove
+The one-time challenge code used to authenticate a user into your Amplify Admin UI.
+URI
+/prod/backend/ appId/challenge/ sessionId /remove
+HTTP methods
+POST
+Operation ID:  DeleteToken
+Deletes the challenge token based on the given appId and sessionId.
+Path parameters
+Name Type Required Description
+sessionId String True The session ID.
+appId String True The app ID.
+Responses
+Status code Response model Description
+200 DeleteTokenRespObj  (p. 101)200 response
+400 BadRequestException  (p. 101)400 response
+404 NotFoundException  (p. 101)404 response
+429 LimitExceededException  (p. 101)429 response
+504 InternalServiceException  (p. 101) 504 response
+100AWS Amplify Admin UI API Reference
+Schemas
+OPTIONS
+Enables CORS by returning the correct headers.
+Path parameters
+Name Type Required Description
+sessionId String True The session ID.
+appId String True The app ID.
+Responses
+Status code Response model Description
+200 None 200 response
+Schemas
+Response bodies
+DeleteTokenRespObj schema
+{ 
+  "isSuccess ": boolean
+}
+BadRequestException schema
+{ 
+  "message": "string"
+}
+NotFoundException schema
+{ 
+  "message": "string", 
+  "resourceType ": "string"
+}
+LimitExceededException schema
+{ 
+  "message": "string", 
+  "limitType ": "string"
+}
+InternalServiceException schema
+{ 
+101AWS Amplify Admin UI API Reference
+Properties
+  "message": "string"
+}
+Properties
+BadRequestException
+An error returned if a request is not formed properly.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+DeleteTokenRespObj
+The response object for this operation.
+isSuccess
+Indicates whether the request succeeded or failed.
+Type: boolean
+Required: True
+InternalServiceException
+An error returned if there's a temporary issue with the service.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+LimitExceededException
+An error that is returned when a limit of a speciﬁc type has been exceeded.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+limitType
+The type of limit that was exceeded.
+Type: string
+Required: False
+102AWS Amplify Admin UI API Reference
+See also
+NotFoundException
+An error returned when a speciﬁc resource type is not found.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+resourceType
+The type of resource that is not found.
+Type: string
+Required: False
+See also
+For more information about using this API in one of the language-speciﬁc AWS SDKs and references, see 
+the following:
+DeleteToken
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+Backend appId Conﬁg
+A conﬁguration object that contains the authentication resources required for a user to access the 
+Amplify Admin UI.
+URI
+/prod/backend/ appId/config
+HTTP methods
+POST
+Operation ID:  CreateBackendConfig
+Creates a conﬁg object for a backend.
+103AWS Amplify Admin UI API Reference
+Schemas
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+Responses
+Status code Response model Description
+200 CreateBackendConfigRespObj  (p. 104) 200 response
+400 BadRequestException  (p. 105)400 response
+404 NotFoundException  (p. 105)404 response
+429 LimitExceededException  (p. 105)429 response
+504 InternalServiceException  (p. 105) 504 response
+OPTIONS
+Enables CORS by returning the correct headers.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+Responses
+Status code Response model Description
+200 None 200 response
+Schemas
+Request bodies
+POST schema
+{ 
+  "backendManagerAppId ": "string"
+}
+Response bodies
+CreateBackendConﬁgRespObj schema
+{ 
+  "jobId": "string", 
+  "appId": "string", 
+104AWS Amplify Admin UI API Reference
+Properties
+  "backendEnvironmentName ": "string", 
+  "status": "string"
+}
+BadRequestException schema
+{ 
+  "message": "string"
+}
+NotFoundException schema
+{ 
+  "message": "string", 
+  "resourceType ": "string"
+}
+LimitExceededException schema
+{ 
+  "message": "string", 
+  "limitType ": "string"
+}
+InternalServiceException schema
+{ 
+  "message": "string"
+}
+Properties
+BadRequestException
+An error returned if a request is not formed properly.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+CreateBackendConﬁgReqObj
+The request object for this operation.
+backendManagerAppId
+The app ID for the backend manager.
+Type: string
+Required: False
+105AWS Amplify Admin UI API Reference
+Properties
+CreateBackendConﬁgRespObj
+The response object for this operation.
+jobId
+The ID for the job.
+Type: string
+Required: False
+appId
+The app ID.
+Type: string
+Required: True
+backendEnvironmentName
+The name of the backend environment.
+Type: string
+Required: False
+status
+The current status of the request.
+Type: string
+Required: False
+InternalServiceException
+An error returned if there's a temporary issue with the service.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+LimitExceededException
+An error that is returned when a limit of a speciﬁc type has been exceeded.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+106AWS Amplify Admin UI API Reference
+See also
+limitType
+The type of limit that was exceeded.
+Type: string
+Required: False
+NotFoundException
+An error returned when a speciﬁc resource type is not found.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+resourceType
+The type of resource that is not found.
+Type: string
+Required: False
+See also
+For more information about using this API in one of the language-speciﬁc AWS SDKs and references, see 
+the following:
+CreateBackendConﬁg
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+Backend appId Conﬁg Remove
+A conﬁguration object that contains the authentication resources required for a user to access the 
+Amplify Admin UI.
+URI
+/prod/backend/ appId/config/remove
+107AWS Amplify Admin UI API Reference
+HTTP methods
+HTTP methods
+POST
+Operation ID:  RemoveBackendConfig
+Removes the AWS resources required to access the Amplify Admin UI.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+Responses
+Status code Response model Description
+200 RemoveBackendConfigRespObj  (p. 108) 200 response
+400 BadRequestException  (p. 109)400 response
+404 NotFoundException  (p. 109)404 response
+429 LimitExceededException  (p. 109)429 response
+504 InternalServiceException  (p. 109) 504 response
+OPTIONS
+Enables CORS by returning the correct headers.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+Responses
+Status code Response model Description
+200 None 200 response
+Schemas
+Response bodies
+RemoveBackendConﬁgRespObj schema
+{ 
+  "error": "string"
+}
+108AWS Amplify Admin UI API Reference
+Properties
+BadRequestException schema
+{ 
+  "message": "string"
+}
+NotFoundException schema
+{ 
+  "message": "string", 
+  "resourceType ": "string"
+}
+LimitExceededException schema
+{ 
+  "message": "string", 
+  "limitType ": "string"
+}
+InternalServiceException schema
+{ 
+  "message": "string"
+}
+Properties
+BadRequestException
+An error returned if a request is not formed properly.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+InternalServiceException
+An error returned if there's a temporary issue with the service.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+LimitExceededException
+An error that is returned when a limit of a speciﬁc type has been exceeded.
+109AWS Amplify Admin UI API Reference
+See also
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+limitType
+The type of limit that was exceeded.
+Type: string
+Required: False
+NotFoundException
+An error returned when a speciﬁc resource type is not found.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+resourceType
+The type of resource that is not found.
+Type: string
+Required: False
+RemoveBackendConﬁgRespObj
+The response object for this operation.
+error
+If the request fails, this error is returned.
+Type: string
+Required: False
+See also
+For more information about using this API in one of the language-speciﬁc AWS SDKs and references, see 
+the following:
+RemoveBackendConﬁg
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+110AWS Amplify Admin UI API Reference
+Backend appId Conﬁg Update
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+Backend appId Conﬁg Update
+A conﬁguration object that contains the authentication resources required for a user to access the 
+Amplify Admin UI.
+URI
+/prod/backend/ appId/config/update
+HTTP methods
+POST
+Operation ID:  UpdateBackendConfig
+Updates the AWS resources required to access the Amplify Admin UI.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+Responses
+Status code Response model Description
+200 BackendConfigRespObj  (p. 112)200 response
+400 BadRequestException  (p. 112)400 response
+404 NotFoundException  (p. 112)404 response
+429 LimitExceededException  (p. 112)429 response
+504 InternalServiceException  (p. 113) 504 response
+OPTIONS
+Enables CORS by returning the correct headers.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+111AWS Amplify Admin UI API Reference
+Schemas
+Responses
+Status code Response model Description
+200 None 200 response
+Schemas
+Request bodies
+POST schema
+{ 
+  "loginAuthConfig ": { 
+    "aws_user_pools_id ": "string", 
+    "aws_cognito_identity_pool_id ": "string", 
+    "aws_cognito_region ": "string", 
+    "aws_user_pools_web_client_id ": "string" 
+  }
+}
+Response bodies
+BackendConﬁgRespObj schema
+{ 
+  "backendManagerAppId ": "string", 
+  "loginAuthConfig ": { 
+    "aws_user_pools_id ": "string", 
+    "aws_cognito_identity_pool_id ": "string", 
+    "aws_cognito_region ": "string", 
+    "aws_user_pools_web_client_id ": "string" 
+  }, 
+  "appId": "string", 
+  "error": "string"
+}
+BadRequestException schema
+{ 
+  "message": "string"
+}
+NotFoundException schema
+{ 
+  "message": "string", 
+  "resourceType ": "string"
+}
+LimitExceededException schema
+{ 
+112AWS Amplify Admin UI API Reference
+Properties
+  "message": "string", 
+  "limitType ": "string"
+}
+InternalServiceException schema
+{ 
+  "message": "string"
+}
+Properties
+BackendConﬁgRespObj
+The response object for this operation.
+backendManagerAppId
+The app ID for the backend manager.
+Type: string
+Required: False
+loginAuthConﬁg
+Describes the Amazon Cognito conﬁgurations for the Admin UI auth resource to log in with.
+Type: LoginAuthConﬁgReqObj (p. 114)
+Required: False
+appId
+The app ID.
+Type: string
+Required: False
+error
+If the request fails, this error is returned.
+Type: string
+Required: False
+BadRequestException
+An error returned if a request is not formed properly.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+113AWS Amplify Admin UI API Reference
+Properties
+InternalServiceException
+An error returned if there's a temporary issue with the service.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+LimitExceededException
+An error that is returned when a limit of a speciﬁc type has been exceeded.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+limitType
+The type of limit that was exceeded.
+Type: string
+Required: False
+LoginAuthConﬁgReqObj
+The request object for this operation.
+aws_user_pools_id
+The Amazon Cognito user pool ID used for Amplify Admin UI login authentication.
+Type: string
+Required: False
+aws_cognito_identity_pool_id
+The Amazon Cognito identity pool ID used for the Amplify Admin UI login authorization.
+Type: string
+Required: False
+aws_cognito_region
+The AWS Region for the Amplify Admin UI login.
+Type: string
+Required: False
+114AWS Amplify Admin UI API Reference
+See also
+aws_user_pools_web_client_id
+The web client ID for the Amazon Cognito user pools.
+Type: string
+Required: False
+NotFoundException
+An error returned when a speciﬁc resource type is not found.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+resourceType
+The type of resource that is not found.
+Type: string
+Required: False
+UpdateBackendConﬁgReqObj
+The request object for this operation.
+loginAuthConﬁg
+Describes the Amazon Cognito conﬁguration for Admin UI access.
+Type: LoginAuthConﬁgReqObj (p. 114)
+Required: False
+See also
+For more information about using this API in one of the language-speciﬁc AWS SDKs and references, see 
+the following:
+UpdateBackendConﬁg
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+115AWS Amplify Admin UI API Reference
+Backend appId Details
+•AWS SDK for Ruby V3
+Backend appId Details
+Project-level details for your Amplify project.
+URI
+/prod/backend/ appId/details
+HTTP methods
+POST
+Operation ID:  GetBackend
+Provides project-level details for your Amplify UI project.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+Responses
+Status code Response model Description
+200 GetBackendRespObj  (p. 117)200 response
+400 BadRequestException  (p. 117)400 response
+404 NotFoundException  (p. 117)404 response
+429 LimitExceededException  (p. 117)429 response
+504 InternalServiceException  (p. 117) 504 response
+OPTIONS
+Enables CORS by returning the correct headers.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+Responses
+Status code Response model Description
+200 None 200 response
+116AWS Amplify Admin UI API Reference
+Schemas
+Schemas
+Request bodies
+POST schema
+{ 
+  "backendEnvironmentName ": "string"
+}
+Response bodies
+GetBackendRespObj schema
+{ 
+  "appName": "string", 
+  "appId": "string", 
+  "backendEnvironmentList ": [ 
+    "string" 
+  ], 
+  "amplifyFeatureFlags ": "string", 
+  "error": "string", 
+  "amplifyMetaConfig ": "string", 
+  "backendEnvironmentName ": "string"
+}
+BadRequestException schema
+{ 
+  "message": "string"
+}
+NotFoundException schema
+{ 
+  "message": "string", 
+  "resourceType ": "string"
+}
+LimitExceededException schema
+{ 
+  "message": "string", 
+  "limitType ": "string"
+}
+InternalServiceException schema
+{ 
+  "message": "string"
+}
+117AWS Amplify Admin UI API Reference
+Properties
+Properties
+BadRequestException
+An error returned if a request is not formed properly.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+GetBackendReqObj
+The request object for this operation.
+backendEnvironmentName
+The name of the backend environment.
+Type: string
+Required: False
+GetBackendRespObj
+The response object for this operation.
+appName
+The name of the app.
+Type: string
+Required: False
+appId
+The app ID.
+Type: string
+Required: True
+backendEnvironmentList
+A list of backend environments in an array.
+Type: Array of type string
+Required: False
+amplifyFeatureFlags
+A stringiﬁed version of the cli.json  ﬁle for your Amplify project.
+118AWS Amplify Admin UI API Reference
+Properties
+Type: string
+Required: False
+error
+If the request failed, this is the returned error.
+Type: string
+Required: False
+amplifyMetaConﬁg
+A stringiﬁed version of the current conﬁgs for your Amplify project.
+Type: string
+Required: False
+backendEnvironmentName
+The name of the backend environment.
+Type: string
+Required: False
+InternalServiceException
+An error returned if there's a temporary issue with the service.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+LimitExceededException
+An error that is returned when a limit of a speciﬁc type has been exceeded.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+limitType
+The type of limit that was exceeded.
+Type: string
+Required: False
+119AWS Amplify Admin UI API Reference
+See also
+NotFoundException
+An error returned when a speciﬁc resource type is not found.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+resourceType
+The type of resource that is not found.
+Type: string
+Required: False
+See also
+For more information about using this API in one of the language-speciﬁc AWS SDKs and references, see 
+the following:
+GetBackend
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+Backend appId Environments 
+backendEnvironmentName Clone
+A clone of an existing environment in your Amplify project.
+URI
+/prod/backend/ appId/environments/ backendEnvironmentName /clone
+HTTP methods
+POST
+Operation ID:  CloneBackend
+120AWS Amplify Admin UI API Reference
+Schemas
+This operation clones an existing backend.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+backendEnvironmentName String True The name of the 
+backend environment.
+Responses
+Status code Response model Description
+200 CloneBackendRespObj  (p. 122)200 response
+400 BadRequestException  (p. 122)400 response
+404 NotFoundException  (p. 122)404 response
+429 LimitExceededException  (p. 122)429 response
+504 InternalServiceException  (p. 122) 504 response
+OPTIONS
+Enables CORS by returning the correct headers.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+backendEnvironmentName String True The name of the 
+backend environment.
+Responses
+Status code Response model Description
+200 None 200 response
+Schemas
+Request bodies
+POST schema
+{ 
+  "targetEnvironmentName ": "string"
+}
+121AWS Amplify Admin UI API Reference
+Properties
+Response bodies
+CloneBackendRespObj schema
+{ 
+  "jobId": "string", 
+  "appId": "string", 
+  "error": "string", 
+  "operation ": "string", 
+  "backendEnvironmentName ": "string", 
+  "status": "string"
+}
+BadRequestException schema
+{ 
+  "message": "string"
+}
+NotFoundException schema
+{ 
+  "message": "string", 
+  "resourceType ": "string"
+}
+LimitExceededException schema
+{ 
+  "message": "string", 
+  "limitType ": "string"
+}
+InternalServiceException schema
+{ 
+  "message": "string"
+}
+Properties
+BadRequestException
+An error returned if a request is not formed properly.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+122AWS Amplify Admin UI API Reference
+Properties
+CloneBackendReqObj
+The request object for this operation.
+targetEnvironmentName
+The name of the destination backend environment to be created.
+Type: string
+Required: True
+CloneBackendRespObj
+The response object sent when a backend is created.
+jobId
+The ID for the job.
+Type: string
+Required: False
+appId
+The app ID.
+Type: string
+Required: True
+error
+If the request fails, this error is returned.
+Type: string
+Required: False
+operation
+The name of the operation.
+Type: string
+Required: False
+backendEnvironmentName
+The name of the backend environment.
+Type: string
+Required: True
+status
+The current status of the request.
+Type: string
+123AWS Amplify Admin UI API Reference
+See also
+Required: False
+InternalServiceException
+An error returned if there's a temporary issue with the service.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+LimitExceededException
+An error that is returned when a limit of a speciﬁc type has been exceeded.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+limitType
+The type of limit that was exceeded.
+Type: string
+Required: False
+NotFoundException
+An error returned when a speciﬁc resource type is not found.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+resourceType
+The type of resource that is not found.
+Type: string
+Required: False
+See also
+For more information about using this API in one of the language-speciﬁc AWS SDKs and references, see 
+the following:
+124AWS Amplify Admin UI API Reference
+Backend appId Environments 
+backendEnvironmentName Remove
+CloneBackend
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+Backend appId Environments 
+backendEnvironmentName Remove
+An existing environment in your Amplify project.
+URI
+/prod/backend/ appId/environments/ backendEnvironmentName /remove
+HTTP methods
+POST
+Operation ID:  DeleteBackend
+Removes an existing environment from your Amplify project.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+backendEnvironmentName String True The name of the 
+backend environment.
+Responses
+Status code Response model Description
+200 DeleteBackendRespObj  (p. 126)200 response
+400 BadRequestException  (p. 126)400 response
+404 NotFoundException  (p. 126)404 response
+429 LimitExceededException  (p. 126)429 response
+504 InternalServiceException  (p. 127) 504 response
+125AWS Amplify Admin UI API Reference
+Schemas
+OPTIONS
+Enables CORS by returning the correct headers.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+backendEnvironmentName String True The name of the 
+backend environment.
+Responses
+Status code Response model Description
+200 None 200 response
+Schemas
+Response bodies
+DeleteBackendRespObj schema
+{ 
+  "jobId": "string", 
+  "appId": "string", 
+  "error": "string", 
+  "operation ": "string", 
+  "backendEnvironmentName ": "string", 
+  "status": "string"
+}
+BadRequestException schema
+{ 
+  "message": "string"
+}
+NotFoundException schema
+{ 
+  "message": "string", 
+  "resourceType ": "string"
+}
+LimitExceededException schema
+{ 
+  "message": "string", 
+126AWS Amplify Admin UI API Reference
+Properties
+  "limitType ": "string"
+}
+InternalServiceException schema
+{ 
+  "message": "string"
+}
+Properties
+BadRequestException
+An error returned if a request is not formed properly.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+DeleteBackendRespObj
+The returned object for a request to delete a backend.
+jobId
+The ID for the job.
+Type: string
+Required: False
+appId
+The app ID.
+Type: string
+Required: True
+error
+If the request fails, this error is returned.
+Type: string
+Required: False
+operation
+The name of the operation.
+Type: string
+Required: False
+127AWS Amplify Admin UI API Reference
+Properties
+backendEnvironmentName
+The name of the backend environment.
+Type: string
+Required: True
+status
+The current status of the request.
+Type: string
+Required: False
+InternalServiceException
+An error returned if there's a temporary issue with the service.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+LimitExceededException
+An error that is returned when a limit of a speciﬁc type has been exceeded.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+limitType
+The type of limit that was exceeded.
+Type: string
+Required: False
+NotFoundException
+An error returned when a speciﬁc resource type is not found.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+128AWS Amplify Admin UI API Reference
+See also
+resourceType
+The type of resource that is not found.
+Type: string
+Required: False
+See also
+For more information about using this API in one of the language-speciﬁc AWS SDKs and references, see 
+the following:
+DeleteBackend
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+Backend appId Job backendEnvironmentName
+Jobs perform backend API actions on your behalf based on your choices in the Amplify Admin UI. The 
+actions that the jobs perform depend on the underlying API request sent from the Amplify Admin UI.
+This resource is associated with the ListBackendJobs  operation.
+URI
+/prod/backend/ appId/job/backendEnvironmentName
+HTTP methods
+POST
+Operation ID:  ListBackendJobs
+Lists the jobs for the backend of an Amplify app.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+backendEnvironmentName String True The name of the 
+backend environment.
+129AWS Amplify Admin UI API Reference
+Schemas
+Responses
+Status code Response model Description
+200 ListBackendJobRespObj  (p. 130)200 response
+400 BadRequestException  (p. 131)400 response
+404 NotFoundException  (p. 131)404 response
+429 LimitExceededException  (p. 131)429 response
+504 InternalServiceException  (p. 131) 504 response
+OPTIONS
+Enables CORS by returning the correct headers.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+backendEnvironmentName String True The name of the 
+backend environment.
+Responses
+Status code Response model Description
+200 None 200 response
+Schemas
+Request bodies
+POST schema
+{ 
+  "jobId": "string", 
+  "nextToken ": "string", 
+  "maxResults ": integer, 
+  "operation ": "string", 
+  "status": "string"
+}
+Response bodies
+ListBackendJobRespObj schema
+{ 
+  "nextToken ": "string", 
+  "jobs": [ 
+    { 
+130AWS Amplify Admin UI API Reference
+Properties
+      "jobId": "string", 
+      "createTime ": "string", 
+      "appId": "string", 
+      "updateTime ": "string", 
+      "error": "string", 
+      "operation ": "string", 
+      "backendEnvironmentName ": "string", 
+      "status": "string" 
+    } 
+  ]
+}
+BadRequestException schema
+{ 
+  "message": "string"
+}
+NotFoundException schema
+{ 
+  "message": "string", 
+  "resourceType ": "string"
+}
+LimitExceededException schema
+{ 
+  "message": "string", 
+  "limitType ": "string"
+}
+InternalServiceException schema
+{ 
+  "message": "string"
+}
+Properties
+BackendJobRespObj
+The response object for this operation.
+jobId
+The ID for the job.
+Type: string
+Required: False
+createTime
+The time when the job was created.
+131AWS Amplify Admin UI API Reference
+Properties
+Type: string
+Required: False
+appId
+The app ID.
+Type: string
+Required: True
+updateTime
+The time when the job was last updated.
+Type: string
+Required: False
+error
+If the request fails, this error is returned.
+Type: string
+Required: False
+operation
+The name of the operation.
+Type: string
+Required: False
+backendEnvironmentName
+The name of the backend environment.
+Type: string
+Required: True
+status
+The current status of the request.
+Type: string
+Required: False
+BadRequestException
+An error returned if a request is not formed properly.
+message
+An error message to inform that the request failed.
+Type: string
+132AWS Amplify Admin UI API Reference
+Properties
+Required: False
+InternalServiceException
+An error returned if there's a temporary issue with the service.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+LimitExceededException
+An error that is returned when a limit of a speciﬁc type has been exceeded.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+limitType
+The type of limit that was exceeded.
+Type: string
+Required: False
+ListBackendJobReqObj
+The request object for this operation.
+jobId
+The ID for the job.
+Type: string
+Required: False
+nextToken
+The token for the next set of results.
+Type: string
+Required: False
+maxResults
+The maximum number of results that you want in the response.
+Type: integer
+133AWS Amplify Admin UI API Reference
+Properties
+Required: False
+Format: int32
+Minimum : 1
+Maximum : 25
+operation
+Filters the list of response objects to include only those with the speciﬁed operation name.
+Type: string
+Required: False
+status
+Filters the list of response objects to include only those with the speciﬁed status.
+Type: string
+Required: False
+ListBackendJobRespObj
+The returned list of backend jobs.
+nextToken
+The token for the next set of results.
+Type: string
+Required: False
+jobs
+An array of jobs and their properties.
+Type: Array of type BackendJobRespObj (p. 131)
+Required: False
+NotFoundException
+An error returned when a speciﬁc resource type is not found.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+resourceType
+The type of resource that is not found.
+Type: string
+134AWS Amplify Admin UI API Reference
+See also
+Required: False
+See also
+For more information about using this API in one of the language-speciﬁc AWS SDKs and references, see 
+the following:
+ListBackendJobs
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+Backend appId Job backendEnvironmentName 
+jobId
+Jobs perform backend API actions on your behalf based on your choices in the Amplify Admin UI. The 
+actions that the jobs perform depend on the underlying API request sent from the Amplify Admin UI.
+This resource is associated with the GetBackendJob  and UpdateBackendJob  operations.
+URI
+/prod/backend/ appId/job/backendEnvironmentName /jobId
+HTTP methods
+GET
+Operation ID:  GetBackendJob
+Returns information about a speciﬁc job.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+backendEnvironmentName String True The name of the 
+backend environment.
+jobId String True The ID for the job.
+135AWS Amplify Admin UI API Reference
+HTTP methods
+Responses
+Status code Response model Description
+200 BackendJobRespObj  (p. 137)200 response
+400 BadRequestException  (p. 137)400 response
+404 NotFoundException  (p. 137)404 response
+429 LimitExceededException  (p. 137)429 response
+504 InternalServiceException  (p. 138) 504 response
+POST
+Operation ID:  UpdateBackendJob
+Updates a speciﬁc job.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+backendEnvironmentName String True The name of the 
+backend environment.
+jobId String True The ID for the job.
+Responses
+Status code Response model Description
+200 BackendJobRespObj  (p. 137)200 response
+400 BadRequestException  (p. 137)400 response
+404 NotFoundException  (p. 137)404 response
+429 LimitExceededException  (p. 137)429 response
+504 InternalServiceException  (p. 138) 504 response
+OPTIONS
+Enables CORS by returning the correct headers.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+backendEnvironmentName String True The name of the 
+backend environment.
+136AWS Amplify Admin UI API Reference
+Schemas
+Name Type Required Description
+jobId String True The ID for the job.
+Responses
+Status code Response model Description
+200 None 200 response
+Schemas
+Request bodies
+POST schema
+{ 
+  "operation ": "string", 
+  "status": "string"
+}
+Response bodies
+BackendJobRespObj schema
+{ 
+  "jobId": "string", 
+  "createTime ": "string", 
+  "appId": "string", 
+  "updateTime ": "string", 
+  "error": "string", 
+  "operation ": "string", 
+  "backendEnvironmentName ": "string", 
+  "status": "string"
+}
+BadRequestException schema
+{ 
+  "message": "string"
+}
+NotFoundException schema
+{ 
+  "message": "string", 
+  "resourceType ": "string"
+}
+LimitExceededException schema
+{ 
+137AWS Amplify Admin UI API Reference
+Properties
+  "message": "string", 
+  "limitType ": "string"
+}
+InternalServiceException schema
+{ 
+  "message": "string"
+}
+Properties
+BackendJobReqObj
+The request object for this operation.
+operation
+Filters the list of response objects to include only those with the speciﬁed operation name.
+Type: string
+Required: False
+status
+Filters the list of response objects to include only those with the speciﬁed status.
+Type: string
+Required: False
+BackendJobRespObj
+The response object for this operation.
+jobId
+The ID for the job.
+Type: string
+Required: False
+createTime
+The time when the job was created.
+Type: string
+Required: False
+appId
+The app ID.
+Type: string
+Required: True
+138AWS Amplify Admin UI API Reference
+Properties
+updateTime
+The time when the job was last updated.
+Type: string
+Required: False
+error
+If the request fails, this error is returned.
+Type: string
+Required: False
+operation
+The name of the operation.
+Type: string
+Required: False
+backendEnvironmentName
+The name of the backend environment.
+Type: string
+Required: True
+status
+The current status of the request.
+Type: string
+Required: False
+BadRequestException
+An error returned if a request is not formed properly.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+InternalServiceException
+An error returned if there's a temporary issue with the service.
+message
+An error message to inform that the request failed.
+Type: string
+139AWS Amplify Admin UI API Reference
+See also
+Required: False
+LimitExceededException
+An error that is returned when a limit of a speciﬁc type has been exceeded.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+limitType
+The type of limit that was exceeded.
+Type: string
+Required: False
+NotFoundException
+An error returned when a speciﬁc resource type is not found.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+resourceType
+The type of resource that is not found.
+Type: string
+Required: False
+See also
+For more information about using this API in one of the language-speciﬁc AWS SDKs and references, see 
+the following:
+GetBackendJob
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+140AWS Amplify Admin UI API Reference
+Backend appId Remove
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+UpdateBackendJob
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+Backend appId Remove
+All Amplify apps have a backend. The backend has settings and conﬁgurations for data storage, security, 
+and other important logic that your app's users don't see. The easiest way to manage your Amplify app 
+backend is by using the Amplify Admin UI for your app.
+URI
+/prod/backend/ appId/remove
+HTTP methods
+POST
+Operation ID:  RemoveAllBackends
+Removes all backend environments from your Amplify project.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+Responses
+Status code Response model Description
+200 RemoveAllBackendsRespObj  (p. 142) 200 response
+400 BadRequestException  (p. 142)400 response
+404 NotFoundException  (p. 142)404 response
+429 LimitExceededException  (p. 143)429 response
+504 InternalServiceException  (p. 143) 504 response
+141AWS Amplify Admin UI API Reference
+Schemas
+OPTIONS
+Enables CORS by returning the correct headers.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+Responses
+Status code Response model Description
+200 None 200 response
+Schemas
+Request bodies
+POST schema
+{ 
+  "cleanAmplifyApp ": boolean
+}
+Response bodies
+RemoveAllBackendsRespObj schema
+{ 
+  "jobId": "string", 
+  "appId": "string", 
+  "error": "string", 
+  "operation ": "string", 
+  "status": "string"
+}
+BadRequestException schema
+{ 
+  "message": "string"
+}
+NotFoundException schema
+{ 
+  "message": "string", 
+  "resourceType ": "string"
+}
+142AWS Amplify Admin UI API Reference
+Properties
+LimitExceededException schema
+{ 
+  "message": "string", 
+  "limitType ": "string"
+}
+InternalServiceException schema
+{ 
+  "message": "string"
+}
+Properties
+BadRequestException
+An error returned if a request is not formed properly.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+InternalServiceException
+An error returned if there's a temporary issue with the service.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+LimitExceededException
+An error that is returned when a limit of a speciﬁc type has been exceeded.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+limitType
+The type of limit that was exceeded.
+Type: string
+143AWS Amplify Admin UI API Reference
+Properties
+Required: False
+NotFoundException
+An error returned when a speciﬁc resource type is not found.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+resourceType
+The type of resource that is not found.
+Type: string
+Required: False
+RemoveAllBackendsReqObj
+The request object for this operation.
+cleanAmplifyApp
+Cleans up the Amplify Console app if this value is set to true.
+Type: boolean
+Required: False
+RemoveAllBackendsRespObj
+The response object for this operation.
+jobId
+The ID for the job.
+Type: string
+Required: False
+appId
+The app ID.
+Type: string
+Required: True
+error
+If the request fails, this error is returned.
+Type: string
+144AWS Amplify Admin UI API Reference
+See also
+Required: False
+operation
+The name of the operation.
+Type: string
+Required: False
+status
+The current status of the request.
+Type: string
+Required: False
+See also
+For more information about using this API in one of the language-speciﬁc AWS SDKs and references, see 
+the following:
+RemoveAllBackends
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+Backend appId Storage
+Create a storage resource in your Amplify app backend.
+URI
+/prod/backend/ appId/storage
+HTTP methods
+POST
+Operation ID:  CreateBackendStorage
+Creates a backend storage resource.
+145AWS Amplify Admin UI API Reference
+Schemas
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+Responses
+Status code Response model Description
+200 BackendStorageRespObj  (p. 147)200 response
+400 BadRequestException  (p. 147)400 response
+404 NotFoundException  (p. 147)404 response
+429 LimitExceededException  (p. 147)429 response
+504 InternalServiceException  (p. 147) 504 response
+OPTIONS
+Enables CORS by returning the correct headers.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+Responses
+Status code Response model Description
+200 None 200 response
+Schemas
+Request bodies
+POST schema
+{ 
+  "resourceConfig ": { 
+    "bucketName ": "string", 
+    "permissions ": { 
+      "authenticated ": [ 
+        enum 
+      ], 
+      "unAuthenticated ": [ 
+        enum 
+      ] 
+    }, 
+    "serviceName ": enum 
+  }, 
+146AWS Amplify Admin UI API Reference
+Properties
+  "resourceName ": "string", 
+  "backendEnvironmentName ": "string"
+}
+Response bodies
+BackendStorageRespObj schema
+{ 
+  "jobId": "string", 
+  "appId": "string", 
+  "backendEnvironmentName ": "string", 
+  "status": "string"
+}
+BadRequestException schema
+{ 
+  "message": "string"
+}
+NotFoundException schema
+{ 
+  "message": "string", 
+  "resourceType ": "string"
+}
+LimitExceededException schema
+{ 
+  "message": "string", 
+  "limitType ": "string"
+}
+InternalServiceException schema
+{ 
+  "message": "string"
+}
+Properties
+BackendStoragePermissions
+Describes the read, write, and delete permissions users have against your storage S3 bucket.
+authenticated
+Lists all authenticated user read, write, and delete permissions for your S3 bucket.
+Type: Array of type string
+147AWS Amplify Admin UI API Reference
+Properties
+Required: True
+Values: READ | CREATE_AND_UPDATE | DELETE
+unAuthenticated
+Lists all unauthenticated user read, write, and delete permissions for your S3 bucket.
+Type: Array of type string
+Required: False
+Values: READ | CREATE_AND_UPDATE | DELETE
+BackendStorageRespObj
+The response object for this operation.
+jobId
+The ID for the job.
+Type: string
+Required: True
+appId
+The app ID.
+Type: string
+Required: True
+backendEnvironmentName
+The name of the backend environment.
+Type: string
+Required: True
+status
+The current status of the request.
+Type: string
+Required: True
+BadRequestException
+An error returned if a request is not formed properly.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+148AWS Amplify Admin UI API Reference
+Properties
+CreateBackendStorageReqObj
+The request object for this operation.
+resourceConﬁg
+The resource conﬁguration for creating backend storage.
+Type: CreateBackendStorageResourceConﬁg (p. 149)
+Required: True
+resourceName
+The name of the storage resource.
+Type: string
+Required: True
+backendEnvironmentName
+The name of the backend environment.
+Type: string
+Required: True
+CreateBackendStorageResourceConﬁg
+The resource conﬁguration for creating backend storage.
+bucketName
+The name of the S3 bucket.
+Type: string
+Required: False
+permissions
+The authorization conﬁguration for the storage S3 bucket.
+Type: BackendStoragePermissions (p. 147)
+Required: True
+serviceName
+The name of the storage service.
+Type: string
+Required: True
+Values: S3
+InternalServiceException
+An error returned if there's a temporary issue with the service.
+149AWS Amplify Admin UI API Reference
+See also
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+LimitExceededException
+An error that is returned when a limit of a speciﬁc type has been exceeded.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+limitType
+The type of limit that was exceeded.
+Type: string
+Required: False
+NotFoundException
+An error returned when a speciﬁc resource type is not found.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+resourceType
+The type of resource that is not found.
+Type: string
+Required: False
+See also
+For more information about using this API in one of the language-speciﬁc AWS SDKs and references, see 
+the following:
+CreateBackendStorage
+•AWS Command Line Interface
+•AWS SDK for .NET
+150AWS Amplify Admin UI API Reference
+Backend appId Storage backendEnvironmentName
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+Backend appId Storage backendEnvironmentName
+Update a storage resource in your Amplify app backend.
+URI
+/prod/backend/ appId/storage/ backendEnvironmentName
+HTTP methods
+POST
+Operation ID:  UpdateBackendStorage
+Updates an existing backend storage resource.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+backendEnvironmentName String True The name of the 
+backend environment.
+Responses
+Status code Response model Description
+200 BackendStorageRespObj  (p. 152)200 response
+400 BadRequestException  (p. 152)400 response
+404 NotFoundException  (p. 153)404 response
+429 LimitExceededException  (p. 153)429 response
+504 InternalServiceException  (p. 153) 504 response
+OPTIONS
+Enables CORS by returning the correct headers.
+151AWS Amplify Admin UI API Reference
+Schemas
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+backendEnvironmentName String True The name of the 
+backend environment.
+Responses
+Status code Response model Description
+200 None 200 response
+Schemas
+Request bodies
+POST schema
+{ 
+  "resourceConfig ": { 
+    "permissions ": { 
+      "authenticated ": [ 
+        enum 
+      ], 
+      "unAuthenticated ": [ 
+        enum 
+      ] 
+    }, 
+    "serviceName ": enum 
+  }, 
+  "resourceName ": "string"
+}
+Response bodies
+BackendStorageRespObj schema
+{ 
+  "jobId": "string", 
+  "appId": "string", 
+  "backendEnvironmentName ": "string", 
+  "status": "string"
+}
+BadRequestException schema
+{ 
+  "message": "string"
+}
+152AWS Amplify Admin UI API Reference
+Properties
+NotFoundException schema
+{ 
+  "message": "string", 
+  "resourceType ": "string"
+}
+LimitExceededException schema
+{ 
+  "message": "string", 
+  "limitType ": "string"
+}
+InternalServiceException schema
+{ 
+  "message": "string"
+}
+Properties
+BackendStoragePermissions
+Describes the read, write, and delete permissions users have against your storage S3 bucket.
+authenticated
+Lists all authenticated user read, write, and delete permissions for your S3 bucket.
+Type: Array of type string
+Required: True
+Values: READ | CREATE_AND_UPDATE | DELETE
+unAuthenticated
+Lists all unauthenticated user read, write, and delete permissions for your S3 bucket.
+Type: Array of type string
+Required: False
+Values: READ | CREATE_AND_UPDATE | DELETE
+BackendStorageRespObj
+The response object for this operation.
+jobId
+The ID for the job.
+Type: string
+153AWS Amplify Admin UI API Reference
+Properties
+Required: True
+appId
+The app ID.
+Type: string
+Required: True
+backendEnvironmentName
+The name of the backend environment.
+Type: string
+Required: True
+status
+The current status of the request.
+Type: string
+Required: True
+BadRequestException
+An error returned if a request is not formed properly.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+InternalServiceException
+An error returned if there's a temporary issue with the service.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+LimitExceededException
+An error that is returned when a limit of a speciﬁc type has been exceeded.
+message
+An error message to inform that the request has failed.
+Type: string
+154AWS Amplify Admin UI API Reference
+Properties
+Required: False
+limitType
+The type of limit that was exceeded.
+Type: string
+Required: False
+NotFoundException
+An error returned when a speciﬁc resource type is not found.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+resourceType
+The type of resource that is not found.
+Type: string
+Required: False
+UpdateBackendStorageReqObj
+The request object for this operation.
+resourceConﬁg
+The resource conﬁguration for updating backend storage.
+Type: UpdateBackendStorageResourceConﬁg (p. 155)
+Required: True
+resourceName
+The name of the storage resource.
+Type: string
+Required: True
+UpdateBackendStorageResourceConﬁg
+The resource conﬁguration for updating backend storage.
+permissions
+The authorization conﬁguration for the storage S3 bucket.
+Type: BackendStoragePermissions (p. 153)
+155AWS Amplify Admin UI API Reference
+See also
+Required: True
+serviceName
+The name of the storage service.
+Type: string
+Required: True
+Values: S3
+See also
+For more information about using this API in one of the language-speciﬁc AWS SDKs and references, see 
+the following:
+UpdateBackendStorage
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+Backend appId Storage backendEnvironmentName 
+Details
+Get the details for a storage resource in your Amplify app backend.
+URI
+/prod/backend/ appId/storage/ backendEnvironmentName /details
+HTTP methods
+POST
+Operation ID:  GetBackendStorage
+Gets details for a backend storage resource.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+156AWS Amplify Admin UI API Reference
+Schemas
+Name Type Required Description
+backendEnvironmentName String True The name of the 
+backend environment.
+Responses
+Status code Response model Description
+200 GetBackendStorageRespObj  (p. 157) 200 response
+400 BadRequestException  (p. 158)400 response
+404 NotFoundException  (p. 158)404 response
+429 LimitExceededException  (p. 158)429 response
+504 InternalServiceException  (p. 158) 504 response
+OPTIONS
+Enables CORS by returning the correct headers.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+backendEnvironmentName String True The name of the 
+backend environment.
+Responses
+Status code Response model Description
+200 None 200 response
+Schemas
+Request bodies
+POST schema
+{ 
+  "resourceName ": "string"
+}
+Response bodies
+GetBackendStorageRespObj schema
+{ 
+157AWS Amplify Admin UI API Reference
+Properties
+  "resourceConfig ": { 
+    "bucketName ": "string", 
+    "permissions ": { 
+      "authenticated ": [ 
+        enum 
+      ], 
+      "unAuthenticated ": [ 
+        enum 
+      ] 
+    }, 
+    "imported ": boolean, 
+    "serviceName ": enum 
+  }, 
+  "appId": "string", 
+  "resourceName ": "string", 
+  "backendEnvironmentName ": "string"
+}
+BadRequestException schema
+{ 
+  "message": "string"
+}
+NotFoundException schema
+{ 
+  "message": "string", 
+  "resourceType ": "string"
+}
+LimitExceededException schema
+{ 
+  "message": "string", 
+  "limitType ": "string"
+}
+InternalServiceException schema
+{ 
+  "message": "string"
+}
+Properties
+BackendStoragePermissions
+Describes the read, write, and delete permissions users have against your storage S3 bucket.
+authenticated
+Lists all authenticated user read, write, and delete permissions for your S3 bucket.
+Type: Array of type string
+158AWS Amplify Admin UI API Reference
+Properties
+Required: True
+Values: READ | CREATE_AND_UPDATE | DELETE
+unAuthenticated
+Lists all unauthenticated user read, write, and delete permissions for your S3 bucket.
+Type: Array of type string
+Required: False
+Values: READ | CREATE_AND_UPDATE | DELETE
+BadRequestException
+An error returned if a request is not formed properly.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+GetBackendStorageReqObj
+The request object for this operation.
+resourceName
+The name of the storage resource.
+Type: string
+Required: True
+GetBackendStorageResourceConﬁg
+The details for a backend storage resource.
+bucketName
+The name of the S3 bucket.
+Type: string
+Required: False
+permissions
+The authorization conﬁguration for the storage S3 bucket.
+Type: BackendStoragePermissions (p. 158)
+Required: False
+imported
+Returns True if the storage resource has been imported.
+159AWS Amplify Admin UI API Reference
+Properties
+Type: boolean
+Required: True
+serviceName
+The name of the storage service.
+Type: string
+Required: True
+Values: S3
+GetBackendStorageRespObj
+The response object for this operation.
+resourceConﬁg
+The resource conﬁguration for the backend storage resource.
+Type: GetBackendStorageResourceConﬁg (p. 159)
+Required: False
+appId
+The app ID.
+Type: string
+Required: True
+resourceName
+The name of the storage resource.
+Type: string
+Required: False
+backendEnvironmentName
+The name of the backend environment.
+Type: string
+Required: True
+InternalServiceException
+An error returned if there's a temporary issue with the service.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+160AWS Amplify Admin UI API Reference
+See also
+LimitExceededException
+An error that is returned when a limit of a speciﬁc type has been exceeded.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+limitType
+The type of limit that was exceeded.
+Type: string
+Required: False
+NotFoundException
+An error returned when a speciﬁc resource type is not found.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+resourceType
+The type of resource that is not found.
+Type: string
+Required: False
+See also
+For more information about using this API in one of the language-speciﬁc AWS SDKs and references, see 
+the following:
+GetBackendStorage
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+161AWS Amplify Admin UI API Reference
+Backend appId Storage backendEnvironmentName Import
+•AWS SDK for Ruby V3
+Backend appId Storage backendEnvironmentName 
+Import
+Import a storage resource into your Amplify app backend.
+URI
+/prod/backend/ appId/storage/ backendEnvironmentName /import
+HTTP methods
+POST
+Operation ID:  ImportBackendStorage
+Imports an existing backend storage resource.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+backendEnvironmentName String True The name of the 
+backend environment.
+Responses
+Status code Response model Description
+200 BackendStorageRespObj  (p. 163)200 response
+400 BadRequestException  (p. 163)400 response
+404 NotFoundException  (p. 163)404 response
+429 LimitExceededException  (p. 163)429 response
+504 InternalServiceException  (p. 164) 504 response
+OPTIONS
+Enables CORS by returning the correct headers.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+162AWS Amplify Admin UI API Reference
+Schemas
+Name Type Required Description
+backendEnvironmentName String True The name of the 
+backend environment.
+Responses
+Status code Response model Description
+200 None 200 response
+Schemas
+Request bodies
+POST schema
+{ 
+  "bucketName ": "string", 
+  "serviceName ": enum
+}
+Response bodies
+BackendStorageRespObj schema
+{ 
+  "jobId": "string", 
+  "appId": "string", 
+  "backendEnvironmentName ": "string", 
+  "status": "string"
+}
+BadRequestException schema
+{ 
+  "message": "string"
+}
+NotFoundException schema
+{ 
+  "message": "string", 
+  "resourceType ": "string"
+}
+LimitExceededException schema
+{ 
+  "message": "string", 
+163AWS Amplify Admin UI API Reference
+Properties
+  "limitType ": "string"
+}
+InternalServiceException schema
+{ 
+  "message": "string"
+}
+Properties
+BackendStorageRespObj
+The response object for this operation.
+jobId
+The ID for the job.
+Type: string
+Required: True
+appId
+The app ID.
+Type: string
+Required: True
+backendEnvironmentName
+The name of the backend environment.
+Type: string
+Required: True
+status
+The current status of the request.
+Type: string
+Required: True
+BadRequestException
+An error returned if a request is not formed properly.
+message
+An error message to inform that the request failed.
+Type: string
+164AWS Amplify Admin UI API Reference
+Properties
+Required: False
+ImportBackendStorageReqObj
+The request object for this operation.
+bucketName
+The name of the S3 bucket.
+Type: string
+Required: False
+serviceName
+The name of the storage service.
+Type: string
+Required: True
+Values: S3
+InternalServiceException
+An error returned if there's a temporary issue with the service.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+LimitExceededException
+An error that is returned when a limit of a speciﬁc type has been exceeded.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+limitType
+The type of limit that was exceeded.
+Type: string
+Required: False
+NotFoundException
+An error returned when a speciﬁc resource type is not found.
+165AWS Amplify Admin UI API Reference
+See also
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+resourceType
+The type of resource that is not found.
+Type: string
+Required: False
+See also
+For more information about using this API in one of the language-speciﬁc AWS SDKs and references, see 
+the following:
+ImportBackendStorage
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+Backend appId Storage backendEnvironmentName 
+Remove
+Remove a storage resource from your Amplify app backend.
+URI
+/prod/backend/ appId/storage/ backendEnvironmentName /remove
+HTTP methods
+POST
+Operation ID:  DeleteBackendStorage
+Removes the speciﬁed backend storage resource.
+166AWS Amplify Admin UI API Reference
+Schemas
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+backendEnvironmentName String True The name of the 
+backend environment.
+Responses
+Status code Response model Description
+200 BackendStorageRespObj  (p. 168)200 response
+400 BadRequestException  (p. 168)400 response
+404 NotFoundException  (p. 168)404 response
+429 LimitExceededException  (p. 168)429 response
+504 InternalServiceException  (p. 168) 504 response
+OPTIONS
+Enables CORS by returning the correct headers.
+Path parameters
+Name Type Required Description
+appId String True The app ID.
+backendEnvironmentName String True The name of the 
+backend environment.
+Responses
+Status code Response model Description
+200 None 200 response
+Schemas
+Request bodies
+POST schema
+{ 
+  "resourceName ": "string", 
+  "serviceName ": enum
+}
+Response bodies
+167AWS Amplify Admin UI API Reference
+Properties
+BackendStorageRespObj schema
+{ 
+  "jobId": "string", 
+  "appId": "string", 
+  "backendEnvironmentName ": "string", 
+  "status": "string"
+}
+BadRequestException schema
+{ 
+  "message": "string"
+}
+NotFoundException schema
+{ 
+  "message": "string", 
+  "resourceType ": "string"
+}
+LimitExceededException schema
+{ 
+  "message": "string", 
+  "limitType ": "string"
+}
+InternalServiceException schema
+{ 
+  "message": "string"
+}
+Properties
+BackendStorageRespObj
+The response object for this operation.
+jobId
+The ID for the job.
+Type: string
+Required: True
+appId
+The app ID.
+Type: string
+168AWS Amplify Admin UI API Reference
+Properties
+Required: True
+backendEnvironmentName
+The name of the backend environment.
+Type: string
+Required: True
+status
+The current status of the request.
+Type: string
+Required: True
+BadRequestException
+An error returned if a request is not formed properly.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+InternalServiceException
+An error returned if there's a temporary issue with the service.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+LimitExceededException
+An error that is returned when a limit of a speciﬁc type has been exceeded.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+limitType
+The type of limit that was exceeded.
+Type: string
+169AWS Amplify Admin UI API Reference
+See also
+Required: False
+NotFoundException
+An error returned when a speciﬁc resource type is not found.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+resourceType
+The type of resource that is not found.
+Type: string
+Required: False
+RemoveBackendStorageReqObj
+The request object for this operation.
+resourceName
+The name of the storage resource.
+Type: string
+Required: True
+serviceName
+The name of the storage service.
+Type: string
+Required: True
+Values: S3
+See also
+For more information about using this API in one of the language-speciﬁc AWS SDKs and references, see 
+the following:
+DeleteBackendStorage
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+170AWS Amplify Admin UI API Reference
+S3Buckets
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+S3Buckets
+List the Amazon S3 buckets in your AWS account.
+URI
+/prod/s3Buckets
+HTTP methods
+POST
+Operation ID:  ListS3Buckets
+The list of S3 buckets in your account.
+Responses
+Status code Response model Description
+200 ListS3BucketsRespObj  (p. 172)200 response
+400 BadRequestException  (p. 172)400 response
+404 NotFoundException  (p. 172)404 response
+429 LimitExceededException  (p. 172)429 response
+504 InternalServiceException  (p. 172) 504 response
+OPTIONS
+Enables CORS by returning the correct headers.
+Responses
+Status code Response model Description
+200 None 200 response
+Schemas
+Request bodies
+POST schema
+{ 
+171AWS Amplify Admin UI API Reference
+Properties
+  "nextToken ": "string"
+}
+Response bodies
+ListS3BucketsRespObj schema
+{ 
+  "nextToken ": "string", 
+  "buckets": [ 
+    { 
+      "name": "string", 
+      "creationDate ": "string" 
+    } 
+  ]
+}
+BadRequestException schema
+{ 
+  "message": "string"
+}
+NotFoundException schema
+{ 
+  "message": "string", 
+  "resourceType ": "string"
+}
+LimitExceededException schema
+{ 
+  "message": "string", 
+  "limitType ": "string"
+}
+InternalServiceException schema
+{ 
+  "message": "string"
+}
+Properties
+BadRequestException
+An error returned if a request is not formed properly.
+message
+An error message to inform that the request failed.
+172AWS Amplify Admin UI API Reference
+Properties
+Type: string
+Required: False
+InternalServiceException
+An error returned if there's a temporary issue with the service.
+message
+An error message to inform that the request failed.
+Type: string
+Required: False
+LimitExceededException
+An error that is returned when a limit of a speciﬁc type has been exceeded.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+limitType
+The type of limit that was exceeded.
+Type: string
+Required: False
+ListS3BucketsReqObj
+The request object for this operation.
+nextToken
+Reserved for future use.
+Type: string
+Required: False
+ListS3BucketsRespObj
+The response object for this operation.
+nextToken
+Reserved for future use.
+Type: string
+Required: False
+173AWS Amplify Admin UI API Reference
+See also
+buckets
+The list of S3 buckets.
+Type: Array of type S3BucketInfo (p. 174)
+Required: True
+NotFoundException
+An error returned when a speciﬁc resource type is not found.
+message
+An error message to inform that the request has failed.
+Type: string
+Required: False
+resourceType
+The type of resource that is not found.
+Type: string
+Required: False
+S3BucketInfo
+Describes the metadata of the S3 bucket.
+name
+The name of the S3 bucket.
+Type: string
+Required: False
+creationDate
+The creation date of the S3 bucket.
+Type: string
+Required: False
+See also
+For more information about using this API in one of the language-speciﬁc AWS SDKs and references, see 
+the following:
+ListS3Buckets
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+174AWS Amplify Admin UI API Reference
+See also
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+175AWS Amplify Admin UI API Reference
+AWS glossary
+For the latest AWS terminology, see the AWS glossary in the AWS Glossary Reference.
+176

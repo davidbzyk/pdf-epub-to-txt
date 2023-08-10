@@ -1,0 +1,2807 @@
+AWS CodeStar
+API Reference
+API Version 2017-04-19
+AWS CodeStar API Reference
+AWS CodeStar: API Reference
+Copyright © 2023 Amazon Web Services, Inc. and/or its aﬃliates. All rights reserved.
+Amazon's trademarks and trade dress may not be used in connection with any product or service that is not 
+Amazon's, in any manner that is likely to cause confusion among customers, or in any manner that disparages or 
+discredits Amazon. All other trademarks not owned by Amazon are the property of their respective owners, who may 
+or may not be aﬃliated with, connected to, or sponsored by Amazon.AWS CodeStar API Reference
+Table of Contents
+Welcome...........................................................................................................................................1
+Actions.............................................................................................................................................2
+AssociateTeamMember................................................................................................................3
+Request Syntax..................................................................................................................3
+Request Parameters............................................................................................................3
+Response Syntax................................................................................................................4
+Response Elements.............................................................................................................4
+Errors...............................................................................................................................4
+Examples ...........................................................................................................................5
+See Also ............................................................................................................................6
+CreateProject.............................................................................................................................7
+Request Syntax..................................................................................................................7
+Request Parameters............................................................................................................7
+Response Syntax................................................................................................................9
+Response Elements.............................................................................................................9
+Errors..............................................................................................................................10
+See Also ..........................................................................................................................10
+CreateUserProﬁle......................................................................................................................12
+Request Syntax................................................................................................................12
+Request Parameters..........................................................................................................12
+Response Syntax..............................................................................................................13
+Response Elements...........................................................................................................13
+Errors..............................................................................................................................14
+Examples .........................................................................................................................14
+See Also ..........................................................................................................................15
+DeleteProject...........................................................................................................................16
+Request Syntax................................................................................................................16
+Request Parameters..........................................................................................................16
+Response Syntax..............................................................................................................16
+Response Elements...........................................................................................................17
+Errors..............................................................................................................................17
+Examples .........................................................................................................................17
+See Also ..........................................................................................................................18
+DeleteUserProﬁle.....................................................................................................................19
+Request Syntax................................................................................................................19
+Request Parameters..........................................................................................................19
+Response Syntax..............................................................................................................19
+Response Elements...........................................................................................................19
+Errors..............................................................................................................................20
+Examples .........................................................................................................................20
+See Also ..........................................................................................................................20
+DescribeProject........................................................................................................................22
+Request Syntax................................................................................................................22
+Request Parameters..........................................................................................................22
+Response Syntax..............................................................................................................22
+Response Elements...........................................................................................................22
+Errors..............................................................................................................................24
+Examples .........................................................................................................................24
+See Also ..........................................................................................................................25
+DescribeUserProﬁle...................................................................................................................26
+Request Syntax................................................................................................................26
+Request Parameters..........................................................................................................26
+Response Syntax..............................................................................................................26
+Response Elements...........................................................................................................26
+API Version 2017-04-19
+iiiAWS CodeStar API Reference
+Errors..............................................................................................................................27
+Examples .........................................................................................................................28
+See Also ..........................................................................................................................28
+DisassociateTeamMember..........................................................................................................30
+Request Syntax................................................................................................................30
+Request Parameters..........................................................................................................30
+Response Elements...........................................................................................................30
+Errors..............................................................................................................................30
+Examples .........................................................................................................................31
+See Also ..........................................................................................................................31
+ListProjects..............................................................................................................................33
+Request Syntax................................................................................................................33
+Request Parameters..........................................................................................................33
+Response Syntax..............................................................................................................33
+Response Elements...........................................................................................................33
+Errors..............................................................................................................................34
+Examples .........................................................................................................................34
+See Also ..........................................................................................................................35
+ListResources...........................................................................................................................36
+Request Syntax................................................................................................................36
+Request Parameters..........................................................................................................36
+Response Syntax..............................................................................................................36
+Response Elements...........................................................................................................37
+Errors..............................................................................................................................37
+Examples .........................................................................................................................37
+See Also ..........................................................................................................................38
+ListTagsForProject....................................................................................................................39
+Request Syntax................................................................................................................39
+Request Parameters..........................................................................................................39
+Response Syntax..............................................................................................................39
+Response Elements...........................................................................................................40
+Errors..............................................................................................................................40
+See Also ..........................................................................................................................40
+ListTeamMembers.....................................................................................................................42
+Request Syntax................................................................................................................42
+Request Parameters..........................................................................................................42
+Response Syntax..............................................................................................................42
+Response Elements...........................................................................................................43
+Errors..............................................................................................................................43
+Examples .........................................................................................................................43
+See Also ..........................................................................................................................44
+ListUserProﬁles........................................................................................................................45
+Request Syntax................................................................................................................45
+Request Parameters..........................................................................................................45
+Response Syntax..............................................................................................................45
+Response Elements...........................................................................................................45
+Errors..............................................................................................................................46
+Examples .........................................................................................................................46
+See Also ..........................................................................................................................47
+TagProject...............................................................................................................................48
+Request Syntax................................................................................................................48
+Request Parameters..........................................................................................................48
+Response Syntax..............................................................................................................48
+Response Elements...........................................................................................................49
+Errors..............................................................................................................................49
+See Also ..........................................................................................................................49
+UntagProject............................................................................................................................51
+API Version 2017-04-19
+ivAWS CodeStar API Reference
+Request Syntax................................................................................................................51
+Request Parameters..........................................................................................................51
+Response Elements...........................................................................................................51
+Errors..............................................................................................................................51
+See Also ..........................................................................................................................52
+UpdateProject..........................................................................................................................53
+Request Syntax................................................................................................................53
+Request Parameters..........................................................................................................53
+Response Elements...........................................................................................................53
+Errors..............................................................................................................................54
+Examples .........................................................................................................................54
+See Also ..........................................................................................................................54
+UpdateTeamMember.................................................................................................................56
+Request Syntax................................................................................................................56
+Request Parameters..........................................................................................................56
+Response Syntax..............................................................................................................57
+Response Elements...........................................................................................................57
+Errors..............................................................................................................................57
+Examples .........................................................................................................................58
+See Also ..........................................................................................................................59
+UpdateUserProﬁle....................................................................................................................60
+Request Syntax................................................................................................................60
+Request Parameters..........................................................................................................60
+Response Syntax..............................................................................................................61
+Response Elements...........................................................................................................61
+Errors..............................................................................................................................62
+Examples .........................................................................................................................62
+See Also ..........................................................................................................................63
+Data Types......................................................................................................................................64
+Code .......................................................................................................................................65
+Contents .........................................................................................................................65
+See Also ..........................................................................................................................65
+CodeCommitCodeDestination .....................................................................................................66
+Contents .........................................................................................................................66
+See Also ..........................................................................................................................66
+CodeDestination .......................................................................................................................67
+Contents .........................................................................................................................67
+See Also ..........................................................................................................................67
+CodeSource.............................................................................................................................68
+Contents .........................................................................................................................68
+See Also ..........................................................................................................................68
+GitHubCodeDestination .............................................................................................................69
+Contents .........................................................................................................................69
+See Also ..........................................................................................................................70
+ProjectStatus...........................................................................................................................71
+Contents .........................................................................................................................71
+See Also ..........................................................................................................................71
+ProjectSummary.......................................................................................................................72
+Contents .........................................................................................................................72
+See Also ..........................................................................................................................72
+Resource.................................................................................................................................73
+Contents .........................................................................................................................73
+See Also ..........................................................................................................................73
+S3Location ..............................................................................................................................74
+Contents .........................................................................................................................74
+See Also ..........................................................................................................................74
+TeamMember...........................................................................................................................75
+API Version 2017-04-19
+vAWS CodeStar API Reference
+Contents .........................................................................................................................75
+See Also ..........................................................................................................................75
+Toolchain................................................................................................................................76
+Contents .........................................................................................................................76
+See Also ..........................................................................................................................76
+ToolchainSource.......................................................................................................................77
+Contents .........................................................................................................................77
+See Also ..........................................................................................................................77
+UserProﬁleSummary.................................................................................................................78
+Contents .........................................................................................................................78
+See Also ..........................................................................................................................79
+Common Parameters........................................................................................................................80
+Common Errors................................................................................................................................82
+API Version 2017-04-19
+viAWS CodeStar API Reference
+Welcome
+This is the API reference for AWS CodeStar. This reference provides descriptions of the operations and 
+data types for the AWS CodeStar API along with usage examples.
+You can use the AWS CodeStar API to work with:
+Projects and their resources, by calling the following:
+•CreateProject , which creates a project.
+•DeleteProject , which deletes a project.
+•DescribeProject , which lists the attributes of a project.
+•ListProjects , which lists all projects associated with your AWS account.
+•ListResources , which lists the resources associated with a project.
+•ListTagsForProject , which lists the tags associated with a project.
+•TagProject , which adds tags to a project.
+•UntagProject , which removes tags from a project.
+•UpdateProject , which updates the attributes of a project.
+Teams and team members, by calling the following:
+•AssociateTeamMember , which adds an IAM user to the team for a project.
+•DisassociateTeamMember , which removes an IAM user from the team for a project.
+•ListTeamMembers , which lists all the IAM users in the team for a project, including their roles and 
+attributes.
+•UpdateTeamMember , which updates a team member's attributes in a project.
+Users, by calling the following:
+•CreateUserProfile , which creates a user proﬁle that contains data associated with the user across 
+all projects.
+•DeleteUserProfile , which deletes all user proﬁle information across all projects.
+•DescribeUserProfile , which describes the proﬁle of a user.
+•ListUserProfiles , which lists all user proﬁles.
+•UpdateUserProfile , which updates the proﬁle for a user.
+This document was last published on August 10, 2023.
+API Version 2017-04-19
+1AWS CodeStar API Reference
+Actions
+The following actions are supported:
+•AssociateTeamMember (p. 3)
+•CreateProject (p. 7)
+•CreateUserProﬁle (p. 12)
+•DeleteProject (p. 16)
+•DeleteUserProﬁle (p. 19)
+•DescribeProject (p. 22)
+•DescribeUserProﬁle (p. 26)
+•DisassociateTeamMember (p. 30)
+•ListProjects (p. 33)
+•ListResources (p. 36)
+•ListTagsForProject (p. 39)
+•ListTeamMembers (p. 42)
+•ListUserProﬁles (p. 45)
+•TagProject (p. 48)
+•UntagProject (p. 51)
+•UpdateProject (p. 53)
+•UpdateTeamMember (p. 56)
+•UpdateUserProﬁle (p. 60)
+API Version 2017-04-19
+2AWS CodeStar API Reference
+AssociateTeamMember
+AssociateTeamMember
+Adds an IAM user to the team for an AWS CodeStar project.
+Request Syntax
+{ 
+   "clientRequestToken ": "string", 
+   "projectId ": "string", 
+   "projectRole ": "string", 
+   "remoteAccessAllowed ": boolean, 
+   "userArn": "string"
+}
+Request Parameters
+For information about the parameters that are common to all actions, see Common 
+Parameters (p. 80).
+The request accepts the following data in JSON format.
+clientRequestToken (p. 3)
+A user- or system-generated token that identiﬁes the entity that requested the team member 
+association to the project. This token can be used to repeat the request.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 256.
+Pattern: ^[\w:/-]+$
+Required: No
+projectId (p. 3)
+The ID of the project to which you will add the IAM user.
+Type: String
+Length Constraints: Minimum length of 2. Maximum length of 15.
+Pattern: ^[a-z][a-z0-9-]+$
+Required: Yes
+projectRole (p. 3)
+The AWS CodeStar project role that will apply to this user. This role determines what actions a user 
+can take in an AWS CodeStar project.
+Type: String
+Pattern: ^(Owner|Viewer|Contributor)$
+Required: Yes
+remoteAccessAllowed (p. 3)
+Whether the team member is allowed to use an SSH public/private key pair to remotely access 
+project resources, for example Amazon EC2 instances.
+API Version 2017-04-19
+3AWS CodeStar API Reference
+Response Syntax
+Type: Boolean
+Required: No
+userArn  (p. 3)
+The Amazon Resource Name (ARN) for the IAM user you want to add to the AWS CodeStar project.
+Type: String
+Length Constraints: Minimum length of 32. Maximum length of 95.
+Pattern: ^arn:aws:iam::\d{12}:user(?:(\u002F)|(\u002F[\u0021-\u007E]+\u002F))
+[\w+=,.@-]+$
+Required: Yes
+Response Syntax
+{ 
+   "clientRequestToken ": "string"
+}
+Response Elements
+If the action is successful, the service sends back an HTTP 200 response.
+The following data is returned in JSON format by the service.
+clientRequestToken (p. 4)
+The user- or system-generated token from the initial request that can be used to repeat the request.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 256.
+Pattern: ^[\w:/-]+$
+Errors
+For information about the errors that are common to all actions, see Common Errors (p. 82).
+ConcurrentModiﬁcationException
+Another modiﬁcation is being made. That modiﬁcation must complete before you can make your 
+change.
+HTTP Status Code: 400
+InvalidServiceRoleException
+The service role is not valid.
+HTTP Status Code: 400
+LimitExceededException
+A resource limit has been exceeded.
+API Version 2017-04-19
+4AWS CodeStar API Reference
+Examples
+HTTP Status Code: 400
+ProjectConﬁgurationException
+Project conﬁguration information is required but not speciﬁed.
+HTTP Status Code: 400
+ProjectNotFoundException
+The speciﬁed AWS CodeStar project was not found.
+HTTP Status Code: 400
+TeamMemberAlreadyAssociatedException
+The team member is already associated with a role in this project.
+HTTP Status Code: 400
+ValidationException
+The speciﬁed input is either not valid, or it could not be validated.
+HTTP Status Code: 400
+Examples
+Example
+This example illustrates one usage of AssociateTeamMember.
+Sample Request
+POST / HTTP/1.1
+Host: codestar.us-east-1.amazonaws.com
+Accept-Encoding: identity
+Content-Length: 323
+X-Amz-Target: CodeStar_20170419.AssociateTeamMember
+X-Amz-Date: 20170328T215402Z
+User-Agent: aws-cli/1.10.53 Python/2.7.9 Windows/8
+Content-Type: application/x-amz-json-1.1
+Authorization: AWS4-HMAC-SHA256 Credential=AKIAI44QH8DHBEXAMPLE/20161201/us-east-1/
+codestar/aws4_request, SignedHeaders=content-type;host;user-agent;x-amz-date;x-amz-target, 
+ Signature=8d9b5998EXAMPLE
+{ 
+   "Operation": "com.amazonaws.codestar#AssociateTeamMember", 
+   "Service": "com.amazonaws.codestar#CodeStarService", 
+   "Input": { 
+       "projectId": "my-first-projec", 
+       "projectRole": "Contributor", 
+       "remoteAccessAllowed": True, 
+       "userArn": "arn:aws:iam::111111111111:user/Jane_Doe", 
+    }
+}
+Sample Response
+HTTP/1.1 200 OK
+x-amzn-RequestId: 0728aaa8-EXAMPLE
+API Version 2017-04-19
+5AWS CodeStar API Reference
+See Also
+Content-Type: application/x-amz-json-1.1
+Content-Length: 2
+Date: Tue, 28 March 2017 15:40:24 GMT
+{} 
+          
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+API Version 2017-04-19
+6AWS CodeStar API Reference
+CreateProject
+CreateProject
+Creates a project, including project resources. This action creates a project based on a submitted project 
+request. A set of source code ﬁles and a toolchain template ﬁle can be included with the project request. 
+If these are not provided, an empty project is created.
+Request Syntax
+{ 
+   "clientRequestToken ": "string", 
+   "description ": "string", 
+   "id": "string", 
+   "name": "string", 
+   "sourceCode ": [  
+      {  
+         " destination ": {  
+            " codeCommit ": {  
+               " name": "string" 
+            }, 
+            " gitHub": {  
+               " description ": "string", 
+               " issuesEnabled ": boolean, 
+               " name": "string", 
+               " owner": "string", 
+               " privateRepository ": boolean, 
+               " token": "string", 
+               " type": "string" 
+            } 
+         }, 
+         " source": {  
+            " s3": {  
+               " bucketKey ": "string", 
+               " bucketName ": "string" 
+            } 
+         } 
+      } 
+   ], 
+   "tags": {  
+      "string" : "string"  
+   }, 
+   "toolchain ": {  
+      "roleArn": "string", 
+      "source": {  
+         " s3": {  
+            " bucketKey ": "string", 
+            " bucketName ": "string" 
+         } 
+      }, 
+      "stackParameters ": {  
+         " string" : "string"  
+      } 
+   }
+}
+Request Parameters
+For information about the parameters that are common to all actions, see Common 
+Parameters (p. 80).
+The request accepts the following data in JSON format.
+API Version 2017-04-19
+7AWS CodeStar API Reference
+Request Parameters
+clientRequestToken (p. 7)
+A user- or system-generated token that identiﬁes the entity that requested project creation. This 
+token can be used to repeat the request.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 256.
+Pattern: ^[\w:/-]+$
+Required: No
+description  (p. 7)
+The description of the project, if any.
+Type: String
+Length Constraints: Maximum length of 1024.
+Pattern: ^$|^\S(.*\S)?$
+Required: No
+id (p. 7)
+The ID of the project to be created in AWS CodeStar.
+Type: String
+Length Constraints: Minimum length of 2. Maximum length of 15.
+Pattern: ^[a-z][a-z0-9-]+$
+Required: Yes
+name  (p. 7)
+The display name for the project to be created in AWS CodeStar.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 100.
+Pattern: ^\S(.*\S)?$
+Required: Yes
+sourceCode (p. 7)
+A list of the Code objects submitted with the project request. If this parameter is speciﬁed, the 
+request must also include the toolchain parameter.
+Type: Array of Code  (p. 65) objects
+Required: No
+tags  (p. 7)
+The tags created for the project.
+Type: String to string map
+Key Length Constraints: Minimum length of 1. Maximum length of 128.
+API Version 2017-04-19
+8AWS CodeStar API Reference
+Response Syntax
+Key Pattern: ^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$
+Value Length Constraints: Maximum length of 256.
+Value Pattern: ^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$
+Required: No
+toolchain (p. 7)
+The name of the toolchain template ﬁle submitted with the project request. If this parameter is 
+speciﬁed, the request must also include the sourceCode parameter.
+Type: Toolchain (p. 76) object
+Required: No
+Response Syntax
+{ 
+   "arn": "string", 
+   "clientRequestToken ": "string", 
+   "id": "string", 
+   "projectTemplateId ": "string"
+}
+Response Elements
+If the action is successful, the service sends back an HTTP 200 response.
+The following data is returned in JSON format by the service.
+arn (p. 9)
+The Amazon Resource Name (ARN) of the created project.
+Type: String
+Pattern: ^arn:aws[^:\s]*:codestar:[^:\s]+:[0-9]{12}:project\/[a-z]([a-
+z0-9|-])+$
+clientRequestToken (p. 9)
+A user- or system-generated token that identiﬁes the entity that requested project creation.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 256.
+Pattern: ^[\w:/-]+$
+id (p. 9)
+The ID of the project.
+Type: String
+Length Constraints: Minimum length of 2. Maximum length of 15.
+Pattern: ^[a-z][a-z0-9-]+$
+API Version 2017-04-19
+9AWS CodeStar API Reference
+Errors
+projectTemplateId (p. 9)
+The ID for the AWS CodeStar project template used to create the project.
+Type: String
+Length Constraints: Minimum length of 1.
+Pattern: ^arn:aws[^:\s]{0,5}:codestar:[^:\s]+::project-template(\/(github|
+codecommit))?\/[a-z0-9-]+$
+Errors
+For information about the errors that are common to all actions, see Common Errors (p. 82).
+ConcurrentModiﬁcationException
+Another modiﬁcation is being made. That modiﬁcation must complete before you can make your 
+change.
+HTTP Status Code: 400
+InvalidServiceRoleException
+The service role is not valid.
+HTTP Status Code: 400
+LimitExceededException
+A resource limit has been exceeded.
+HTTP Status Code: 400
+ProjectAlreadyExistsException
+An AWS CodeStar project with the same ID already exists in this region for the AWS account. AWS 
+CodeStar project IDs must be unique within a region for the AWS account.
+HTTP Status Code: 400
+ProjectConﬁgurationException
+Project conﬁguration information is required but not speciﬁed.
+HTTP Status Code: 400
+ProjectCreationFailedException
+The project creation request was valid, but a nonspeciﬁc exception or error occurred during project 
+creation. The project could not be created in AWS CodeStar.
+HTTP Status Code: 400
+ValidationException
+The speciﬁed input is either not valid, or it could not be validated.
+HTTP Status Code: 400
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+API Version 2017-04-19
+10AWS CodeStar API Reference
+See Also
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+API Version 2017-04-19
+11AWS CodeStar API Reference
+CreateUserProﬁle
+CreateUserProﬁle
+Creates a proﬁle for a user that includes user preferences, such as the display name and email address 
+assocciated with the user, in AWS CodeStar. The user proﬁle is not project-speciﬁc. Information in the 
+user proﬁle is displayed wherever the user's information appears to other users in AWS CodeStar.
+Request Syntax
+{ 
+   "displayName ": "string", 
+   "emailAddress ": "string", 
+   "sshPublicKey ": "string", 
+   "userArn": "string"
+}
+Request Parameters
+For information about the parameters that are common to all actions, see Common 
+Parameters (p. 80).
+The request accepts the following data in JSON format.
+displayName (p. 12)
+The name that will be displayed as the friendly name for the user in AWS CodeStar.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 64.
+Pattern: ^\S(.*\S)?$
+Required: Yes
+emailAddress  (p. 12)
+The email address that will be displayed as part of the user's proﬁle in AWS CodeStar.
+Type: String
+Length Constraints: Minimum length of 3. Maximum length of 128.
+Pattern: ^[\w-.+]+@[\w-.+]+$
+Required: Yes
+sshPublicKey (p. 12)
+The SSH public key associated with the user in AWS CodeStar. If a project owner allows the user 
+remote access to project resources, this public key will be used along with the user's private key for 
+SSH access.
+Type: String
+Length Constraints: Maximum length of 16384.
+Pattern: ^[\t\r\n\u0020-\u00FF]*$
+Required: No
+API Version 2017-04-19
+12AWS CodeStar API Reference
+Response Syntax
+userArn  (p. 12)
+The Amazon Resource Name (ARN) of the user in IAM.
+Type: String
+Length Constraints: Minimum length of 32. Maximum length of 95.
+Pattern: ^arn:aws:iam::\d{12}:user(?:(\u002F)|(\u002F[\u0021-\u007E]+\u002F))
+[\w+=,.@-]+$
+Required: Yes
+Response Syntax
+{ 
+   "createdTimestamp ": number, 
+   "displayName ": "string", 
+   "emailAddress ": "string", 
+   "lastModifiedTimestamp ": number, 
+   "sshPublicKey ": "string", 
+   "userArn": "string"
+}
+Response Elements
+If the action is successful, the service sends back an HTTP 200 response.
+The following data is returned in JSON format by the service.
+createdTimestamp  (p. 13)
+The date the user proﬁle was created, in timestamp format.
+Type: Timestamp
+displayName (p. 13)
+The name that is displayed as the friendly name for the user in AWS CodeStar.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 64.
+Pattern: ^\S(.*\S)?$
+emailAddress  (p. 13)
+The email address that is displayed as part of the user's proﬁle in AWS CodeStar.
+Type: String
+Length Constraints: Minimum length of 3. Maximum length of 128.
+Pattern: ^[\w-.+]+@[\w-.+]+$
+lastModiﬁedTimestamp  (p. 13)
+The date the user proﬁle was last modiﬁed, in timestamp format.
+Type: Timestamp
+API Version 2017-04-19
+13AWS CodeStar API Reference
+Errors
+sshPublicKey (p. 13)
+The SSH public key associated with the user in AWS CodeStar. This is the public portion of the 
+public/private keypair the user can use to access project resources if a project owner allows the user 
+remote access to those resources.
+Type: String
+Length Constraints: Maximum length of 16384.
+Pattern: ^[\t\r\n\u0020-\u00FF]*$
+userArn  (p. 13)
+The Amazon Resource Name (ARN) of the user in IAM.
+Type: String
+Length Constraints: Minimum length of 32. Maximum length of 95.
+Pattern: ^arn:aws:iam::\d{12}:user(?:(\u002F)|(\u002F[\u0021-\u007E]+\u002F))
+[\w+=,.@-]+$
+Errors
+For information about the errors that are common to all actions, see Common Errors (p. 82).
+UserProﬁleAlreadyExistsException
+A user proﬁle with that name already exists in this region for the AWS account. AWS CodeStar user 
+proﬁle names must be unique within a region for the AWS account.
+HTTP Status Code: 400
+ValidationException
+The speciﬁed input is either not valid, or it could not be validated.
+HTTP Status Code: 400
+Examples
+Example
+This example illustrates one usage of CreateUserProﬁle.
+Sample Request
+POST / HTTP/1.1
+Host: codestar.us-east-1.amazonaws.com
+Accept-Encoding: identity
+Content-Length: 1019
+X-Amz-Target: CodeStar_20170419.CreateUserProfile
+X-Amz-Date: 20170406T004805Z
+User-Agent: aws-cli/1.11.36 Python/2.7.9 Windows/7 botocore/1.4.93
+Content-Type: application/x-amz-json-1.1
+Authorization: AWS4-HMAC-SHA256 Credential=AIDACKCEVSQ6C2EXAMPLE/20170406/us-east-1/
+codestar/aws4_request, SignedHeaders=content-type;host;x-amz-date;x-amz-target, 
+ Signature=c25ddcd5EXAMPLE
+API Version 2017-04-19
+14AWS CodeStar API Reference
+See Also
+{ 
+  "emailAddress": "jane.doe@example.com",  
+  "sshPublicKey": "EXAMPLE=",  
+  "displayName": "Jane Doe",  
+  "userArn": "arn:aws:iam::111111111111:user/Jane_Doe"
+}
+Sample Response
+HTTP/1.1 200 OK
+x-amzn-RequestId: b34f8665-EXAMPLE
+Content-Type: application/x-amz-json-1.1
+Content-Length: 1089
+Date: Thu, 06 Apr 2017 00:48:07 GMT
+{ 
+ "createdTimestamp":1.491439687681E9," 
+ displayName":"Jane Doe", 
+ "emailAddress":"jane.doe@example.com", 
+ "lastModifiedTimestamp":1.491439687681E9, 
+ "sshPublicKey":"EXAMPLE=","userArn":"arn:aws:iam::111111111111:user/Jane_Doe"
+}
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+API Version 2017-04-19
+15AWS CodeStar API Reference
+DeleteProject
+DeleteProject
+Deletes a project, including project resources. Does not delete users associated with the project, but does 
+delete the IAM roles that allowed access to the project.
+Request Syntax
+{ 
+   "clientRequestToken ": "string", 
+   "deleteStack ": boolean, 
+   "id": "string"
+}
+Request Parameters
+For information about the parameters that are common to all actions, see Common 
+Parameters (p. 80).
+The request accepts the following data in JSON format.
+clientRequestToken (p. 16)
+A user- or system-generated token that identiﬁes the entity that requested project deletion. This 
+token can be used to repeat the request.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 256.
+Pattern: ^[\w:/-]+$
+Required: No
+deleteStack (p. 16)
+Whether to send a delete request for the primary stack in AWS CloudFormation originally used 
+to generate the project and its resources. This option will delete all AWS resources for the project 
+(except for any buckets in Amazon S3) as well as deleting the project itself. Recommended for most 
+use cases.
+Type: Boolean
+Required: No
+id (p. 16)
+The ID of the project to be deleted in AWS CodeStar.
+Type: String
+Length Constraints: Minimum length of 2. Maximum length of 15.
+Pattern: ^[a-z][a-z0-9-]+$
+Required: Yes
+Response Syntax
+{ 
+API Version 2017-04-19
+16AWS CodeStar API Reference
+Response Elements
+   "projectArn ": "string", 
+   "stackId": "string"
+}
+Response Elements
+If the action is successful, the service sends back an HTTP 200 response.
+The following data is returned in JSON format by the service.
+projectArn (p. 16)
+The Amazon Resource Name (ARN) of the deleted project.
+Type: String
+Pattern: ^arn:aws[^:\s]*:codestar:[^:\s]+:[0-9]{12}:project\/[a-z]([a-
+z0-9|-])+$
+stackId  (p. 16)
+The ID of the primary stack in AWS CloudFormation that will be deleted as part of deleting the 
+project and its resources.
+Type: String
+Pattern: ^arn:aws[^:\s]*:cloudformation:[^:\s]+:[0-9]{12}:stack\/[^:\s]+\/[^:
+\s]+$
+Errors
+For information about the errors that are common to all actions, see Common Errors (p. 82).
+ConcurrentModiﬁcationException
+Another modiﬁcation is being made. That modiﬁcation must complete before you can make your 
+change.
+HTTP Status Code: 400
+InvalidServiceRoleException
+The service role is not valid.
+HTTP Status Code: 400
+ValidationException
+The speciﬁed input is either not valid, or it could not be validated.
+HTTP Status Code: 400
+Examples
+Example
+This example illustrates one usage of DeleteProject.
+API Version 2017-04-19
+17AWS CodeStar API Reference
+See Also
+Sample Request
+POST / HTTP/1.1
+Host: codestar.us-east-1.amazonaws.com
+Accept-Encoding: identity
+Content-Length: 24
+X-Amz-Target: CodeStar_20170419.DeleteProject
+X-Amz-Date: 20170405T235449Z
+User-Agent: aws-cli/1.11.36 Python/2.7.9 Windows/7 botocore/1.4.93
+Content-Type: application/x-amz-json-1.1
+Authorization: AWS4-HMAC-SHA256 Credential=AIDACKCEVSQ6C2EXAMPLE/20170405/us-east-1/
+codestar/aws4_request, SignedHeaders=content-type;host;x-amz-date;x-amz-target, 
+ Signature=c25ddcd5EXAMPLE
+{"id": "my-2nd-project"}
+Sample Response
+HTTP/1.1 200 OK
+x-amzn-RequestId: 41efcceb-EXAMPLE
+Content-Type: application/x-amz-json-1.1
+Content-Length: 79
+Date: Wed, 05 Apr 2017 23:54:51 GMT
+{"projectArn":"arn:aws:codestar:us-east-1:111111111111:project/my-2nd-project"}
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+API Version 2017-04-19
+18AWS CodeStar API Reference
+DeleteUserProﬁle
+DeleteUserProﬁle
+Deletes a user proﬁle in AWS CodeStar, including all personal preference data associated with that 
+proﬁle, such as display name and email address. It does not delete the history of that user, for example 
+the history of commits made by that user.
+Request Syntax
+{ 
+   "userArn": "string"
+}
+Request Parameters
+For information about the parameters that are common to all actions, see Common 
+Parameters (p. 80).
+The request accepts the following data in JSON format.
+userArn  (p. 19)
+The Amazon Resource Name (ARN) of the user to delete from AWS CodeStar.
+Type: String
+Length Constraints: Minimum length of 32. Maximum length of 95.
+Pattern: ^arn:aws:iam::\d{12}:user(?:(\u002F)|(\u002F[\u0021-\u007E]+\u002F))
+[\w+=,.@-]+$
+Required: Yes
+Response Syntax
+{ 
+   "userArn": "string"
+}
+Response Elements
+If the action is successful, the service sends back an HTTP 200 response.
+The following data is returned in JSON format by the service.
+userArn  (p. 19)
+The Amazon Resource Name (ARN) of the user deleted from AWS CodeStar.
+Type: String
+Length Constraints: Minimum length of 32. Maximum length of 95.
+Pattern: ^arn:aws:iam::\d{12}:user(?:(\u002F)|(\u002F[\u0021-\u007E]+\u002F))
+[\w+=,.@-]+$
+API Version 2017-04-19
+19AWS CodeStar API Reference
+Errors
+Errors
+For information about the errors that are common to all actions, see Common Errors (p. 82).
+ValidationException
+The speciﬁed input is either not valid, or it could not be validated.
+HTTP Status Code: 400
+Examples
+Example
+This example illustrates one usage of DeleteUserProﬁle.
+Sample Request
+POST / HTTP/1.1
+Host: codestar.us-east-1.amazonaws.com
+Accept-Encoding: identity
+Content-Length: 54
+X-Amz-Target: CodeStar_20170419.DeleteUserProfile
+X-Amz-Date: 20170406T014701Z
+User-Agent: aws-cli/1.11.36 Python/2.7.9 Windows/7 botocore/1.4.93
+Content-Type: application/x-amz-json-1.1
+Authorization: AWS4-HMAC-SHA256 Credential=AIDACKCEVSQ6C2EXAMPLE/20170406/us-east-1/
+codestar/aws4_request, SignedHeaders=content-type;host;x-amz-date;x-amz-target, 
+ Signature=c25ddcd5EXAMPLE
+{"userArn": "arn:aws:iam::111111111111:user/DemoUser"}
+Sample Response
+HTTP/1.1 200 OK
+x-amzn-RequestId: ef0e59a1-EXAMPLE
+Content-Type: application/x-amz-json-1.1
+Content-Length: 53
+Date: Thu, 06 Apr 2017 01:47:03 GMT
+{"userArn":"arn:aws:iam::111111111111:user/DemoUser"}
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+API Version 2017-04-19
+20AWS CodeStar API Reference
+See Also
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+API Version 2017-04-19
+21AWS CodeStar API Reference
+DescribeProject
+DescribeProject
+Describes a project and its resources.
+Request Syntax
+{ 
+   "id": "string"
+}
+Request Parameters
+For information about the parameters that are common to all actions, see Common 
+Parameters (p. 80).
+The request accepts the following data in JSON format.
+id (p. 22)
+The ID of the project.
+Type: String
+Length Constraints: Minimum length of 2. Maximum length of 15.
+Pattern: ^[a-z][a-z0-9-]+$
+Required: Yes
+Response Syntax
+{ 
+   "arn": "string", 
+   "clientRequestToken ": "string", 
+   "createdTimeStamp ": number, 
+   "description ": "string", 
+   "id": "string", 
+   "name": "string", 
+   "projectTemplateId ": "string", 
+   "stackId": "string", 
+   "status": {  
+      "reason": "string", 
+      "state": "string" 
+   }
+}
+Response Elements
+If the action is successful, the service sends back an HTTP 200 response.
+The following data is returned in JSON format by the service.
+arn (p. 22)
+The Amazon Resource Name (ARN) for the project.
+API Version 2017-04-19
+22AWS CodeStar API Reference
+Response Elements
+Type: String
+Pattern: ^arn:aws[^:\s]*:codestar:[^:\s]+:[0-9]{12}:project\/[a-z]([a-
+z0-9|-])+$
+clientRequestToken (p. 22)
+A user- or system-generated token that identiﬁes the entity that requested project creation.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 256.
+Pattern: ^[\w:/-]+$
+createdTimeStamp  (p. 22)
+The date and time the project was created, in timestamp format.
+Type: Timestamp
+description  (p. 22)
+The description of the project, if any.
+Type: String
+Length Constraints: Maximum length of 1024.
+Pattern: ^$|^\S(.*\S)?$
+id (p. 22)
+The ID of the project.
+Type: String
+Length Constraints: Minimum length of 2. Maximum length of 15.
+Pattern: ^[a-z][a-z0-9-]+$
+name  (p. 22)
+The display name for the project.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 100.
+Pattern: ^\S(.*\S)?$
+projectTemplateId (p. 22)
+The ID for the AWS CodeStar project template used to create the project.
+Type: String
+Length Constraints: Minimum length of 1.
+Pattern: ^arn:aws[^:\s]{0,5}:codestar:[^:\s]+::project-template(\/(github|
+codecommit))?\/[a-z0-9-]+$
+stackId  (p. 22)
+The ID of the primary stack in AWS CloudFormation used to generate resources for the project.
+Type: String
+API Version 2017-04-19
+23AWS CodeStar API Reference
+Errors
+Pattern: ^arn:aws[^:\s]*:cloudformation:[^:\s]+:[0-9]{12}:stack\/[^:\s]+\/[^:
+\s]+$
+status  (p. 22)
+The project creation or deletion status.
+Type: ProjectStatus (p. 71) object
+Errors
+For information about the errors that are common to all actions, see Common Errors (p. 82).
+ConcurrentModiﬁcationException
+Another modiﬁcation is being made. That modiﬁcation must complete before you can make your 
+change.
+HTTP Status Code: 400
+InvalidServiceRoleException
+The service role is not valid.
+HTTP Status Code: 400
+ProjectConﬁgurationException
+Project conﬁguration information is required but not speciﬁed.
+HTTP Status Code: 400
+ProjectNotFoundException
+The speciﬁed AWS CodeStar project was not found.
+HTTP Status Code: 400
+ValidationException
+The speciﬁed input is either not valid, or it could not be validated.
+HTTP Status Code: 400
+Examples
+Example
+This example illustrates one usage of DescribeProject.
+Sample Request
+POST / HTTP/1.1
+Host: codestar.us-east-1.amazonaws.com
+Accept-Encoding: identity
+Content-Length: 25
+X-Amz-Target: CodeStar_20170419.DescribeProject
+X-Amz-Date: 20170406T002601Z
+User-Agent: aws-cli/1.11.36 Python/2.7.9 Windows/7 botocore/1.4.93
+Content-Type: application/x-amz-json-1.1
+API Version 2017-04-19
+24AWS CodeStar API Reference
+See Also
+Authorization: AWS4-HMAC-SHA256 Credential=AIDACKCEVSQ6C2EXAMPLE/20170406/us-east-1/
+codestar/aws4_request, SignedHeaders=content-type;host;x-amz-date;x-amz-target, 
+ Signature=c25ddcd5EXAMPLE
+{"id": "my-first-projec"}
+Sample Response
+HTTP/1.1 200 OK
+x-amzn-RequestId: 9e16d048-EXAMPLE
+Content-Type: application/x-amz-json-1.1
+Content-Length: 409
+Date: Thu, 06 Apr 2017 00:26:03 GMT
+{ 
+ "arn":"arn:aws:codestar:us-east-1:111111111111:project/my-first-projec", 
+ "createdTimeStamp":1.491000495561E9, 
+ "description":"AWS CodeStar created project", 
+ "id":"my-first-projec","name":"My First Project", 
+ "projectTemplateId":"arn:aws:codestar:us-east-1::project-template/webapp-nodeweb-ec2", 
+ "stackId":"arn:aws:cloudformation:us-east-1:111111111111:stack/awscodestar-my-first-
+projec/01234567-EXAMPLE"
+}
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+API Version 2017-04-19
+25AWS CodeStar API Reference
+DescribeUserProﬁle
+DescribeUserProﬁle
+Describes a user in AWS CodeStar and the user attributes across all projects.
+Request Syntax
+{ 
+   "userArn": "string"
+}
+Request Parameters
+For information about the parameters that are common to all actions, see Common 
+Parameters (p. 80).
+The request accepts the following data in JSON format.
+userArn  (p. 26)
+The Amazon Resource Name (ARN) of the user.
+Type: String
+Length Constraints: Minimum length of 32. Maximum length of 95.
+Pattern: ^arn:aws:iam::\d{12}:user(?:(\u002F)|(\u002F[\u0021-\u007E]+\u002F))
+[\w+=,.@-]+$
+Required: Yes
+Response Syntax
+{ 
+   "createdTimestamp ": number, 
+   "displayName ": "string", 
+   "emailAddress ": "string", 
+   "lastModifiedTimestamp ": number, 
+   "sshPublicKey ": "string", 
+   "userArn": "string"
+}
+Response Elements
+If the action is successful, the service sends back an HTTP 200 response.
+The following data is returned in JSON format by the service.
+createdTimestamp  (p. 26)
+The date and time when the user proﬁle was created in AWS CodeStar, in timestamp format.
+Type: Timestamp
+displayName (p. 26)
+The display name shown for the user in AWS CodeStar projects. For example, this could be set to 
+both ﬁrst and last name ("Mary Major") or a single name ("Mary"). The display name is also used to 
+API Version 2017-04-19
+26AWS CodeStar API Reference
+Errors
+generate the initial icon associated with the user in AWS CodeStar projects. If spaces are included 
+in the display name, the ﬁrst character that appears after the space will be used as the second 
+character in the user initial icon. The initial icon displays a maximum of two characters, so a display 
+name with more than one space (for example "Mary Jane Major") would generate an initial icon 
+using the ﬁrst character and the ﬁrst character after the space ("MJ", not "MM").
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 64.
+Pattern: ^\S(.*\S)?$
+emailAddress  (p. 26)
+The email address for the user. Optional.
+Type: String
+Length Constraints: Minimum length of 3. Maximum length of 128.
+Pattern: ^[\w-.+]+@[\w-.+]+$
+lastModiﬁedTimestamp  (p. 26)
+The date and time when the user proﬁle was last modiﬁed, in timestamp format.
+Type: Timestamp
+sshPublicKey (p. 26)
+The SSH public key associated with the user. This SSH public key is associated with the user proﬁle, 
+and can be used in conjunction with the associated private key for access to project resources, such 
+as Amazon EC2 instances, if a project owner grants remote access to those resources.
+Type: String
+Length Constraints: Maximum length of 16384.
+Pattern: ^[\t\r\n\u0020-\u00FF]*$
+userArn  (p. 26)
+The Amazon Resource Name (ARN) of the user.
+Type: String
+Length Constraints: Minimum length of 32. Maximum length of 95.
+Pattern: ^arn:aws:iam::\d{12}:user(?:(\u002F)|(\u002F[\u0021-\u007E]+\u002F))
+[\w+=,.@-]+$
+Errors
+For information about the errors that are common to all actions, see Common Errors (p. 82).
+UserProﬁleNotFoundException
+The user proﬁle was not found.
+HTTP Status Code: 400
+ValidationException
+The speciﬁed input is either not valid, or it could not be validated.
+API Version 2017-04-19
+27AWS CodeStar API Reference
+Examples
+HTTP Status Code: 400
+Examples
+Example
+This example illustrates one usage of DescribeUserProﬁle.
+Sample Request
+POST / HTTP/1.1
+Host: codestar.us-east-1.amazonaws.com
+Accept-Encoding: identity
+Content-Length: 55
+X-Amz-Target: CodeStar_20170419.DescribeUserProfile
+X-Amz-Date: 20170406T013327Z
+User-Agent: aws-cli/1.11.36 Python/2.7.9 Windows/7 botocore/1.4.93
+Content-Type: application/x-amz-json-1.1
+Authorization: AWS4-HMAC-SHA256 Credential=AIDACKCEVSQ6C2EXAMPLE/20170406/us-east-1/
+codestar/aws4_request, SignedHeaders=content-type;host;x-amz-date;x-amz-target, 
+ Signature=c25ddcd5EXAMPLE
+{"userArn": "arn:aws:iam::111111111111:user/Mary_Major"}
+Sample Response
+HTTP/1.1 200 OK
+x-amzn-RequestId: 0a095029-EXAMPLE
+Content-Type: application/x-amz-json-1.1
+Content-Length: 216
+Date: Thu, 06 Apr 2017 01:33:30 GMT
+{ 
+ "createdTimestamp":1.490634364532E9, 
+ "displayName":"Mary Major", 
+ "emailAddress":"mary.major@example.com", 
+ "lastModifiedTimestamp":1.491001935261E9, 
+ "sshPublicKey":"", 
+ "userArn":"arn:aws:iam::111111111111:user/Mary_Major"
+}
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+API Version 2017-04-19
+28AWS CodeStar API Reference
+See Also
+API Version 2017-04-19
+29AWS CodeStar API Reference
+DisassociateTeamMember
+DisassociateTeamMember
+Removes a user from a project. Removing a user from a project also removes the IAM policies from that 
+user that allowed access to the project and its resources. Disassociating a team member does not remove 
+that user's proﬁle from AWS CodeStar. It does not remove the user from IAM.
+Request Syntax
+{ 
+   "projectId ": "string", 
+   "userArn": "string"
+}
+Request Parameters
+For information about the parameters that are common to all actions, see Common 
+Parameters (p. 80).
+The request accepts the following data in JSON format.
+projectId (p. 30)
+The ID of the AWS CodeStar project from which you want to remove a team member.
+Type: String
+Length Constraints: Minimum length of 2. Maximum length of 15.
+Pattern: ^[a-z][a-z0-9-]+$
+Required: Yes
+userArn  (p. 30)
+The Amazon Resource Name (ARN) of the IAM user or group whom you want to remove from the 
+project.
+Type: String
+Length Constraints: Minimum length of 32. Maximum length of 95.
+Pattern: ^arn:aws:iam::\d{12}:user(?:(\u002F)|(\u002F[\u0021-\u007E]+\u002F))
+[\w+=,.@-]+$
+Required: Yes
+Response Elements
+If the action is successful, the service sends back an HTTP 200 response with an empty HTTP body.
+Errors
+For information about the errors that are common to all actions, see Common Errors (p. 82).
+API Version 2017-04-19
+30AWS CodeStar API Reference
+Examples
+ConcurrentModiﬁcationException
+Another modiﬁcation is being made. That modiﬁcation must complete before you can make your 
+change.
+HTTP Status Code: 400
+InvalidServiceRoleException
+The service role is not valid.
+HTTP Status Code: 400
+ProjectNotFoundException
+The speciﬁed AWS CodeStar project was not found.
+HTTP Status Code: 400
+ValidationException
+The speciﬁed input is either not valid, or it could not be validated.
+HTTP Status Code: 400
+Examples
+Example
+This example illustrates one usage of DisassociateTeamMember.
+Sample Request
+POST / HTTP/1.1
+Host: codestar.us-east-1.amazonaws.com
+Accept-Encoding: identity
+Content-Length: 93
+X-Amz-Target: CodeStar_20170419.DisassociateTeamMember
+X-Amz-Date: 20170406T015504Z
+User-Agent: aws-cli/1.11.36 Python/2.7.9 Windows/7 botocore/1.4.93
+Content-Type: application/x-amz-json-1.1
+Authorization: AWS4-HMAC-SHA256 Credential=AIDACKCEVSQ6C2EXAMPLE/20170406/us-east-1/
+codestar/aws4_request, SignedHeaders=content-type;host;x-amz-date;x-amz-target, 
+ Signature=c25ddcd5EXAMPLE
+{"projectId": "my-first-projec", "userArn": "arn:aws:iam::111111111111:user/John_Stiles"}
+Sample Response
+HTTP/1.1 200 OK
+x-amzn-RequestId: 0f2bfaf1-EXAMPLE
+Content-Type: application/x-amz-json-1.1
+Content-Length: 2
+Date: Thu, 06 Apr 2017 01:55:07 GMT
+{}
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+API Version 2017-04-19
+31AWS CodeStar API Reference
+See Also
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+API Version 2017-04-19
+32AWS CodeStar API Reference
+ListProjects
+ListProjects
+Lists all projects in AWS CodeStar associated with your AWS account.
+Request Syntax
+{ 
+   "maxResults ": number, 
+   "nextToken ": "string"
+}
+Request Parameters
+For information about the parameters that are common to all actions, see Common 
+Parameters (p. 80).
+The request accepts the following data in JSON format.
+maxResults (p. 33)
+The maximum amount of data that can be contained in a single set of results.
+Type: Integer
+Valid Range: Minimum value of 1. Maximum value of 100.
+Required: No
+nextToken (p. 33)
+The continuation token to be used to return the next set of results, if the results cannot be returned 
+in one response.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 1024.
+Pattern: ^[\w/+=]+$
+Required: No
+Response Syntax
+{ 
+   "nextToken ": "string", 
+   "projects ": [  
+      {  
+         " projectArn ": "string", 
+         " projectId ": "string" 
+      } 
+   ]
+}
+Response Elements
+If the action is successful, the service sends back an HTTP 200 response.
+API Version 2017-04-19
+33AWS CodeStar API Reference
+Errors
+The following data is returned in JSON format by the service.
+nextToken (p. 33)
+The continuation token to use when requesting the next set of results, if there are more results to be 
+returned.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 1024.
+Pattern: ^[\w/+=]+$
+projects (p. 33)
+A list of projects.
+Type: Array of ProjectSummary (p. 72) objects
+Errors
+For information about the errors that are common to all actions, see Common Errors (p. 82).
+InvalidNextTokenException
+The next token is not valid.
+HTTP Status Code: 400
+ValidationException
+The speciﬁed input is either not valid, or it could not be validated.
+HTTP Status Code: 400
+Examples
+Example
+This example illustrates one usage of ListProjects.
+Sample Request
+POST / HTTP/1.1
+Host: codestar.us-east-1.amazonaws.com
+Accept-Encoding: identity
+Content-Length: 2
+X-Amz-Target: CodeStar_20170419.ListProjects
+X-Amz-Date: 20170405T221321Z
+User-Agent: aws-cli/1.11.36 Python/2.7.9 Windows/7 botocore/1.4.93
+Content-Type: application/x-amz-json-1.1
+Authorization: AWS4-HMAC-SHA256 Credential=AIDACKCEVSQ6C2EXAMPLE/20170405/us-east-1/
+codestar/aws4_request, SignedHeaders=content-type;host;x-amz-date;x-amz-target, 
+ Signature=c25ddcd5EXAMPLE
+{}
+API Version 2017-04-19
+34AWS CodeStar API Reference
+See Also
+Sample Response
+HTTP/1.1 200 OK
+x-amzn-RequestId: 15f549f8-EXAMPLE
+Content-Type: application/x-amz-json-1.1
+Content-Length: 343
+Date: Wed, 05 Apr 2017 22:13:24 GMT
+{"projects": 
+ [ 
+  { 
+    "projectArn":"arn:aws:codestar:us-east-1:111111111111:project/my-2nd-project", 
+    "projectId":"my-2nd-project" 
+  }, 
+  { 
+    "projectArn":"arn:aws:codestar:us-east-1:111111111111:project/my-first-projec", 
+    "projectId":"my-first-projec" 
+  } 
+ ]
+}
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+API Version 2017-04-19
+35AWS CodeStar API Reference
+ListResources
+ListResources
+Lists resources associated with a project in AWS CodeStar.
+Request Syntax
+{ 
+   "maxResults ": number, 
+   "nextToken ": "string", 
+   "projectId ": "string"
+}
+Request Parameters
+For information about the parameters that are common to all actions, see Common 
+Parameters (p. 80).
+The request accepts the following data in JSON format.
+maxResults (p. 36)
+The maximum amount of data that can be contained in a single set of results.
+Type: Integer
+Valid Range: Minimum value of 1. Maximum value of 100.
+Required: No
+nextToken (p. 36)
+The continuation token for the next set of results, if the results cannot be returned in one response.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 1024.
+Pattern: ^[\w/+=]+$
+Required: No
+projectId (p. 36)
+The ID of the project.
+Type: String
+Length Constraints: Minimum length of 2. Maximum length of 15.
+Pattern: ^[a-z][a-z0-9-]+$
+Required: Yes
+Response Syntax
+{ 
+API Version 2017-04-19
+36AWS CodeStar API Reference
+Response Elements
+   "nextToken ": "string", 
+   "resources ": [  
+      {  
+         " id": "string" 
+      } 
+   ]
+}
+Response Elements
+If the action is successful, the service sends back an HTTP 200 response.
+The following data is returned in JSON format by the service.
+nextToken (p. 36)
+The continuation token to use when requesting the next set of results, if there are more results to be 
+returned.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 1024.
+Pattern: ^[\w/+=]+$
+resources (p. 36)
+An array of resources associated with the project.
+Type: Array of Resource (p. 73) objects
+Errors
+For information about the errors that are common to all actions, see Common Errors (p. 82).
+InvalidNextTokenException
+The next token is not valid.
+HTTP Status Code: 400
+ProjectNotFoundException
+The speciﬁed AWS CodeStar project was not found.
+HTTP Status Code: 400
+ValidationException
+The speciﬁed input is either not valid, or it could not be validated.
+HTTP Status Code: 400
+Examples
+Example
+This example illustrates one usage of ListResources.
+API Version 2017-04-19
+37AWS CodeStar API Reference
+See Also
+Sample Request
+POST / HTTP/1.1
+Host: codestar.us-east-1.amazonaws.com
+Accept-Encoding: identity
+Content-Length: 32
+X-Amz-Target: CodeStar_20170419.ListResources
+X-Amz-Date: 20170405T223505Z
+User-Agent: aws-cli/1.11.36 Python/2.7.9 Windows/7 botocore/1.4.93
+Content-Type: application/x-amz-json-1.1
+Authorization: AWS4-HMAC-SHA256 Credential=AIDACKCEVSQ6C2EXAMPLE/20170405/us-east-1/
+codestar/aws4_request, SignedHeaders=content-type;host;x-amz-date;x-amz-target, 
+ Signature=c25ddcd5EXAMPLE
+{"projectId": "my-first-projec"}
+Sample Response
+HTTP/1.1 200 OK
+x-amzn-RequestId: 1e80e90d-EXAMPLE
+Content-Type: application/x-amz-json-1.1
+Content-Length: 998
+Date: Wed, 05 Apr 2017 22:35:07 GMT
+{"resources":[ 
+ {"id":"arn:aws:codedeploy:us-east-1:111111111111:application:my-first-projec"}, 
+ {"id":"arn:aws:codecommit:us-east-1:111111111111:my-first-projec"}, 
+ {"id":"arn:aws:ec2:us-east-1:111111111111:security-group/sg-EXAMPLE1"}, 
+ {"id":"arn:aws:iam::111111111111:role/CodeStarWorker-my-first-projec-CodeDeploy"}, 
+ {"id":"arn:aws:iam::111111111111:role/CodeStarWorker-my-first-projec-WebApp"}, 
+ {"id":"arn:aws:s3:::codepipeline-my-first-projec-us-east-1-111111111111"}, 
+ {"id":"arn:aws:iam::111111111111:role/CodeStarWorker-my-first-projec-CodePipeline"}, 
+ {"id":"arn:aws:codedeploy:us-east-1:111111111111:deploymentgroup:my-first-projec/my-first-
+projec-Env"}, 
+ {"id":"arn:aws:codepipeline:us-east-1:111111111111:my-first-projec-Pipeline"}, 
+ {"id":"arn:aws:cloudformation:us-east-1:111111111111:stack/awscodestar-my-first-
+projec/01234567-EXAMPLE"}, 
+ {"id":"arn:aws:ec2:us-east-1:111111111111:instance/i-012345abcEXAMPLE"} 
+ ]
+}
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+API Version 2017-04-19
+38AWS CodeStar API Reference
+ListTagsForProject
+ListTagsForProject
+Gets the tags for a project.
+Request Syntax
+{ 
+   "id": "string", 
+   "maxResults ": number, 
+   "nextToken ": "string"
+}
+Request Parameters
+For information about the parameters that are common to all actions, see Common 
+Parameters (p. 80).
+The request accepts the following data in JSON format.
+id (p. 39)
+The ID of the project to get tags for.
+Type: String
+Length Constraints: Minimum length of 2. Maximum length of 15.
+Pattern: ^[a-z][a-z0-9-]+$
+Required: Yes
+maxResults (p. 39)
+Reserved for future use.
+Type: Integer
+Valid Range: Minimum value of 1. Maximum value of 100.
+Required: No
+nextToken (p. 39)
+Reserved for future use.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 1024.
+Pattern: ^[\w/+=]+$
+Required: No
+Response Syntax
+{ 
+   "nextToken ": "string", 
+   "tags": {  
+API Version 2017-04-19
+39AWS CodeStar API Reference
+Response Elements
+      "string" : "string"  
+   }
+}
+Response Elements
+If the action is successful, the service sends back an HTTP 200 response.
+The following data is returned in JSON format by the service.
+nextToken (p. 39)
+Reserved for future use.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 1024.
+Pattern: ^[\w/+=]+$
+tags  (p. 39)
+The tags for the project.
+Type: String to string map
+Key Length Constraints: Minimum length of 1. Maximum length of 128.
+Key Pattern: ^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$
+Value Length Constraints: Maximum length of 256.
+Value Pattern: ^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$
+Errors
+For information about the errors that are common to all actions, see Common Errors (p. 82).
+InvalidNextTokenException
+The next token is not valid.
+HTTP Status Code: 400
+ProjectNotFoundException
+The speciﬁed AWS CodeStar project was not found.
+HTTP Status Code: 400
+ValidationException
+The speciﬁed input is either not valid, or it could not be validated.
+HTTP Status Code: 400
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+API Version 2017-04-19
+40AWS CodeStar API Reference
+See Also
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+API Version 2017-04-19
+41AWS CodeStar API Reference
+ListTeamMembers
+ListTeamMembers
+Lists all team members associated with a project.
+Request Syntax
+{ 
+   "maxResults ": number, 
+   "nextToken ": "string", 
+   "projectId ": "string"
+}
+Request Parameters
+For information about the parameters that are common to all actions, see Common 
+Parameters (p. 80).
+The request accepts the following data in JSON format.
+maxResults (p. 42)
+The maximum number of team members you want returned in a response.
+Type: Integer
+Valid Range: Minimum value of 1. Maximum value of 100.
+Required: No
+nextToken (p. 42)
+The continuation token for the next set of results, if the results cannot be returned in one response.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 1024.
+Pattern: ^[\w/+=]+$
+Required: No
+projectId (p. 42)
+The ID of the project for which you want to list team members.
+Type: String
+Length Constraints: Minimum length of 2. Maximum length of 15.
+Pattern: ^[a-z][a-z0-9-]+$
+Required: Yes
+Response Syntax
+{ 
+   "nextToken ": "string", 
+API Version 2017-04-19
+42AWS CodeStar API Reference
+Response Elements
+   "teamMembers ": [  
+      {  
+         " projectRole ": "string", 
+         " remoteAccessAllowed ": boolean, 
+         " userArn": "string" 
+      } 
+   ]
+}
+Response Elements
+If the action is successful, the service sends back an HTTP 200 response.
+The following data is returned in JSON format by the service.
+nextToken (p. 42)
+The continuation token to use when requesting the next set of results, if there are more results to be 
+returned.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 1024.
+Pattern: ^[\w/+=]+$
+teamMembers  (p. 42)
+A list of team member objects for the project.
+Type: Array of TeamMember (p. 75) objects
+Errors
+For information about the errors that are common to all actions, see Common Errors (p. 82).
+InvalidNextTokenException
+The next token is not valid.
+HTTP Status Code: 400
+ProjectNotFoundException
+The speciﬁed AWS CodeStar project was not found.
+HTTP Status Code: 400
+ValidationException
+The speciﬁed input is either not valid, or it could not be validated.
+HTTP Status Code: 400
+Examples
+Example
+This example illustrates one usage of ListTeamMembers.
+API Version 2017-04-19
+43AWS CodeStar API Reference
+See Also
+Sample Request
+POST / HTTP/1.1
+Host codestar.us-east-1.amazonaws.com
+Accept-Encoding identity
+Content-Length 32
+X-Amz-Target CodeStar_20170419.ListTeamMembers
+X-Amz-Date 20170405T221259Z
+User-Agent aws-cli/1.11.36 Python/2.7.9 Windows/7 botocore/1.4.93
+Content-Type application/x-amz-json-1.1
+Authorization AWS4-HMAC-SHA256 Credential=AIDACKCEVSQ6C2EXAMPLE/20170405/us-east-1/
+codestar/aws4_request, SignedHeaders=content-type;host;x-amz-date;x-amz-target, 
+ Signature=c25ddcd5EXAMPLE
+{ 
+   "projectId": "my-first-projec"
+}
+Sample Response
+HTTP/1.1 200 OK
+x-amzn-RequestId: 0876d969-EXAMPLE
+Content-Type: application/x-amz-json-1.1
+Content-Length: 121
+Date: Wed, 05 Apr 2017 22:13:01 GMT
+{"teamMembers":[ 
+  
+ {"projectRole":"Owner","remoteAccessAllowed":true,"userArn":"arn:aws:iam::111111111111:user/
+Mary_Major"}, 
+  
+ {"projectRole":"Contributor","remoteAccessAllowed":true,"userArn":"arn:aws:iam::111111111111:user/
+Jane_Doe"}, 
+  
+ {"projectRole":"Contributor","remoteAccessAllowed":true,"userArn":"arn:aws:iam::111111111111:user/
+John_Doe"}, 
+  
+ {"projectRole":"Viewer","remoteAccessAllowed":false,"userArn":"arn:aws:iam::111111111111:user/
+John_Stiles"} 
+ ]
+}
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+API Version 2017-04-19
+44AWS CodeStar API Reference
+ListUserProﬁles
+ListUserProﬁles
+Lists all the user proﬁles conﬁgured for your AWS account in AWS CodeStar.
+Request Syntax
+{ 
+   "maxResults ": number, 
+   "nextToken ": "string"
+}
+Request Parameters
+For information about the parameters that are common to all actions, see Common 
+Parameters (p. 80).
+The request accepts the following data in JSON format.
+maxResults (p. 45)
+The maximum number of results to return in a response.
+Type: Integer
+Valid Range: Minimum value of 1. Maximum value of 100.
+Required: No
+nextToken (p. 45)
+The continuation token for the next set of results, if the results cannot be returned in one response.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 1024.
+Pattern: ^[\w/+=]+$
+Required: No
+Response Syntax
+{ 
+   "nextToken ": "string", 
+   "userProfiles ": [  
+      {  
+         " displayName ": "string", 
+         " emailAddress ": "string", 
+         " sshPublicKey ": "string", 
+         " userArn": "string" 
+      } 
+   ]
+}
+Response Elements
+If the action is successful, the service sends back an HTTP 200 response.
+API Version 2017-04-19
+45AWS CodeStar API Reference
+Errors
+The following data is returned in JSON format by the service.
+nextToken (p. 45)
+The continuation token to use when requesting the next set of results, if there are more results to be 
+returned.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 1024.
+Pattern: ^[\w/+=]+$
+userProﬁles (p. 45)
+All the user proﬁles conﬁgured in AWS CodeStar for an AWS account.
+Type: Array of UserProﬁleSummary (p. 78) objects
+Errors
+For information about the errors that are common to all actions, see Common Errors (p. 82).
+InvalidNextTokenException
+The next token is not valid.
+HTTP Status Code: 400
+ValidationException
+The speciﬁed input is either not valid, or it could not be validated.
+HTTP Status Code: 400
+Examples
+Example
+This example illustrates one usage of ListUserProﬁles.
+Sample Request
+POST / HTTP/1.1
+Host: codestar.us-east-1.amazonaws.com
+Accept-Encoding: identity
+Content-Length: 2
+X-Amz-Target: CodeStar_20170419.ListUserProfiles
+X-Amz-Date: 20170406T011822Z
+User-Agent: aws-cli/1.11.36 Python/2.7.9 Windows/7 botocore/1.4.93
+Content-Type: application/x-amz-json-1.1
+Authorization: AWS4-HMAC-SHA256 Credential=AIDACKCEVSQ6C2EXAMPLE/20170406/us-east-1/
+codestar/aws4_request, SignedHeaders=content-type;host;x-amz-date;x-amz-target, 
+ Signature=c25ddcd5EXAMPLE
+{}
+API Version 2017-04-19
+46AWS CodeStar API Reference
+See Also
+Sample Response
+HTTP/1.1 200 OK
+x-amzn-RequestId: ee7b652d-EXAMPLE
+Content-Type: application/x-amz-json-1.1
+Content-Length: 1473
+Date: Thu, 06 Apr 2017 01:18:24 GMT
+{ 
+  "userProfiles":[ 
+    { 
+     "displayName":"Jane Doe", 
+     "emailAddress":"jane.doe@example.com", 
+     "sshPublicKey":"EXAMPLE1", 
+     "userArn":"arn:aws:iam::111111111111:user/Jane_Doe" 
+    }, 
+    { 
+     "displayName":"John Doe", 
+     "emailAddress":"john.doe@example.com", 
+     "sshPublicKey":"EXAMPLE2", 
+     "userArn":"arn:aws:iam::111111111111:user/John_Doe" 
+    }, 
+    { 
+     "displayName":"Mary Major", 
+     "emailAddress":"mary.major@example.com", 
+     "sshPublicKey":"EXAMPLE=", 
+     "userArn":"arn:aws:iam::111111111111:user/Mary_Major" 
+    }, 
+    { 
+     "displayName":"John Stiles", 
+     "emailAddress":"john.stiles@example.com", 
+     "sshPublicKey":"", 
+     "userArn":"arn:aws:iam::111111111111:user/John_Stiles" 
+    } 
+  ]
+}
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+API Version 2017-04-19
+47AWS CodeStar API Reference
+TagProject
+TagProject
+Adds tags to a project.
+Request Syntax
+{ 
+   "id": "string", 
+   "tags": {  
+      "string" : "string"  
+   }
+}
+Request Parameters
+For information about the parameters that are common to all actions, see Common 
+Parameters (p. 80).
+The request accepts the following data in JSON format.
+id (p. 48)
+The ID of the project you want to add a tag to.
+Type: String
+Length Constraints: Minimum length of 2. Maximum length of 15.
+Pattern: ^[a-z][a-z0-9-]+$
+Required: Yes
+tags  (p. 48)
+The tags you want to add to the project.
+Type: String to string map
+Key Length Constraints: Minimum length of 1. Maximum length of 128.
+Key Pattern: ^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$
+Value Length Constraints: Maximum length of 256.
+Value Pattern: ^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$
+Required: Yes
+Response Syntax
+{ 
+   "tags": {  
+      "string" : "string"  
+   }
+}
+API Version 2017-04-19
+48AWS CodeStar API Reference
+Response Elements
+Response Elements
+If the action is successful, the service sends back an HTTP 200 response.
+The following data is returned in JSON format by the service.
+tags  (p. 48)
+The tags for the project.
+Type: String to string map
+Key Length Constraints: Minimum length of 1. Maximum length of 128.
+Key Pattern: ^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$
+Value Length Constraints: Maximum length of 256.
+Value Pattern: ^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$
+Errors
+For information about the errors that are common to all actions, see Common Errors (p. 82).
+ConcurrentModiﬁcationException
+Another modiﬁcation is being made. That modiﬁcation must complete before you can make your 
+change.
+HTTP Status Code: 400
+LimitExceededException
+A resource limit has been exceeded.
+HTTP Status Code: 400
+ProjectNotFoundException
+The speciﬁed AWS CodeStar project was not found.
+HTTP Status Code: 400
+ValidationException
+The speciﬁed input is either not valid, or it could not be validated.
+HTTP Status Code: 400
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+API Version 2017-04-19
+49AWS CodeStar API Reference
+See Also
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+API Version 2017-04-19
+50AWS CodeStar API Reference
+UntagProject
+UntagProject
+Removes tags from a project.
+Request Syntax
+{ 
+   "id": "string", 
+   "tags": [ "string" ]
+}
+Request Parameters
+For information about the parameters that are common to all actions, see Common 
+Parameters (p. 80).
+The request accepts the following data in JSON format.
+id (p. 51)
+The ID of the project to remove tags from.
+Type: String
+Length Constraints: Minimum length of 2. Maximum length of 15.
+Pattern: ^[a-z][a-z0-9-]+$
+Required: Yes
+tags  (p. 51)
+The tags to remove from the project.
+Type: Array of strings
+Length Constraints: Minimum length of 1. Maximum length of 128.
+Pattern: ^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$
+Required: Yes
+Response Elements
+If the action is successful, the service sends back an HTTP 200 response with an empty HTTP body.
+Errors
+For information about the errors that are common to all actions, see Common Errors (p. 82).
+ConcurrentModiﬁcationException
+Another modiﬁcation is being made. That modiﬁcation must complete before you can make your 
+change.
+HTTP Status Code: 400
+API Version 2017-04-19
+51AWS CodeStar API Reference
+See Also
+LimitExceededException
+A resource limit has been exceeded.
+HTTP Status Code: 400
+ProjectNotFoundException
+The speciﬁed AWS CodeStar project was not found.
+HTTP Status Code: 400
+ValidationException
+The speciﬁed input is either not valid, or it could not be validated.
+HTTP Status Code: 400
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+API Version 2017-04-19
+52AWS CodeStar API Reference
+UpdateProject
+UpdateProject
+Updates a project in AWS CodeStar.
+Request Syntax
+{ 
+   "description ": "string", 
+   "id": "string", 
+   "name": "string"
+}
+Request Parameters
+For information about the parameters that are common to all actions, see Common 
+Parameters (p. 80).
+The request accepts the following data in JSON format.
+description  (p. 53)
+The description of the project, if any.
+Type: String
+Length Constraints: Maximum length of 1024.
+Pattern: ^$|^\S(.*\S)?$
+Required: No
+id (p. 53)
+The ID of the project you want to update.
+Type: String
+Length Constraints: Minimum length of 2. Maximum length of 15.
+Pattern: ^[a-z][a-z0-9-]+$
+Required: Yes
+name  (p. 53)
+The name of the project you want to update.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 100.
+Pattern: ^\S(.*\S)?$
+Required: No
+Response Elements
+If the action is successful, the service sends back an HTTP 200 response with an empty HTTP body.
+API Version 2017-04-19
+53AWS CodeStar API Reference
+Errors
+Errors
+For information about the errors that are common to all actions, see Common Errors (p. 82).
+ProjectNotFoundException
+The speciﬁed AWS CodeStar project was not found.
+HTTP Status Code: 400
+ValidationException
+The speciﬁed input is either not valid, or it could not be validated.
+HTTP Status Code: 400
+Examples
+Example
+This example illustrates one usage of UpdateProject.
+Sample Request
+POST / HTTP/1.1
+Host: codestar.us-east-1.amazonaws.com
+Accept-Encoding: identity
+Content-Length: 88
+X-Amz-Target: CodeStar_20170419.UpdateProject
+X-Amz-Date: 20170406T003323Z
+User-Agent: aws-cli/1.11.36 Python/2.7.9 Windows/7 botocore/1.4.93
+Content-Type: application/x-amz-json-1.1
+Authorization: AWS4-HMAC-SHA256 Credential=AIDACKCEVSQ6C2EXAMPLE/20170406/us-east-1/
+codestar/aws4_request, SignedHeaders=content-type;host;x-amz-date;x-amz-target, 
+ Signature=c25ddcd5EXAMPLE
+{"id": "my-first-projec", "description": "Updating the project by adding a description"}
+Sample Response
+HTTP/1.1 200 OK
+x-amzn-RequestId: a5afbdc6-EXAMPLE
+Content-Type: application/x-amz-json-1.1
+Content-Length: 2
+Date: Thu, 06 Apr 2017 00:33:25 GMT
+{}
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+API Version 2017-04-19
+54AWS CodeStar API Reference
+See Also
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+API Version 2017-04-19
+55AWS CodeStar API Reference
+UpdateTeamMember
+UpdateTeamMember
+Updates a team member's attributes in an AWS CodeStar project. For example, you can change a team 
+member's role in the project, or change whether they have remote access to project resources.
+Request Syntax
+{ 
+   "projectId ": "string", 
+   "projectRole ": "string", 
+   "remoteAccessAllowed ": boolean, 
+   "userArn": "string"
+}
+Request Parameters
+For information about the parameters that are common to all actions, see Common 
+Parameters (p. 80).
+The request accepts the following data in JSON format.
+projectId (p. 56)
+The ID of the project.
+Type: String
+Length Constraints: Minimum length of 2. Maximum length of 15.
+Pattern: ^[a-z][a-z0-9-]+$
+Required: Yes
+projectRole (p. 56)
+The role assigned to the user in the project. Project roles have diﬀerent levels of access. For more 
+information, see Working with Teams in the AWS CodeStar User Guide.
+Type: String
+Pattern: ^(Owner|Viewer|Contributor)$
+Required: No
+remoteAccessAllowed (p. 56)
+Whether a team member is allowed to remotely access project resources using the SSH public key 
+associated with the user's proﬁle. Even if this is set to True, the user must associate a public key with 
+their proﬁle before the user can access resources.
+Type: Boolean
+Required: No
+userArn  (p. 56)
+The Amazon Resource Name (ARN) of the user for whom you want to change team membership 
+attributes.
+Type: String
+API Version 2017-04-19
+56AWS CodeStar API Reference
+Response Syntax
+Length Constraints: Minimum length of 32. Maximum length of 95.
+Pattern: ^arn:aws:iam::\d{12}:user(?:(\u002F)|(\u002F[\u0021-\u007E]+\u002F))
+[\w+=,.@-]+$
+Required: Yes
+Response Syntax
+{ 
+   "projectRole ": "string", 
+   "remoteAccessAllowed ": boolean, 
+   "userArn": "string"
+}
+Response Elements
+If the action is successful, the service sends back an HTTP 200 response.
+The following data is returned in JSON format by the service.
+projectRole (p. 57)
+The project role granted to the user.
+Type: String
+Pattern: ^(Owner|Viewer|Contributor)$
+remoteAccessAllowed (p. 57)
+Whether a team member is allowed to remotely access project resources using the SSH public key 
+associated with the user's proﬁle.
+Type: Boolean
+userArn  (p. 57)
+The Amazon Resource Name (ARN) of the user whose team membership attributes were updated.
+Type: String
+Length Constraints: Minimum length of 32. Maximum length of 95.
+Pattern: ^arn:aws:iam::\d{12}:user(?:(\u002F)|(\u002F[\u0021-\u007E]+\u002F))
+[\w+=,.@-]+$
+Errors
+For information about the errors that are common to all actions, see Common Errors (p. 82).
+ConcurrentModiﬁcationException
+Another modiﬁcation is being made. That modiﬁcation must complete before you can make your 
+change.
+HTTP Status Code: 400
+API Version 2017-04-19
+57AWS CodeStar API Reference
+Examples
+InvalidServiceRoleException
+The service role is not valid.
+HTTP Status Code: 400
+LimitExceededException
+A resource limit has been exceeded.
+HTTP Status Code: 400
+ProjectConﬁgurationException
+Project conﬁguration information is required but not speciﬁed.
+HTTP Status Code: 400
+ProjectNotFoundException
+The speciﬁed AWS CodeStar project was not found.
+HTTP Status Code: 400
+TeamMemberNotFoundException
+The speciﬁed team member was not found.
+HTTP Status Code: 400
+ValidationException
+The speciﬁed input is either not valid, or it could not be validated.
+HTTP Status Code: 400
+Examples
+Example
+This example illustrates one usage of UpdateTeamMember.
+Sample Request
+POST / HTTP/1.1
+Host: codestar.us-east-1.amazonaws.com
+Accept-Encoding: identity
+Content-Length: 152
+X-Amz-Target: CodeStar_20170419.UpdateTeamMember
+X-Amz-Date: 20170406T035631Z
+User-Agent: aws-cli/1.11.36 Python/2.7.9 Windows/7 botocore/1.4.93
+Content-Type: application/x-amz-json-1.1
+Authorization: AWS4-HMAC-SHA256 Credential=AIDACKCEVSQ6C2EXAMPLE/20170406/us-east-1/
+codestar/aws4_request, SignedHeaders=content-type;host;x-amz-date;x-amz-target, 
+ Signature=c25ddcd5EXAMPLE
+{ 
+ "projectRole": "Contributor",  
+ "projectId": "my-first-projec",  
+ "remoteAccessAllowed": false,  
+ "userArn": "arn:aws:iam::111111111111:user/John_Doe"
+}
+API Version 2017-04-19
+58AWS CodeStar API Reference
+See Also
+Sample Response
+HTTP/1.1 200 OK
+x-amzn-RequestId: 06343b93-EXAMPLE
+Content-Type: application/x-amz-json-1.1
+Content-Length: 115
+Date: Thu, 06 Apr 2017 03:56:33 GMT
+{ 
+ "projectRole":"Contributor", 
+ "remoteAccessAllowed":false, 
+ "userArn":"arn:aws:iam::111111111111:user/John_Doe"
+}
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+API Version 2017-04-19
+59AWS CodeStar API Reference
+UpdateUserProﬁle
+UpdateUserProﬁle
+Updates a user's proﬁle in AWS CodeStar. The user proﬁle is not project-speciﬁc. Information in the user 
+proﬁle is displayed wherever the user's information appears to other users in AWS CodeStar.
+Request Syntax
+{ 
+   "displayName ": "string", 
+   "emailAddress ": "string", 
+   "sshPublicKey ": "string", 
+   "userArn": "string"
+}
+Request Parameters
+For information about the parameters that are common to all actions, see Common 
+Parameters (p. 80).
+The request accepts the following data in JSON format.
+displayName (p. 60)
+The name that is displayed as the friendly name for the user in AWS CodeStar.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 64.
+Pattern: ^\S(.*\S)?$
+Required: No
+emailAddress  (p. 60)
+The email address that is displayed as part of the user's proﬁle in AWS CodeStar.
+Type: String
+Length Constraints: Minimum length of 3. Maximum length of 128.
+Pattern: ^[\w-.+]+@[\w-.+]+$
+Required: No
+sshPublicKey (p. 60)
+The SSH public key associated with the user in AWS CodeStar. If a project owner allows the user 
+remote access to project resources, this public key will be used along with the user's private key for 
+SSH access.
+Type: String
+Length Constraints: Maximum length of 16384.
+Pattern: ^[\t\r\n\u0020-\u00FF]*$
+Required: No
+API Version 2017-04-19
+60AWS CodeStar API Reference
+Response Syntax
+userArn  (p. 60)
+The name that will be displayed as the friendly name for the user in AWS CodeStar.
+Type: String
+Length Constraints: Minimum length of 32. Maximum length of 95.
+Pattern: ^arn:aws:iam::\d{12}:user(?:(\u002F)|(\u002F[\u0021-\u007E]+\u002F))
+[\w+=,.@-]+$
+Required: Yes
+Response Syntax
+{ 
+   "createdTimestamp ": number, 
+   "displayName ": "string", 
+   "emailAddress ": "string", 
+   "lastModifiedTimestamp ": number, 
+   "sshPublicKey ": "string", 
+   "userArn": "string"
+}
+Response Elements
+If the action is successful, the service sends back an HTTP 200 response.
+The following data is returned in JSON format by the service.
+createdTimestamp  (p. 61)
+The date the user proﬁle was created, in timestamp format.
+Type: Timestamp
+displayName (p. 61)
+The name that is displayed as the friendly name for the user in AWS CodeStar.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 64.
+Pattern: ^\S(.*\S)?$
+emailAddress  (p. 61)
+The email address that is displayed as part of the user's proﬁle in AWS CodeStar.
+Type: String
+Length Constraints: Minimum length of 3. Maximum length of 128.
+Pattern: ^[\w-.+]+@[\w-.+]+$
+lastModiﬁedTimestamp  (p. 61)
+The date the user proﬁle was last modiﬁed, in timestamp format.
+Type: Timestamp
+API Version 2017-04-19
+61AWS CodeStar API Reference
+Errors
+sshPublicKey (p. 61)
+The SSH public key associated with the user in AWS CodeStar. This is the public portion of the 
+public/private keypair the user can use to access project resources if a project owner allows the user 
+remote access to those resources.
+Type: String
+Length Constraints: Maximum length of 16384.
+Pattern: ^[\t\r\n\u0020-\u00FF]*$
+userArn  (p. 61)
+The Amazon Resource Name (ARN) of the user in IAM.
+Type: String
+Length Constraints: Minimum length of 32. Maximum length of 95.
+Pattern: ^arn:aws:iam::\d{12}:user(?:(\u002F)|(\u002F[\u0021-\u007E]+\u002F))
+[\w+=,.@-]+$
+Errors
+For information about the errors that are common to all actions, see Common Errors (p. 82).
+UserProﬁleNotFoundException
+The user proﬁle was not found.
+HTTP Status Code: 400
+ValidationException
+The speciﬁed input is either not valid, or it could not be validated.
+HTTP Status Code: 400
+Examples
+Example
+This example illustrates one usage of UpdateUserProﬁle.
+Sample Request
+POST / HTTP/1.1
+Host: codestar.us-east-1.amazonaws.com
+Accept-Encoding: identity
+Content-Length: 92
+X-Amz-Target: CodeStar_20170419.UpdateUserProfile
+X-Amz-Date: 20170406T013847Z
+User-Agent: aws-cli/1.11.36 Python/2.7.9 Windows/7 botocore/1.4.93
+Content-Type: application/x-amz-json-1.1
+Authorization: AWS4-HMAC-SHA256 Credential=AIDACKCEVSQ6C2EXAMPLE/20170406/us-east-1/
+codestar/aws4_request, SignedHeaders=content-type;host;x-amz-date;x-amz-target, 
+ Signature=c25ddcd5EXAMPLE
+API Version 2017-04-19
+62AWS CodeStar API Reference
+See Also
+{"displayName": "Jane Mary Doe", "userArn": "arn:aws:iam::111111111111:user/Jane_Doe"}
+Sample Response
+HTTP/1.1 200 OK
+x-amzn-RequestId: c8f7ca6e-EXAMPLE
+Content-Type: application/x-amz-json-1.1
+Content-Length: 1094
+Date: Thu, 06 Apr 2017 01:38:50 GMT
+{ 
+ "createdTimestamp":1.491439687681E9, 
+ "displayName":"Jane Mary Doe", 
+ "emailAddress":"jane.doe@example.com", 
+ "lastModifiedTimestamp":1.491442730598E9, 
+ "sshPublicKey":"EXAMPLE1", 
+ "userArn":"arn:aws:iam::111111111111:user/Jane_Doe"
+}
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS Command Line Interface
+•AWS SDK for .NET
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for JavaScript
+•AWS SDK for PHP V3
+•AWS SDK for Python
+•AWS SDK for Ruby V3
+API Version 2017-04-19
+63AWS CodeStar API Reference
+Data Types
+The AWS CodeStar API contains several data types that various actions use. This section describes each 
+data type in detail.
+Note
+The order of each element in a data type structure is not guaranteed. Applications should not 
+assume a particular order.
+The following data types are supported:
+•Code  (p. 65)
+•CodeCommitCodeDestination  (p. 66)
+•CodeDestination  (p. 67)
+•CodeSource (p. 68)
+•GitHubCodeDestination  (p. 69)
+•ProjectStatus (p. 71)
+•ProjectSummary (p. 72)
+•Resource (p. 73)
+•S3Location  (p. 74)
+•TeamMember (p. 75)
+•Toolchain (p. 76)
+•ToolchainSource (p. 77)
+•UserProﬁleSummary (p. 78)
+API Version 2017-04-19
+64AWS CodeStar API Reference
+Code
+Code
+Location and destination information about the source code ﬁles provided with the project request. The 
+source code is uploaded to the new project source repository after project creation.
+Contents
+destination
+The repository to be created in AWS CodeStar. Valid values are AWS CodeCommit or GitHub. After 
+AWS CodeStar provisions the new repository, the source code ﬁles provided with the project request 
+are placed in the repository.
+Type: CodeDestination  (p. 67) object
+Required: Yes
+source
+The location where the source code ﬁles provided with the project request are stored. AWS CodeStar 
+retrieves the ﬁles during project creation.
+Type: CodeSource (p. 68) object
+Required: Yes
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for Ruby V3
+API Version 2017-04-19
+65AWS CodeStar API Reference
+CodeCommitCodeDestination
+CodeCommitCodeDestination
+Information about the AWS CodeCommit repository to be created in AWS CodeStar. This is where the 
+source code ﬁles provided with the project request will be uploaded after project creation.
+Contents
+name
+The name of the AWS CodeCommit repository to be created in AWS CodeStar.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 100.
+Pattern: ^\S[\w.-]*$
+Required: Yes
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for Ruby V3
+API Version 2017-04-19
+66AWS CodeStar API Reference
+CodeDestination
+CodeDestination
+The repository to be created in AWS CodeStar. Valid values are AWS CodeCommit or GitHub. After AWS 
+CodeStar provisions the new repository, the source code ﬁles provided with the project request are 
+placed in the repository.
+Contents
+codeCommit
+Information about the AWS CodeCommit repository to be created in AWS CodeStar. This is where 
+the source code ﬁles provided with the project request will be uploaded after project creation.
+Type: CodeCommitCodeDestination  (p. 66) object
+Required: No
+gitHub
+Information about the GitHub repository to be created in AWS CodeStar. This is where the source 
+code ﬁles provided with the project request will be uploaded after project creation.
+Type: GitHubCodeDestination  (p. 69) object
+Required: No
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for Ruby V3
+API Version 2017-04-19
+67AWS CodeStar API Reference
+CodeSource
+CodeSource
+The location where the source code ﬁles provided with the project request are stored. AWS CodeStar 
+retrieves the ﬁles during project creation.
+Contents
+s3
+Information about the Amazon S3 location where the source code ﬁles provided with the project 
+request are stored.
+Type: S3Location  (p. 74) object
+Required: Yes
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for Ruby V3
+API Version 2017-04-19
+68AWS CodeStar API Reference
+GitHubCodeDestination
+GitHubCodeDestination
+Information about the GitHub repository to be created in AWS CodeStar. This is where the source code 
+ﬁles provided with the project request will be uploaded after project creation.
+Contents
+issuesEnabled
+Whether to enable issues for the GitHub repository.
+Type: Boolean
+Required: Yes
+name
+Name of the GitHub repository to be created in AWS CodeStar.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 100.
+Pattern: ^\S[\w.-]*$
+Required: Yes
+owner
+The GitHub username for the owner of the GitHub repository to be created in AWS CodeStar. If this 
+repository should be owned by a GitHub organization, provide its name.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 100.
+Pattern: ^\S(.*\S)?$
+Required: Yes
+privateRepository
+Whether the GitHub repository is to be a private repository.
+Type: Boolean
+Required: Yes
+token
+The GitHub user's personal access token for the GitHub repository.
+Type: String
+Length Constraints: Minimum length of 1.
+Required: Yes
+type
+The type of GitHub repository to be created in AWS CodeStar. Valid values are User or Organization.
+Type: String
+API Version 2017-04-19
+69AWS CodeStar API Reference
+See Also
+Pattern: ^(user|organization|User|Organization)$
+Required: Yes
+description
+Description for the GitHub repository to be created in AWS CodeStar. This description displays in 
+GitHub after the repository is created.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 1000.
+Pattern: ^\S(.*\S)?$
+Required: No
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for Ruby V3
+API Version 2017-04-19
+70AWS CodeStar API Reference
+ProjectStatus
+ProjectStatus
+An indication of whether a project creation or deletion is failed or successful.
+Contents
+state
+The phase of completion for a project creation or deletion.
+Type: String
+Pattern: ^(CreateInProgress|CreateComplete|CreateFailed|DeleteComplete|
+DeleteFailed|DeleteInProgress|UpdateComplete|UpdateInProgress|UpdateFailed|
+Unknown)$
+Required: Yes
+reason
+In the case of a project creation or deletion failure, a reason for the failure.
+Type: String
+Length Constraints: Maximum length of 1024.
+Pattern: ^$|^\S(.*\S)?$
+Required: No
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for Ruby V3
+API Version 2017-04-19
+71AWS CodeStar API Reference
+ProjectSummary
+ProjectSummary
+Information about the metadata for a project.
+Contents
+projectArn
+The Amazon Resource Name (ARN) of the project.
+Type: String
+Pattern: ^arn:aws[^:\s]*:codestar:[^:\s]+:[0-9]{12}:project\/[a-z]([a-
+z0-9|-])+$
+Required: No
+projectId
+The ID of the project.
+Type: String
+Length Constraints: Minimum length of 2. Maximum length of 15.
+Pattern: ^[a-z][a-z0-9-]+$
+Required: No
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for Ruby V3
+API Version 2017-04-19
+72AWS CodeStar API Reference
+Resource
+Resource
+Information about a resource for a project.
+Contents
+id
+The Amazon Resource Name (ARN) of the resource.
+Type: String
+Length Constraints: Minimum length of 11.
+Pattern: (^arn\:aws\:\S.*\:.*)|(^amzn1\.ask\.skill\.[0-9a-f\-]+)
+Required: Yes
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for Ruby V3
+API Version 2017-04-19
+73AWS CodeStar API Reference
+S3Location
+S3Location
+The Amazon S3 location where the source code ﬁles provided with the project request are stored.
+Contents
+bucketKey
+The Amazon S3 object key where the source code ﬁles provided with the project request are stored.
+Type: String
+Required: Yes
+bucketName
+The Amazon S3 bucket name where the source code ﬁles provided with the project request are 
+stored.
+Type: String
+Length Constraints: Minimum length of 3. Maximum length of 63.
+Required: Yes
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for Ruby V3
+API Version 2017-04-19
+74AWS CodeStar API Reference
+TeamMember
+TeamMember
+Information about a team member in a project.
+Contents
+projectRole
+The role assigned to the user in the project. Project roles have diﬀerent levels of access. For more 
+information, see Working with Teams in the AWS CodeStar User Guide.
+Type: String
+Pattern: ^(Owner|Viewer|Contributor)$
+Required: Yes
+userArn
+The Amazon Resource Name (ARN) of the user in IAM.
+Type: String
+Length Constraints: Minimum length of 32. Maximum length of 95.
+Pattern: ^arn:aws:iam::\d{12}:user(?:(\u002F)|(\u002F[\u0021-\u007E]+\u002F))
+[\w+=,.@-]+$
+Required: Yes
+remoteAccessAllowed
+Whether the user is allowed to remotely access project resources using an SSH public/private key 
+pair.
+Type: Boolean
+Required: No
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for Ruby V3
+API Version 2017-04-19
+75AWS CodeStar API Reference
+Toolchain
+Toolchain
+The toolchain template ﬁle provided with the project request. AWS CodeStar uses the template to 
+provision the toolchain stack in AWS CloudFormation.
+Contents
+source
+The Amazon S3 location where the toolchain template ﬁle provided with the project request is 
+stored. AWS CodeStar retrieves the ﬁle during project creation.
+Type: ToolchainSource (p. 77) object
+Required: Yes
+roleArn
+The service role ARN for AWS CodeStar to use for the toolchain template during stack provisioning.
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 1224.
+Required: No
+stackParameters
+The list of parameter overrides to be passed into the toolchain template during stack provisioning, if 
+any.
+Type: String to string map
+Map Entries: Maximum number of 25 items.
+Key Length Constraints: Minimum length of 1. Maximum length of 30.
+Key Pattern: ^\S(.*\S)?$
+Value Length Constraints: Minimum length of 1. Maximum length of 150.
+Value Pattern: ^\S(.*\S)?$
+Required: No
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for Ruby V3
+API Version 2017-04-19
+76AWS CodeStar API Reference
+ToolchainSource
+ToolchainSource
+The Amazon S3 location where the toolchain template ﬁle provided with the project request is stored. 
+AWS CodeStar retrieves the ﬁle during project creation.
+Contents
+s3
+The Amazon S3 bucket where the toolchain template ﬁle provided with the project request is stored.
+Type: S3Location  (p. 74) object
+Required: Yes
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for Ruby V3
+API Version 2017-04-19
+77AWS CodeStar API Reference
+UserProﬁleSummary
+UserProﬁleSummary
+Information about a user's proﬁle in AWS CodeStar.
+Contents
+displayName
+The display name of a user in AWS CodeStar. For example, this could be set to both ﬁrst and last 
+name ("Mary Major") or a single name ("Mary"). The display name is also used to generate the initial 
+icon associated with the user in AWS CodeStar projects. If spaces are included in the display name, 
+the ﬁrst character that appears after the space will be used as the second character in the user initial 
+icon. The initial icon displays a maximum of two characters, so a display name with more than one 
+space (for example "Mary Jane Major") would generate an initial icon using the ﬁrst character and 
+the ﬁrst character after the space ("MJ", not "MM").
+Type: String
+Length Constraints: Minimum length of 1. Maximum length of 64.
+Pattern: ^\S(.*\S)?$
+Required: No
+emailAddress
+The email address associated with the user.
+Type: String
+Length Constraints: Minimum length of 3. Maximum length of 128.
+Pattern: ^[\w-.+]+@[\w-.+]+$
+Required: No
+sshPublicKey
+The SSH public key associated with the user in AWS CodeStar. If a project owner allows the user 
+remote access to project resources, this public key will be used along with the user's private key for 
+SSH access.
+Type: String
+Length Constraints: Maximum length of 16384.
+Pattern: ^[\t\r\n\u0020-\u00FF]*$
+Required: No
+userArn
+The Amazon Resource Name (ARN) of the user in IAM.
+Type: String
+Length Constraints: Minimum length of 32. Maximum length of 95.
+Pattern: ^arn:aws:iam::\d{12}:user(?:(\u002F)|(\u002F[\u0021-\u007E]+\u002F))
+[\w+=,.@-]+$
+Required: No
+API Version 2017-04-19
+78AWS CodeStar API Reference
+See Also
+See Also
+For more information about using this API in one of the language-speciﬁc AWS SDKs, see the following:
+•AWS SDK for C++
+•AWS SDK for Go
+•AWS SDK for Java V2
+•AWS SDK for Ruby V3
+API Version 2017-04-19
+79AWS CodeStar API Reference
+Common Parameters
+The following list contains the parameters that all actions use for signing Signature Version 4 requests 
+with a query string. Any action-speciﬁc parameters are listed in the topic for that action. For more 
+information about Signature Version 4, see Signing AWS API requests in the IAM User Guide .
+Action
+The action to be performed.
+Type: string
+Required: Yes
+Version
+The API version that the request is written for, expressed in the format YYYY-MM-DD.
+Type: string
+Required: Yes
+X-Amz-Algorithm
+The hash algorithm that you used to create the request signature.
+Condition: Specify this parameter when you include authentication information in a query string 
+instead of in the HTTP authorization header.
+Type: string
+Valid Values: AWS4-HMAC-SHA256
+Required: Conditional
+X-Amz-Credential
+The credential scope value, which is a string that includes your access key, the date, the region you 
+are targeting, the service you are requesting, and a termination string ("aws4_request"). The value is 
+expressed in the following format: access_key /YYYYMMDD/region /service/aws4_request.
+For more information, see Create a signed AWS API request in the IAM User Guide .
+Condition: Specify this parameter when you include authentication information in a query string 
+instead of in the HTTP authorization header.
+Type: string
+Required: Conditional
+X-Amz-Date
+The date that is used to create the signature. The format must be ISO 8601 basic format 
+(YYYYMMDD'T'HHMMSS'Z'). For example, the following date time is a valid X-Amz-Date value:
+20120325T120000Z .
+Condition: X-Amz-Date is optional for all requests; it can be used to override the date used for 
+signing requests. If the Date header is speciﬁed in the ISO 8601 basic format, X-Amz-Date is not 
+required. When X-Amz-Date is used, it always overrides the value of the Date header. For more 
+information, see Elements of an AWS API request signature in the IAM User Guide .
+API Version 2017-04-19
+80AWS CodeStar API Reference
+Type: string
+Required: Conditional
+X-Amz-Security-Token
+The temporary security token that was obtained through a call to AWS Security Token Service (AWS 
+STS). For a list of services that support temporary security credentials from AWS STS, see AWS 
+services that work with IAM in the IAM User Guide .
+Condition: If you're using temporary security credentials from AWS STS, you must include the 
+security token.
+Type: string
+Required: Conditional
+X-Amz-Signature
+Speciﬁes the hex-encoded signature that was calculated from the string to sign and the derived 
+signing key.
+Condition: Specify this parameter when you include authentication information in a query string 
+instead of in the HTTP authorization header.
+Type: string
+Required: Conditional
+X-Amz-SignedHeaders
+Speciﬁes all the HTTP headers that were included as part of the canonical request. For more 
+information about specifying signed headers, see Create a signed AWS API request in the IAM User 
+Guide .
+Condition: Specify this parameter when you include authentication information in a query string 
+instead of in the HTTP authorization header.
+Type: string
+Required: Conditional
+API Version 2017-04-19
+81AWS CodeStar API Reference
+Common Errors
+This section lists the errors common to the API actions of all AWS services. For errors speciﬁc to an API 
+action for this service, see the topic for that API action.
+AccessDeniedException
+You do not have suﬃcient access to perform this action.
+HTTP Status Code: 400
+IncompleteSignature
+The request signature does not conform to AWS standards.
+HTTP Status Code: 400
+InternalFailure
+The request processing has failed because of an unknown error, exception or failure.
+HTTP Status Code: 500
+InvalidAction
+The action or operation requested is invalid. Verify that the action is typed correctly.
+HTTP Status Code: 400
+InvalidClientTokenId
+The X.509 certiﬁcate or AWS access key ID provided does not exist in our records.
+HTTP Status Code: 403
+NotAuthorized
+You do not have permission to perform this action.
+HTTP Status Code: 400
+OptInRequired
+The AWS access key ID needs a subscription for the service.
+HTTP Status Code: 403
+RequestExpired
+The request reached the service more than 15 minutes after the date stamp on the request or more 
+than 15 minutes after the request expiration date (such as for pre-signed URLs), or the date stamp 
+on the request is more than 15 minutes in the future.
+HTTP Status Code: 400
+ServiceUnavailable
+The request has failed due to a temporary failure of the server.
+HTTP Status Code: 503
+ThrottlingException
+The request was denied due to request throttling.
+API Version 2017-04-19
+82AWS CodeStar API Reference
+HTTP Status Code: 400
+ValidationError
+The input fails to satisfy the constraints speciﬁed by an AWS service.
+HTTP Status Code: 400
+API Version 2017-04-19
+83

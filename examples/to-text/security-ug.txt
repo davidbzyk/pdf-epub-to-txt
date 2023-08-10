@@ -1,0 +1,2326 @@
+Amazon CodeGuru Security
+User Guide
+Amazon CodeGuru Security User Guide
+Amazon CodeGuru Security: User Guide
+Copyright © 2023 Amazon Web Services, Inc. and/or its aﬃliates. All rights reserved.
+Amazon's trademarks and trade dress may not be used in connection with any product or service that is not 
+Amazon's, in any manner that is likely to cause confusion among customers, or in any manner that disparages or 
+discredits Amazon. All other trademarks not owned by Amazon are the property of their respective owners, who may 
+or may not be aﬃliated with, connected to, or sponsored by Amazon.Amazon CodeGuru Security User Guide
+Table of Contents
+........................................................................................................................................................v
+What is Amazon CodeGuru Security?....................................................................................................1
+What kind of recommendations does CodeGuru Security provide?....................................................1
+What languages does CodeGuru Security support?.........................................................................1
+What IDEs does CodeGuru Security support?.................................................................................1
+What integrations does CodeGuru Security support?.......................................................................2
+How much does CodeGuru Security cost?......................................................................................2
+How do I get started with CodeGuru Security?...............................................................................2
+How CodeGuru Security works.............................................................................................................3
+Features....................................................................................................................................3
+Terminology and metrics.............................................................................................................5
+CodeGuru Security compared to other security services...................................................................6
+Setting up Amazon CodeGuru Security.................................................................................................7
+Sign up for AWS........................................................................................................................7
+Sign up for an AWS account................................................................................................7
+Create an administrative user..............................................................................................7
+Conﬁgure IAM permissions..........................................................................................................8
+Assigning permissions .........................................................................................................8
+Install and conﬁgure the AWS CLI and AWS SDKs...........................................................................9
+Start scanning...........................................................................................................................9
+Getting started................................................................................................................................10
+With the console......................................................................................................................10
+With GitHub ............................................................................................................................10
+Step 1: Create an IAM role................................................................................................10
+Step 2: Create a custom workﬂow in GitHub........................................................................11
+With Bitbucket.........................................................................................................................12
+Step 1: Create an IAM role................................................................................................12
+Step 2: Conﬁgure Bitbucket pipelines..................................................................................13
+With GitLab .............................................................................................................................14
+Step 1: Create an IAM role................................................................................................14
+Step 2: Conﬁgure your CI/CD workﬂow...............................................................................14
+With AWS CodePipeline............................................................................................................15
+Step 1: Create CodeBuild project........................................................................................16
+Step 2: Add step to CodePipeline.......................................................................................16
+With the AWS CLI.....................................................................................................................16
+With IDE plugins ......................................................................................................................17
+With Amazon Inspector.............................................................................................................17
+Tutorial: Run scans with SageMaker Studio and JupyterLab............................................................17
+Step 1: Install the CodeGuru Security extension...................................................................18
+Step 2: Update IAM permissions .........................................................................................19
+Step 3: Run a scan ...........................................................................................................20
+Step 4: View and address ﬁndings......................................................................................20
+Step 5: Updating scan settings...........................................................................................21
+Step 6: Disable or uninstall the extension............................................................................22
+Working with code scans...................................................................................................................24
+Create code scans.....................................................................................................................24
+In the console..................................................................................................................24
+With the AWS CLI and AWS SDKs.......................................................................................25
+View all code scans..................................................................................................................25
+View scans with the AWS CLI or the AWS SDK.....................................................................26
+View code scan details..............................................................................................................26
+Scan metrics ....................................................................................................................26
+Scan ﬁndings ...................................................................................................................26
+View scan details with the CLI or SDK .................................................................................27
+iiiAmazon CodeGuru Security User Guide
+Working with ﬁndings.......................................................................................................................28
+View all ﬁndings ......................................................................................................................28
+View ﬁndings in the console..............................................................................................28
+View ﬁndings with the AWS CLI or SDK...............................................................................29
+View ﬁndings details .................................................................................................................29
+Finding details .................................................................................................................29
+View ﬁnding details with the AWS CLI and AWS SDKs...........................................................29
+Addressing ﬁndings..................................................................................................................29
+Adding suggested code changes.........................................................................................30
+Address ﬁndings with the AWS CLI and the AWS SDKs..........................................................30
+Understanding dashboard metrics......................................................................................................31
+Findings overview metrics.........................................................................................................31
+Open and critical ﬁndings .................................................................................................31
+Severity distribution.........................................................................................................31
+Vulnerability assessment...................................................................................................32
+Scans with most ﬁndings and most critical ﬁndings ..............................................................32
+Vulnerability resolution overview metrics....................................................................................32
+Vulnerability tracking........................................................................................................33
+Open versus closed ﬁndings..............................................................................................33
+Average time to close.......................................................................................................33
+Security...........................................................................................................................................34
+Data protection........................................................................................................................34
+Data captured by CodeGuru Security..................................................................................35
+Data retention.................................................................................................................35
+Encryption at rest.............................................................................................................35
+Encryption in transit.........................................................................................................35
+Key management.............................................................................................................36
+Identity and access management...............................................................................................37
+Audience.........................................................................................................................38
+Authenticating with identities ............................................................................................38
+Managing access using policies..........................................................................................40
+How Amazon CodeGuru Security works with IAM.................................................................42
+Identity-based policy examples..........................................................................................47
+Amazon CodeGuru Security permissions reference................................................................49
+AWS managed policies......................................................................................................49
+Troubleshooting...............................................................................................................51
+Compliance validation...............................................................................................................52
+Resilience................................................................................................................................53
+Infrastructure Security..............................................................................................................53
+Monitoring .......................................................................................................................................54
+Monitoring events....................................................................................................................54
+Logging Amazon CodeGuru Security API calls using AWS CloudTrail................................................54
+CodeGuru Security information in CloudTrail.......................................................................54
+Understanding CodeGuru Security log ﬁle entries.................................................................55
+Quotas ............................................................................................................................................57
+Code resources.........................................................................................................................57
+Code resource quotas for standard scans.............................................................................57
+Code resource quotas for express scans...............................................................................57
+CodeGuru Security quotas for creating, deploying, and managing an API.........................................57
+Document history.............................................................................................................................59
+ivAmazon CodeGuru Security User Guide
+Amazon CodeGuru Security is in preview release and is subject to change.
+vAmazon CodeGuru Security User Guide
+What kind of recommendations 
+does CodeGuru Security provide?
+What is Amazon CodeGuru Security?
+Amazon CodeGuru Security is a static application security tool that uses machine learning to detect 
+security policy violations and vulnerabilities. It provides recommendations for addressing security risks, 
+and generates metrics so you can track the security health of your applications. CodeGuru Security’s 
+policies, which are informed by years of Amazon.com and AWS security best practices, help you to create 
+and deploy secure, eﬃcient applications.
+CodeGuru Security is currently supported in several AWS Regions.
+What kind of recommendations does CodeGuru 
+Security provide?
+CodeGuru Security identiﬁes security vulnerabilities in your code. It also indicates what areas of your 
+code need improvement and recommendations for how to address them. There are several types of 
+detectors CodeGuru Security uses to analyze your code. For information about these detectors, see the
+Amazon CodeGuru Detector Library.
+Examples of security vulnerabilities it detects include resource leaks, hardcoded credentials, and cross-
+site scripting.
+What languages does CodeGuru Security support?
+You can run CodeGuru Security scans on Python, Java, and JavaScript code ﬁles. You can also scan text 
+ﬁles for hardcoded secrets. CodeGuru security supports following language versions:
+•Java ‐ Java 8
+•Python ‐ Python 3.8
+•JavaScript ‐ ECMAScript 2021
+What IDEs does CodeGuru Security support?
+CodeGuru Security can be used in the following interactive development environments (IDEs). For 
+notebook IDEs, CodeGuru Security is available through the Amazon CodeGuru extension (p. 17)
+for code written in Python. For other IDEs, CodeGuru Security is available through the Amazon 
+CodeWhisperer plugin for code written in Java, Python, and JavaScript.
+•Amazon SageMaker Studio
+•JupyterLab
+•Visual Studio Code through the AWS Toolkit
+•IntelliJ IDEA through the AWS Toolkit
+•AWS Cloud9
+•AWS Lambda
+1Amazon CodeGuru Security User Guide
+What integrations does CodeGuru Security support?
+What integrations does CodeGuru Security 
+support?
+CodeGuru Security supports integration with the following products and services:
+•GitHub
+•GitLab
+•Bitbucket
+•AWS CLI
+•AWS CodePipeline
+CodeGuru Security also supports the following services:
+•AWS Lambda code scanning with Amazon Inspector. For more information, see Scanning AWS Lambda 
+functions with Amazon Inspector.
+•Amazon CodeWhisperer security scans. For more information, see Security scans in Amazon 
+CodeWhisperer.
+How much does CodeGuru Security cost?
+Currently, CodeGuru Security is in preview release and is free to use.
+How do I get started with CodeGuru Security?
+Currently CodeGuru Security is available through the console, the AWS CLI and AWS SDKs, CodeGuru 
+Security APIs, and through several integrations. For more information, see Getting started with 
+CodeGuru Security (p. 10).
+CodeGuru Security is also used in Amazon Inspector code scanning and Amazon CodeWhisperer security 
+scans .
+2Amazon CodeGuru Security User Guide
+Features
+How CodeGuru Security works
+Amazon CodeGuru Security scans your applications, ﬁnds security vulnerabilities, and provides 
+suggestions for how to address them in your code. After updating your code, you can rerun a scan to 
+make sure the security risk has been remediated. By revising code and re-running scans, you generate 
+security metrics you can track to continuously improve the security posture of your applications.
+CodeGuru Security detects security vulnerabilities and returns ﬁndings, which include information about 
+security issues in your code, where they are, and suggestions for how to remediate them. If the ﬁnding 
+includes a change to your code, CodeGuru Security highlights the vulnerable lines of code to remove and 
+suggests inline code ﬁxes as replacements. For more information, see Working with ﬁndings (p. 28).
+The CodeGuru Security Dashboard provides metrics to track the security posture of your application 
+including open critical ﬁndings, severity distribution of ﬁndings and trends over time for each resource. 
+CodeGuru Security tracks the vulnerabilities and trends across multiple revisions of the same resource 
+using the scan name you provide when a scan is created. For more information, see Understanding 
+dashboard metrics (p. 31).
+You can also choose individual scans in the console to view security data. This includes the number 
+of open and closed ﬁndings and an assessment of vulnerability types for a particular scan. For more 
+information about scans, see Working with code scans (p. 24).
+Code scans are powered by detectors in the Amazon CodeGuru Detector Library. Each detector 
+corresponds to a type of code defect and can detect a range of issues related to a defect. For more 
+information, visit the Amazon CodeGuru Detector Library.
+You can run code scans directly in the CodeGuru Security console, use the AWS CLI, use the AWS 
+SDKs, or integrate with another service to detect security issues where you build your applications. 
+For instructions on how to integrate CodeGuru Security with other services, see Getting started with 
+CodeGuru Security (p. 10).
+Features
+This section outlines common features of CodeGuru Security and how they help mitigate security risk in 
+your applications.
+High precision vulnerability detection
+CodeGuru Security uses machine learning based on years of AWS and Amazon.com security best 
+practices to detect security vulnerabilities in your code. These detectors look for code vulnerabilities 
+like injection ﬂaws, leaking data, weak cryptography, or missing encryption. As we update our security 
+policies and add new detectors, code scans automatically incorporate the new policies. Detected 
+vulnerabilities are returned as ﬁndings, which include details about the security risk and how to address 
+it.
+Inline code ﬁxes
+For certain vulnerabilities, CodeGuru Security uses machine learning to create plug-and-play code blocks 
+that can directly replace your vulnerable lines of code. You can remove the vulnerable code and then 
+paste suggested code updates into your ﬁle, or download a code patch from the console to apply to your 
+ﬁle.
+Integrations
+3Amazon CodeGuru Security User Guide
+Features
+In addition to running code scans directly in the console, you can integrate CodeGuru Security with 
+several other products and services. By integrating with your existing workﬂow, you can automate 
+vulnerability detection without disrupting your software development process. For a list of IDEs and 
+services you can use with CodeGuru Security, see IDEs supported by CodeGuru Security (p. 1) and
+Integrations supported by CodeGuru Security (p. 2). For instructions on how to integrate with a service, 
+see Getting started with CodeGuru Security (p. 10), or go to the Integrations page in the CodeGuru 
+Security console.
+Vulnerability tracking
+CodeGuru Security utilizes a machine learning based vulnerability tracking feature which tracks a 
+vulnerability even if it moves to a diﬀerent location within a ﬁle or to another ﬁle. After a vulnerability 
+is initially detected, the vulnerability tracking feature can detect if it is still present across subsequent 
+scans, or if it has been addressed. When vulnerability tracking detects that a vulnerability has been 
+addressed, it automatically changes the status of the ﬁnding to Closed. This status update is passed to 
+any integrated notiﬁcation system. No user action is required.
+Metrics dashboard
+CodeGuru Security detects security vulnerabilities across all your code scans and generates ﬁndings 
+metrics that are presented in a high-level dashboard. The dashboard displays data about your security 
+ﬁndings like the average time to close ﬁndings, what types of vulnerabilities are present in your scans, 
+and the severity distribution of your ﬁndings. With the vulnerability tracking feature, the Metrics 
+dashboard is able to maintain an up-to-date representation of the security posture of your resources.
+You can use this data to track the progress of your application security, identify vulnerabilities during 
+software development, and track the lifecycle of vulnerabilities. You can also communicate the status of 
+application security, and collaborate with other teams to address security issues.
+For information about how these metrics are calculated and where to ﬁnd them, see Understanding 
+dashboard metrics (p. 31).
+Security posture over time
+Results from code vulnerability analysis in the dashboard let you monitor progress toward remediation 
+of code vulnerabilities and view trends over time to see if SLAs for remediation are being met.
+Prioritization of code vulnerabilities
+Code vulnerability analysis categorizes security vulnerabilities that it detects by severity, which lets you 
+focus on the code vulnerabilities that you want address ﬁrst or where you want to concentrate your 
+remediation eﬀorts.
+Continually scan your environment for vulnerabilities
+Enable automatic code scanning in your workﬂow to scan ﬁles as you develop your applications and 
+catch security vulnerabilities early in the development process.
+No machine learning expertise needed
+CodeGuru Security uses machine learning models that AWS manages to provide data about your code 
+security health. These models make sure that your code follows best practices and takes advantage of 
+AWS code security expertise.
+Code vulnerability analysis relies on AWS machine learning models to enforce security policies based on 
+security best practices for a range of detectors.
+Management of scans and ﬁndings in customizable views
+In addition to the Dashboard, you can view the Scans page and Findings page in the console for a 
+list of all scans and ﬁndings in your account. The Scans page gives an overview of all scans run in an 
+4Amazon CodeGuru Security User Guide
+Terminology and metrics
+account. You can choose individual scans for data about the ﬁndings associated with the scan. For more 
+information, see Working with code scans (p. 24). The Findings page lists ﬁndings based on a chosen 
+severity level. You can view individual ﬁndings for information about the vulnerability and suggested 
+remediations. For more information, see Working with ﬁndings (p. 28).
+Terminology and metrics
+This section provides an overview of the key terminology and metrics in Amazon CodeGuru Security.
+Age
+The amount of time a ﬁnding is open, starting at initial detection.
+Average time to close
+The average amount of time that a ﬁnding is open, from initial detection to being closed, during a 
+particular date range.
+Closed ﬁndings
+Previously detected ﬁndings that CodeGuru Security no longer identiﬁes as security vulnerabilities 
+during a subsequent scan because the security vulnerabilities were resolved.
+Closure rate
+The percentage of ﬁndings that were closed during a particular date range. This number is 
+determined by dividing the number of open ﬁndings during the date range by the number of closed 
+ﬁndings for the same period. For example, if 8 out of 10 open ﬁndings were closed during a date 
+range, then the closure rate is 80%.
+Detector
+A deﬁned rule that CodeGuru Security uses to check your code for security vulnerabilities based 
+on industry standards and AWS best practices. Detectors identify a type security vulnerability and 
+are used to group ﬁndings based on these categorizations of vulnerabilities. To learn more, see the
+Amazon CodeGuru Detector Library.
+Finding
+A security vulnerability that CodeGuru Security detects during a scan. Finding types are grouped by 
+detectors.
+Finding ID
+A unique identiﬁer for a ﬁnding.
+Finding summary
+The number of ﬁndings of each severity level that are open across all scans in an account.
+Finding status
+Indicates whether a scan is open or closed.
+Open ﬁndings
+Detected security vulnerabilities that have not been resolved and are still open. This number could 
+include new ﬁndings from a current scan or ﬁndings that are still open from a previous scan.
+Relevant CWE
+The Common Weakness Enumeration, or set of software vulnerabilities with identiﬁcation, 
+mitigation, and prevention descriptions that applies to a particular detector. For more information, 
+see CWE Common Weakness Enumeration.
+5Amazon CodeGuru Security User Guide
+CodeGuru Security compared to other security services
+Rule ID
+An identiﬁer for the rule that generated the ﬁnding.
+Scan
+A review of a code ﬁle by CodeGuru Security to check for security vulnerabilities.
+Scan name
+The unique name that CodeGuru Security uses to track scans across multiple revisions of the same 
+resource. When you create a unique scan name and use it to re-run scans on updated resources, 
+CodeGuru Security is able to provide accurate metrics for your ﬁndings.
+Scan status
+Indicates whether a scan is in progress, complete, or failed.
+Severity
+The gravity of ﬁndings that CodeGuru Security identiﬁes, divided into critical, high, medium, low, 
+and informational. For more information, see Severity deﬁnitions (p. 32).
+Vulnerability tags
+Categorizations of ﬁndings by type, programming language, or other classiﬁcation such as 
+maintainability or consistency.
+Vulnerability type
+The categorization of a vulnerability based on the detector that generated the ﬁnding.
+How is CodeGuru Security diﬀerent than other 
+AWS security services?
+Amazon CodeGuru Security, which identiﬁes security vulnerabilities in your application resources, adds to 
+the AWS collection of security services.
+•Amazon Inspector is a vulnerability management service that continuously scans your AWS workloads 
+for software vulnerabilities and unintended network exposure. You can run scans on your AWS Lambda 
+functions that are powered by CodeGuru Security.
+•Amazon GuardDuty monitors network traﬃc for threat patterns such as unusual data access in 
+Amazon Simple Storage Service or API calls from known malicious IP addresses.
+•Amazon Macie scans data storage locations for unencrypted data such as personally identiﬁable 
+information (PII) and ﬁnancial data.
+•AWS Security Hub collects security data from across AWS accounts, services, and supported third-party 
+products and helps you analyze your security trends and identify the highest priority security issues.
+6Amazon CodeGuru Security User Guide
+Sign up for AWS
+Setting up Amazon CodeGuru 
+Security
+This section explains how to set up CodeGuru Security for the ﬁrst time. If you haven't already, you sign 
+up for an AWS account. After making an account, you conﬁgure IAM permissions to get access to the 
+service. Optionally, you can install and conﬁgure the AWS CLI and AWS SDKs.
+Topics
+•Sign up for AWS (p. 7)
+•Conﬁgure IAM permissions (p. 8)
+•Install and conﬁgure the AWS CLI and AWS SDKs (p. 9)
+•Start scanning (p. 9)
+Sign up for AWS
+When you sign up for Amazon Web Services (AWS), your AWS account automatically has access to all 
+AWS services, including CodeGuru Security. Note that you’re charged only for the services that you use.
+Sign up for an AWS account
+If you do not have an AWS account, complete the following steps to create one.
+To sign up for an AWS account
+1. Open https://portal.aws.amazon.com/billing/signup.
+2. Follow the online instructions.
+Part of the sign-up procedure involves receiving a phone call and entering a veriﬁcation code on the 
+phone keypad.
+When you sign up for an AWS account, an AWS account root user is created. The root user has access 
+to all AWS services and resources in the account. As a security best practice, assign administrative 
+access to an administrative user, and use only the root user to perform tasks that require root user 
+access.
+AWS sends you a conﬁrmation email after the sign-up process is complete. At any time, you can view 
+your current account activity and manage your account by going to https://aws.amazon.com/ and 
+choosing My Account.
+Create an administrative user
+After you sign up for an AWS account, create an administrative user so that you don't use the root user 
+for everyday tasks.
+Secure your AWS account root user
+1. Sign in to the AWS Management Console as the account owner by choosing Root user and entering 
+your AWS account email address. On the next page, enter your password.
+7Amazon CodeGuru Security User Guide
+Conﬁgure IAM permissions
+For help signing in by using root user, see Signing in as the root user in the AWS Sign-In User Guide.
+2. Turn on multi-factor authentication (MFA) for your root user.
+For instructions, see Enable a virtual MFA device for your AWS account root user (console) in the IAM 
+User Guide .
+Create an administrative user
+• For your daily administrative tasks, grant administrative access to an administrative user in AWS IAM 
+Identity Center (successor to AWS Single Sign-On).
+For instructions, see Getting started in the AWS IAM Identity Center (successor to AWS Single Sign-On) 
+User Guide .
+Sign in as the administrative user
+• To sign in with your IAM Identity Center user, use the sign-in URL that was sent to your email 
+address when you created the IAM Identity Center user.
+For help signing in using an IAM Identity Center user, see Signing in to the AWS access portal in the
+AWS Sign-In User Guide.
+Conﬁgure IAM permissions
+Following security best practices, create an AWS Identity and Access Management (IAM) role with access 
+restricted to Amazon CodeGuru Security operations and with required permissions. You can add other 
+permissions as needed.
+The following policies provide permissions to use Amazon CodeGuru Security:
+•AmazonCodeGuruSecurityFullAccess (p. 50): Provides full access to resources needed to use 
+Amazon CodeGuru Security.
+•AmazonCodeGuruSecurityScanAccess (p. 50): Provides access to API operations needed to create 
+scans, get scan information, and get scan ﬁndings.
+For more information on these AWS managed policies, see AWS managed policies for Amazon CodeGuru 
+Security (p. 49).
+To assign these permissions and grant access to CodeGuru Security, see Assigning permissions  (p. 8).
+Assigning permissions
+To provide access, add permissions to your users, groups, or roles:
+•Users and groups in AWS IAM Identity Center (successor to AWS Single Sign-On):
+Create a permission set. Follow the instructions in Create a permission set in the AWS IAM Identity 
+Center (successor to AWS Single Sign-On) User Guide.
+•Users managed in IAM through an identity provider:
+Create a role for identity federation. Follow the instructions in Creating a role for a third-party identity 
+provider (federation) in the IAM User Guide .
+•IAM users:
+8Amazon CodeGuru Security User Guide
+Install and conﬁgure the AWS CLI and AWS SDKs
+•Create a role that your user can assume. Follow the instructions in Creating a role for an IAM user in 
+the IAM User Guide .
+•(Not recommended) Attach a policy directly to a user or add a user to a user group. Follow the 
+instructions in Adding permissions to a user (console) in the IAM User Guide .
+Install and conﬁgure the AWS CLI and AWS SDKs
+To call Amazon CodeGuru Security commands from the AWS Command Line Interface (AWS CLI) on a 
+local development machine, you must install the AWS CLI.
+If you have an older version of the AWS CLI installed, we recommend you upgrade it so the Amazon 
+CodeGuru Security commands are available. To check the version, use the aws --version  command.
+To install and conﬁgure the AWS CLI
+1. To install or upgrade the AWS CLI, follow the instructions in Getting started with the AWS CLI.
+2. To conﬁgure the AWS CLI, see Conﬁguring the AWS CLI in the AWS Command Line Interface User 
+Guide  and Managing access keys for IAM users in the IAM User Guide .
+Important
+When you conﬁgure the AWS CLI, you are prompted to specify an AWS Region. Choose one 
+of the supported Regions listed in Amazon CodeGuru Security endpoints and quotas in the
+AWS General Reference.
+3. To verify the installation or upgrade, run the following command from the AWS CLI.
+aws codeguru-security help
+If successful, this command displays a list of available CodeGuru Security commands.
+Start scanning
+To begin using CodeGuru Security, go to the Amazon CodeGuru Security console and create a scan 
+or choose an integration. For information on how to get started, see Getting started with CodeGuru 
+Security (p. 10).
+9Amazon CodeGuru Security User Guide
+With the console
+Getting started with CodeGuru 
+Security
+In this section, you learn how to get started with Amazon CodeGuru Security. You can use the CodeGuru 
+Security console, the AWS CLI, AWS SDKs, CodeGuru Security APIs, or integrate with the following 
+products and services: GitHub, GitLab, BitBucket, AWS CodePipeline, Amazon Inspector, Amazon 
+SageMaker Studio, JupyterLab, and IDEs like VS Code and IntelliJ IDEA.
+Before you begin this section, make sure you've followed the steps in Setting up Amazon CodeGuru 
+Security (p. 7).
+Topics
+•Get started with the console (p. 10)
+•Integrate with GitHub  (p. 10)
+•Integrate with Bitbucket (p. 12)
+•Integrate with GitLab  (p. 14)
+•Integrate with AWS CodePipeline (p. 15)
+•Integrate with the AWS CLI (p. 16)
+•Integrate with IDE plugins  (p. 17)
+•Integrate with Amazon Inspector (p. 17)
+•Tutorial: Run scans with SageMaker Studio and JupyterLab (p. 17)
+Get started with the console
+You can create code scans, view ﬁndings, and view security metrics in the CodeGuru Security console.
+Open the CodeGuru Security console at https://console.aws.amazon.com/codeguru/security/Scans to 
+get started.
+To create a code scan in the console, see Create code scans in the console (p. 24).
+Integrate with GitHub
+The following steps show how to integrate CodeGuru Security into your GitHub pipeline. After you 
+complete the setup, CodeGuru Security will run scans whenever you push to the main  branch in the 
+repository you integrate with. After a scan run, you will be able to see ﬁndings in the Code scanning
+page on GitHub and on the Findings page in the CodeGuru Security console.
+You can also complete these steps on the Integrations  page in the CodeGuru Security console. Choose
+Integrate with GitHub  to get started.
+Step 1: Create an IAM role
+To allow CodeGuru Security to integrate with GitHub, create an IAM role with suﬃcient permissions. You 
+can create a AWS CloudFormation stack that sets up a role for you, or manually conﬁgure a role.
+To manually conﬁgure an IAM role for GitHub, see Conﬁguring OpenID Connect in 
+Amazon Web Services in the GitHub Docs. You can attach the AWS managed policy
+10Amazon CodeGuru Security User Guide
+Step 2: Create a custom workﬂow in GitHub
+AmazonCodeGuruSecurityScanAccess (p. 50) to conﬁgure your role with the minimum necessary 
+permissions to integrate with GitHub.
+If you have already conﬁgured a role to use CodeGuru Security with the GitHub repository you want to 
+scan, you can skip to step 2.
+Create a role with a CloudFormation stack
+Complete the following steps to create a CloudFormation stack that sets up an IAM role with the 
+necessary permissions attached to integrate with GitHub.
+1. Open the Integrations  page in the CodeGuru Security console and choose Integrate with GitHub .
+2. For Step 1: Create an IAM role, choose Use CloudFormation template. Then choose Open template 
+in CloudFormation to be redirected to the Create stack page in the CloudFormation console.
+3. For Stack name , enter a unique name for your stack.
+4. For Parameters, enter the name of the repository you want to scan.
+5. Check the box to acknowledge that AWS CloudFormation might create IAM resources with custom 
+names. This allows CloudFormation to create a role for you.
+6. Choose Create stack . CloudFormation creates a role called
+CodeGuruSecurityGitHubAccessRole . Continue to the next step.
+Step 2: Create a custom workﬂow in GitHub
+Complete the following steps to create a custom workﬂow for your repository that includes steps and 
+actions to run CodeGuru Security scans. The following workﬂow will initiate security scans every time 
+you push code to the main branch of the repository you are integrating with. If CodeGuru Security 
+detects a critical ﬁnding, the pipeline build will fail.
+1. Log in to your GitHub account.
+2. Open the repository that you want to scan.
+3. Choose the Actions tab.
+4. Choose New workﬂow.
+5. Choose set up a workﬂow yourself.
+6. Paste the following code into the .github/workflow/main.yml  ﬁle editor in GitHub. You can 
+modify the events deﬁned in this ﬁle based on your use case.
+Replace accountID  with the account that is assuming the role. If you manually conﬁgured a 
+role, replace CodeGuruSecurityGitHubAccessRole  with the name of the role you created to 
+integrate with GitHub.
+name: CodeGuru Security Example
+on: 
+  push: 
+    branches: 
+      - 'main'
+permissions: 
+  id-token: write 
+  # for writing security events. 
+  security-events: write 
+  # only required for workflows in private repositories 
+  actions: read 
+  contents: read
+jobs: 
+11Amazon CodeGuru Security User Guide
+With Bitbucket
+  build: 
+    runs-on: ubuntu-latest 
+    steps: 
+      - name: Checkout Respository 
+        uses: actions/checkout@v3 
+        with: 
+          fetch-depth: 0 
+      - name: Configure aws credentials 
+        uses: aws-actions/configure-aws-credentials@v2 
+        with: 
+          role-to-assume: arn:aws:iam:: accountID :role/CodeGuruSecurityGitHubAccessRole
+          aws-region: us-east-2 
+          role-session-name: GitHubActionScript 
+      - name: CodeGuru Security 
+        uses: aws-actions/codeguru-security@v1 
+        with: 
+          source_path: . 
+          aws_region: us-east-2 
+          fail_on_severity: Critical 
+      - name: Print findings 
+        run: | 
+          ls -l 
+          cat codeguru-security-results.sarif.json 
+      # If you want content in security scanning, you’ll need to enable codescanning by 
+ going into github. 
+      # https://docs.github.com/en/code-security/code-scanning/automatically-scanning-
+your-code-for-vulnerabilities-and-errors/configuring-code-scanning-for-a-repository 
+      - name: Upload result 
+        uses: github/codeql-action/upload-sarif@v2 
+        with: 
+          sarif_file: codeguru-security-results.sarif.json
+7. Commit your changes.
+After creating the workﬂow, CodeGuru Security will automatically run scans based on the events that 
+you have deﬁned in the workﬂow ﬁle. To view your ﬁndings, go to the Security tab of your repository, 
+and then choose Code scanning  in the left navigation bar. You can also view code scans and ﬁndings in 
+the CodeGuru Security console.
+Integrate with Bitbucket
+The following steps show how to integrate CodeGuru Security into your Bitbucket pipeline. After you 
+complete the setup, CodeGuru Security will run scans whenever you push to the main  branch in the 
+repository you integrate with. After a scan run, you will be able to see ﬁndings on the Findings page in 
+the CodeGuru Security console.
+You can also complete these steps on the Integrations  page in the CodeGuru Security console. Choose
+Integrate with Bitbucket to get started.
+Step 1: Create an IAM role
+To allow CodeGuru Security to integrate with Bitbucket, create an IAM role with suﬃcient permissions. 
+You can create a AWS CloudFormation stack that sets up a role for you, or manually conﬁgure a role.
+To manually conﬁgure an IAM role for Bitbucket, see Deploy on AWS using Bitbucket Pipelines 
+OpenID Connect  in the Bitbucket Support documentation. You can attach the AWS managed policy
+12Amazon CodeGuru Security User Guide
+Step 2: Conﬁgure Bitbucket pipelines 
+AmazonCodeGuruSecurityScanAccess (p. 50) to conﬁgure your role with the minimum necessary 
+permissions to integrate with Bitbucket.
+If you have already conﬁgured a role to use CodeGuru Security with the Bitbucket repository you want to 
+scan, you can skip to step 2.
+Create a role with a CloudFormation stack
+Complete the following steps to create a CloudFormation stack that sets up an IAM role with the 
+necessary permissions attached to integrate with Bitbucket.
+1. Open the Integrations  page in the CodeGuru Security console and choose Integrate with Bitbucket.
+2. For Step 1: Create an IAM role, choose Use CloudFormation template. Then choose Open template 
+in CloudFormation to be redirected to the Create stack page in the CloudFormation console.
+3. For Stack name , enter a unique name for your stack.
+4. For Parameters, for Audience, enter the Audience of the repository you want to scan. For
+ProviderUrl, enter the Identity provider URL of the repository you want to scan.
+These values can be found in your Bitbucket account under Repository settings. Go to Pipelines: 
+OpenID Connect and then Identity provider.
+5. Check the box to acknowledge that AWS CloudFormation might create IAM resources with custom 
+names. This allows CloudFormation to create a role for you.
+6. Choose Create stack . CloudFormation creates a role called
+CodeGuruSecurityBitbucketAccessRole . Continue to the next step.
+Step 2: Conﬁgure Bitbucket pipelines
+Complete the following steps to update your Bitbucket pipeline to include steps and actions to run 
+CodeGuru Security scans. The following pipeline will initiate security scans every time you push code 
+to the main branch of the repository you are integrating with. If CodeGuru Security detects a critical 
+ﬁnding, the pipeline build will fail.
+1. Log in to your Bitbucket account.
+2. Open the repository that you want to scan.
+3. Choose the Source tab.
+4. If you don't have a pipeline YAML ﬁle yet, choose Add ﬁle and name it bitbucket-
+pipelines.yml .
+If you have already set up a pipeline YAML ﬁle, choose Edit.
+5. Paste the following code into the bitbucket-pipelines.yml  ﬁle editor in Bitbucket. You can 
+modify the events deﬁned in this ﬁle based on your use case.
+Replace accountID  with the account that is assuming the role. If you manually conﬁgured a role, 
+replace CodeGuruSecurityBitbucketAccessRole  with the name of the role you created to 
+integrate with Bitbucket.
+pipelines: 
+  branches: 
+    master: 
+    - step: 
+        image: 
+          name: public.ecr.aws/l6c8c5q3/codegurusecurity-actions-public:latest 
+          oidc: true 
+        script: 
+          - export 
+ AWS_ROLE_ARN=arn:aws:iam:: accountID :role/CodeGuruSecurityBitbucketAccessRole
+13Amazon CodeGuru Security User Guide
+With GitLab
+          - export AWS_WEB_IDENTITY_TOKEN_FILE=$(pwd)/web-identity-token 
+          - echo $BITBUCKET_STEP_OIDC_TOKEN > $(pwd)/web-identity-token 
+          - python /usr/app/codeguru/command.py --source_path . --aws_region us-east-2 
+ --scan_name CGS-Bitbucket-$BITBUCKET_REPO_SLUG --fail_on_severity Critical 
+          - cat codeguru-security-results.sarif.json
+6. Choose Commit  to commit your changes.
+After updating the pipeline, CodeGuru Security will automatically run scans based on the events that you 
+have deﬁned in the ﬁle. You can view your ﬁndings in the CodeGuru Security console.
+Integrate with GitLab
+The following steps show how to integrate CodeGuru Security into your GitLab CI/CD workﬂow. After 
+you complete the setup, CodeGuru Security will run scans whenever you push to the main  branch in the 
+project you integrate with. After a scan run, you will be able to see ﬁndings in the Vulnerability report
+page on GitLab and on the Findings page in the CodeGuru Security console.
+You can also complete these steps on the Integrations  page in the CodeGuru Security console. Choose
+Integrate with GitLab  to get started.
+Step 1: Create an IAM role
+To allow CodeGuru Security to integrate with GitLab, create an IAM role with suﬃcient permissions. You 
+can create a AWS CloudFormation stack that sets up a role for you, or manually conﬁgure a role.
+To manually conﬁgure an IAM role for GitLab, see Conﬁgure OpenID Connect in AWS to 
+retrieve temporary credentials  in the GitLab Docs. You can attach the AWS managed policy
+AmazonCodeGuruSecurityScanAccess (p. 50) to conﬁgure your role with the minimum necessary 
+permissions to integrate with GitLab.
+If you have already conﬁgured a role to use CodeGuru Security with the GitLab repository you want to 
+scan, you can skip to step 2.
+Create a role with a CloudFormation stack
+Complete the following steps to create a CloudFormation stack that sets up an IAM role with the 
+necessary permissions attached to integrate with GitLab.
+1. Open the Integrations  page in the CodeGuru Security console and choose Integrate with GitLab .
+2. For Step 1: Create an IAM role, choose Use CloudFormation template. Then choose Open template 
+in CloudFormation to be redirected to the Create stack page in the CloudFormation console.
+3. For Stack name , enter a unique name for your stack.
+4. For Parameters, for Group , enter the name of the group that contains your project. For Project, 
+enter the name of the project you want to scan.
+5. Check the box to acknowledge that AWS CloudFormation might create IAM resources with custom 
+names. This allows CloudFormation to create a role for you.
+6. Choose Create stack . CloudFormation creates a role called
+CodeGuruSecurityGitLabAccessRole . Continue to the next step.
+Step 2: Conﬁgure your CI/CD workﬂow
+Complete the following steps to conﬁgure your GitLab CI/CD workﬂow and to deﬁne the jobs that make 
+up your pipeline to run CodeGuru Security scans. This pipeline will initiate security scans every time you 
+14Amazon CodeGuru Security User Guide
+With AWS CodePipeline
+push code to the main branch of the repository you are integrating with. If CodeGuru Security detects a 
+critical ﬁnding, the pipeline build will fail.
+1. Log in to your GitLab account.
+2. Open the project that you want to scan.
+3. Choose the Set up CI/CD .
+4. Choose Conﬁgure pipeline .
+5. Paste the following code into the .gitlab-ci.yml  ﬁle editor in GitLab. You can modify the events 
+deﬁned in this ﬁle based on your use case.
+Replace accountID  with the account that is assuming the role. Replace
+CodeGuruSecurityGitLabAccessRole  with the name of the role you created to integrate with 
+GitLab.
+codeguru_security_example: 
+  image: 
+    name: public.ecr.aws/l6c8c5q3/codegurusecurity-actions-public:latest 
+    entrypoint: [""] 
+  variables: 
+    ROLE_ARN: arn:aws:iam:: accountID :role/CodeGuruSecurityGitLabAccessRole
+    AWS_PROFILE: oidc # used to get the credential. More detail: https://gitlab.com/
+guided-explorations/aws/configure-openid-connect-in-aws/-/tree/main 
+  id_tokens: 
+    MY_OIDC_TOKEN: 
+      aud: https://gitlab.com 
+  before_script: 
+    - mkdir -p ~/.aws 
+    - echo "${MY_OIDC_TOKEN}" > /tmp/web_identity_token 
+    - echo -e "[profile oidc]\nrole_arn=${ROLE_ARN}\nweb_identity_token_file=/tmp/
+web_identity_token" > ~/.aws/config 
+  script: 
+    - REPO_NAME="`basename -s .git $(echo $CI_REPOSITORY_URL | grep -oE "[^/]+$")`" 
+    - python /usr/app/codeguru/command.py --source_path "." --aws_region "us-east-2" --
+scan_name CGS-GitLab-$REPO_NAME --fail_on_severity Critical --output_file_format "sast" 
+    - cat codeguru-security-results.sast.json 
+  rules: 
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "main" 
+      when: always 
+  artifacts: 
+    reports: 
+      sast: codeguru-security-results.sast.json
+6. Choose Commit changes  to commit your changes.
+After conﬁguring the CI/CD workﬂow, CodeGuru Security will automatically run scans based on the 
+events that you have deﬁned in the ﬁle. To view your ﬁndings, choose Secure  in the left navigation bar 
+of your project, and then choose Vulnerability report. You can also view code scans and ﬁndings in the 
+CodeGuru Security console.
+Integrate with AWS CodePipeline
+The following steps show how to set up AWS CodePipeline with CodeGuru Security. After you set up, 
+code scans are automated and you can view ﬁndings on the Findings page in the CodeGuru Security 
+console.
+You can also complete these steps on the Integrations  page in the CodeGuru Security console. Choose
+Integrate with AWS CodePipeline to get started.
+15Amazon CodeGuru Security User Guide
+Step 1: Create CodeBuild project
+Step 1: Create CodeBuild project
+Complete the following steps to create a CloudFormation stack that sets up a CodeGuru Security 
+CodeBuild project. This authorizes CodeGuru Security to discover your repositories and run security scans 
+whenever you create a pull request.
+1. Open the Integrations  page in the CodeGuru Security console and choose Integrate with AWS 
+CodePipeline .
+2. For Step 1: Create an IAM role, choose Open template in CloudFormation to be redirected to the 
+Create stack page in the CloudFormation console.
+3. For Stack name , enter a unique name for your stack.
+4. Check the box to acknowledge that AWS CloudFormation might create IAM resources with custom 
+names. This allows CloudFormation to create a CodeGuru Security CodeBuild project.
+5. Choose Create stack . Continue to the next step.
+Step 2: Add step to CodePipeline
+Complete the following steps to add CodeGuru Security as a step in your CodePipeline.
+1. Open the AWS CodePipeline console.
+2. Choose the pipeline you want to scan.
+3. Choose Edit.
+4. Choose Add stage  and enter a stage name.
+5. For the stage you just created, choose Add action group.
+6. For Action provider, choose CodeBuild.
+7. For Input artifacts, choose SourceArtifact.
+8. For Project name, choose CodeGuruSecurity.
+9. Choose Done .
+10. Choose Save.
+After you add CodeGuru Security to your CodePipeline pipeline, CodeGuru Security will run scans 
+on every pipeline deployment. You can view ﬁndings on the Findings page in the CodeGuru Security 
+console.
+Integrate with the AWS CLI
+The following steps show you how to set up the AWS CLI with CodeGuru Security. After you start running 
+scans, you can call the GetFindings  API to view ﬁndings, or go to the Findings page in the CodeGuru 
+Security console.
+Integrate with the AWS CLI
+1. Go to the Integrations  page in the CodeGuru Security console.
+2. On the AWS CLI panel, choose Integrate with AWS CLI.
+3. Follow the instructions on the page. If you haven't already, install the AWS CLI, and then install jq. 
+Then, you download the ﬁle in the console and run the command to automate code scanning.
+4. After you've automated code scanning, you can run CodeGuru Security scans with the AWS CLI. For 
+information on creating code scans with the AWS CLI, see Create code scans with the AWS CLI and 
+AWS SDKs (p. 25).
+16Amazon CodeGuru Security User Guide
+With IDE plugins
+Integrate with IDE plugins
+You can integrate with IDE plugins by downloading the AWS Toolkit, a collection of AWS extensions. 
+CodeGuru Security is available in the AWS Toolkit through Amazon CodeWhisperer security scanning.
+Choose from the following resources to learn how to install the AWS Toolkit in your IDE. You can use 
+CodeGuru Security through Amazon CodeWhisperer security scans in Visual Studio Code and IntelliJ 
+IDEA.
+After you have installed the AWS Toolkit, you can run scans in your IDE.
+•To install the AWS Toolkit in Visual Studio Code, see Installing the AWS Toolkit for Visual Studio Code.
+•To install the AWS Toolkit in IntelliJ IDEA, see Installing the AWS Toolkit for JetBrains.
+After installation, see Security scans in Amazon CodeWhisperer to learn how to run scans in your IDE.
+Integrate with Amazon Inspector
+CodeGuru Security is available through Amazon Inspector Lambda code scanning. For more information, 
+see Scanning AWS Lambda functions with Amazon Inspector.
+The following steps show how to activate AWS Lambda code scanning with Amazon Inspector. After you 
+set up, code scans are automated and you can view ﬁndings in the All ﬁndings  section in the Amazon 
+Inspector console.
+You can also complete these steps on the Integrations  page in the CodeGuru Security console. Choose
+Integrate with Amazon Inspector to get started.
+Activate code scanning for Lambda
+1. Open the Amazon Inspector console.
+2. In the navigation bar, choose Account management.
+3. Select the accounts that you want to activate Lambda code scanning in.
+4. Choose Activate, then choose AWS Lambda code scanning.
+After activating Amazon Inspector for Lambda functions, you can view security ﬁndings for Lambda in 
+the All ﬁndings  section.
+Tutorial: Run scans with SageMaker Studio and 
+JupyterLab
+The Amazon CodeGuru Security extension scans your Python and notebook ﬁles and provides security 
+recommendations and quality improvements to your code.
+After running a scan, detected vulnerabilities or quality issues in your code are underlined. Each 
+underlined section corresponds to a ﬁnding that details the issue and recommended changes. You can 
+view all ﬁndings in the diagnostic panel. Once you update your code based on a recommendation, you 
+can re-run a scan to see if the issue has been addressed.
+17Amazon CodeGuru Security User Guide
+Step 1: Install the CodeGuru Security extension
+The following instructions show you how to install and use the CodeGuru Security extension in 
+JupyterLab and Amazon SageMaker Studio. Before you begin installation, make sure you've followed the 
+steps in Setting up Amazon CodeGuru Security (p. 7).
+Step 1: Install the CodeGuru Security extension
+You can install the CodeGuru Security extension in one of two ways, via the command line or in the 
+extension manager.
+You can ﬁnd more information on installing JupyterLab extensions in the JupyterLab Extensions 
+documentation .
+Note
+If you're using SageMaker Studio, make sure to run conda activate studio  and conda 
+deactivate  before and after running the following commands.
+If you're using JupyterLab, make sure to run the commands in the same environment where 
+JupyterLab is installed.
+If you installed JupyterLab with the conda environment, activate the environment where 
+JupyterLab is installed before running the following commands.
+Install with the command line (recommended)
+JupyterLab
+1.Open a command prompt window and run the following command to install the extension.
+pip install amazon-codeguru-jupyterlab-extension
+2.Restart your JupyterLab server.
+3.In your browser, refresh the page to view the extension in JupyterLab.
+You can verify that the extension is installed if the LSP server displays Fully initialized on the bottom 
+left corner.
+SageMaker Studio
+1.Open a command prompt window.
+2.Run the following commands to install the extension in the conda environment:
+conda activate studio 
+  pip install amazon-codeguru-jupyterlab-extension 
+  conda deactivate
+3.Restart your SageMaker Studio server by running the following command:
+restart-jupyter-server
+4.In your browser, refresh the page to view the extension in SageMaker Studio.
+You can verify that the extension is installed if the LSP server displays Fully initialized on the bottom 
+left corner.
+18Amazon CodeGuru Security User Guide
+Step 2: Update IAM permissions
+If you still don't see the extension, try creating a new notebook instance with your application code, 
+and then install the extension.
+Install with the extension manager
+1.Open SageMaker Studio or JupyterLab.
+2.In the left navigation bar, choose the Extension Manager icon.
+3.Search @aws/amazon-codeguru-extension.
+4.Locate the extension called @aws/amazon-codeguru-extension and choose Install .
+5.A pop-up appears with the title Server Companion. Choose OK.
+6.After a few moments, the following message appears in the Extension Manager:
+"A build is needed to include the latest changes."
+Choose Rebuild.
+7.After the rebuild is complete, a pop-up appears. Choose Save and Reload.
+8.Open a command prompt window and run the following command:
+ pip install amazon-codeguru-jupyterlab-extension
+9.Restart your JupyterLab or SageMaker Studio server.
+10.Refresh your browser to view the extension.
+You can verify that the extension is installed if the LSP server displays Fully initialized on the bottom 
+left corner.
+Step 2: Update IAM permissions
+To use the extension, a role or user must have the necessary permissions. Follow these steps to update 
+permissions policies with IAM. If you’re using the extension in JupyterLab, you must also refresh your 
+AWS account credentials.
+1.Update the permissions policy for each role or user who is using the extension. We recommended 
+that you use the AWS managed policy AmazonCodeGuruSecurityScanAccess (p. 50). For more 
+information on creating policies, see Managed policies and inline policies .
+Go to the AWS IAM Console and attach the managed policy to your roles or users.
+If you're using SageMaker Studio, attach the policy to the AmazonSageMaker-ExecutionRole .
+Alternatively, create a new policy with the following permissions.
+{ 
+ "Version": "2012-10-17", 
+ "Statement": [ 
+  { 
+   "Sid": "AmazonCodeGuruSecurityScanAccess", 
+   "Effect": "Allow", 
+   "Action": [ 
+    "codeguru-security:CreateScan", 
+19Amazon CodeGuru Security User Guide
+Step 3: Run a scan
+    "codeguru-security:CreateUploadUrl", 
+    "codeguru-security:GetScan", 
+    "codeguru-security:GetFindings" 
+   ], 
+   "Resource": "arn:aws:codeguru-security:*:*:scans/*" 
+  } 
+ ]
+}
+2.If you’re using SageMaker Studio, you can skip this step. If you’re using JupyterLab, refresh your AWS 
+account credentials via the command line by running the following command:
+aws configure
+Step 3: Run a scan
+Once you’ve installed the extension and updated the permissions policy, you are ready to run a scan in 
+JupyterLab or SageMaker Studio.
+1.Open the ﬁle you want to run a CodeGuru Security scan on in your JupyterLab or SageMaker Studio 
+notebook instance.
+2.If the LSP server displays Fully initialized on the bottom left corner, the extension is installed, and 
+you are ready to run a scan.
+Note
+If you see Server extension missing, restart your SageMaker Studio or JupyterLab server.
+3.You can initiate a scan in one of the following ways:
+•Choose any code cell in your ﬁle, and then choose the light bulb icon in the top task bar.
+•Open the context (right-click) menu on any code cell in your ﬁle, and then choose Run code scan.
+4.Once a scan is running, CodeGuru: Scan in progress  will appear on the bottom panel of the page. The 
+scan might take several seconds to complete. Once complete, the bottom panel displays CodeGuru: 
+Scan completed and the ﬁndings are underlined in your code.
+Step 4: View and address ﬁndings
+Once a scan is complete, you see ﬁndings underlined in your code.
+20Amazon CodeGuru Security User Guide
+Step 5: Updating scan settings
+1.To view more information on the ﬁndings, open the context (right-click) menu for any cell and choose
+Show diagnostics panel. A panel with information about the ﬁndings and recommendations appears 
+at the bottom of the notebook ﬁle.
+To view a popover with a summary of the ﬁnding, hold your cursor over the underlined code.
+2.In the diagnostics panel, choose a ﬁnding to redirect your cursor to the corresponding lines of code.
+3.After you update your code based on the recommendations, you can re-run the scan to see if the issue 
+has been addressed.
+Once you change your code, the scan ﬁndings disappear. You must re-run the scan to see them again.
+Step 5: Updating scan settings
+You can specify the frequency of scan runs and the Region where you run scans.
+1.Choose Settings in the top navigation bar.
+2.Choose Advanced Settings Editor.
+3.In the left navigation bar, choose CodeGuru Security.
+4.Automatic code scans are disabled by default. If you want scans to run automatically, choose Enabled
+in the dropdown menu next to Auto scans .
+If enabled, automatic scans run every 240 seconds by default. If you want to change the frequency of 
+automatic scans, specify a value for CodeGuru scan frequency.
+5.To specify what AWS Region your scans are run in, choose a Region in the dropdown menu next to
+Region.
+21Amazon CodeGuru Security User Guide
+Step 6: Disable or uninstall the extension
+You can change the AWS Region where you run scans to keep data in a speciﬁc Region while scanning, 
+or to be billed in a speciﬁc Region.
+Step 6: Disable or uninstall the extension
+Disabling the extension prevents you from running scans until it is re-enabled. If you uninstall the 
+extension, you must repeat the installation process to reinstall it.
+Note
+If you're using SageMaker Studio, be sure to run conda activate studio  and conda 
+deactivate  before and after running the following commands.
+If you're using JupyterLab, make sure to run the commands in the same environment where 
+JupyterLab is installed.
+If you installed JupyterLab with the conda environment, activate the environment where 
+JupyterLab is installed before running the following commands.
+Disable the extension
+Open a command prompt window and run the following command.
+jupyter labextension disable @aws/amazon-codeguru-extension
+Uninstall the extension
+Uninstall with the command line
+1.Open a command prompt window and run the following command.
+pip uninstall amazon-codeguru-jupyterlab-extension
+2.You might also want to remove dependent packages by running the following commands:
+pip uninstall jupyterlab-lsp
+pip uninstall python-lsp-server
+Uninstall with the extension manager
+1.Open a command prompt window and run the following command.
+pip uninstall amazon-codeguru-jupyterlab-extension
+2.In the Extension Manager, locate the @aws/amazon-codeguru-extension extension and choose
+Uninstall .
+3.The following message appears in the Extension Manager:
+"A build is needed to include the latest changes."
+Choose Rebuild.
+4.After the rebuild is complete, a pop-up appears. Choose Save and Reload.
+5.You might also want to remove dependent packages by running the following commands:
+pip uninstall jupyterlab-lsp
+22Amazon CodeGuru Security User Guide
+Step 6: Disable or uninstall the extension
+pip uninstall python-lsp-server
+23Amazon CodeGuru Security User Guide
+Create code scans
+Working with code scans
+You can create code scans through integrations with CodeGuru Security, with the AWS CLI and AWS SDK, 
+or you can create scans in the CodeGuru Security console directly. Before you begin scanning, make sure 
+you’ve completed the steps in Setting up Amazon CodeGuru Security (p. 7) and Getting started with 
+CodeGuru Security (p. 10).
+When you create a code scan, CodeGuru Security reviews your code and detects security vulnerabilities. 
+After addressing the vulnerabilities, you can re-run the scan on the revised ﬁle to see if the issues have 
+been remediated. By re-running scans on updated code resources, you can track ﬁndings across multiple 
+revisions of the same ﬁle.
+You can monitor the security health of your code ﬁles over time by choosing a scan in the console and 
+viewing the data in the Metrics panel. For more information, see View code scan details (p. 26).
+This section covers creating, viewing, and understanding code scans.
+Topics
+•Create code scans (p. 24)
+•View all code scans (p. 25)
+•View code scan details (p. 26)
+Create code scans
+This section explains how to create code scans and re-run code scans on revised ﬁles in the console, with 
+the AWS CLI, and with AWS SDKs.
+Topics
+•Create code scans in the console (p. 24)
+•Create code scans with the AWS CLI and AWS SDKs (p. 25)
+Create code scans in the console
+Follow these steps to create code scans and re-run scans on revised ﬁles in the CodeGuru Security 
+console.
+Create a code scan
+1. Open the Scans page in the CodeGuru Security console at https://console.aws.amazon.com/ 
+codeguru/security/scans/.
+2. Choose Create scan .
+3. Choose Choose ﬁle and upload the code ﬁle you want to scan.
+4. For Scan name , enter a unique name for the scan. If you don’t enter a name, a name will be 
+generated for you with the name of the ﬁle, the date, and the time.
+5. Choose Create scan .
+6. Your scan name appears in the Scans  panel. Under Scan status , it displays In progress  while the 
+scan runs. Once the scan is complete, the status will update to Complete.
+If your scan fails, Scan status says Failed.
+24Amazon CodeGuru Security User Guide
+With the AWS CLI and AWS SDKs
+Scan a revised ﬁle
+1. Choose the scan you want to rerun on the Scans page in the CodeGuru Security console.
+2. Choose Scan revised ﬁle on the top right of the page.
+3. Choose Choose ﬁle and upload the code ﬁle you want to scan. Upload the revised version of the ﬁle 
+you previously scanned to make sure that vulnerabilities are properly tracked across scans.
+You can’t edit the scan name when re-running a scan, since the scan name is used to track ﬁndings 
+across revisions to a ﬁle.
+4. Choose Create scan .
+5. After the scan is complete, select the scan name to view updated scan metrics based on your revised 
+ﬁle.
+Create code scans with the AWS CLI and AWS SDKs
+You can call the CreateScan  API to create scans with the CLI and AWS SDKs. You can specify the
+analysisType  and scanType  for your scan.
+•The analysisType  can be Security  or All. The Security  analysis type will only generate ﬁndings 
+related to security. The All analysis type will generate ﬁndings related to security and code quality. If 
+neither is speciﬁed, it defaults to the Security  type.
+•The scanType  can be Express  or Standard . Express scans are used for IDE based scans and have 
+smaller resource limits. A limited set of detectors are used to analyze code in near real time. Express 
+scans are not included in dashboard metrics.
+For all non-IDE integrations such as CI/CD pipeline, we suggest that you use Standard  scans.
+Standard  scans run the full set of detectors available in CodeGuru Security and are included 
+in dashboard metrics. For information on resource limits, see Quotas for Amazon CodeGuru 
+Security (p. 57).
+To upload your code resource to run scans on, call CreateUploadUrl  and specify the name of the 
+scan you will run on these resources. CreateUploadUrl  returns a presigned URL and a set of request 
+headers that are required to upload resources. You can use any HTTP client to upload resource. The 
+following is an example of how to upload your code resource with the request headers using the curl
+command.
+curl -X PUT \
+-T "your-zip-file " \
+-v \
+-k \
+-H "header0 from request ":"header0 value " \
+-H "header1 from request ":"header1 value "
+"s3Url"
+To re-run a scan, call CreateScan  and use the same scan name with your updated code resource. For 
+more information on Amazon CodeGuru Security APIs, see the Amazon CodeGuru Security API Reference.
+View all code scans
+You can view a list of all your code scans on the Scans  page in the CodeGuru Security console. The table 
+lists the name, the status, the number of open ﬁndings, and the date of the last scan run for each scan in 
+your account.
+25Amazon CodeGuru Security User Guide
+View scans with the AWS CLI or the AWS SDK
+Express scans and scans run in Amazon Inspector, JupyterLab, and Amazon SageMaker Studio will not 
+appear in the console.
+To customize the view of the Scans table, choose the gear icon on the upper right side of the Scans table. 
+In the Preferences window that appears, you can select page size, display settings, and which columns 
+you want to see.
+View scans with the AWS CLI or the AWS SDK
+To get a list of all code scans in your account with the AWS CLI or the AWS SDK, call ListScans . For 
+more information, see the Amazon CodeGuru Security API Reference.
+View code scan details
+To view scan details, open the Scans page in the CodeGuru Security console at https:// 
+console.aws.amazon.com/codeguru/security/scans/ and choose the scan you want to view details about.
+The overview panel includes information about the scan, such as the number of times you've re-run the 
+scan, the date of the last completed scan, and the scan status of the last scan.
+Choose the Metrics  tab to view data about the scan. Choose the Findings  tab to view a list of the open 
+ﬁndings generated by a scan. You can also choose the number of ﬁndings on the Open ﬁndings panel  in 
+the Metrics tab to be redirected to the Findings tab.
+You can customize the view of the Findings table by choosing the gear icon on the upper right side of 
+the table. In the Preferences window that appears, you can select page size, display settings, and which 
+columns you want to see.
+Topics
+•Scan metrics  (p. 26)
+•Scan ﬁndings  (p. 26)
+•View scan details with the CLI or SDK  (p. 27)
+Scan metrics
+Use scan metrics to track ﬁndings data across multiple revisions of the same ﬁle. There are several scan 
+metrics you can monitor for a particular scan.
+•Open ﬁndings  – The number of open ﬁndings a scan has. You can also see the date of the oldest 
+ﬁnding.
+•Closed ﬁndings – The number of closed or resolved ﬁndings a scan has. You can also see the closure 
+rate, which is the number of closed ﬁndings per all ﬁndings that have been generated by a scan.
+•Severity distribution – The number of ﬁndings in each severity category generated by the scan. The 
+severity of a ﬁnding can be one of ﬁve categories: Critical, High, Medium, Low, and Informational. For 
+more information on how severity is deﬁned, see Severity deﬁnitions (p. 32).
+•Vulnerability assessment - This metric is generated on a weekly basis and tracks which vulnerabilities 
+have generated the current open ﬁndings. The graph gives a visual breakdown of how many of each 
+type of vulnerabilities exist in the scan’s open ﬁndings.
+Scan ﬁndings
+Use the Findings  tab on the scan summary page to view a list of a scan’s open and closed ﬁndings. 
+You can view the severity of a ﬁnding, the ﬁnding status, the age of a ﬁnding in days, and the time the 
+26Amazon CodeGuru Security User Guide
+View scan details with the CLI or SDK
+ﬁnding was detected. Choose a ﬁnding to view details about a ﬁnding. For information about ﬁndings, 
+see Working with ﬁndings (p. 28).
+View scan details with the CLI or SDK
+To retrieve code scan metrics with AWS CLI or the AWS SDK, you can call GetFindings  with the
+ScanName  of the scan you want to view metrics about. For more information, see Amazon CodeGuru 
+Security API Reference.
+27Amazon CodeGuru Security User Guide
+View all ﬁndings
+Working with ﬁndings
+In CodeGuru Security, a ﬁnding is a potential security vulnerability in your code. You can view all ﬁndings 
+returned by code scans in the Findings page in the CodeGuru Security console. Findings are grouped by 
+severity.
+Findings include information about the type of vulnerability that was detected in the code scan, an 
+explanation of the issue and proposed change, and, if applicable, the suggested inline code updates to 
+remediate the issue. After you update your code based on a ﬁnding, you can re-scan the revised resource 
+to see if the vulnerability has been addressed.
+This section covers how to view ﬁndings, ﬁnding details, and how to address ﬁndings.
+Topics
+•View all ﬁndings  (p. 28)
+•View ﬁndings details  (p. 29)
+•Addressing ﬁndings (p. 29)
+View all ﬁndings
+You can view a list of all ﬁndings from all your code scans on the Findings  page in the CodeGuru Security 
+console. Findings are grouped by severity. You can also view an overview of ﬁndings metrics based on all 
+scans run in your account.
+The Overview panel indicates whether you have open critical ﬁndings, and warns if you have some or 
+many open critical ﬁndings across all scans. The Closed ﬁndings panel lists how many ﬁndings you 
+have remediated across all scans. The Findings summary panel indicates how many ﬁndings of each 
+severity level are open across all scans. For information about the severity of ﬁndings, see Severity 
+deﬁnitions  (p. 32).
+The ﬁndings table lists the type of vulnerability, the name of the scan that generated the ﬁnding, the 
+severity of the ﬁnding, the age of the ﬁnding, the time the ﬁnding was detected, and the status of the 
+ﬁnding.
+View ﬁndings in the console
+Open the Findings page in the CodeGuru Security console at https://console.aws.amazon.com/ 
+codeguru/security/ﬁndings/ and choose a ﬁnding to view details about it. You can also choose the scan 
+name to view details about the scan that generated the ﬁnding.
+You can customize what ﬁndings are listed on the Findings page using the dropdown menus next to the 
+search bar. By default, ﬁndings with critical severity are shown. You can choose the Critical severities
+dropdown menu to change which ﬁnding severity you want to see. Choose the Open status  dropdown to 
+change the status of ﬁndings you want to view.
+To customize the view of the Findings table, choose the gear icon on the upper right side of the table. In 
+the Preferences window that appears, you can select page size, display settings, and which columns you 
+want to see.
+28Amazon CodeGuru Security User Guide
+View ﬁndings with the AWS CLI or SDK
+View ﬁndings with the AWS CLI or SDK
+To view a list of ﬁndings in your account with the AWS CLI or the AWS SDK, call GetFindings  or
+BatchGetFindings . For more information, see the Amazon CodeGuru Security API Reference.
+View ﬁndings details
+To view ﬁnding details in the console, open the Findings page in the CodeGuru Security console at
+https://console.aws.amazon.com/codeguru/security/ﬁndings/, and choose the ﬁnding you want to view 
+details about.
+Finding details
+•Finding overview - The ﬁnding overview panel includes information like the type of vulnerability, the 
+name of the scan that generated the ﬁnding, the ﬁnding severity, relevant CWEs, vulnerability tags, 
+and the rule ID of the rule that detected it.
+•Vulnerability name - You can learn more about how the vulnerability was detected by choosing the 
+vulnerability name that links to the corresponding detector in the Amazon CodeGuru Detector Library.
+•Vulnerability tag - You can learn more about similar types of vulnerabilities by choosing the 
+vulnerability tag that redirects you to that tag’s page in the Amazon CodeGuru Detector Library.
+•Finding severity - The severity of the ﬁnding can be critical, high, medium, low, or informational. For 
+information about how the severity is calculated, see How severity is calculated (p. 31).
+•Suggested remediation  - The suggested remediation for a ﬁnding describes the vulnerability detected 
+in your code, why it may pose a security risk, and how to address it.
+•Suggested code change - The suggested code change includes a description of the recommended 
+code ﬁx and why it’s being suggested. It also indicates the portion of code where the vulnerability was 
+detected and provides the inline code update to address it. Several code changes may be oﬀered for 
+you to select from, depending on what solution applies to your use case.
+For more information on updating your code with suggested changes, see Adding suggested code 
+changes  (p. 30).
+View ﬁnding details with the AWS CLI and AWS SDKs
+To view ﬁnding details with the AWS CLI or the AWS SDK, call GetFindings  or BatchGetFindings . 
+For more information, see the Amazon CodeGuru Security API Reference.
+Addressing ﬁndings
+After analyzing your ﬁnding, make one of the suggested inline code updates to remediate the security 
+vulnerability in your code. To do so, you update the vulnerable lines of code, and re-run the same scan on 
+the updated code resource.
+Important
+Be sure to keep track of scan names, so you know which scan to re-run on your updated 
+resource. If you scan a diﬀerent resource, you will compromise metrics that help to monitor the 
+security posture of your applications.
+Topics
+•Adding suggested code changes (p. 30)
+29Amazon CodeGuru Security User Guide
+Adding suggested code changes
+•Address ﬁndings with the AWS CLI and the AWS SDKs (p. 30)
+Adding suggested code changes
+For some ﬁndings, CodeGuru Security highlights the vulnerable sections of your code and provides inline 
+code ﬁxes to remediate the vulnerability. Several code changes may be oﬀered for you to select from 
+depending on what solution applies to your use case.
+You can retrieve the suggested code changes from the console, the AWS CLI, AWS SDKs, or through your 
+integrations.
+To update your code with the console
+To update your code with a suggested code change using the console, you can download a diﬀ ﬁle with 
+the new code or copy and paste the new code into your ﬁle.
+1. Open the Findings page in the CodeGuru Security console at https://console.aws.amazon.com/ 
+codeguru/security/ﬁndings/ and choose the ﬁnding you want to address.
+2. In the Suggested remediation  panel, you can view the vulnerable lines of code to be removed, the 
+suggested code change, and where to add it. If there are alternate code change solutions, choose the 
+arrows above the code boxes to switch between options.
+3. Determine which code ﬁx you want to use to update your code. Then, choose Download patch to 
+download the diﬀ ﬁle, which highlights the vulnerable lines of code to remove and the new code to 
+replace it with.
+Alternatively, you can manually update your resource. Be sure to remove the vulnerable lines of code 
+and add the code ﬁx to the correct lines in your code.
+4. Once your code is updated, re-run the scan to check that the ﬁnding was addressed and to update 
+your security metrics. For information on how to re-run a scan, see Scan a revised ﬁle in the 
+console (p. 24).
+Address ﬁndings with the AWS CLI and the AWS SDKs
+You can call GetFindings  or BatchGetFindings  to retrieve ﬁndings, including the suggested code ﬁx 
+for a given vulnerability. Then, remove the vulnerable lines of code in your ﬁle, add the new code, and re-
+run your scan.
+30Amazon CodeGuru Security User Guide
+Findings overview metrics
+Understanding dashboard metrics
+The dashboard page in the CodeGuru Security console shows high-level metrics for ﬁndings generated 
+by all scans in an account. The dashboard page visually shows key insights about security issues in your 
+application that you can use to drive business decisions related to the security of your code. Use the 
+dashboard as a vulnerability-tracking tool for your applications by monitoring metrics to track the 
+security of your code over time.
+To see metrics for your account, go to the Dashboard  page in the CodeGuru Security console. There are 
+two sections, a ﬁndings overview and a vulnerability ﬁx overview. The ﬁndings overview includes metrics 
+about open and critical ﬁndings, ﬁnding severity, vulnerabilities, and more. The vulnerability resolution 
+overview section provides metrics related to remediated ﬁndings.
+To get account metrics with the AWS CLI or AWS SDKs, call GetMetricsSummary  or
+ListFindingsMetrics .
+This section explains the metrics in the dashboard, how they are calculated, and how to interpret them.
+Topics
+•Findings overview metrics (p. 31)
+•Vulnerability resolution overview metrics (p. 32)
+Findings overview metrics
+The ﬁndings overview metrics are refreshed whenever a scan is run and are calculated based on all open 
+scan ﬁndings.
+Open and critical ﬁndings
+The open and critical ﬁndings panel displays the total number of open ﬁndings across your account and 
+the total number of open critical ﬁndings. These numbers are compared to the previous week’s number 
+of open and critical ﬁndings.
+You can choose the number of ﬁndings to be redirected to the ﬁndings page and view your open 
+ﬁndings.
+Monitor the number of open and critical ﬁndings in your account periodically to track the security 
+posture of your code.
+Severity distribution
+The severity distribution panel displays how many ﬁndings of each severity level are open across 
+an account. The severity of a ﬁnding can be one of ﬁve categories: Critical, High, Medium, Low, and 
+Informational.
+How severity is calculated
+The severity of a security vulnerability is determined on the detector that generated the ﬁnding. 
+Detectors in the Amazon CodeGuru Detector Library are each assigned a severity using the Common 
+Vulnerability Scoring System ( CVSS).The CVSS considers how the ﬁnding can be exploited in its context 
+(for example, can it be done over internet, or is physical access required) and what level of access can be 
+obtained.
+31Amazon CodeGuru Security User Guide
+Vulnerability assessment
+Severity deﬁnitions
+The severity levels are deﬁned as follows.
+Critical – The security vulnerability should be remediated immediately to avoid it escalating.
+Critical ﬁndings suggest that an attacker can gain control of the system or modify its behavior with 
+moderate eﬀort. CodeGuru Security recommends that you treat critical ﬁndings with the utmost 
+urgency. You also should consider the criticality of the resource.
+High – The security vulnerability must be addressed as a near-term priority.
+High severity ﬁndings suggest that an attacker can gain control of the system or modify its behavior with 
+high eﬀort. CodeGuru Security recommends that you treat a high severity ﬁnding as a near-term priority 
+and that you take immediate remediation steps. You also should consider the criticality of the resource.
+Medium – The security vulnerability should be addressed as a midterm priority.
+Medium severity ﬁndings can lead to crash, unresponsiveness, or unavailability of the system. CodeGuru 
+Security recommends that you investigate the implicated code at your earliest convenience. You also 
+should consider the criticality of the resource.
+Low – The security vulnerability does not require action on its own.
+Low severity ﬁndings suggest programming errors or anti-patterns. You do not need to take immediate 
+action on low severity ﬁndings, but they can provide context when you correlate them with other issues.
+Informational – No recommended action.
+Informational ﬁndings include suggestions for quality or readability improvements, or alternative API 
+operations. There is no recommended action. Informational ﬁndings help you demonstrate that you are 
+in a compliant state.
+Vulnerability assessment
+The vulnerability assessment panel displays the vulnerability types that have generated the most 
+number of ﬁndings on a weekly basis. It displays how many ﬁndings the top four vulnerabilities have 
+generated.
+Use the vulnerability trends metric to monitor the most common security issues in your code, if they are 
+being addressed, and if vulnerability types become more or less common.
+Scans with most ﬁndings and most critical ﬁndings
+The Scans with most ﬁndings  panel lists the top three scans that have generated the most ﬁndings and 
+how many open ﬁndings each scan has. The Scans with most critical ﬁndings  panel lists the top three 
+scans with most critical ﬁndings and how many open critical ﬁndings each scan has.
+Use these metrics to track which code scans have the most open ﬁndings to target the areas of your 
+application that are most insecure.
+Vulnerability resolution overview metrics
+Vulnerability resolution overview metrics from the past week are shown by default. To change the time 
+period that metrics are calculated for, choose the dropdown menu labeled Last week and select a time 
+period. Metrics are updated whenever you run a scan in your account.
+32Amazon CodeGuru Security User Guide
+Vulnerability tracking
+Vulnerability tracking
+The Vulnerability tracking panel displays current trends of the ﬁndings in your account. You can view 
+the total number of closed ﬁndings, average time to close ﬁndings, and the number new ﬁndings within 
+the chosen time period. These metrics are compared to the previous week and refreshed weekly by 
+default.
+Use vulnerability tracking metrics to monitor the status of ﬁndings over time and track the progress of 
+your application’s security posture.
+Open versus closed ﬁndings
+This panel compares the number of open and closed ﬁndings over the chosen time period. You can ﬁlter 
+the data by ﬁnding severity using the dropdown menu above the graph. Choose the View all ﬁndings
+button to be redirected to the Findings page.
+Use open versus closed ﬁndings data to track how many ﬁndings are being addressed over the course of 
+the chosen time period.
+Average time to close
+The Average time to close panel displays how long it takes to close ﬁndings of each severity type across 
+your account. You can ﬁlter the data by ﬁnding severity using the dropdown menu above the graph.
+Use this metric to track how frequently you are addressing vulnerabilities based on severity in your 
+application.
+33Amazon CodeGuru Security User Guide
+Data protection
+Security in Amazon CodeGuru 
+Security
+Cloud security at AWS is the highest priority. As an AWS customer, you beneﬁt from data centers 
+and network architectures that are built to meet the requirements of the most security-sensitive 
+organizations.
+Security is a shared responsibility between AWS and you. The shared responsibility model describes this 
+as security of the cloud and security in the cloud:
+•Security of the cloud – AWS is responsible for protecting the infrastructure that runs AWS services in 
+the AWS Cloud. AWS also provides you with services that you can use securely. Third-party auditors 
+regularly test and verify the eﬀectiveness of our security as part of the AWS Compliance Programs. To 
+learn about the compliance programs that apply to Amazon CodeGuru Security, see AWS Services in 
+Scope by Compliance Program.
+•Security in the cloud – Your responsibility is determined by the AWS service that you use. You are also 
+responsible for other factors including the sensitivity of your data, your company’s requirements, and 
+applicable laws and regulations.
+This documentation helps you understand how to apply the shared responsibility model when using 
+CodeGuru Security. The following topics show you how to conﬁgure CodeGuru Security to meet your 
+security and compliance objectives. You also learn how to use other AWS services that help you to 
+monitor and secure your CodeGuru Security resources.
+Topics
+•Data protection in Amazon CodeGuru Security (p. 34)
+•Identity and access management for Amazon CodeGuru Security (p. 37)
+•Compliance validation for Amazon CodeGuru Security (p. 52)
+•Resilience in Amazon CodeGuru Security (p. 53)
+•Infrastructure Security in Amazon CodeGuru Security (p. 53)
+Data protection in Amazon CodeGuru Security
+The AWS shared responsibility model applies to data protection in Amazon CodeGuru Security. As 
+described in this model, AWS is responsible for protecting the global infrastructure that runs all 
+of the AWS Cloud. You are responsible for maintaining control over your content that is hosted on 
+this infrastructure. This content includes the security conﬁguration and management tasks for the 
+AWS services that you use. For more information about data privacy, see the Data Privacy FAQ. For 
+information about data protection in Europe, see the AWS Shared Responsibility Model and GDPR blog 
+post on the AWS Security Blog.
+For data protection purposes, we recommend that you protect AWS account credentials and set up 
+individual users with AWS IAM Identity Center (successor to AWS Single Sign-On) or AWS Identity and 
+Access Management (IAM). That way, each user is given only the permissions necessary to fulﬁll their job 
+duties. We also recommend that you secure your data in the following ways:
+•Use multi-factor authentication (MFA) with each account.
+•Use SSL/TLS to communicate with AWS resources. We require TLS 1.2 and recommend TLS 1.3.
+34Amazon CodeGuru Security User Guide
+Data captured by CodeGuru Security
+•Set up API and user activity logging with AWS CloudTrail.
+•Use AWS encryption solutions, along with all default security controls within AWS services.
+•Use advanced managed security services such as Amazon Macie, which assists in discovering and 
+securing sensitive data that is stored in Amazon S3.
+•If you require FIPS 140-2 validated cryptographic modules when accessing AWS through a command 
+line interface or an API, use a FIPS endpoint. For more information about the available FIPS endpoints, 
+see Federal Information Processing Standard (FIPS) 140-2.
+We strongly recommend that you never put conﬁdential or sensitive information, such as your 
+customers' email addresses, into tags or free-form text ﬁelds such as a Name  ﬁeld. This includes when 
+you work with CodeGuru Security or other AWS services using the console, API, AWS CLI, or AWS SDKs. 
+Any data that you enter into tags or free-form text ﬁelds used for names may be used for billing or 
+diagnostic logs. If you provide a URL to an external server, we strongly recommend that you do not 
+include credentials information in the URL to validate your request to that server.
+Data captured by CodeGuru Security
+CodeGuru Security stores the following to create code scans:
+•Scan information, such as scan name and scan ID
+•Findings and recommendations generated by CodeGuru Security, which include source code snippets 
+and code suggestions
+•Source code
+•Metadata about scans and ﬁndings, which does not include customer information
+Data retention
+CodeGuru Security stores customer code for up to 10 days. Source code is transiently stored in memory 
+until its code scan is complete. This typically lasts a few hours. When the code scan is complete, it is 
+ﬂushed from memory, encrypted and stored in an Amazon Simple Storage Service bucket for up to 10 
+days, and then deleted.
+Code scans, ﬁndings, and recommendations are currently stored indeﬁnitely.
+Encryption at rest
+Data collected by Amazon CodeGuru Security is stored using Amazon Simple Storage Service and 
+Amazon DynamoDB. The data at rest is encrypted using AWS encryption solutions by default. Amazon 
+CodeGuru Security encrypts your data, such as code resources and generated security ﬁndings, using 
+AWS owned encryption keys from AWS Key Management Service (AWS KMS). You don’t have to take any 
+action to protect the AWS managed keys that encrypt your data. For more information see AWS owned 
+keys in the AWS Key Management Service Developer Guide.
+If you choose to use to protect data with customer-managed KMS keys, it is your responsibility to 
+protect the keys that encrypt your data. For more information on customer-managed KMS keys, see Key 
+management  (p. 36).
+Encryption in transit
+All communication between customers and CodeGuru Security and between CodeGuru Security and 
+its downstream dependencies is protected using TLS connections that are signed using the Signature 
+35Amazon CodeGuru Security User Guide
+Key management
+Version 4 signing process. All CodeGuru Security endpoints use SHA-256 certiﬁcates that are managed 
+by AWS Private Certiﬁcate Authority. For more information, see Signature Version 4 signing process in 
+the Amazon Web Services General Reference and What is AWS Private CA? in the AWS Private Certiﬁcate 
+Authority User Guide .
+Key management
+CodeGuru Security encrypts your data using one of two types of KMS keys:
+•An AWS owned KMS key. This is the default encryption method.
+•A customer managed KMS key. To use your own KMS key, you need to create the key and then provide 
+a key policy to grant permissions to CodeGuru Security to use the key.
+The following sections explain how to create and use a customer managed KMS key to encrypt your data.
+Create a customer managed KMS key
+You can create customer managed KMS key using either the AWS KMS console or the CreateKey  API. 
+When creating the key, you can use an existing symmetric key in your account or create a symmetric 
+customer managed KMS key. CodeGuru Security does not support asymmetric KMS keys. Additionally, 
+you will need a AWS KMS key in the same AWS Region as your scans, or a multi-region key. For more 
+information see Creating symmetric encryption AWS KMS keys in the AWS KMS user guide.
+Permissions for code encryption with a customer managed KMS 
+key
+To use your encryption key, you need to create a policy that allows access to AWS KMS key actions and a 
+policy that allows Amazon CodeGuru Security to use those actions.
+If you are setting, updating, or resetting the encryption key for your account it is 
+recommended to use an Amazon CodeGuru Security administrator policy, such as
+AmazonCodeGuruSecurityFullAccess  (p. 50).
+The key policy for KMS must allow the following actions:
+•kms:CreateGrant
+•kms:Decrypt
+•kms:DescribeKey
+•kms:GenerateDataKeyWithoutPlainText
+•kms:Encrypt
+•kms:RetireGrant
+After you've veriﬁed that you have the correct KMS permissions in your key policy, you must create a 
+policy to attach to your CodeGuru Security access role that allows CodeGuru Security to use your key for 
+encryption. Add the following statements to your policy and replace <region>  with the AWS Region 
+where you are running CodeGuru Security scans:
+  { 
+    "Effect": "Allow", 
+      "Action": "kms:CreateGrant", 
+      "Resource": "*", 
+      "Condition": { 
+36Amazon CodeGuru Security User Guide
+Identity and access management
+          "ForAllValues:StringEquals": { 
+              "kms:GrantOperations": [ 
+                  "GenerateDataKey", 
+                  "GenerateDataKeyWithoutPlaintext", 
+                  "Encrypt", 
+                  "Decrypt", 
+                  "RetireGrant", 
+                  "DescribeKey" 
+              ] 
+          }, 
+          "StringEquals": { 
+              "kms:ViaService": [ 
+                  "codeguru-security. <region> .amazonaws.com" 
+              ] 
+          } 
+      } 
+  }, 
+  { 
+      "Effect": "Allow", 
+      "Action": [ 
+          "kms:Encrypt", 
+          "kms:Decrypt", 
+          "kms:RetireGrant", 
+          "kms:DescribeKey", 
+          "kms:GenerateDataKeyWithoutPlaintext" 
+      ], 
+      "Resource": "*", 
+      "Condition": { 
+          "StringEquals": { 
+              "kms:ViaService": [                        
+                  "codeguru-security. <region> .amazonaws.com" 
+              ] 
+          } 
+      } 
+  }
+For information on key policies, see Using Key Policies in AWS KMS in the AWS Key Management Service 
+Developer Guide .
+Conﬁgure encryption with the Amazon CodeGuru Security API
+To set a customer managed key for encryption, use the UpdateAccountConfiguration  operation. In 
+the API request, for the EncryptionConfig  object, use the kmsKeyArn  ﬁeld to specify the ARN of the 
+AWS KMS encryption key you want to use. If you call UpdateAccountConfiguration  and pass null
+or nothing for kmsKeyArn , an AWS owned key will be used for encryption.
+To view the current KMS key ARN that is being used for encryption, call  GetAccountConfiguration . 
+If you attempt to use GetAccountConfiguration  when you haven't set a customer managed key, the 
+operation returns null which means that an AWS owned key is being used for encryption.
+If you delete the key or change it's policy to deny access to Amazon CodeGuru Security you will be 
+unable to access your ﬁndings and dashboard metrics and code scans will fail for your account.
+Identity and access management for Amazon 
+CodeGuru Security
+AWS Identity and Access Management (IAM) is an AWS service that helps an administrator securely 
+control access to AWS resources. IAM administrators control who can be authenticated  (signed in) and
+37Amazon CodeGuru Security User Guide
+Audience
+authorized  (have permissions) to use CodeGuru Security resources. IAM is an AWS service that you can 
+use with no additional charge.
+Topics
+•Audience (p. 38)
+•Authenticating with identities  (p. 38)
+•Managing access using policies (p. 40)
+•How Amazon CodeGuru Security works with IAM (p. 42)
+•Identity-based policy examples for Amazon CodeGuru Security (p. 47)
+•Amazon CodeGuru Security permissions reference (p. 49)
+•AWS managed policies for Amazon CodeGuru Security (p. 49)
+•Troubleshooting Amazon CodeGuru Security identity and access (p. 51)
+Audience
+How you use AWS Identity and Access Management (IAM) diﬀers, depending on the work that you do in 
+CodeGuru Security.
+Service user – If you use the CodeGuru Security service to do your job, then your administrator provides 
+you with the credentials and permissions that you need. As you use more CodeGuru Security features to 
+do your work, you might need additional permissions. Understanding how access is managed can help 
+you request the right permissions from your administrator. If you cannot access a feature in CodeGuru 
+Security, see Troubleshooting Amazon CodeGuru Security identity and access (p. 51).
+Service administrator – If you're in charge of CodeGuru Security resources at your company, you 
+probably have full access to CodeGuru Security. It's your job to determine which CodeGuru Security 
+features and resources your service users should access. You must then submit requests to your IAM 
+administrator to change the permissions of your service users. Review the information on this page 
+to understand the basic concepts of IAM. To learn more about how your company can use IAM with 
+CodeGuru Security, see How Amazon CodeGuru Security works with IAM (p. 42).
+IAM administrator  – If you're an IAM administrator, you might want to learn details about how you can 
+write policies to manage access to CodeGuru Security. To view example CodeGuru Security identity-
+based policies that you can use in IAM, see Identity-based policy examples for Amazon CodeGuru 
+Security (p. 47).
+Authenticating with identities
+Authentication is how you sign in to AWS using your identity credentials. You must be authenticated
+(signed in to AWS) as the AWS account root user, as an IAM user, or by assuming an IAM role.
+You can sign in to AWS as a federated identity by using credentials provided through an identity source. 
+AWS IAM Identity Center (successor to AWS Single Sign-On) (IAM Identity Center) users, your company's 
+single sign-on authentication, and your Google or Facebook credentials are examples of federated 
+identities. When you sign in as a federated identity, your administrator previously set up identity 
+federation using IAM roles. When you access AWS by using federation, you are indirectly assuming a role.
+Depending on the type of user you are, you can sign in to the AWS Management Console or the AWS 
+access portal. For more information about signing in to AWS, see How to sign in to your AWS account in 
+the AWS Sign-In User Guide.
+If you access AWS programmatically, AWS provides a software development kit (SDK) and a command 
+line interface (CLI) to cryptographically sign your requests by using your credentials. If you don't use AWS 
+tools, you must sign requests yourself. For more information about using the recommended method to 
+sign requests yourself, see Signing AWS API requests in the IAM User Guide .
+38Amazon CodeGuru Security User Guide
+Authenticating with identities
+Regardless of the authentication method that you use, you might be required to provide additional 
+security information. For example, AWS recommends that you use multi-factor authentication (MFA) 
+to increase the security of your account. To learn more, see Multi-factor authentication in the AWS IAM 
+Identity Center (successor to AWS Single Sign-On) User Guide and Using multi-factor authentication (MFA) 
+in AWS in the IAM User Guide .
+AWS account root user
+When you create an AWS account, you begin with one sign-in identity that has complete access to 
+all AWS services and resources in the account. This identity is called the AWS account root user  and is 
+accessed by signing in with the email address and password that you used to create the account. We 
+strongly recommend that you don't use the root user for your everyday tasks. Safeguard your root user 
+credentials and use them to perform the tasks that only the root user can perform. For the complete list 
+of tasks that require you to sign in as the root user, see Tasks that require root user credentials in the
+AWS Account Management Reference Guide.
+Federated identity
+As a best practice, require human users, including users that require administrator access, to use 
+federation with an identity provider to access AWS services by using temporary credentials.
+A federated identity  is a user from your enterprise user directory, a web identity provider, the AWS 
+Directory Service, the Identity Center directory, or any user that accesses AWS services by using 
+credentials provided through an identity source. When federated identities access AWS accounts, they 
+assume roles, and the roles provide temporary credentials.
+For centralized access management, we recommend that you use AWS IAM Identity Center (successor to 
+AWS Single Sign-On). You can create users and groups in IAM Identity Center, or you can connect and 
+synchronize to a set of users and groups in your own identity source for use across all your AWS accounts 
+and applications. For information about IAM Identity Center, see What is IAM Identity Center? in the AWS 
+IAM Identity Center (successor to AWS Single Sign-On) User Guide.
+IAM users and groups
+An IAM user  is an identity within your AWS account that has speciﬁc permissions for a single person or 
+application. Where possible, we recommend relying on temporary credentials instead of creating IAM 
+users who have long-term credentials such as passwords and access keys. However, if you have speciﬁc 
+use cases that require long-term credentials with IAM users, we recommend that you rotate access keys. 
+For more information, see Rotate access keys regularly for use cases that require long-term credentials in 
+the IAM User Guide .
+An IAM group  is an identity that speciﬁes a collection of IAM users. You can't sign in as a group. You 
+can use groups to specify permissions for multiple users at a time. Groups make permissions easier to 
+manage for large sets of users. For example, you could have a group named IAMAdmins  and give that 
+group permissions to administer IAM resources.
+Users are diﬀerent from roles. A user is uniquely associated with one person or application, but a role 
+is intended to be assumable by anyone who needs it. Users have permanent long-term credentials, but 
+roles provide temporary credentials. To learn more, see When to create an IAM user (instead of a role) in 
+the IAM User Guide .
+IAM roles
+An IAM role  is an identity within your AWS account that has speciﬁc permissions. It is similar to an IAM 
+user, but is not associated with a speciﬁc person. You can temporarily assume an IAM role in the AWS 
+Management Console by switching roles. You can assume a role by calling an AWS CLI or AWS API 
+39Amazon CodeGuru Security User Guide
+Managing access using policies
+operation or by using a custom URL. For more information about methods for using roles, see Using IAM 
+roles in the IAM User Guide .
+IAM roles with temporary credentials are useful in the following situations:
+•Federated user access – To assign permissions to a federated identity, you create a role and deﬁne 
+permissions for the role. When a federated identity authenticates, the identity is associated with 
+the role and is granted the permissions that are deﬁned by the role. For information about roles for 
+federation, see  Creating a role for a third-party Identity Provider in the IAM User Guide . If you use IAM 
+Identity Center, you conﬁgure a permission set. To control what your identities can access after they 
+authenticate, IAM Identity Center correlates the permission set to a role in IAM. For information about 
+permissions sets, see  Permission sets in the AWS IAM Identity Center (successor to AWS Single Sign-On) 
+User Guide .
+•Temporary IAM user permissions – An IAM user or role can assume an IAM role to temporarily take on 
+diﬀerent permissions for a speciﬁc task.
+•Cross-account access – You can use an IAM role to allow someone (a trusted principal) in a diﬀerent 
+account to access resources in your account. Roles are the primary way to grant cross-account access. 
+However, with some AWS services, you can attach a policy directly to a resource (instead of using a role 
+as a proxy). To learn the diﬀerence between roles and resource-based policies for cross-account access, 
+see How IAM roles diﬀer from resource-based policies in the IAM User Guide .
+•Cross-service access – Some AWS services use features in other AWS services. For example, when you 
+make a call in a service, it's common for that service to run applications in Amazon EC2 or store objects 
+in Amazon S3. A service might do this using the calling principal's permissions, using a service role, or 
+using a service-linked role.
+•Principal permissions  – When you use an IAM user or role to perform actions in AWS, you are 
+considered a principal. Policies grant permissions to a principal. When you use some services, you 
+might perform an action that then triggers another action in a diﬀerent service. In this case, you 
+must have permissions to perform both actions. To see whether an action requires additional 
+dependent actions in a policy, see Actions, Resources, and Condition Keys for Amazon CodeGuru 
+Security in the Service Authorization Reference.
+•Service role – A service role is an IAM role that a service assumes to perform actions on your behalf. 
+An IAM administrator can create, modify, and delete a service role from within IAM. For more 
+information, see Creating a role to delegate permissions to an AWS service in the IAM User Guide .
+•Service-linked role – A service-linked role is a type of service role that is linked to an AWS service. 
+The service can assume the role to perform an action on your behalf. Service-linked roles appear in 
+your AWS account and are owned by the service. An IAM administrator can view, but not edit the 
+permissions for service-linked roles.
+•Applications running on Amazon EC2 – You can use an IAM role to manage temporary credentials 
+for applications that are running on an EC2 instance and making AWS CLI or AWS API requests. 
+This is preferable to storing access keys within the EC2 instance. To assign an AWS role to an EC2 
+instance and make it available to all of its applications, you create an instance proﬁle that is attached 
+to the instance. An instance proﬁle contains the role and enables programs that are running on the 
+EC2 instance to get temporary credentials. For more information, see Using an IAM role to grant 
+permissions to applications running on Amazon EC2 instances in the IAM User Guide .
+To learn whether to use IAM roles or IAM users, see When to create an IAM role (instead of a user) in the
+IAM User Guide .
+Managing access using policies
+You control access in AWS by creating policies and attaching them to AWS identities or resources. A 
+policy is an object in AWS that, when associated with an identity or resource, deﬁnes their permissions. 
+AWS evaluates these policies when a principal (user, root user, or role session) makes a request. 
+Permissions in the policies determine whether the request is allowed or denied. Most policies are stored 
+40Amazon CodeGuru Security User Guide
+Managing access using policies
+in AWS as JSON documents. For more information about the structure and contents of JSON policy 
+documents, see Overview of JSON policies in the IAM User Guide .
+Administrators can use AWS JSON policies to specify who has access to what. That is, which principal  can 
+perform actions on what resources, and under what conditions.
+By default, users and roles have no permissions. To grant users permission to perform actions on the 
+resources that they need, an IAM administrator can create IAM policies. The administrator can then add 
+the IAM policies to roles, and users can assume the roles.
+IAM policies deﬁne permissions for an action regardless of the method that you use to perform the 
+operation. For example, suppose that you have a policy that allows the iam:GetRole  action. A user with 
+that policy can get role information from the AWS Management Console, the AWS CLI, or the AWS API.
+Identity-based policies
+Identity-based policies are JSON permissions policy documents that you can attach to an identity, such 
+as an IAM user, group of users, or role. These policies control what actions users and roles can perform, 
+on which resources, and under what conditions. To learn how to create an identity-based policy, see
+Creating IAM policies in the IAM User Guide .
+Identity-based policies can be further categorized as inline policies  or managed policies . Inline policies 
+are embedded directly into a single user, group, or role. Managed policies are standalone policies that 
+you can attach to multiple users, groups, and roles in your AWS account. Managed policies include AWS 
+managed policies and customer managed policies. To learn how to choose between a managed policy or 
+an inline policy, see Choosing between managed policies and inline policies in the IAM User Guide .
+Resource-based policies
+Resource-based policies are JSON policy documents that you attach to a resource. Examples of resource-
+based policies are IAM role trust policies  and Amazon S3 bucket policies . In services that support resource-
+based policies, service administrators can use them to control access to a speciﬁc resource. For the 
+resource where the policy is attached, the policy deﬁnes what actions a speciﬁed principal can perform 
+on that resource and under what conditions. You must specify a principal in a resource-based policy. 
+Principals can include accounts, users, roles, federated users, or AWS services.
+Resource-based policies are inline policies that are located in that service. You can't use AWS managed 
+policies from IAM in a resource-based policy.
+Access control lists (ACLs)
+Access control lists (ACLs) control which principals (account members, users, or roles) have permissions to 
+access a resource. ACLs are similar to resource-based policies, although they do not use the JSON policy 
+document format.
+Amazon S3, AWS WAF, and Amazon VPC are examples of services that support ACLs. To learn more about 
+ACLs, see Access control list (ACL) overview in the Amazon Simple Storage Service Developer Guide.
+Other policy types
+AWS supports additional, less-common policy types. These policy types can set the maximum 
+permissions granted to you by the more common policy types.
+•Permissions boundaries – A permissions boundary is an advanced feature in which you set the 
+maximum permissions that an identity-based policy can grant to an IAM entity (IAM user or role). 
+You can set a permissions boundary for an entity. The resulting permissions are the intersection of an 
+entity's identity-based policies and its permissions boundaries. Resource-based policies that specify 
+41Amazon CodeGuru Security User Guide
+How Amazon CodeGuru Security works with IAM
+the user or role in the Principal  ﬁeld are not limited by the permissions boundary. An explicit deny 
+in any of these policies overrides the allow. For more information about permissions boundaries, see
+Permissions boundaries for IAM entities in the IAM User Guide .
+•Service control policies (SCPs) – SCPs are JSON policies that specify the maximum permissions for 
+an organization or organizational unit (OU) in AWS Organizations. AWS Organizations is a service for 
+grouping and centrally managing multiple AWS accounts that your business owns. If you enable all 
+features in an organization, then you can apply service control policies (SCPs) to any or all of your 
+accounts. The SCP limits permissions for entities in member accounts, including each AWS account 
+root user. For more information about Organizations and SCPs, see How SCPs work in the AWS 
+Organizations User Guide .
+•Session policies  – Session policies are advanced policies that you pass as a parameter when you 
+programmatically create a temporary session for a role or federated user. The resulting session's 
+permissions are the intersection of the user or role's identity-based policies and the session policies. 
+Permissions can also come from a resource-based policy. An explicit deny in any of these policies 
+overrides the allow. For more information, see Session policies  in the IAM User Guide .
+Multiple policy types
+When multiple types of policies apply to a request, the resulting permissions are more complicated to 
+understand. To learn how AWS determines whether to allow a request when multiple policy types are 
+involved, see Policy evaluation logic in the IAM User Guide .
+How Amazon CodeGuru Security works with IAM
+Before you use IAM to manage access to CodeGuru Security, learn what IAM features are available to use 
+with CodeGuru Security.
+IAM features you can use with Amazon CodeGuru Security
+IAM feature CodeGuru Security support
+Identity-based policies (p. 43) Yes
+Resource-based policies (p. 43) No
+Policy actions (p. 43) Yes
+Policy resources (p. 44) Yes
+Policy condition keys (p. 45) Yes
+ACLs (p. 45) No
+ABAC (tags in policies) (p. 45) Yes
+Temporary credentials (p. 46) Yes
+Principal permissions  (p. 46) Yes
+Service roles (p. 46) No
+Service-linked roles (p. 46) No
+To get a high-level view of how CodeGuru Security and other AWS services work with most IAM features, 
+see AWS services that work with IAM in the IAM User Guide .
+42Amazon CodeGuru Security User Guide
+How Amazon CodeGuru Security works with IAM
+Identity-based policies for CodeGuru Security
+Supports identity-based policies Yes
+Identity-based policies are JSON permissions policy documents that you can attach to an identity, such 
+as an IAM user, group of users, or role. These policies control what actions users and roles can perform, 
+on which resources, and under what conditions. To learn how to create an identity-based policy, see
+Creating IAM policies in the IAM User Guide .
+With IAM identity-based policies, you can specify allowed or denied actions and resources as well as the 
+conditions under which actions are allowed or denied. You can't specify the principal in an identity-based 
+policy because it applies to the user or role to which it is attached. To learn about all of the elements 
+that you can use in a JSON policy, see IAM JSON policy elements reference in the IAM User Guide .
+Identity-based policy examples for CodeGuru Security
+To view examples of CodeGuru Security identity-based policies, see Identity-based policy examples for 
+Amazon CodeGuru Security (p. 47).
+Resource-based policies within CodeGuru Security
+Supports resource-based policies No
+Resource-based policies are JSON policy documents that you attach to a resource. Examples of resource-
+based policies are IAM role trust policies  and Amazon S3 bucket policies . In services that support resource-
+based policies, service administrators can use them to control access to a speciﬁc resource. For the 
+resource where the policy is attached, the policy deﬁnes what actions a speciﬁed principal can perform 
+on that resource and under what conditions. You must specify a principal in a resource-based policy. 
+Principals can include accounts, users, roles, federated users, or AWS services.
+To enable cross-account access, you can specify an entire account or IAM entities in another account as 
+the principal in a resource-based policy. Adding a cross-account principal to a resource-based policy is 
+only half of establishing the trust relationship. When the principal and the resource are in diﬀerent AWS 
+accounts, an IAM administrator in the trusted account must also grant the principal entity (user or role) 
+permission to access the resource. They grant permission by attaching an identity-based policy to the 
+entity. However, if a resource-based policy grants access to a principal in the same account, no additional 
+identity-based policy is required. For more information, see How IAM roles diﬀer from resource-based 
+policies in the IAM User Guide .
+Policy actions for CodeGuru Security
+Supports policy actions Yes
+Administrators can use AWS JSON policies to specify who has access to what. That is, which principal  can 
+perform actions on what resources, and under what conditions.
+The Action element of a JSON policy describes the actions that you can use to allow or deny access in a 
+policy. Policy actions usually have the same name as the associated AWS API operation. There are some 
+exceptions, such as permission-only actions that don't have a matching API operation. There are also 
+43Amazon CodeGuru Security User Guide
+How Amazon CodeGuru Security works with IAM
+some operations that require multiple actions in a policy. These additional actions are called dependent 
+actions .
+Include actions in a policy to grant permissions to perform the associated operation.
+To see a list of CodeGuru Security actions, see Actions Deﬁned by Amazon CodeGuru Security in the
+Service Authorization Reference.
+Policy actions in CodeGuru Security use the following preﬁx before the action:
+codeguru-security
+To specify multiple actions in a single statement, separate them with commas.
+"Action": [ 
+      "codeguru-security: action1", 
+      "codeguru-security: action2" 
+         ]
+You can specify multiple actions using wildcards (*). For example, to specify all actions that begin with 
+the word List, include the following action:
+"Action": "codeguru-security:List*"
+To view examples of CodeGuru Security identity-based policies, see Identity-based policy examples for 
+Amazon CodeGuru Security (p. 47).
+Policy resources for CodeGuru Security
+Supports policy resources Yes
+Administrators can use AWS JSON policies to specify who has access to what. That is, which principal  can 
+perform actions on what resources, and under what conditions.
+The Resource  JSON policy element speciﬁes the object or objects to which the action applies. 
+Statements must include either a Resource  or a NotResource  element. As a best practice, specify 
+a resource using its Amazon Resource Name (ARN). You can do this for actions that support a speciﬁc 
+resource type, known as resource-level permissions .
+For actions that don't support resource-level permissions, such as listing operations, use a wildcard (*) to 
+indicate that the statement applies to all resources.
+"Resource": "*"
+To see a list of CodeGuru Security resource types and their ARNs, see Resources Deﬁned by Amazon 
+CodeGuru Security in the Service Authorization Reference. To learn with which actions you can specify the 
+ARN of each resource, see Actions Deﬁned by Amazon CodeGuru Security.
+To view examples of CodeGuru Security identity-based policies, see Identity-based policy examples for 
+Amazon CodeGuru Security (p. 47).
+44Amazon CodeGuru Security User Guide
+How Amazon CodeGuru Security works with IAM
+Policy condition keys for CodeGuru Security
+Supports service-speciﬁc policy condition keys Yes
+Administrators can use AWS JSON policies to specify who has access to what. That is, which principal  can 
+perform actions on what resources, and under what conditions.
+The Condition  element (or Condition  block ) lets you specify conditions in which a statement is in 
+eﬀect. The Condition  element is optional. You can create conditional expressions that use condition 
+operators , such as equals or less than, to match the condition in the policy with values in the request.
+If you specify multiple Condition  elements in a statement, or multiple keys in a single Condition
+element, AWS evaluates them using a logical AND operation. If you specify multiple values for a single 
+condition key, AWS evaluates the condition using a logical OR operation. All of the conditions must be 
+met before the statement's permissions are granted.
+You can also use placeholder variables when you specify conditions. For example, you can grant an IAM 
+user permission to access a resource only if it is tagged with their IAM user name. For more information, 
+see IAM policy elements: variables and tags in the IAM User Guide .
+AWS supports global condition keys and service-speciﬁc condition keys. To see all AWS global condition 
+keys, see AWS global condition context keys in the IAM User Guide .
+To see a list of CodeGuru Security condition keys, see Condition Keys for Amazon CodeGuru Security in 
+the Service Authorization Reference. To learn with which actions and resources you can use a condition 
+key, see Actions Deﬁned by Amazon CodeGuru Security.
+To view examples of CodeGuru Security identity-based policies, see Identity-based policy examples for 
+Amazon CodeGuru Security (p. 47).
+ACLs in CodeGuru Security
+Supports ACLs No
+Access control lists (ACLs) control which principals (account members, users, or roles) have permissions to 
+access a resource. ACLs are similar to resource-based policies, although they do not use the JSON policy 
+document format.
+ABAC with CodeGuru Security
+Supports ABAC (tags in policies) Yes
+Attribute-based access control (ABAC) is an authorization strategy that deﬁnes permissions based on 
+attributes. In AWS, these attributes are called tags. You can attach tags to IAM entities (users or roles) 
+and to many AWS resources. Tagging entities and resources is the ﬁrst step of ABAC. Then you design 
+ABAC policies to allow operations when the principal's tag matches the tag on the resource that they are 
+trying to access.
+ABAC is helpful in environments that are growing rapidly and helps with situations where policy 
+management becomes cumbersome.
+To control access based on tags, you provide tag information in the condition element of a policy using 
+the aws:ResourceTag/ key-name , aws:RequestTag/ key-name , or aws:TagKeys  condition keys.
+45Amazon CodeGuru Security User Guide
+How Amazon CodeGuru Security works with IAM
+If a service supports all three condition keys for every resource type, then the value is Yes for the service. 
+If a service supports all three condition keys for only some resource types, then the value is Partial.
+For more information about ABAC, see What is ABAC? in the IAM User Guide . To view a tutorial with steps 
+for setting up ABAC, see Use attribute-based access control (ABAC) in the IAM User Guide .
+Using temporary credentials with CodeGuru Security
+Supports temporary credentials Yes
+Some AWS services don't work when you sign in using temporary credentials. For additional information, 
+including which AWS services work with temporary credentials, see AWS services that work with IAM in 
+the IAM User Guide .
+You are using temporary credentials if you sign in to the AWS Management Console using any method 
+except a user name and password. For example, when you access AWS using your company's single 
+sign-on (SSO) link, that process automatically creates temporary credentials. You also automatically 
+create temporary credentials when you sign in to the console as a user and then switch roles. For more 
+information about switching roles, see Switching to a role (console) in the IAM User Guide .
+You can manually create temporary credentials using the AWS CLI or AWS API. You can then use those 
+temporary credentials to access AWS. AWS recommends that you dynamically generate temporary 
+credentials instead of using long-term access keys. For more information, see Temporary security 
+credentials in IAM.
+Cross-service principal permissions for CodeGuru Security
+Supports principal permissions Yes
+When you use an IAM user or role to perform actions in AWS, you are considered a principal. Policies 
+grant permissions to a principal. When you use some services, you might perform an action that 
+then triggers another action in a diﬀerent service. In this case, you must have permissions to perform 
+both actions. To see whether an action requires additional dependent actions in a policy, see Actions, 
+Resources, and Condition Keys for Amazon CodeGuru Security in the Service Authorization Reference.
+Service roles for CodeGuru Security
+Supports service roles No
+A service role is an IAM role that a service assumes to perform actions on your behalf. An IAM 
+administrator can create, modify, and delete a service role from within IAM. For more information, see
+Creating a role to delegate permissions to an AWS service in the IAM User Guide .
+Warning
+Changing the permissions for a service role might break CodeGuru Security functionality. Edit 
+service roles only when CodeGuru Security provides guidance to do so.
+Service-linked roles for CodeGuru Security
+Supports service-linked roles No
+46Amazon CodeGuru Security User Guide
+Identity-based policy examples
+A service-linked role is a type of service role that is linked to an AWS service. The service can assume the 
+role to perform an action on your behalf. Service-linked roles appear in your AWS account and are owned 
+by the service. An IAM administrator can view, but not edit the permissions for service-linked roles.
+For details about creating or managing service-linked roles, see AWS services that work with IAM. Find 
+a service in the table that includes a Yes in the Service-linked role column. Choose the Yes link to view 
+the service-linked role documentation for that service.
+Identity-based policy examples for Amazon 
+CodeGuru Security
+By default, users and roles don't have permission to create or modify CodeGuru Security resources. They 
+also can't perform tasks by using the AWS Management Console, AWS Command Line Interface (AWS 
+CLI), or AWS API. To grant users permission to perform actions on the resources that they need, an IAM 
+administrator can create IAM policies. The administrator can then add the IAM policies to roles, and users 
+can assume the roles.
+To learn how to create an IAM identity-based policy by using these example JSON policy documents, see
+Creating IAM policies in the IAM User Guide .
+For details about actions and resource types deﬁned by CodeGuru Security, including the format of the 
+ARNs for each of the resource types, see Actions, Resources, and Condition Keys for Amazon CodeGuru 
+Security in the Service Authorization Reference.
+Topics
+•Policy best practices (p. 47)
+•Using the CodeGuru Security console (p. 48)
+•Allow users to view their own permissions (p. 48)
+Policy best practices
+Identity-based policies determine whether someone can create, access, or delete CodeGuru Security 
+resources in your account. These actions can incur costs for your AWS account. When you create or edit 
+identity-based policies, follow these guidelines and recommendations:
+•Get started with AWS managed policies and move toward least-privilege permissions – To get 
+started granting permissions to your users and workloads, use the AWS managed policies that grant 
+permissions for many common use cases. They are available in your AWS account. We recommend that 
+you reduce permissions further by deﬁning AWS customer managed policies that are speciﬁc to your 
+use cases. For more information, see AWS managed policies or AWS managed policies for job functions
+in the IAM User Guide .
+•Apply least-privilege permissions – When you set permissions with IAM policies, grant only the 
+permissions required to perform a task. You do this by deﬁning the actions that can be taken on 
+speciﬁc resources under speciﬁc conditions, also known as least-privilege permissions . For more 
+information about using IAM to apply permissions, see  Policies and permissions in IAM in the IAM User 
+Guide .
+•Use conditions in IAM policies to further restrict access – You can add a condition to your policies to 
+limit access to actions and resources. For example, you can write a policy condition to specify that all 
+requests must be sent using SSL. You can also use conditions to grant access to service actions if they 
+are used through a speciﬁc AWS service, such as AWS CloudFormation. For more information, see  IAM 
+JSON policy elements: Condition in the IAM User Guide .
+•Use IAM Access Analyzer to validate your IAM policies to ensure secure and functional permissions
+– IAM Access Analyzer validates new and existing policies so that the policies adhere to the IAM 
+policy language (JSON) and IAM best practices. IAM Access Analyzer provides more than 100 policy 
+47Amazon CodeGuru Security User Guide
+Identity-based policy examples
+checks and actionable recommendations to help you author secure and functional policies. For more 
+information, see IAM Access Analyzer policy validation in the IAM User Guide .
+•Require multi-factor authentication (MFA) – If you have a scenario that requires IAM users or a root 
+user in your AWS account, turn on MFA for additional security. To require MFA when API operations are 
+called, add MFA conditions to your policies. For more information, see  Conﬁguring MFA-protected API 
+access in the IAM User Guide .
+For more information about best practices in IAM, see Security best practices in IAM in the IAM User 
+Guide .
+Using the CodeGuru Security console
+To access the Amazon CodeGuru Security console, you must have a minimum set of permissions. These 
+permissions must allow you to list and view details about the CodeGuru Security resources in your 
+AWS account. If you create an identity-based policy that is more restrictive than the minimum required 
+permissions, the console won't function as intended for entities (users or roles) with that policy.
+You don't need to allow minimum console permissions for users that are making calls only to the AWS 
+CLI or the AWS API. Instead, allow access to only the actions that match the API operation that they're 
+trying to perform.
+To ensure that users and roles can still view information in the CodeGuru Security console, their 
+permissions policy must include the following actions:
+•codeguru-security:BatchGetFindings
+•codeguru-security:GetAccountConfiguration
+•codeguru-security:GetFindings
+•codeguru-security:GetMetricsSummary
+•codeguru-security:GetScan
+•codeguru-security:ListFindingsMetrics
+•codeguru-security:ListScans
+•codeguru-security:ListTagsForResource
+Allow users to view their own permissions
+This example shows how you might create a policy that allows IAM users to view the inline and managed 
+policies that are attached to their user identity. This policy includes permissions to complete this action 
+on the console or programmatically using the AWS CLI or AWS API.
+{ 
+    "Version": "2012-10-17", 
+    "Statement": [ 
+        { 
+            "Sid": "ViewOwnUserInfo", 
+            "Effect": "Allow", 
+            "Action": [ 
+                "iam:GetUserPolicy", 
+                "iam:ListGroupsForUser", 
+                "iam:ListAttachedUserPolicies", 
+                "iam:ListUserPolicies", 
+                "iam:GetUser" 
+            ], 
+            "Resource": ["arn:aws:iam::*:user/${aws:username}"] 
+        }, 
+        { 
+48Amazon CodeGuru Security User Guide
+Amazon CodeGuru Security permissions reference
+            "Sid": "NavigateInConsole", 
+            "Effect": "Allow", 
+            "Action": [ 
+                "iam:GetGroupPolicy", 
+                "iam:GetPolicyVersion", 
+                "iam:GetPolicy", 
+                "iam:ListAttachedGroupPolicies", 
+                "iam:ListGroupPolicies", 
+                "iam:ListPolicyVersions", 
+                "iam:ListPolicies", 
+                "iam:ListUsers" 
+            ], 
+            "Resource": "*" 
+        } 
+    ]
+}
+Amazon CodeGuru Security permissions reference
+You can use AWS condition keys in your Amazon CodeGuru Security policies to express conditions. For a 
+list, see IAM JSON policy elements reference in the IAM User Guide .
+You specify the actions in the policy's Action ﬁeld. To specify an action, use the codeguru-security:
+preﬁx followed by the API operation name (for example, codeguru-security:CreateUploadUrl
+and codeguru-security:CreateScan ). To specify multiple actions in a single statement, separate 
+them with commas (for example, "Action": [ "codeguru-security:CreateUploadUrl", 
+"codeguru-security:CreateScan" ] ).
+Using wildcard characters
+You specify an Amazon Resource Name (ARN), with or without a wildcard character (*), as the resource 
+value in the policy's Resource  ﬁeld. You can use a wildcard to specify multiple actions or resources. 
+For example, codeguru-security:*  speciﬁes all Amazon CodeGuru Security actions and codeguru-
+security:Get*  speciﬁes all Amazon CodeGuru Security actions that begin with the word Get.
+You can use the following table as a reference when you are setting up Authenticating with identities 
+in Amazon CodeGuru Security and writing permissions policies that you can attach to an IAM identity 
+(identity-based policies).
+AWS managed policies for Amazon CodeGuru 
+Security
+To add permissions to users, groups, and roles, it is easier to use AWS managed policies than to write 
+policies yourself. It takes time and expertise to create IAM customer managed policies that provide your 
+team with only the permissions they need. To get started quickly, you can use our AWS managed policies. 
+These policies cover common use cases and are available in your AWS account. For more information 
+about AWS managed policies, see AWS managed policies in the IAM User Guide .
+AWS services maintain and update AWS managed policies. You can't change the permissions in AWS 
+managed policies. Services occasionally add additional permissions to an AWS managed policy to 
+support new features. This type of update aﬀects all identities (users, groups, and roles) where the policy 
+is attached. Services are most likely to update an AWS managed policy when a new feature is launched 
+49Amazon CodeGuru Security User Guide
+AWS managed policies
+or when new operations become available. Services do not remove permissions from an AWS managed 
+policy, so policy updates won't break your existing permissions.
+Additionally, AWS supports managed policies for job functions that span multiple services. For example, 
+the ReadOnlyAccess AWS managed policy provides read-only access to all AWS services and resources. 
+When a service launches a new feature, AWS adds read-only permissions for new operations and 
+resources. For a list and descriptions of job function policies, see AWS managed policies for job functions
+in the IAM User Guide .
+The following AWS managed policies, which you can attach to users in your account, are speciﬁc to 
+CodeGuru Security.
+Topics
+•AmazonCodeGuruSecurityFullAccess (p. 50)
+•AmazonCodeGuruSecurityScanAccess (p. 50)
+•CodeGuru Security updates to AWS managed policies (p. 51)
+AmazonCodeGuruSecurityFullAccess
+You can attach the AmazonCodeGuruSecurityFullAccess  policy to your IAM identities.
+This policy grants full access to Amazon CodeGuru Security.
+{ 
+ "Version": "2012-10-17", 
+ "Statement": [ 
+  { 
+   "Sid": "AmazonCodeGuruSecurityFullAccess", 
+   "Effect": "Allow", 
+   "Action": [ 
+    "codeguru-security:*" 
+   ], 
+   "Resource": "*" 
+  } 
+ ]
+}
+AmazonCodeGuruSecurityScanAccess
+You can attach the AmazonCodeGuruSecurityScanAccess  policy to your IAM identities.
+This policy grants permissions that allow a user to work with scans, including creating scans, viewing 
+scan information, and viewing scan ﬁndings.
+{ 
+ "Version": "2012-10-17", 
+ "Statement": [ 
+  { 
+   "Sid": "AmazonCodeGuruSecurityScanAccess", 
+   "Effect": "Allow", 
+50Amazon CodeGuru Security User Guide
+Troubleshooting
+   "Action": [ 
+    "codeguru-security:CreateScan", 
+    "codeguru-security:CreateUploadUrl", 
+    "codeguru-security:GetScan", 
+    "codeguru-security:GetFindings" 
+   ], 
+   "Resource": "arn:aws:codeguru-security:*:*:scans/*" 
+  } 
+ ]
+}
+CodeGuru Security updates to AWS managed policies
+View details about updates to AWS managed policies for CodeGuru Security since this service began 
+tracking these changes. For automatic alerts about changes to this page, subscribe to the RSS feed on 
+the CodeGuru Security Document history (p. 59) page.
+Change Description Date
+AmazonCodeGuruSecurityScanAccess (p. 50)
+– New policyCodeGuru Security added a new 
+policy that grants permissions to 
+create and view scans and view 
+scan ﬁndings.May 10, 2023
+AmazonCodeGuruSecurityFullAccess (p. 50)
+– New policyCodeGuru Security added a new 
+policy to allow full access to 
+CodeGuru Security.May 10, 2023
+CodeGuru Security started 
+tracking changesCodeGuru Security started 
+tracking changes for its AWS 
+managed policies.May 10, 2023
+Troubleshooting Amazon CodeGuru Security identity 
+and access
+Use the following information to help you diagnose and ﬁx common issues that you might encounter 
+when working with CodeGuru Security and IAM.
+Topics
+•I am not authorized to perform an action in CodeGuru Security (p. 51)
+•I want to allow people outside of my AWS account to access my CodeGuru Security 
+resources (p. 52)
+I am not authorized to perform an action in CodeGuru Security
+If the AWS Management Console tells you that you're not authorized to perform an action, you must 
+contact your administrator for assistance.
+The following example error occurs when the user mateojackson  tries to use the console to view details 
+about a code review, but does not have codeguru-security: CreateScan  permissions.
+51Amazon CodeGuru Security User Guide
+Compliance validation
+User: arn:aws:iam::123456789012:user/mateojackson is not authorized to perform:  
+            codeguru-security: CreateScan  on resource: my-example-code-scan
+In this case, Mateo asks his administrator to update his policies to allow him to access the my-example-
+code-scan  resource using the codeguru-security: CreateScan  action.
+I want to allow people outside of my AWS account to access my 
+CodeGuru Security resources
+You can create a role that users in other accounts or people outside of your organization can use to 
+access your resources. You can specify who is trusted to assume the role. For services that support 
+resource-based policies or access control lists (ACLs), you can use those policies to grant people access to 
+your resources.
+To learn more, consult the following:
+•To learn whether CodeGuru Security supports these features, see How Amazon CodeGuru Security 
+works with IAM (p. 42).
+•To learn how to provide access to your resources across AWS accounts that you own, see Providing 
+access to an IAM user in another AWS account that you own in the IAM User Guide .
+•To learn how to provide access to your resources to third-party AWS accounts, see Providing access to 
+AWS accounts owned by third parties in the IAM User Guide .
+•To learn how to provide access through identity federation, see Providing access to externally 
+authenticated users (identity federation) in the IAM User Guide .
+•To learn the diﬀerence between using roles and resource-based policies for cross-account access, see
+How IAM roles diﬀer from resource-based policies in the IAM User Guide .
+Compliance validation for Amazon CodeGuru 
+Security
+To learn whether an AWS service is within the scope of speciﬁc compliance programs, see AWS services 
+in Scope by Compliance Program and choose the compliance program that you are interested in. For 
+general information, see AWS Compliance Programs.
+You can download third-party audit reports using AWS Artifact. For more information, see Downloading 
+Reports in AWS Artifact.
+Your compliance responsibility when using AWS services is determined by the sensitivity of your data, 
+your company's compliance objectives, and applicable laws and regulations. AWS provides the following 
+resources to help with compliance:
+•Security and Compliance Quick Start Guides – These deployment guides discuss architectural 
+considerations and provide steps for deploying baseline environments on AWS that are security and 
+compliance focused.
+•Architecting for HIPAA Security and Compliance on Amazon Web Services – This whitepaper describes 
+how companies can use AWS to create HIPAA-eligible applications.
+Note
+Not all AWS services are HIPAA eligible. For more information, see the HIPAA Eligible Services 
+Reference.
+•AWS Compliance Resources – This collection of workbooks and guides might apply to your industry 
+and location.
+52Amazon CodeGuru Security User Guide
+Resilience
+•Evaluating Resources with Rules in the AWS Conﬁg Developer Guide – The AWS Conﬁg service assesses 
+how well your resource conﬁgurations comply with internal practices, industry guidelines, and 
+regulations.
+•AWS Security Hub – This AWS service provides a comprehensive view of your security state within 
+AWS. Security Hub uses security controls to evaluate your AWS resources and to check your compliance 
+against security industry standards and best practices. For a list of supported services and controls, see
+Security Hub controls reference.
+•AWS Audit Manager – This AWS service helps you continuously audit your AWS usage to simplify how 
+you manage risk and compliance with regulations and industry standards.
+Resilience in Amazon CodeGuru Security
+The AWS global infrastructure is built around AWS Regions and Availability Zones. AWS Regions provide 
+multiple physically separated and isolated Availability Zones, which are connected with low-latency, 
+high-throughput, and highly redundant networking. With Availability Zones, you can design and operate 
+applications and databases that automatically fail over between zones without interruption. Availability 
+Zones are more highly available, fault tolerant, and scalable than traditional single or multiple data 
+center infrastructures.
+For more information about AWS Regions and Availability Zones, see AWS Global Infrastructure.
+Infrastructure Security in Amazon CodeGuru 
+Security
+As a managed service, Amazon CodeGuru Security is protected by AWS global network security. For 
+information about AWS security services and how AWS protects infrastructure, see AWS Cloud Security. 
+To design your AWS environment using the best practices for infrastructure security, see Infrastructure 
+Protection in Security Pillar AWS Well‐Architected Framework.
+You use AWS published API calls to access CodeGuru Security through the network. Clients must support 
+the following:
+•Transport Layer Security (TLS). We require TLS 1.2 and recommend TLS 1.3.
+•Cipher suites with perfect forward secrecy (PFS) such as DHE (Ephemeral Diﬃe-Hellman) or ECDHE 
+(Elliptic Curve Ephemeral Diﬃe-Hellman). Most modern systems such as Java 7 and later support these 
+modes.
+Additionally, requests must be signed by using an access key ID and a secret access key that is associated 
+with an IAM principal. Or you can use the AWS Security Token Service (AWS STS) to generate temporary 
+security credentials to sign requests.
+53Amazon CodeGuru Security User Guide
+Monitoring events
+Monitoring Amazon CodeGuru 
+Security
+Monitoring is an important part of maintaining the reliability, availability, and performance of Amazon 
+CodeGuru Security and your other AWS solutions. AWS provides the following monitoring tools to watch 
+CodeGuru Security, report when something is wrong, and take automatic actions when appropriate:
+•Amazon EventBridge  can be used to automate your AWS services and respond automatically to system 
+events, such as application availability issues or resource changes. Events from AWS services are 
+delivered to EventBridge in near real time. You can write simple rules to indicate which events are 
+of interest to you and which automated actions to take when an event matches a rule. For more 
+information, see Amazon EventBridge User Guide.
+•AWS CloudTrail captures API calls and related events made by or on behalf of your AWS account 
+and delivers the log ﬁles to an Amazon S3 bucket that you specify. You can identify which users 
+and accounts called AWS, the source IP address from which the calls were made, and when the calls 
+occurred. For more information, see the AWS CloudTrail User Guide.
+Monitoring Amazon CodeGuru Security events in 
+Amazon EventBridge
+You can monitor Amazon CodeGuru Security events in EventBridge, which delivers a stream of real-
+time data from your own applications, software-as-a-service (SaaS) applications, and AWS services. 
+EventBridge routes that data to targets such as AWS Lambda and Amazon Simple Notiﬁcation Service. 
+These events are the same as those that appear in Amazon CloudWatch Events, which delivers a near 
+real-time stream of system events that describe changes in AWS resources.
+Logging Amazon CodeGuru Security API calls using 
+AWS CloudTrail
+Amazon CodeGuru Security is integrated with AWS CloudTrail, a service that provides a record of 
+actions taken by a user, role, or an AWS service in CodeGuru Security. CloudTrail captures all API calls 
+for CodeGuru Security as events. The calls captured include calls from the CodeGuru Security console 
+and code calls to the CodeGuru Security API operations. If you create a trail, you can enable continuous 
+delivery of CloudTrail events to an Amazon S3 bucket, including events for CodeGuru Security. If you 
+don't conﬁgure a trail, you can still view the most recent events in the CloudTrail console in Event 
+history. Using the information collected by CloudTrail, you can determine the request that was made to 
+CodeGuru Security, the IP address from which the request was made, who made the request, when it was 
+made, and additional details.
+To learn more about CloudTrail, see the AWS CloudTrail User Guide.
+CodeGuru Security information in CloudTrail
+CloudTrail is enabled on your AWS account when you create the account. When activity occurs in 
+CodeGuru Security, that activity is recorded in a CloudTrail event along with other AWS service events 
+54Amazon CodeGuru Security User Guide
+Understanding CodeGuru Security log ﬁle entries
+in Event history. You can view, search, and download recent events in your AWS account. For more 
+information, see Viewing events with CloudTrail Event history.
+For an ongoing record of events in your AWS account, including events for CodeGuru Security, create a 
+trail. A trail enables CloudTrail to deliver log ﬁles to an Amazon S3 bucket. By default, when you create 
+a trail in the console, the trail applies to all AWS Regions. The trail logs events from all Regions in the 
+AWS partition and delivers the log ﬁles to the Amazon S3 bucket that you specify. Additionally, you can 
+conﬁgure other AWS services to further analyze and act upon the event data collected in CloudTrail logs. 
+For more information, see the following:
+•Overview for creating a trail
+•CloudTrail supported services and integrations
+•Conﬁguring Amazon SNS notiﬁcations for CloudTrail
+•Receiving CloudTrail log ﬁles from multiple regions and Receiving CloudTrail log ﬁles from multiple 
+accounts
+All CodeGuru Security actions are logged by CloudTrail and are documented in the Amazon CodeGuru 
+Security API Reference. For example, calls to the CreateScan , GetScan  and GetFindings  actions 
+generate entries in the CloudTrail log ﬁles.
+Every event or log entry contains information about who generated the request. The identity 
+information helps you determine the following:
+•Whether the request was made with root or AWS Identity and Access Management (IAM) user 
+credentials.
+•Whether the request was made with temporary security credentials for a role or federated user.
+•Whether the request was made by another AWS service.
+For more information, see the CloudTrail userIdentity element.
+Understanding CodeGuru Security log ﬁle entries
+A trail is a conﬁguration that enables delivery of events as log ﬁles to an Amazon S3 bucket that you 
+specify. CloudTrail log ﬁles contain one or more log entries. An event represents a single request from 
+any source and includes information about the requested action, the date and time of the action, request 
+parameters, and so on. CloudTrail log ﬁles aren't an ordered stack trace of the public API calls, so they 
+don't appear in any speciﬁc order.
+The following example shows a CloudTrail log entry that demonstrates the CreateScan  action.
+{ 
+    "eventVersion": "1.08", 
+    "userIdentity": { 
+        "type": "AssumedRole", 
+        "principalId": "AIDACKCEVSQ6C2EXAMPLE:i-1234567890abcdef0", 
+        "arn": "arn:aws:sts:: 123456789012 :assumed-role/ user-name ", 
+        "accountId": " 123456789012 ", 
+        "accessKeyId": "AKIAIOSFODNN7EXAMPLE", 
+        "sessionContext": { 
+            "sessionIssuer": { 
+                "type": "Role", 
+                "principalId": "AIDACKCEVSQ6C2EXAMPLE", 
+                "arn": "arn:aws:iam:: 123456789012 :role/user-name ", 
+                "accountId": " 123456789012 ", 
+                "userName": " user-name " 
+            }, 
+            "webIdFederationData": {}, 
+55Amazon CodeGuru Security User Guide
+Understanding CodeGuru Security log ﬁle entries
+            "attributes": { 
+                "creationDate": "2023-02-24T00:38:51Z", 
+                "mfaAuthenticated": "false" 
+            } 
+        } 
+    }, 
+    "eventTime": "2023-02-24T00:39:16Z", 
+    "eventSource": "codeguru-security.amazonaws.com", 
+    "eventName": "CreateScan", 
+    "awsRegion": "us-east-1", 
+    "sourceIPAddress": "205.251.233.176", 
+    "userAgent": "aws-sdk-java/Linux/x.xx.fleetxen Java_HotSpot(TM)_64-Bit_Server_VM/xx", 
+    "requestParameters": { 
+        "resourceId": { 
+            "codeArtifactId": "cb8c167e-EXAMPLE" 
+        }, 
+        "scanType": "Express", 
+        "clientToken": "e3c6f4ce-EXAMPLE" 
+    }, 
+    "responseElements": { 
+        "scanName": "a4469191-EXAMPLE", 
+        "resourceId": { 
+            "codeArtifactId": "cb8c167e-EXAMPLE" 
+        }, 
+        "runId": "a4469191-EXAMPLE", 
+        "scanState": "InProgress" 
+    }, 
+    "requestID": "07c4a4de-EXAMPLE", 
+    "eventID": "711cb5a3-EXAMPLE", 
+    "readOnly": false, 
+    "eventType": "AwsApiCall", 
+    "managementEvent": true, 
+    "recipientAccountId": " 123456789012 ", 
+    "eventCategory": "Management"
+} 
+     
+       
+   
+56Amazon CodeGuru Security User Guide
+Code resources
+Quotas for Amazon CodeGuru 
+Security
+Your AWS account has default quotas, formerly referred to as limits, for each AWS service. Unless 
+otherwise noted, each quota is Region-speciﬁc. You can request increases for some quotas, and other 
+quotas cannot be increased.
+To view the quotas for CodeGuru Security, open the Service Quotas console. In the navigation pane, 
+choose AWS services and select CodeGuru Security.
+To request a quota increase, see Requesting a Quota Increase in the Service Quotas User Guide. If the 
+quota is not yet available in Service Quotas, use the limit increase form.
+Your AWS account has the following quotas related to CodeGuru Security.
+Code resources
+Code resource quotas for standard scans
+Resource Default
+Maximum input ﬁle size 5 GB
+Maximum Java source code size 300 MB
+Maximum JavaScript source code size 300 MB
+Maximum Python source code size 50 MB
+Code resource quotas for express scans
+Resource Default
+Maximum Java source code size 1 MB
+Maximum JavaScript source code size 200 KB
+Maximum Python source code size 200 KB
+CodeGuru Security quotas for creating, deploying, 
+and managing an API
+The following ﬁxed quotas apply to creating, deploying, and managing an API in CodeGuru Security, 
+using the AWS CLI, the API Gateway console, or the API Gateway REST API and its SDKs. These quotas 
+can't be increased.
+57Amazon CodeGuru Security User Guide
+CodeGuru Security quotas for creating, 
+deploying, and managing an API
+The default quota for all except two CodeGuru Security APIs is 10 requests per second per account. None 
+of these quotas can be increased. For a list of all CodeGuru Security APIs, see  Amazon CodeGuru Security 
+Actions.
+The two APIs with diﬀerent default quotas are in the following table.
+Action Default quota Can be increased
+CreateUploadUrl 2 requests every second per 
+accountNo
+CreateScan 2 requests every second per 
+accountNo
+58Amazon CodeGuru Security User Guide
+Document history for the CodeGuru 
+Security User Guide
+The following table describes the documentation releases for CodeGuru Security.
+Change Description Date
+Preview release (p. 59) This is the preview release of the
+Amazon CodeGuru Security User 
+Guide .June 13, 2023
+New policies: 
+AmazonCodeGuruSecurityFullAccess 
+and 
+AmazonCodeGuruSecurityScanAccess
+ (p. 59)Added
+AmazonCodeGuruSecurityFullAccess
+to allow full access to 
+CodeGuru Security and
+AmazonCodeGuruSecurityScanAccess
+to grant permissions to create 
+and view scans and view scan 
+ﬁndings.May 10, 2023
+Initial release (p. 59) Initial release of the Amazon 
+CodeGuru Security User Guide .May 10, 2023
+59
